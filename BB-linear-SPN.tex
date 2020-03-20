@@ -1,0 +1,103 @@
+%\documentclass[journal=tosc,submission,spthm]{iacrtrans}
+\documentclass[journal=tosc,spthm]{iacrtrans}
+\usepackage[utf8]{inputenc}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{algorithm}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{amstext}
+\usepackage[mathscr]{eucal}
+\usepackage{bm}
+\usepackage{url}
+\usepackage{pifont}
+\usepackage{calc}
+\usepackage{float}
+\usepackage{latexsym}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{epstopdf}
+\usepackage{footmisc}
+%\usepackage[table]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[inline]{enumitem}
+\definecolor{lgray}{gray}{0.70}
+\newcommand{\graybox}[1]{
+    \colorlet{currentcolor}{.}
+    {\color{lgray}%
+    \frame{\color{currentcolor}\,#1\,}}
+}
+\usepackage{array}
+\usepackage{multirow}
+\DeclareGraphicsExtensions{.eps,.jpg,.png,.pdf}
+\usepackage{amstext}
+
+% \usepackage[pagebackref=false,bookmarks=false]{hyperref}
+% \hypersetup{colorlinks=true}
+%\pagestyle{plain}
+\bibliographystyle{alpha}
+
+\input{macros.tex}
+\renewcommand\theenumi{\roman{enumi}}
+\renewcommand\labelenumi{(\theenumi)}
+
+
+
+
+\author{Yuan Gao\inst{1}\inst{2} \and Chun Guo\inst{1}\inst{2} \and Meiqin Wang\inst{1}\inst{2}}
+\institute{Key Laboratory of Cryptologic Technology and Information Security of Ministry of Education, Shandong University, Qingdao, Shandong, 266237, China, \email{18340823418@163.com,chun.guo@sdu.edu.cn} \and
+School of Cyber Science and Technology, Shandong University, Qingdao, Shandong, China  }
+\title[Beyond-birthday Security for 4-round Linear SP-networks]{Beyond-birthday Security for 4-round Linear SP-networks}
+
+
+
+\begin{document}
+
+\maketitle
+
+\keywords{Blockcipher \and Provable security \and Key-alternating cipher \and Substitution-Permutation networks \and  domain extension of block ciphers \and beyond-birthday-bound}
+
+
+\begin{abstract}
+Recent works (Cogliati et al., CRYPTO 2018) have initiated provable security analysis of Substitution-Permutation Networks (SPNs), one of the most popular approach to construct modern blockciphers. In this theoretical model, the diffusion layers may be {\it non-linear}, which enables beyond-birthday-bound provable security. Though, for the SPN model with {\it linear diffusion layers}, which is closer to real world blockciphers, existing provable results are capped at the birthday barrier.
+
+This paper solves this open problem, and proves that a 4-round SPN with linear diffusion layers is secure up to $2^{2n/3}$ adversarial queries. Besides, we show how to tweak linear SPNs and prove the 6-round tweakable linear SPN is beyond birthday security. This provides additional insights into the real world SPN ciphers.
+\end{abstract}
+
+
+
+\input{chapters/ch1-introduction.tex}
+
+\input{chapters/ch2-preliminary.tex}
+
+\input{chapters/ch3-related-work.tex}
+
+\input{chapters/ch4-4-round-proof.tex}
+
+\input{chapters/ch5-tweakable-linear-SPN.tex}
+
+
+
+\section*{Acknowledgements}
+
+Chun Guo was partly supported by the Program of Qilu Young Scholars (Grant No. 61580089963177) of Shandong University.
+Weijia Wang was partly supported by the Program of Qilu Young Scholars of Shandong University.
+
+
+\bibliography{reference-set,crypto/abbrev3,crypto/crypto}
+%abbrev0.bib (most detailed)
+%abbrev1.bib (w/o conf. days)
+%abbrev2.bib (short names)
+%abbrev3.bib (least detailed)
+
+
+
+\appendix
+
+
+
+
+
+\end{document}
+
