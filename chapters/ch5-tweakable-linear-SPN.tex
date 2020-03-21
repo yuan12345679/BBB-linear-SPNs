@@ -36,16 +36,11 @@ $$
 \end{array}
 $$
 
-We also fix a distinguisher $\mathcal{D}$ as described in the statement and fix an attainable transcript $\tau =\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}\right)$ obtained $\mathcal{D}$. Let
+We also fix a distinguisher $\mathcal{D}$ as described in the statement and fix an attainable transcript $\tau =\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}\right)$ obtained $\mathcal{D}$. For $i \in \{1, \cdots, 6\}$, let
 
 $$
 \begin{aligned}
-&\mathcal{Q}_{S_{1}}^{(0)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(1, u, v) \in \mathcal{Q}_{S} \right\},\\
-&\mathcal{Q}_{S_{2}}^{(0)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(2, u, v) \in \mathcal{Q}_{S} \right\},\\
-&\mathcal{Q}_{S_{3}}^{(0)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(3, u, v) \in \mathcal{Q}_{S} \right\},\\
-&\mathcal{Q}_{S_{4}}^{(0)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(4, u, v) \in \mathcal{Q}_{S} \right\}\\
-&\mathcal{Q}_{S_{5}}^{(0)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(5, u, v) \in \mathcal{Q}_{S} \right\}\\
-&\mathcal{Q}_{S_{6}}^{(0)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(6, u, v) \in \mathcal{Q}_{S} \right\}
+&\mathcal{Q}_{S_{i}}^{(0)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(i, u, v) \in \mathcal{Q}_{S} \right\},\\
 \end{aligned}
 $$
 
@@ -53,16 +48,12 @@ $$
 
 $$
 \begin{aligned}
-&U_{1}^{(0)}=\left\{u_{1} \in\{0,1\}^{n}:\left(1, u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(0)}\right\}, \quad V_{1}^{(0)}=\left\{v_{1} \in\{0,1\}^{n}:\left(1, u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(0)}\right\},\\
-&U_{2}^{(0)}=\left\{u_{2} \in\{0,1\}^{n}:\left(2, u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}^{(0)}\right\}, \quad V_{2}^{(0)}=\left\{v_{2} \in\{0,1\}^{n}:\left(2, u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}^{(0)}\right\},\\
-&U_{3}^{(0)}=\left\{u_{3} \in\{0,1\}^{n}:\left(3, u_{3}, v_{3}\right) \in \mathcal{Q}_{S_{3}}^{(0)}\right\}, \quad V_{3}^{(0)}=\left\{v_{3} \in\{0,1\}^{n}:\left(3, u_{3}, v_{3}\right) \in \mathcal{Q}_{S_{3}}^{(0)}\right\},\\
-&U_{4}^{(0)}=\left\{u_{4} \in\{0,1\}^{n}:\left(4, u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}^{(0)}\right\}, \quad V_{4}^{(0)}=\left\{v_{4} \in\{0,1\}^{n}:\left(4, u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}^{(0)}\right\},\\
-&U_{5}^{(0)}=\left\{u_{5} \in\{0,1\}^{n}:\left(5, u_{5}, v_{5}\right) \in \mathcal{Q}_{S_{5}}^{(0)}\right\}, \quad V_{5}^{(0)}=\left\{v_{5} \in\{0,1\}^{n}:\left(5, u_{5}, v_{5}\right) \in \mathcal{Q}_{S_{5}}^{(0)}\right\},\\
-&U_{6}^{(0)}=\left\{u_{6} \in\{0,1\}^{n}:\left(6, u_{6}, v_{6}\right) \in \mathcal{Q}_{S_{6}}^{(0)}\right\}, \quad V_{6}^{(0)}=\left\{v_{6} \in\{0,1\}^{n}:\left(6, u_{6}, v_{6}\right) \in \mathcal{Q}_{S_{6}}^{(0)}\right\}
+&U_{i}^{(0)}=\left\{u_{i} \in\{0,1\}^{n}:\left(i, u_{i}, v_{i}\right) \in \mathcal{Q}_{S_{i}}^{(0)}\right\}\\
+&V_{i}^{(0)}=\left\{v_{i} \in\{0,1\}^{n}:\left(i, u_{i}, v_{i}\right) \in \mathcal{Q}_{S_{i}}^{(0)}\right\},\\
 \end{aligned}
 $$
 
-\noindent denote the domains and ranges of $\mathcal{Q}_{S_{1}}^{(0)}, \mathcal{Q}_{S_{2}}^{(0)}, \mathcal{Q}_{S_{3}}^{(0)}, \mathcal{Q}_{S_{4}}^{(0)}, \mathcal{Q}_{S_{5}}^{(0)}, \mathcal{Q}_{S_{6}}^{(0)}$, respectively.
+\noindent denote the domains and ranges of $\mathcal{Q}_{S_{i}}^{(0)}, i \in \{1, \cdots, 6\}$, respectively.
 
 Similar to the 4-round SPN, we will first define what we mean by an extension of the transcript $\tau$. Then we will extension the outer four rounds and the inner two rounds transcripts respectively. Next, we will define bad transcripts, which is the most important step in our proof. Finally, we will peel off he outer two rounds(for the outer four round, we will peel off the outermost two round first) and analyzing the inner two rounds. We stress that extended transcripts are completely virtual and are not disclosed to the adversary. They are just an artificial intermediate step to lower bound the probability to observe transcript $\tau$ in the real world.\\
 
@@ -130,14 +121,12 @@ for $i=1, 6$ the number of additional queries included in the extended transcrip
   there exists $(t, x, y) \in \mathcal{Q}_{C}, \left(u_{5}, v_{5}\right) \in \mathcal{Q}_{S_{5}}, \left(u_{6}, v_{6}\right) \in \mathcal{Q}_{S_{6}}^{(1)}$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(y \oplus k_{6} \oplus t\right)[j]=v_6$ and $\left(T_{5}^{-1}\left(S_{6}^{-1}\left(y \oplus k_{6} \oplus t\right) \oplus k_{5} \oplus t\right)\right)[i]=v_5$.
   \item\efour 
   there exists $(t, x, y) \in \mathcal{Q}_{C}$ and distinct indices $i, j \in \{1, \ldots, w\}$ such that $(x\xor k_0 \xor t)[i]=(x\xor k_0 \xor t)[j]$, or $(y\xor k_6 \xor t)[i]=(y\xor k_6 \xor t)[j]$.
-  \item\efive
-  there exist $(t, x, y), (t', x', y') \in \mathcal{Q}_{C}$ and distinct indices $i, j \in \{1, \ldots, w\}$ such that $(x\xor k_0 \xor t)[i]=(x' \xor k_0 \xor t')[j]$, or $(y\xor k_6 \xor t)[i]=(y' \xor k_6 \xor t')[j]$.
 \end{itemize}
 
 \noindent \textbf{Lemma 10} \emph{One has}
 
 \begin{equation}
-\operatorname{Pr}[\tau^{\prime} \in \Theta_{bad}(\tau)] \leq \frac{w^2 q (p+w q) (3 p +w q)}{N^{2}} + \frac{w^{2} q + 2 w^2 q^2}{N}.
+\operatorname{Pr}[\tau^{\prime} \in \Theta_{bad}(\tau)] \leq \frac{w^2 q (p+w q) (3 p +w q)}{N^{2}} + \frac{w^{2} q}{N}.
 \end{equation}
 
 \noindent \emph{Proof:} We fix any extended transcript, denoted $\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}, \mathcal{Q}_{S_{1}}^{\prime}\right)$. For any fixed construction query $(t, x, y) \in \mathcal{Q}_{C}$, now we upper bound the probabilities of the bad extended transcript.\\
@@ -156,14 +145,12 @@ $$
 \operatorname{Pr}\left[\efour\right] \leq \frac{w^{2} q}{N}.
 $$
 
-\noindent  Similarly, we have $\operatorname{Pr}\left[\efive\right] \leq \frac{2 w^{2} q^2}{N}$. Then sum of yields (12).\\
-
 Similar to the outermost two round, we will extend the inner two round (the two and the five round).  Pick a pair of S-box $(S_1, S_6)$ such that $S_{1} \vdash \mathcal{Q}_{S_{1}}^{(0)}$ and $S_{6} \vdash \mathcal{Q}_{S_{6}}^{(0)}$, and for each $ (t, x, y) \in \mathcal{Q}_{C}$ we set $a=T_{1}\left(S_{1}\left(x \oplus k_{0} \oplus t\right)\right)$, $b=\S_{6}^{-1}\left(y \oplus k_{6} \oplus t\right)$. In this way we obtain $\mathnormal{q}$ tuples of the form $(t, a, b)$; for convenience we denote the set of such induced tuples by $\mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right)$. Then we choose a pair of keys $\left(k_{1}, k_{5}\right) \in \mathcal{K}^{2}$ uniformly at random. Once these keys have been chosen, some construction queries will become involved in collisions. A colliding query is defined as a construction query $(t, a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right)$. After that, we build a new set $\mathcal{Q}_{S_{2}}^{\prime}$ of S-box evaluations that will play the role of an extension of $\mathcal{Q}_{S}$. Then we choose the key $k_2, k_3, k_4$ uniformly at random. An extended transcript of $\tau$ will be defined as a tuple $\tau''=\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}, \mathcal{Q}_{S_{2}}^{\prime}, \mathbf{k}\right)$ where $\mathbf{k}=\left(k_{0}, k_{1}, k_{2},k_{3},k_{4}, k_{5}, k_{6}\right)$. After define the extended transcript $\tau''$ is bad, \\
 
 \noindent \textbf{Lemma 11} \emph{One has}
 
 \begin{equation}
-\operatorname{Pr}[\tau'' \in \Theta_{bad}(\tau)] \leq \frac{w^2 q (p+w q) (3 p +w q)}{N^{2}} + \frac{w^{2} q + 2 w^2 q^2}{N}.
+\operatorname{Pr}[\tau'' \in \Theta_{bad}(\tau)] \leq \frac{w^2 q (p+w q) (3 p +w q)}{N^{2}} + \frac{w^{2} q}{N}.
 \end{equation}
 
 \noindent The proof is similar to Lemma 10.
@@ -171,7 +158,7 @@ Similar to the outermost two round, we will extend the inner two round (the two 
 Then combine (11), (12), we can get
 
 \begin{equation}
-\operatorname{Pr}[\tau \in \Theta_{bad}(\tau)] \leq \frac{2w^2 q (p+w q) (3 p +w q)}{N^{2}} + \frac{2w^{2} q + 4 w^2 q^2}{N}.
+\operatorname{Pr}[\tau \in \Theta_{bad}(\tau)] \leq \frac{2w^2 q (p+w q) (3 p +w q)}{N^{2}} + \frac{2w^{2} q}{N}.
 \end{equation}
 
 
@@ -245,10 +232,7 @@ $$
 $$
 \end{itemize}
 
-
-%proof
-\noindent The other proof is similar to the beyond birthday security of 4-round SPN. 
-
+\noindent 
 
 
 
