@@ -21,8 +21,7 @@ In this section, we will prove the following theorem.\\
 
 \begin{equation}
 \begin{aligned}
-\operatorname{Adv}_{\mathcal{C}}\left(p, q\right) &\leq \frac{w^2q(p+wq)(35p+33wq+16q)+4w^2q(p+3wq)^2}{2^{2n}} \\
-&+ \frac{32 w^2 q^2 (p+w q)}{2^{3n}}+\frac{q^2}{2^{nw}} + \frac{w^2 q}{N}.
+\operatorname{Adv}_{\mathcal{C}}\left(p, q\right) &\leq \frac{q^2}{2^{n w}} + \frac{8 w^2 q(p+wq)^2}{2^n}+ \frac{16 w^2 q(p+w q)(p+w q +3 q)+4 w^2 q(p+3 wq)^2}{2^{2 n}}.
 \end{aligned}
 \end{equation}
 
@@ -236,8 +235,8 @@ Next, we will prove the below lemma firstly.\\
 
 \begin{equation}
 \begin{aligned}
-1-&\operatorname{Pr}\left[\operatorname{Bad}\left(S_{1},S_{4}\right) | S_{1} \vdash \mathcal{Q}_{S_{1}},S_{4} \vdash \mathcal{Q}_{S_{4}}\right] \geq 1- \frac{w^{2} q (p+w q)^{2}}{(N-p)^{2}}\\
-& -\frac{2 w^{2} q (p+w q)^{2}}{N \cdot (N-p)} - \frac{2 w^{2} q (p+w q)^{2}}{(N-p)^2} - \frac{2 w^{2} q^{2} (p+w q)}{(N-p)^2} - \frac{2 w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)^2}.
+1&-\operatorname{Pr}\left[\operatorname{Bad}\left(S_{1},S_{4}\right) | S_{1} \vdash \mathcal{Q}_{S_{1}},S_{4} \vdash \mathcal{Q}_{S_{4}}\right] \geq 1- \frac{2 w^{2} q (p+w q)^{2}}{(N-p)}\\
+& -\frac{2 w^{2} q (p+w q)(p+w q+2 q)}{N \cdot (N-p)} - \frac{w^{2} q (p+w q)(p+w q+2 q)}{(N-p)^2} - \frac{2 w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)}.
 \end{aligned}
 \end{equation}
 
@@ -303,7 +302,7 @@ $$
 \noindent \textsc{Conditions \cfour}. Similar to the previous has mentioned, it can not be $\left(x \oplus k_{0}\right)[i] \in \mathcal{Q}_{S_{1}}^{(1)}$, otherwise would satisfy \btwo. Thus conditioned on $S_{1} \vdash \mathcal{Q}_{S_{1}}$ and $S_{4} \vdash \mathcal{Q}_{S_{4}}$, the value $\left(S_{1}\left(x \oplus k_{0}\right)\right)[i]$ remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{4}})$. Then take advantage of \bfour, it can not be $(x\xor k_0)[i]=(x\xor k_0)[j]$, or $(y\xor k_4)[i]=(y\xor k_4)[j]$. That is $\left(a \oplus k_{1}\right)[i] \neq \left(a \oplus k_{1}\right)[i']$ must be established. So, one has
 
 $$
-\operatorname{Pr}\left[\tau_{inner} \in \Theta_{4}\right] \leq \frac{w^{2} q (p+w q)^{2}}{(N-p)^2}.
+\operatorname{Pr}\left[\tau_{inner} \in \Theta_{4}\right] \leq \frac{w^{2} q (p+w q)^{2}}{N-p}.
 $$
 
 \noindent \textsc{Conditions \cfive}. We have the value $\left(S_{1}\left(x \oplus k_{0}\right)\right)[i]$ remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{4}})$.  Because of the fact that there exists $i$ with $x[i]\neq x'[i]$, that is there exist $i$ with $\left(a \oplus k_{1}\right)[i'] \neq \left(a' \oplus k_{1}\right)[i']$. So,
@@ -316,34 +315,34 @@ $$
 
 \noindent \textsc{Conditions \csix and \cnine}. Because of the value $\left(S_{1}\left(x \oplus k_{0}\right)\right)[i]$ remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{4}})$. We divide \csix into two subevents: the first concerning with $j\neq j'$, while the second concerning with $j=j'$.
 
-For the first case, the probability that both $\left(a \oplus k_{1}\right)[i] = u_2, \left(a^{\prime} \oplus k_{1}\right)[i^{\prime}] = u_2^{\prime}$ hold is at most $\frac{1}{(N-p)^2}$. We have at most $w^{2} q^{2} (p+w q)$ such tuples, because to make 
+For the first case, to make 
 $$
 \left(T_{2}\left(S_{2}\left(a \oplus k_{1}\right)\right) \oplus k_{2}\right)[j] = \left(T_{2}\left(S_{2}\left(a^{\prime} \oplus k_{1}\right)\right) \oplus k_{2}\right)[j^{\prime}].
 $$
-\noindent achieved, there must be some correlation between $u_2$ and $u_2'$, so there are only $p +w q $ such $u_2$ and $u_2^{\prime}$.  Then we just leverage the fact that $k_2[j]$ and $k_2[j']$ are uniform and independent, so the collision holds with probability $1/N$, then one has
+\noindent achieved, we just leverage the fact that $k_2[j]$ and $k_2[j']$ are uniform and independent, so the collision holds with probability $1/N$. Because of $a$remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{4}})$, let $(a', b')$ be the unique query such that the collision happened. Then the probability that $\left(a \oplus k_{1}\right)[i] = u_2, \left(a^{\prime} \oplus k_{1}\right)[i^{\prime}] = u_2^{\prime}$ is at most $\frac{1}{N-p}$, because we have at most $w^2 q^2(p+ w q)$ such tuples, one has
 
 $$
-\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)^2 }.
+\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)}.
 $$
 
 For the case of $j=j'$ with distinct $(a,b),(a',b')$, that is there is only one index has different value of input and output. Because of the value $\left(S_{1}\left(x' \oplus k_{0}\right)\right)[i]$ also remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{4}})$ conditioned on the fact that the value $\left(S_{1}\left(x \oplus k_{0}\right)\right)[i]$ is uniform. Then we leverage the randomness due to lazy sampling $S_2(a\xor k_1)$. Conditioned on $\cfour$, for $i''\neq i$, the value $(a \oplus k_1)[i'']$ ``does not collide with'' pairs in $\mathcal{Q}_{S_{2}}^{(1)}$, and will be assigned a random outputs during the lazy sampling process. Simultaneously conditioned on $\cfive$, for distinct $i'' \neq i$, if $\left(a \oplus k_{1}\right)[i] = u_2$, it holds $(a\xor k_1)[i'']\neq(a'\xor k_1)[i'']$. Since $T_2$ contain no zero entries, so the value $\left(T_{2}\left(S_{2}\left(a \oplus k_{1}\right)\right) \oplus k_{2}\right)[i'']$ could not be disturbed by the value of $\left(T_{2}\left(S_{2}\left(a' \oplus k_{1}\right)\right) \oplus k_{2}\right)[i'']$ and thus uniform in at least
 $\frac{1}{N - p- wq}$. One has,
 $$
-\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)^2 }.
+\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)}.
 $$
 \noindent So, combine these two subevents, one has
 $$
-\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)^2 }.
+\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)} + \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N- p)}.
 $$
 \noindent Similarly, one has
 $$
-\operatorname{Pr}\left[\tau_{inner} \in \Theta_{9}\right] \leq \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)^2 }.
+\operatorname{Pr}\left[\tau_{inner} \in \Theta_{9}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)} + \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)}.
 $$
 \noindent Then we have
 $$
 \begin{aligned}
-1-&\operatorname{Pr}\left[\operatorname{Bad}\left(S_{1},S_{4}\right) | S_{1} \vdash \mathcal{Q}_{S_{1}},S_{4} \vdash \mathcal{Q}_{S_{4}}\right] \geq 1- \frac{w^{2} q (p+w q)^{2}}{(N-p)^{2}}\\
-& -\frac{2 w^{2} q (p+w q)^{2}}{N \cdot (N-p)} - \frac{w^{2} q (p+w q)^{2}}{(N-p)^2} - \frac{w^{2} q^{2} (p+w q)}{(N-p)^2} - \frac{2 w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)^2}.
+1&-\operatorname{Pr}\left[\operatorname{Bad}\left(S_{1},S_{4}\right) | S_{1} \vdash \mathcal{Q}_{S_{1}},S_{4} \vdash \mathcal{Q}_{S_{4}}\right] \geq 1- \frac{2 w^{2} q (p+w q)^{2}}{(N-p)}\\
+& -\frac{2 w^{2} q (p+w q)(p+w q+2 q)}{N \cdot (N-p)} - \frac{w^{2} q (p+w q)(p+w q+2 q)}{(N-p)^2} - \frac{2 w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)}.
 \end{aligned}
 $$
 
@@ -351,9 +350,8 @@ $$
 
 \begin{equation}
 \begin{aligned}
-\frac{\mathrm{p}\left(\tau, S_{1}, S_{4}\right)}{\left(2^{w n}\right)_{q}} \geq 1- &\frac{q(2wp+6w^{2}q)^2 + 16w^2q(p+ wq)^2 + 8w^2q^2(p+wq)}{N^2}\\
-&- \frac{16w^2q^2(p+wq)}{N^3} - \frac{q^2}{N^w}.
-\end{aligned}
+\frac{\mathrm{p}\left(\tau, S_{1}, S_{4}\right)}{\left(2^{w n}\right)_{q}} \geq &1- \frac{4 w^2 q(p+wq)^2}{N}\\
+&- \frac{8 w^2 q(p+w q)(p+w q +3 q)+4 w^2 q(p+3 wq)^2}{N^2} -\frac{q^2}{N^w}.\end{aligned}.
 \end{equation}
 
 \noindent \emph{Proof:}  For any extended transcript $\tau_{inner}^{\prime}=\left(\mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right), \mathcal{Q}_{S_{inner}}, \mathcal{Q}_{S_{inner}}^{\prime}, \mathbf{k}\right)$, let us denote
@@ -444,8 +442,8 @@ The previous proof is conditioned on $S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{4} \v
 
 \begin{equation}
 \begin{aligned}
-\operatorname{Pr}\left[ \tau_{inner}^{\prime} \in \Theta_{\text {good }}(\tau_{inner})\right] \geq 1&- \frac{w^{2} q (p+w q)^{2}}{(N-p-w q)^{2}} -\frac{2 w^{2} q (p+w q)^{2}}{N \cdot (N-p-w q)}\\
-&- \frac{2 w^{2} q (p+w q)^{2}}{(N-p- wq)^2} - \frac{2 w^{2} q^{2} (p+w q)}{(N-p- wq)^2} - \frac{2 w^{2} q^{2} (p+w q)}{(N-p- wq)^3}.
+\operatorname{Pr}\left[ \tau_{inner}^{\prime} \in \Theta_{\text {good }}(\tau_{inner})\right] \geq &1- \frac{2 w^{2} q (p+w q)^{2}}{(N-p-w q)} -\frac{2 w^{2} q (p+w q)(p+w q+2 q)}{N \cdot (N-p-w q)}\\
+&- \frac{w^{2} q (p+w q)(p+w q+2 q)}{(N-p-w q)^2} - \frac{2 w^{2} q^{2} (p+w q)}{(N- p- wq)^2}.
 \end{aligned}
 \end{equation}
 
@@ -460,14 +458,15 @@ $$
 $$
 \begin{aligned}
 \frac{\mathrm{p}\left(\tau, S_{1}, S_{4}\right)}{\left(2^{w n}\right)_{q}} &\geq (1-\frac{q^{2}}{2^{w n}}-\frac{q\left(2 w p+6 w^{2} q\right)^{2}}{2^{2 n}})\\
-&\cdot (1- \frac{w^{2} q (p+w q)^{2}}{(N-p-w q)^{2}} -\frac{2 w^{2} q (p+w q)^{2}}{N \cdot (N-p-w q)}\\
-&- \frac{2 w^{2} q (p+w q)^{2}}{(N-p- wq)^2} - \frac{2 w^{2} q^{2} (p+w q)}{(N-p- wq)^2} - \frac{2 w^{2} q^{2} (p+w q)}{(N-p- wq)^3})\\
-&\geq 1- \frac{w^{2} q (p+w q)^{2}}{(N-p-w q)^{2}} -\frac{2 w^{2} q (p+w q)^{2}}{N \cdot (N-p-w q)}- \frac{2 w^{2} q (p+w q)^{2}}{(N-p- wq)^2} \\
-&- \frac{2 w^{2} q^{2} (p+w q)}{(N-p- wq)^2} - \frac{2 w^{2} q^{2} (p+w q)}{(N-p- wq)^3} -\frac{q^{2}}{2^{w n}}-\frac{q\left(2 w p+6 w^{2} q\right)^{2}}{2^{2 n}}\\
-&\geq 1- \frac{q(2wp+6w^{2}q)^2}{N^2} - \frac{4w^2q(p+wq)^2}{N^2} - \frac{12 w^2q(p+wq)^2}{N^2}\\
-&- \frac{8w^2q^2(p+wq)}{N^2} - \frac{16w^2q^2(p+wq)}{N^3} - \frac{q^2}{N^w}\\
-&=1-\frac{q(2wp+6w^{2}q)^2 + 16w^2q(p+ wq)^2 + 8w^2q^2(p+wq)}{N^2}\\
-&- \frac{16w^2q^2(p+wq)}{N^3} - \frac{q^2}{N^w}.
+&\cdot (1- \frac{2 w^{2} q (p+w q)^{2}}{(N-p-w q)} -\frac{2 w^{2} q (p+w q)(p+w q+2 q)}{N \cdot (N-p-w q)}\\
+&- \frac{w^{2} q (p+w q)(p+w q+2 q)}{(N-p-w q)^2} - \frac{2 w^{2} q^{2} (p+w q)}{(N- p- wq)^2})\\
+&\geq 1- \frac{2 w^{2} q (p+w q)^{2}}{(N-p-w q)} -\frac{2 w^{2} q (p+w q)(p+w q+2 q)}{N \cdot (N-p-w q)}\\
+&- \frac{w^{2} q (p+w q)(p+w q+2 q)}{(N-p-w q)^2} - \frac{2 w^{2} q^{2} (p+w q)}{(N- p- wq)^2}\\
+& -\frac{q^{2}}{2^{w n}}-\frac{q\left(2 w p+6 w^{2} q\right)^{2}}{2^{2 n}}\\
+&\geq 1- \frac{4 w^2 q(p+wq)^2}{N} - \frac{8 w^2 q(p+w q)(p+w q +2 q)}{N^2}\\
+&- \frac{8 w^2 q^2(p+w q)}{N^2} - \frac{q^{2}}{2^{w n}}-\frac{q\left(2 w p+6 w^{2} q\right)^{2}}{2^{2 n}}\\
+&= 1- \frac{4 w^2 q(p+wq)^2}{N}\\
+&- \frac{8 w^2 q(p+w q)(p+w q +3 q)+4 w^2 q(p+3 wq)^2}{N^2} -\frac{q^2}{N^w}.
 \end{aligned}
 $$
 
@@ -475,8 +474,7 @@ $$
 
 $$
 \begin{aligned}
-\operatorname{Adv}_{\mathcal{C}}\left(p, q\right) &\leq \frac{q(2wp+6w^{2}q)^2 + 32w^2q(p+ wq)^2 + 16w^2q^2(p+wq)}{N^2}\\
-&+\frac{32w^2q^2(p+wq)}{N^3} + \frac{q^2}{N^w}.
+\operatorname{Adv}_{\mathcal{C}}\left(p, q\right) &\leq \frac{q^2}{2^{n w}} + \frac{8 w^2 q(p+wq)^2}{2^n}+ \frac{16 w^2 q(p+w q)(p+w q +3 q)+4 w^2 q(p+3 wq)^2}{2^{2 n}}.
 \end{aligned}
 $$
 
