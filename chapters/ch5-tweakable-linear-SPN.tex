@@ -12,7 +12,7 @@ $$
 \end{array}\right.
 $$
 
-where $T_{1}, T_{2}, T_{3} T_{4} T_{5}\in \mathbb{F}^{w \times w}$ are invertible linear transformations. We prove that a 6-round, linear SPN is secure so long as (i) $T_1$, $T_2$ $T_3$ and $T_{3}^{-1}$, $T_{4}^{-1}$ $T_{5}^{-1}$ contain no zero entries(Miles and Viola ~\cite{miles2015substitution} show that matrices with maximal branch number ~\cite{daemen1995cipher} satisfy this property), and (ii) round keys $\{k_i\}(i=0, 1, 2, 3, 4, 5, 6)$ are (individually) uniform.
+where $T_{1}, T_{2}, T_{3}, T_{4}, T_{5}\in \mathbb{F}^{w \times w}$ are invertible linear transformations. We prove that a 6-round, linear SPN is secure so long as (i) $T_1$, $T_2$ $T_3$ and $T_{3}^{-1}$, $T_{4}^{-1}$,$T_{5}^{-1}$ contain no zero entries(Miles and Viola ~\cite{miles2015substitution} show that matrices with maximal branch number ~\cite{daemen1995cipher} satisfy this property), and (ii) round keys $\{k_i\}(i=0, 1, 2, 3, 4, 5, 6)$ are (individually) uniform.
 
 We will prove the following theorem firstly.\\
 
@@ -21,8 +21,8 @@ We will prove the following theorem firstly.\\
 
 \begin{equation}
 \begin{aligned}
-\operatorname{Adv}_{\mathcal{C}}\left(p, q\right) &\leq \frac{w^2q(p+wq)(38p+34wq+16q)+4w^2q(p+3wq)^2}{2^{2n}}\\
-& + \frac{32 w^2 q^2 (p+w q)}{2^{3n}}+\frac{q^2}{2^{nw}} + \frac{2 w^2 q + 4 w^2 q^2}{N}.
+\operatorname{Adv}_{\mathcal{C}}\left(p, q\right) &\leq \frac{q^2}{2^{n w}} + \frac{8 w^2 q(p+wq)^2+w^2 q}{2^n}\\
+&+ \frac{16 w^2 q(p+w q)(p+w q +3 q)+4 w^2 q(p+3 wq)^2+ w^2q(p+w q)(3p+w q)}{2^{2 n}}.
 \end{aligned}
 \end{equation}
 
@@ -71,7 +71,7 @@ Similar to the 4-round SPN, we will first define what we mean by an extension of
   there exist a construction query $\left(t', x^{\prime}, y^{\prime}\right) \in \mathcal{Q}_{C}$ and an integer $i,j \in\{1, \ldots, w\}$ such that $(t, x, y, i) \neq\left(t, x^{\prime}, y^{\prime}, j\right)$ and $i \in\{1, \ldots, w\}$ such that $\left(y \oplus k_{6} \oplus t \right)[i] = \left(y' \oplus k_{6} \oplus t\right)[j]$.
 \end{itemize}
 
-We are now going to build a new set $\mathcal{Q}_{S_{1}}^{\prime}$ of S-box evaluations that will play the role of an extension of $\mathcal{Q}_{S}$. For each colliding query $(t, x, y) \in \mathcal{Q}_{C}$, we will add tuples $\left(1, \left(x \oplus k_{0} \oplus t\right)[i], v_1^{\prime}\right)_{1 \leq i \leq w}$ (if ($t, \mathit{x}$, $\mathit{y}$) collides at the input of $S_1$), or (if ($t, \mathit{x}, \mathit{y}$) collides at the output of $S_6$) $\left(6, u_6^{\prime}, \left(y \oplus k_{6} \oplus t\right)[i]\right)_{1 \leq i \leq w}$, by lazy sampling $v_1^{\prime}=S_{1}(\left(x \oplus k_{0} \oplus t\right)[i])$, or $u_6^{\prime}=S_{6}^{-1}(\left(y \oplus k_{6} \oplus t\right)[i])$, as long as it has not been determined by any existing query in $\mathcal{Q}_{S}$. Then we choose the key $k_1, k_2, k_3, k_4, k_5$ uniformly at random. An extended transcript of $\tau$ will be defined as a tuple $\tau^{\prime}=\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}, \mathcal{Q}_{S_{1}}^{\prime}, \mathbf{k}\right)$ where $\mathbf{k}=\left(k_{0}, k_{1}, k_{2},k_{3},k_{4}, k_{5}, k_{6}\right)$. For each collision between a construction query and a primitive query, or between two construction queries, the extended transcript will contain enough information to compute a complete round of the evaluation of the SPN. This will be useful to lower bound the probability to get the transcript $\tau$ in the real world.\\
+We are now going to build a new set $\mathcal{Q}_{S_{outmost}}^{\prime}$ of S-box evaluations that will play the role of an extension of $\mathcal{Q}_{S}$. For each colliding query $(t, x, y) \in \mathcal{Q}_{C}$, we will add tuples $\left(1, \left(x \oplus k_{0} \oplus t\right)[i], v_1^{\prime}\right)_{1 \leq i \leq w}$ (if ($t, \mathit{x}$, $\mathit{y}$) collides at the input of $S_1$), or (if ($t, \mathit{x}, \mathit{y}$) collides at the output of $S_6$) $\left(6, u_6^{\prime}, \left(y \oplus k_{6} \oplus t\right)[i]\right)_{1 \leq i \leq w}$, by lazy sampling $v_1^{\prime}=S_{1}(\left(x \oplus k_{0} \oplus t\right)[i])$, or $u_6^{\prime}=S_{6}^{-1}(\left(y \oplus k_{6} \oplus t\right)[i])$, as long as it has not been determined by any existing query in $\mathcal{Q}_{S}$. Then we choose the key $k_1, k_2, k_3, k_4, k_5$ uniformly at random. An extended transcript of $\tau$ will be defined as a tuple $\tau^{\prime}=\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}, \mathcal{Q}_{S_{outmost}}^{\prime}, \mathbf{k}\right)$ where $\mathbf{k}=\left(k_{0}, k_{1}, k_{2},k_{3},k_{4}, k_{5}, k_{6}\right)$. For each collision between a construction query and a primitive query, or between two construction queries, the extended transcript will contain enough information to compute a complete round of the evaluation of the SPN. This will be useful to lower bound the probability to get the transcript $\tau$ in the real world.\\
 
 \noindent Let
 
@@ -129,7 +129,7 @@ for $i=1, 6$ the number of additional queries included in the extended transcrip
 \operatorname{Pr}[\tau^{\prime} \in \Theta_{bad}(\tau)] \leq \frac{w^2 q (p+w q) (3 p +w q)}{N^{2}} + \frac{w^{2} q}{N}.
 \end{equation}
 
-\noindent \emph{Proof:} We fix any extended transcript, denoted $\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}, \mathcal{Q}_{S_{1}}^{\prime}\right)$. For any fixed construction query $(t, x, y) \in \mathcal{Q}_{C}$, now we upper bound the probabilities of the bad extended transcript.\\
+\noindent \emph{Proof:} We fix any extended transcript, denoted $\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}, \mathcal{Q}_{S_{outmost}}^{\prime}\right)$. For any fixed construction query $(t, x, y) \in \mathcal{Q}_{C}$, now we upper bound the probabilities of the bad extended transcript.\\
 
 \noindent Consider \eone: Since we have at most $w^{2} q \left(p+w q\right)^{2}$ choices for $(t, x, y) \in \mathcal{Q}_{C}, \left(u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(1)}, \left(u_{6}, v_{6}\right) \in \mathcal{Q}_{S_{6}}^{(1)}$ and index $i, j \in \{1, \ldots, w\}$ and since the random choice of $k_{0}$ and $k_{6}$ are independent, one has
 
@@ -145,7 +145,7 @@ $$
 \operatorname{Pr}\left[\efour\right] \leq \frac{w^{2} q}{N}.
 $$
 
-Similar to the outermost two round, we will extend the inner two round (the two and the five round).  Pick a pair of S-box $(S_1, S_6)$ such that $S_{1} \vdash \mathcal{Q}_{S_{1}}^{(0)}$ and $S_{6} \vdash \mathcal{Q}_{S_{6}}^{(0)}$, and for each $ (t, x, y) \in \mathcal{Q}_{C}$ we set $a=T_{1}\left(S_{1}\left(x \oplus k_{0} \oplus t\right)\right)$, $b=\S_{6}^{-1}\left(y \oplus k_{6} \oplus t\right)$. In this way we obtain $\mathnormal{q}$ tuples of the form $(t, a, b)$; for convenience we denote the set of such induced tuples by $\mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right)$. Then we choose a pair of keys $\left(k_{1}, k_{5}\right) \in \mathcal{K}^{2}$ uniformly at random. Once these keys have been chosen, some construction queries will become involved in collisions. A colliding query is defined as a construction query $(t, a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right)$. After that, we build a new set $\mathcal{Q}_{S_{2}}^{\prime}$ of S-box evaluations that will play the role of an extension of $\mathcal{Q}_{S}$. Then we choose the key $k_2, k_3, k_4$ uniformly at random. An extended transcript of $\tau$ will be defined as a tuple $\tau''=\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}, \mathcal{Q}_{S_{2}}^{\prime}, \mathbf{k}\right)$ where $\mathbf{k}=\left(k_{0}, k_{1}, k_{2},k_{3},k_{4}, k_{5}, k_{6}\right)$. After define the extended transcript $\tau''$ is bad, \\
+Similar to the outermost two round, we will extend the inner two round (the two and the five round).  Pick a pair of S-box $(S_1, S_6)$ such that $S_{1} \vdash \mathcal{Q}_{S_{1}}^{(0)}$ and $S_{6} \vdash \mathcal{Q}_{S_{6}}^{(0)}$, and for each $ (t, x, y) \in \mathcal{Q}_{C}$ we set $a=T_{1}\left(S_{1}\left(x \oplus k_{0} \oplus t\right)\right)$, $b=S_{6}^{-1}\left(y \oplus k_{6} \oplus t\right)$. In this way we obtain $\mathnormal{q}$ tuples of the form $(t, a, b)$; for convenience we denote the set of such induced tuples by $\mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right)$. Then we choose a pair of keys $\left(k_{1}, k_{5}\right) \in \mathcal{K}^{2}$ uniformly at random. Once these keys have been chosen, some construction queries will become involved in collisions. A colliding query is defined as a construction query $(t, a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right)$. After that, we build a new set $\mathcal{Q}_{S_{2}}^{\prime}$ of S-box evaluations that will play the role of an extension of $\mathcal{Q}_{S}$. Then we choose the key $k_2, k_3, k_4$ uniformly at random. An extended transcript of $\tau$ will be defined as a tuple $\tau''=\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}, \mathcal{Q}_{S_{outer}}^{\prime}, \mathbf{k}\right)$ where $\mathbf{k}=\left(k_{0}, k_{1}, k_{2},k_{3},k_{4}, k_{5}, k_{6}\right)$. After define the extended transcript $\tau''$ is bad, \\
 
 \noindent \textbf{Lemma 11} \emph{One has}
 
@@ -174,8 +174,8 @@ Then we build a new set $\mathcal{Q}_{S_{inner}}^{\prime}$ of S-box evaluations 
 \noindent \textbf{Lemma 12} \emph{ For any extended $S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{2} \vdash \mathcal{Q}_{S_{2}}, S_{5} \vdash \mathcal{Q}_{S_{5}}, S_{6} \vdash \mathcal{Q}_{S_{6}}$, we have}
 \begin{equation}
 \begin{aligned}
-1-&\operatorname{Pr}\left[\operatorname{Bad}\left(S_{1}, S_2, S_{5}, S_6\right) | S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{2} \vdash \mathcal{Q}_{S_{2}}, S_{5} \vdash \mathcal{Q}_{S_{5}}, S_{6} \vdash \mathcal{Q}_{S_{6}}\right] \geq 1- \frac{w^{2} q (p+w q)^{2}}{(N-p)^{2}}\\
-& -\frac{2 w^{2} q (p+w q)^{2}}{N \cdot (N-p)} - \frac{2 w^{2} q (p+w q)^{2}}{(N-p)^2} - \frac{2 w^{2} q^{2} (p+w q)}{(N-p)^2} - \frac{2 w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)^2}.
+1-&\operatorname{Pr}\left[\operatorname{Bad}\left(S_{1}, S_2, S_{5}, S_6\right) | S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{2} \vdash \mathcal{Q}_{S_{2}}, S_{5} \vdash \mathcal{Q}_{S_{5}}, S_{6} \vdash \mathcal{Q}_{S_{6}}\right] \geq 1- \frac{2 w^{2} q (p+w q)^{2}}{(N-p)}\\
+& -\frac{2 w^{2} q (p+w q)(p+w q+2 q)}{N \cdot (N-p)} - \frac{w^{2} q (p+w q)(p+w q+2 q)}{(N-p)^2} - \frac{2 w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)}.
 \end{aligned}
 \end{equation}
 
@@ -232,7 +232,27 @@ $$
 $$
 \end{itemize}
 
-\noindent
+\noindent \emph{Proof:} We just consider \feavi and \feaviiii here (Others are similar to the Lemma 8). We first note that, if the condition is satisfied, we have $\left(S_{2}\left(a \oplus k_{1} \oplus t\right)\right)[i]$ remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{2}} \cup \mathcal{Q}_{S_{5}} \cup \mathcal{Q}_{S_{6}})$.  Moreover if $u_3 =u_3'$, that is $c \oplus t=c' \oplus t'$, then after oplus different tweak, the input of the $S_4$ must be different, so the collision would not happen. Hence we must have $u_3 \neq u_3'$. The condition can be divided into two conditions: the first concerning with $j\neq j'$, while the second concerning with $j=j'$.
+
+For the first case, to make 
+$$
+\left(T_{3}\left(S_{3}\left(c \oplus k_{2} \oplus t\right)\right) \oplus k_{3} \oplus t\right)[j] = \left(T_{3}\left(S_{3}\left(c^{\prime} \oplus k_{2}\oplus t\right)\right) \oplus k_{3} \oplus t\right)[j^{\prime}].
+$$
+\noindent achieved, we just leverage the fact that $k_3[j]$ and $k_3[j']$ are uniform and independent, so the collision holds with probability $1/N$. Because of $a$remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{2}} \cup \mathcal{Q}_{S_{5}} \cup\mathcal{Q}_{S_{6}})$, let $(a', b')$ be the unique query such that the collision happened. Then the probability that $\left(c \oplus k_{2} \oplus t\right)[i] = u_3, \left(c^{\prime} \oplus k_{2} \oplus t\right)[i^{\prime}] = u_3^{\prime}$ is at most $\frac{1}{N-p}$, because we have at most $w^2 q^2(p+ w q)$ such tuples, one has
+
+$$
+\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)}.
+$$
+
+For the case of $j=j'$ with distinct $(c,d),(c',d')$, that is there is only one index has different value of input and output. Because of the value $\left(S_{2}\left(a' \oplus k_{1}\right)\right)[i]$ also remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{2}} \cup \mathcal{Q}_{S_{5}} \cup \mathcal{Q}_{S_{6}})$, then we leverage the randomness due to lazy sampling $S_3(c\xor k_2\xor t)$. Conditioned on $\feaiiii$, for $i''\neq i$, the value $(c \oplus k_2 \oplus t)[i'']$ ``does not collide with'' pairs in $\mathcal{Q}_{S_{3}}^{(1)}$, and will be assigned a random outputs during the lazy sampling process. Simultaneously conditioned on $\feav$, for distinct $i'' \neq i$, if $\left(c \oplus k_{2} \oplus t\right)[i] = u_3$, it holds $(c\xor k_2 \xor t)[i'']\neq(c'\xor k_2 \xor t')[i'']$. Since $T_3$ contain no zero entries, so the value $\left(T_{3}\left(S_{3}\left(c \oplus k_{2} \oplus t\right)\right) \oplus k_{3} \oplus t\right)[i'']$ could not be disturbed by the value of $\left(T_{3}\left(S_{3}\left(c^{\prime} \oplus k_{2}\oplus t\right)\right) \oplus k_{3} \oplus t\right)[i'']$ and thus uniform in at least $\frac{1}{N - p- wq}$. One has,
+$$
+\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)}.
+$$
+\noindent So, combine these two subevents, one has
+$$
+\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)} + \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N- p)}.
+
+
 
 
 
