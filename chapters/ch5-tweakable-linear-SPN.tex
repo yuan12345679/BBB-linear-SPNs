@@ -244,14 +244,14 @@ $$
 \operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)}.
 $$
 
-For the case of $j=j'$ with distinct $(c,d),(c',d')$, that is there is only one index has different value of input and output. Because of the value $\left(S_{2}\left(a' \oplus k_{1}\right)\right)[i]$ also remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{2}} \cup \mathcal{Q}_{S_{5}} \cup \mathcal{Q}_{S_{6}})$, then we leverage the randomness due to lazy sampling $S_3(c\xor k_2\xor t)$. Conditioned on $\feaiiii$, for $i''\neq i$, the value $(c \oplus k_2 \oplus t)[i'']$ ``does not collide with'' pairs in $\mathcal{Q}_{S_{3}}^{(1)}$, and will be assigned a random outputs during the lazy sampling process. Simultaneously conditioned on $\feav$, for distinct $i'' \neq i$, if $\left(c \oplus k_{2} \oplus t\right)[i] = u_3$, it holds $(c\xor k_2 \xor t)[i'']\neq(c'\xor k_2 \xor t')[i'']$. Since $T_3$ contain no zero entries, so the value $\left(T_{3}\left(S_{3}\left(c \oplus k_{2} \oplus t\right)\right) \oplus k_{3} \oplus t\right)[i'']$ could not be disturbed by the value of $\left(T_{3}\left(S_{3}\left(c^{\prime} \oplus k_{2}\oplus t\right)\right) \oplus k_{3} \oplus t\right)[i'']$ and thus uniform in at least $\frac{1}{N - p- wq}$. One has,
+For the case of $j=j'$ with distinct $(c,d),(c',d')$, that is there is only one index has different value of input and output. Because of the value $\left(S_{2}\left(a' \oplus k_{1}\right)\right)[i]$ also remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{2}} \cup \mathcal{Q}_{S_{5}} \cup \mathcal{Q}_{S_{6}})$, then we leverage the randomness due to lazy sampling $S_3(c\xor k_2\xor t)$. Conditioned on \feaiv, for $i''\neq i$, the value $(c \oplus k_2 \oplus t)[i'']$ ``does not collide with'' pairs in $\mathcal{Q}_{S_{3}}^{(1)}$, and will be assigned a random outputs during the lazy sampling process. Simultaneously conditioned on $\feav$, for distinct $i'' \neq i$, if $\left(c \oplus k_{2} \oplus t\right)[i] = u_3$, it holds $(c\xor k_2 \xor t)[i'']\neq(c'\xor k_2 \xor t')[i'']$. Since $T_3$ contain no zero entries, so the value $\left(T_{3}\left(S_{3}\left(c \oplus k_{2} \oplus t\right)\right) \oplus k_{3} \oplus t\right)[i'']$ could not be disturbed by the value of $\left(T_{3}\left(S_{3}\left(c^{\prime} \oplus k_{2}\oplus t\right)\right) \oplus k_{3} \oplus t\right)[i'']$ and thus uniform in at least $\frac{1}{N - p- wq}$. One has,
 $$
 \operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)}.
 $$
 \noindent So, combine these two subevents, one has
 $$
 \operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)} + \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N- p)}.
-
+$$
 
 
 
