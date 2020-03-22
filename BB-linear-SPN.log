@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.22)  21 MAR 2020 17:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.22)  22 MAR 2020 12:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1201,126 +1201,118 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--18
  []
 
 
-Overfull \hbox (0.44766pt too wide) detected at line 26
-[][][][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 62--63
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 77--78
+Underfull \hbox (badness 10000) in paragraph at lines 78--79
 
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 112--113
+Underfull \hbox (badness 10000) in paragraph at lines 113--114
 
  []
 
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 120.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 121.
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--137
+Underfull \hbox (badness 10000) in paragraph at lines 137--138
 
  []
 
 
-Overfull \hbox (6.22243pt too wide) in paragraph at lines 144--145
+Overfull \hbox (6.22243pt too wide) in paragraph at lines 145--146
 []\T1/lmr/m/n/10 (-20) Similarly, since $\OML/lmm/m/it/10 k[]$ \T1/lmr/m/n/10 (
 -20) and $\OML/lmm/m/it/10 k[]$ \T1/lmr/m/n/10 (-20) are ran-dom and in-de-pen-
 dent, and we have at most $\OML/lmm/m/it/10 w[]qp []$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--145
+Underfull \hbox (badness 10000) in paragraph at lines 145--146
 
  []
 
 
 LaTeX Warning: Citation `cogliati2015tweaking' on page 9 undefined on input lin
-e 157.
+e 158.
 
 
 LaTeX Warning: Citation `cogliati2015beyond' on page 9 undefined on input line 
-157.
+158.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 156--158
+Underfull \hbox (badness 10000) in paragraph at lines 157--159
 
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 159--161
+Underfull \hbox (badness 10000) in paragraph at lines 160--162
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 162--163
+Underfull \hbox (badness 10000) in paragraph at lines 163--164
 
  []
 
 
-Overfull \hbox (1.00436pt too wide) in paragraph at lines 164--165
+Overfull \hbox (2.16739pt too wide) in paragraph at lines 165--166
 [][]$\T1/lmr/m/n/10 (-20) (if $\OT1/lmr/m/n/10 (-20) (\OML/lmm/m/it/10 a; b\OT1
 /lmr/m/n/10 (-20) )$ \T1/lmr/m/n/10 (-20) col-lides at the in-put of $\OML/lmm/
 m/it/10 S[]$\T1/lmr/m/n/10 (-20) ) or $[][]$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 164--165
+Underfull \hbox (badness 10000) in paragraph at lines 165--166
 
  []
 
 
-Underfull \vbox (badness 1509) has occurred while \output is active []
+Underfull \hbox (badness 10000) in paragraph at lines 190--191
 
- [10]
-Underfull \hbox (badness 10000) in paragraph at lines 189--190
+ []
+
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 231--232
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 230--231
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 232--233
+Underfull \hbox (badness 10000) in paragraph at lines 233--234
 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 280--281
+Underfull \hbox (badness 10000) in paragraph at lines 281--282
 
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 314--315
+Underfull \hbox (badness 10000) in paragraph at lines 315--316
 
  []
 
 [13]
-Overfull \hbox (0.68912pt too wide) detected at line 365
+Overfull \hbox (0.68912pt too wide) detected at line 366
 [][]
  []
 
 [14]
-Overfull \hbox (0.27722pt too wide) detected at line 404
+Overfull \hbox (0.27722pt too wide) detected at line 405
 [][]
  []
 
 
-Overfull \hbox (5.19629pt too wide) in paragraph at lines 441--442
+Overfull \hbox (5.19629pt too wide) in paragraph at lines 442--443
 []\T1/lmr/m/n/10 (-20) The pre-vi-ous proof is con-di-tioned on $\OML/lmm/m/it/
 10 S[] \OMS/lmsy/m/n/10 ` Q[]\OML/lmm/m/it/10 ; S[] \OMS/lmsy/m/n/10 ` Q[]$\T1/
 lmr/m/n/10 (-20) , but $[] []$,
  []
 
 
-Overfull \hbox (3.48996pt too wide) in paragraph at lines 441--442
+Overfull \hbox (3.48996pt too wide) in paragraph at lines 442--443
 \T1/lmr/m/n/10 (-20) we need to con-sider $\OML/lmm/m/it/10 S[] \OMS/lmsy/m/n/1
 0 ` Q[]\OML/lmm/m/it/10 ; S[] \OMS/lmsy/m/n/10 ` Q[]$\T1/lmr/m/n/10 (-20) . Tha
 t is the prob-a-bil-ity $[] \OT1/lmr/m/n/10 (-20) [\OML/lmm/m/it/10 i\OT1/lmr/m
@@ -1329,14 +1321,9 @@ t is the prob-a-bil-ity $[] \OT1/lmr/m/n/10 (-20) [\OML/lmm/m/it/10 i\OT1/lmr/m
 
 
 LaTeX Warning: Citation `cogliati2018wide' on page 15 undefined on input line 4
-51.
+52.
 
-[15]
-Overfull \hbox (0.44766pt too wide) detected at line 479
-[][]
- []
-
-) (./chapters/ch5-tweakable-linear-SPN.tex
+[15]) (./chapters/ch5-tweakable-linear-SPN.tex
 
 LaTeX Warning: Citation `miles2015substitution' on page 16 undefined on input l
 ine 15.
@@ -1345,12 +1332,12 @@ ine 15.
 LaTeX Warning: Citation `daemen1995cipher' on page 16 undefined on input line 1
 5.
 
-
+[16]
 Underfull \hbox (badness 10000) in paragraph at lines 17--18
 
  []
 
-[16]
+
 Underfull \hbox (badness 10000) in paragraph at lines 58--59
 
  []
@@ -1395,11 +1382,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 172--173
 
  []
 
-[20])
+
+Overfull \hbox (2.74942pt too wide) detected at line 180
+[][][][]
+ []
+
+[20] [21])
 No file BB-linear-SPN.bbl.
 
 AED: lastpage setting LastPage
-[21]
+[22]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 103.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 103.
  (./BB-linear-SPN.aux)
@@ -1413,13 +1405,13 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 13015 strings out of 492616
- 196193 string characters out of 6129481
+ 13018 strings out of 492616
+ 196222 string characters out of 6129481
  366222 words of memory out of 5000000
  16322 multiletter control sequences out of 15000+600000
- 149738 words of font info for 213 fonts, out of 8000000 for 9000
+ 149821 words of font info for 214 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,12n,69p,1882b,443s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,12n,69p,1900b,445s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/
 texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2019/t
 exmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2019/texmf-dist/
@@ -1448,10 +1440,10 @@ m/lmtt10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmtt9.pf
 b></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msam1
 0.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/m
 sbm10.pfb>
-Output written on BB-linear-SPN.pdf (21 pages, 511820 bytes).
+Output written on BB-linear-SPN.pdf (22 pages, 517093 bytes).
 PDF statistics:
- 307 PDF objects out of 1000 (max. 8388607)
- 253 compressed objects within 3 object streams
- 52 named destinations out of 1000 (max. 500000)
+ 311 PDF objects out of 1000 (max. 8388607)
+ 256 compressed objects within 3 object streams
+ 53 named destinations out of 1000 (max. 500000)
  37493 words of extra memory for PDF output out of 42996 (max. 10000000)
 
