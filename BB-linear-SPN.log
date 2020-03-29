@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.22)  29 MAR 2020 09:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.22)  29 MAR 2020 09:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1094,23 +1094,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 114--117
 
  []
 
-
-LaTeX Warning: Citation `SAC:Patarin08' on page 3 undefined on input line 133.
-
-
-LaTeX Warning: Citation `EC:CheSte14' on page 3 undefined on input line 133.
-
-
-LaTeX Warning: Citation `EC:CheSte14' on page 3 undefined on input line 133.
-
-
-LaTeX Warning: Citation `SAC:Patarin08' on page 3 undefined on input line 133.
-
 [3]
-
-LaTeX Warning: Citation `EC:CheSte14' on page 4 undefined on input line 148.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 154--155
 
  []
@@ -1121,11 +1105,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 166--167
  []
 
 [4]) (./chapters/ch3-related-work.tex
-
-LaTeX Warning: Citation `cogliati2018wide' on page 5 undefined on input line 6.
-
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
  []
@@ -1148,9 +1127,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--9
 Underfull \hbox (badness 10000) in paragraph at lines 17--19
 
  []
-
-
-LaTeX Warning: Citation `hoang2016key' on page 5 undefined on input line 30.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 30--31
@@ -1178,24 +1154,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 74--75
  []
 
 
-LaTeX Warning: Citation `cogliati2018wide' on page 6 undefined on input line 82
-.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 82--83
 
  []
 
 ) (./chapters/ch4-4-round-proof.tex [6]
-
-LaTeX Warning: Citation `miles2015substitution' on page 7 undefined on input li
-ne 15.
-
-
-LaTeX Warning: Citation `daemen1995cipher' on page 7 undefined on input line 15
-.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 17--18
 
  []
@@ -1233,14 +1196,6 @@ dent, and we have at most $\OML/lmm/m/it/10 w[]qp []$
 Underfull \hbox (badness 10000) in paragraph at lines 145--146
 
  []
-
-
-LaTeX Warning: Citation `cogliati2015tweaking' on page 9 undefined on input lin
-e 158.
-
-
-LaTeX Warning: Citation `cogliati2015beyond' on page 9 undefined on input line 
-158.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 157--159
@@ -1319,20 +1274,7 @@ t is the prob-a-bil-ity $[] \OT1/lmr/m/n/10 (-20) [\OML/lmm/m/it/10 i\OT1/lmr/m
 /n/10 (-20) ] =
  []
 
-
-LaTeX Warning: Citation `cogliati2018wide' on page 15 undefined on input line 4
-53.
-
-[15]) (./chapters/ch5-tweakable-linear-SPN.tex
-
-LaTeX Warning: Citation `miles2015substitution' on page 16 undefined on input l
-ine 15.
-
-
-LaTeX Warning: Citation `daemen1995cipher' on page 16 undefined on input line 1
-5.
-
-[16]
+[15]) (./chapters/ch5-tweakable-linear-SPN.tex [16]
 Underfull \hbox (badness 10000) in paragraph at lines 17--18
 
  []
@@ -1392,11 +1334,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 270--271
 
  []
 
-[21])
-No file BB-linear-SPN.bbl.
-
+[21]) (./BB-linear-SPN.bbl [22]) 
 AED: lastpage setting LastPage
-[22]
+[23]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 103.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 103.
  (./BB-linear-SPN.aux)
@@ -1404,19 +1344,15 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 103.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 103.
 Package rerunfilecheck Info: File `BB-linear-SPN.out' has not changed.
 (rerunfilecheck)             Checksum: 4BED2BD7CB46B961A5C7B89892E0E963;1064.
-
-
-LaTeX Warning: There were undefined references.
-
  ) 
 Here is how much of TeX's memory you used:
- 13024 strings out of 492616
- 196239 string characters out of 6129481
- 366320 words of memory out of 5000000
- 16330 multiletter control sequences out of 15000+600000
- 149738 words of font info for 213 fonts, out of 8000000 for 9000
+ 13050 strings out of 492616
+ 196684 string characters out of 6129481
+ 366585 words of memory out of 5000000
+ 16340 multiletter control sequences out of 15000+600000
+ 149951 words of font info for 215 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,12n,69p,1900b,443s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,12n,69p,1900b,447s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/
 texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2019/t
 exmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2019/texmf-dist/
@@ -1445,10 +1381,10 @@ m/lmtt10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmtt9.pf
 b></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msam1
 0.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/m
 sbm10.pfb>
-Output written on BB-linear-SPN.pdf (22 pages, 519531 bytes).
+Output written on BB-linear-SPN.pdf (23 pages, 526730 bytes).
 PDF statistics:
- 311 PDF objects out of 1000 (max. 8388607)
- 256 compressed objects within 3 object streams
- 53 named destinations out of 1000 (max. 500000)
+ 341 PDF objects out of 1000 (max. 8388607)
+ 285 compressed objects within 3 object streams
+ 63 named destinations out of 1000 (max. 500000)
  37493 words of extra memory for PDF output out of 42996 (max. 10000000)
 
