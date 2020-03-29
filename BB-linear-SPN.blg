@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2019)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: BB-linear-SPN.aux
+The style file: alpha.bst
+Database file #1: reference-set.bib
+Database file #2: crypto/abbrev3.bib
+Reallocated str_pool (elt_size=1) to 130000 items from 65000.
+Reallocated str_pool (elt_size=1) to 195000 items from 130000.
+Database file #3: crypto/crypto.bib
+You've used 8 entries,
+            2543 wiz_defined-function locations,
+            12348 strings with 142879 characters,
+and the built_in function-call counts, 3819 in all, are:
+= -- 401
+> -- 155
+< -- 9
++ -- 49
+- -- 48
+* -- 259
+:= -- 594
+add.period$ -- 29
+call.type$ -- 8
+change.case$ -- 46
+chr.to.int$ -- 8
+cite$ -- 8
+duplicate$ -- 170
+empty$ -- 289
+format.name$ -- 58
+if$ -- 829
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 7
+newline$ -- 43
+num.names$ -- 28
+pop$ -- 47
+preamble$ -- 1
+purify$ -- 55
+quote$ -- 0
+skip$ -- 148
+stack$ -- 0
+substring$ -- 229
+swap$ -- 58
+text.length$ -- 9
+text.prefix$ -- 2
+top$ -- 0
+type$ -- 64
+warning$ -- 0
+while$ -- 42
+width$ -- 12
+write$ -- 113
