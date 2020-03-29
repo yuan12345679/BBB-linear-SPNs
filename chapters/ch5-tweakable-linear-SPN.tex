@@ -77,12 +77,12 @@ We are now going to build a new set $\mathcal{Q}_{S_{outmost}}^{\prime}$ of S-bo
 
 $$
 \begin{aligned}
-&\mathcal{Q}_{S_{1}}^{(1)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(1, u, v) \in \mathcal{Q}_{S} \cup \mathcal{Q}_{S_{1}}^{\prime}\right\}\\
-&\mathcal{Q}_{S_{6}}^{(1)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(6, u, v) \in \mathcal{Q}_{S} \cup \mathcal{Q}_{S_{1}}^{\prime}\right\}\\
+&\mathcal{Q}_{S_{1}}^{(1)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(1, u, v) \in \mathcal{Q}_{S} \cup \mathcal{Q}_{S_{outmost}}^{\prime}\right\}\\
+&\mathcal{Q}_{S_{6}}^{(1)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(6, u, v) \in \mathcal{Q}_{S} \cup \mathcal{Q}_{S_{outmost}}^{\prime}\right\}\\
 \end{aligned}
 $$
 
-\noindent In words, $\mathcal{Q}_{S_{i}}^{(1)}$ summarizes each constraint that is forced on $S_{i}$ by $\mathcal{Q}_{S}$ and $\mathcal{Q}_{S_{1}}^{\prime}$. Let
+\noindent In words, $\mathcal{Q}_{S_{i}}^{(1)}$ summarizes each constraint that is forced on $S_{i}$ by $\mathcal{Q}_{S}$ and $\mathcal{Q}_{S_{outmost}}^{\prime}$. Let
 
 $$
 \begin{aligned}
@@ -113,13 +113,13 @@ for $i=1, 6$ the number of additional queries included in the extended transcrip
 \noindent We say an extended transcript $\tau^{\prime}$ is bad if at least one of the following conditions is fulfilled:
 
 \begin{itemize}
-  \item\eone
+  \item[\eone]
   there exists $(t, x, y) \in \mathcal{Q}_{C}, \left(u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(1)}, \left(u_{6}, v_{6}\right) \in \mathcal{Q}_{S_{6}}^{(1)}$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(x \oplus k_{0} \oplus t\right)[i]=u_1$ and $\left(y \oplus k_{6} \oplus t\right)[j]=v_6$.
-  \item\etwo
+  \item[\etwo]
   there exists $(t, x, y) \in \mathcal{Q}_{C}, \left(u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(1)}, \left(u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(x \oplus k_{0} \oplus t\right)[i]=u_1$ and $\left(T_{1}\left(S_{1}\left(x \oplus k_{0} \oplus t\right) \oplus k_{1} \oplus t\right)\right)[j]=u_2$.
-  \item\ethree
+  \item[\ethree]
   there exists $(t, x, y) \in \mathcal{Q}_{C}, \left(u_{5}, v_{5}\right) \in \mathcal{Q}_{S_{5}}, \left(u_{6}, v_{6}\right) \in \mathcal{Q}_{S_{6}}^{(1)}$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(y \oplus k_{6} \oplus t\right)[j]=v_6$ and $\left(T_{5}^{-1}\left(S_{6}^{-1}\left(y \oplus k_{6} \oplus t\right)\right) \oplus k_{5} \oplus t\right)[i]=v_5$.
-  \item\efour 
+  \item[\efour]
   there exists $(t, x, y) \in \mathcal{Q}_{C}$ and distinct indices $i, j \in \{1, \ldots, w\}$ such that $(x\xor k_0 \xor t)[i]=(x\xor k_0 \xor t)[j]$, or $(y\xor k_6 \xor t)[i]=(y\xor k_6 \xor t)[j]$.
 \end{itemize}
 
@@ -145,7 +145,44 @@ $$
 \operatorname{Pr}\left[\efour\right] \leq \frac{w^{2} q}{N}.
 $$
 
-Similar to the outermost two round, we will extend the inner two round (the two and the five round).  Pick a pair of S-box $(S_1, S_6)$ such that $S_{1} \vdash \mathcal{Q}_{S_{1}}^{(0)}$ and $S_{6} \vdash \mathcal{Q}_{S_{6}}^{(0)}$, and for each $ (t, x, y) \in \mathcal{Q}_{C}$ we set $a=S_{1}\left(x \oplus k_{0} \oplus t\right)$, $b=S_{6}^{-1}\left(y \oplus k_{6} \oplus t\right)$. In this way we obtain $\mathnormal{q}$ tuples of the form $(t, a, b)$; for convenience we denote the set of such induced tuples by $\mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right)$. Then we choose a pair of keys $\left(k_{1}, k_{5}\right) \in \mathcal{K}^{2}$ uniformly at random. Once these keys have been chosen, some construction queries will become involved in collisions. A colliding query is defined as a construction query $(t, a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right)$. After that, we build a new set $\mathcal{Q}_{S_{outer}}^{\prime}$ of S-box evaluations that will play the role of an extension of $\mathcal{Q}_{S}$. Then we choose the key $k_2, k_3, k_4$ uniformly at random. An extended transcript of $\tau$ will be defined as a tuple $\tau''=\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}, \mathcal{Q}_{S_{outer}}^{\prime}, \mathbf{k}\right)$ where $\mathbf{k}=\left(k_{0}, k_{1}, k_{2},k_{3},k_{4}, k_{5}, k_{6}\right)$. After define the extended transcript $\tau''$ is bad, \\
+Similar to the outermost two round, we will extend the inner two round (the two and the five round).  Pick a pair of S-box $(S_1, S_6)$ such that $S_{1} \vdash \mathcal{Q}_{S_{1}}^{(0)}$ and $S_{6} \vdash \mathcal{Q}_{S_{6}}^{(0)}$, and for each $ (t, x, y) \in \mathcal{Q}_{C}$ we set $a=S_{1}\left(x \oplus k_{0} \oplus t\right)$, $b=S_{6}^{-1}\left(y \oplus k_{6} \oplus t\right)$. In this way we obtain $\mathnormal{q}$ tuples of the form $(t, a, b)$; for convenience we denote the set of such induced tuples by $\mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right)$. Then we choose a pair of keys $\left(k_{1}, k_{5}\right) \in \mathcal{K}^{2}$ uniformly at random. Once these keys have been chosen, some construction queries will become involved in collisions. A colliding query is defined as a construction query $(t, a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right)$. After that, we build a new set $\mathcal{Q}_{S_{outer}}^{\prime}$ of S-box evaluations that will play the role of an extension of $\mathcal{Q}_{S}$. Then we choose the key $k_2, k_3, k_4$ uniformly at random. An extended transcript of $\tau$ will be defined as a tuple $\tau''=\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}, \mathcal{Q}_{S_{outer}}^{\prime}, \mathbf{k}\right)$ where $\mathbf{k}=\left(k_{1}, k_{2},k_{3},k_{4}, k_{5}\right)$. We also let
+
+$$
+\begin{aligned}
+&\mathcal{Q}_{S_{2}}^{(1)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(2, u, v) \in \mathcal{Q}_{S} \cup \mathcal{Q}_{S_{outer}}^{\prime}\right\}\\
+&\mathcal{Q}_{S_{5}}^{(1)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(5, u, v) \in \mathcal{Q}_{S} \cup \mathcal{Q}_{S_{outer}}^{\prime}\right\}\\
+\end{aligned}
+$$
+
+\noindent In words, $\mathcal{Q}_{S_{i}}^{(1)}$ summarizes each constraint that is forced on $S_{i}$ by $\mathcal{Q}_{S}$ and $\mathcal{Q}_{S_{outer}}^{\prime}$. Let
+
+$$
+\begin{aligned}
+&U_{2}=\left\{u_{2} \in\{0,1\}^{n}:\left(2, u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}^{(1)}\right\}, \quad V_{2}=\left\{v_{2} \in\{0,1\}^{n}:\left(2, u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}^{(1)}\right\},\\
+&U_{5}=\left\{u_{5} \in\{0,1\}^{n}:\left(5, u_{5}, v_{5}\right) \in \mathcal{Q}_{S_{5}}^{(1)}\right\}, \quad V_{5}=\left\{v_{5} \in\{0,1\}^{n}:\left(5, u_{5}, v_{5}\right) \in \mathcal{Q}_{S_{5}}^{(1)}\right\}\\
+\end{aligned}
+$$
+
+\noindent be the domains and ranges of $\mathcal{Q}_{S_{1}}^{(1)}$, $\mathcal{Q}_{S_{6}}^{(1)}$ respectively. After define the extended transcript $\tau''$ is bad, \\
+
+\begin{itemize}
+  \item[\feai]
+  there exists $(t, a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right), \left(u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}^{(1)}, \left(u_{5}, v_{5}\right) \in \mathcal{Q}_{S_{5}}^{(1)}$, and index $i, j \in \{1, \ldots, w\}$ such that $(T_1\left(a \oplus k_{1} \oplus t\right))[i]=u_2$ and $(T_5^{-1}\left(b\right) \oplus k_{5} \oplus t)[j]=v_5$.
+  \item[\feaii]
+  there exists $(t, a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right), \left(u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}^{(1)}, \left(u_{3}, v_{3}\right) \in \mathcal{Q}_{S_{3}}$, and index $i, j \in \{1, \ldots, w\}$ such that $(T_1\left(a \oplus k_{1} \oplus t\right))[i]=u_2$ and 
+  $$
+  \left(T_{2}\left(S_{2}\left(T_1(a \oplus k_{1} \oplus t)\right) \oplus k_{2} \oplus t\right)\right)[j]=u_3.
+  $$
+  \item[\feaiii]
+  there exists $(t, a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right), \left(u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}, \left(u_{5}, v_{5}\right) \in \mathcal{Q}_{S_{5}}^{(1)}$, and index $i, j \in \{1, \ldots, w\}$ such that $(T_5^{-1}\left(b\right) \oplus k_{5} \oplus t)[j]=v_5$ and 
+  $$
+  \left(T_{4}^{-1}\left(S_{5}^{-1}\left(T_5^{-1}(b) \oplus k_{5} \oplus t\right)\right) \oplus k_{4} \oplus t\right)[i]=v_4.
+  $$
+  \item[\feaiv]
+  there exists $(t, x, y) \in \mathcal{Q}_{C}$ and distinct indices $i, j \in \{1, \ldots, w\}$ such that 
+  $$(T_1\left(a \oplus k_{1} \oplus t\right))[i]=(T_1\left(a \oplus k_{1} \oplus t\right))[j], \text{ or }$$
+  $$(T_5^{-1}\left(b\right) \oplus k_{5} \oplus t)[i]=(T_5^{-1}\left(b\right) \oplus k_{5} \oplus t)[j].$$
+\end{itemize}
 
 \noindent \textbf{Lemma 11} \emph{One has}
 
@@ -153,12 +190,12 @@ Similar to the outermost two round, we will extend the inner two round (the two 
 \operatorname{Pr}[\tau'' \in \Theta_{bad}(\tau)] \leq \frac{w^2 q (p+w q) (3 p +w q)}{N^{2}} + \frac{w^{2} q}{N}.
 \end{equation}
 
-\noindent The proof is similar to Lemma 10.
+\noindent The proof is similar to Lemma 10.\\
 
-Then combine (11), (12), we can get
+Let $\tau_{1} = \tau' \cup \tau''$. Then combine (11), (12), we can get
 
 \begin{equation}
-\operatorname{Pr}[\tau \in \Theta_{bad}(\tau)] \leq \frac{2w^2 q (p+w q) (3 p +w q)}{N^{2}} + \frac{2w^{2} q}{N}.
+\operatorname{Pr}[\tau_{1} \in \Theta_{bad}(\tau)] \leq \frac{2w^2 q (p+w q) (3 p +w q)}{N^{2}} + \frac{2w^{2} q}{N}.
 \end{equation}
 
 
@@ -174,34 +211,34 @@ Then we build a new set $\mathcal{Q}_{S_{inner}}^{\prime}$ of S-box evaluations 
 \noindent \textbf{Lemma 12} \emph{ For any extended $S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{2} \vdash \mathcal{Q}_{S_{2}}, S_{5} \vdash \mathcal{Q}_{S_{5}}, S_{6} \vdash \mathcal{Q}_{S_{6}}$, we have}
 \begin{equation}
 \begin{aligned}
-1-&\operatorname{Pr}\left[\operatorname{Bad}\left(S_{1}, S_2, S_{5}, S_6\right) | S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{2} \vdash \mathcal{Q}_{S_{2}}, S_{5} \vdash \mathcal{Q}_{S_{5}}, S_{6} \vdash \mathcal{Q}_{S_{6}}\right] \geq 1- \frac{2 w^{2} q (p+w q)^{2}}{(N-p)}\\
-& -\frac{2 w^{2} q (p+w q)(p+w q+2 q)}{N \cdot (N-p)} - \frac{w^{2} q (p+w q)(p+w q+2 q)}{(N-p)^2} - \frac{2 w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)}.
+1-&\operatorname{Pr}\left[\operatorname{Bad}\left(S_{1}, S_2, S_{5}, S_6\right) | S_{i} \vdash \mathcal{Q}_{S_{i}}, i = 1, 2, 5, 6\right] \geq 1- \frac{2 w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)}\\
+& -\frac{2 w^{2} q (p+w q)(p+w q+2 q)}{N \cdot (N-p)} - \frac{w^{2} q (p+w q)(p+w q+2 q)}{(N-p)^2} - \frac{2 w^{2} q (p+w q)^{2}}{(N-p)}.
 \end{aligned}
 \end{equation}
 
 \noindent \emph{Proof:} Then we define a predicate $\operatorname{Bad}\left(S_{1}, S_2, S_{5}, S_6\right)$ on the pair $(S_1,S_2, S_5, S_6)$, which holds if the corresponding induced set $\mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right)$ fulfills at least one of the following seven ``collision'' conditions:
 
 \begin{itemize}
-  \item[\feai]
+  \item[\hone]
   there exist $(t, c, d) \in \mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right)$, $i, j \in\{1, \ldots, w\}$, $u_{3} \in U_{3}$ and $v_{4} \in V_{4}$ such that $\left(T_2\left(c \oplus k_{2} \oplus t\right)\right)[i] = u_3$ and $\left(T_{4}^{-1}\left(d \right) \oplus k_{4} \oplus t\right)[i] = v_4$.
-  \item[\feaii]
+  \item[\htwo]
   there exist $(t, c, d) \in \mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right)$, $i, j \in\{1, \ldots, w\}$, $u_{3} \in U_{3}$ and $u_{4} \in U_{4}$ such that $\left(T_2\left(c \oplus k_{2} \oplus t\right)\right)[i] = u_3$ and $\left(T_{3}\left(S_{3}\left(T_2\left(c \oplus k_{2} \oplus t\right)\right) \oplus k_{3} \oplus t\right)\right)[j] = u_4$.
-  \item[\feaiii]
+  \item[\hthree]
   there exist $(t, c, d) \in \mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right)$, $i, j \in\{1, \ldots, w\}$, $v_{3} \in V_{3}$ and $v_{4} \in V_{4}$ such that $\left(T_{4}^{-1}\left(d \right) \oplus k_{4} \oplus t\right)[i] = v_4$ and $\left(T_{3}^{-1}\left(S_{4}^{-1}\left(T_{4}^{-1}\left(d\right) \oplus k_{4} \oplus t\right)\right) \oplus k_{3} \oplus t\right)[j] = v_3$.
-  \item[\feaiv]
+  \item[\hfour]
   there exist $(t, c, d) \in \mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, $u_{3},u_{3}' \in U_{3}$ such that
   $$\left(T_2\left(c \oplus k_{2} \oplus t\right)\right)[i] = u_3,\text{ and }
   \left(T_2\left(c \oplus k_{2} \oplus t\right)\right)[i'] = u_3'.$$
-  \item[\feav]
+  \item[\hfive]
   there exist distinct $(t, c, d),(t', c', d') \in \mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, $u_{3} \in U_{3}$ such that
   $$\left(T_2\left(c \oplus k_{2} \oplus t\right)\right)[i] = u_3,\text{ and }
   \left(T_2\left(c \oplus k_{2} \oplus t\right)\right)[i'] =\left(T_2\left(c' \oplus k_{2} \oplus t'\right)\right)[i'] = u_3.$$
-  \item[\feavi]
+  \item[\hsix]
   there exist $(t, c, d), (t', c^{\prime}, d^{\prime}) \in \mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right)$, $i, i^{\prime},j, j^{\prime} \in\{1, \ldots, w\}$, with$(t, c, j) \neq \left(t', c^{\prime}, j^{\prime}\right)$, $u_{3}, u_{3}^{\prime} \in U_{3}$ such that $\left(T_2\left(c \oplus k_{2} \oplus t\right)\right)[i] = u_3,\left(T_2\left(c' \oplus k_{2} \oplus t'\right)\right)[i] = u_3'$ and
 $$
   \left(T_{3}\left(S_{3}\left(T_2\left(c \oplus k_{2} \oplus t\right)\right) \oplus k_{3} \oplus t\right)\right)[j] = \left(T_{3}\left(S_{3}\left(T_2\left(c' \oplus k_{2} \oplus t'\right)\right) \oplus k_{3} \oplus t'\right)\right)[j'].
 $$
-  \item[\feavii]
+  \item[\hseven]
   there exist $(t, c, d) \in \mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right)$, distinct $j, j^{\prime}\in\{1, \ldots, w\}$, $v_{4},v_{4}' \in V_{4}$ such that
   $$
   \begin{aligned}  
@@ -209,7 +246,7 @@ $$
   \left(T_{4}^{-1}\left(d \right) \oplus k_{4} \oplus t\right)[j'] = v_4.
   \end{aligned}
   $$
-  \item[\feaviii]
+  \item[\height]
   there exist distinct $(t, c, d),(t', c', d') \in \mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right)$, distinct $j, j^{\prime}\in\{1, \ldots, w\}$, $v_{4} \in V_{4}$ such that
   $$
   \begin{aligned}
@@ -217,7 +254,7 @@ $$
   &\left(T_{4}^{-1}\left(d \right) \oplus k_{4} \oplus t\right)[j] = \left(T_{4}^{-1}\left(d' \right) \oplus k_{4} \oplus t'\right)[j'].
   \end{aligned}
   $$
-  \item[\feaviiii]
+  \item[\hnine]
   there exist $(t, c, d), (t', c', d') \in \mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right)$, $i, i^{\prime}, j, j^{\prime} \in\{1, \ldots, w\}$, with$(t, d, j) \neq \left(t', d^{\prime}, j^{\prime}\right)$, $u_{3} \in U_{3}$, $v_{4},v_{4}^{\prime} \in V_{4}$ such that 
   $$
  \left(T_{4}^{-1}\left(d \right) \oplus k_{4} \oplus t\right)[i] = v_4, \text{ and }
@@ -230,7 +267,9 @@ $$
 $$
 \end{itemize}
 
-\noindent \emph{Proof:} We just consider \feavi and \feaviiii here (Others are similar to the Lemma 8). We first note that, if the condition is satisfied, we have $\left(S_{2}\left(a \oplus k_{1} \oplus t\right)\right)[i]$ remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{2}} \cup \mathcal{Q}_{S_{5}} \cup \mathcal{Q}_{S_{6}})$.  Moreover if $u_3 =u_3'$, that is $c \oplus t=c' \oplus t'$, then after oplus different tweak, the input of the $S_4$ must be different, so the collision would not happen. Hence we must have $u_3 \neq u_3'$. The condition can be divided into two conditions: the first concerning with $j\neq j'$, while the second concerning with $j=j'$.
+\noindent \emph{Proof:} The sets of attainable transcripts fulfilling condition \hone, \htwo, \hthree, \hfour, \hfive, \hsix, \hseven \height, \hnine will be denoted $\Theta_{1}, \Theta_{2}, \Theta_{3}, \Theta_{4}, \Theta_{5}, \Theta_{6}, \Theta_{7}, \Theta_{8}, \Theta_{9}$, respectively.\\
+
+The proof of \hone to \hfive and \hseven , \height is similar to the Lemma 8, there are no more details. So we just consider \hsix and \hnine here. We first note that, if the condition is satisfied, we have $\left(S_{2}\left(a \oplus k_{1} \oplus t\right)\right)[i]$ remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{2}} \cup \mathcal{Q}_{S_{5}} \cup \mathcal{Q}_{S_{6}})$.  Moreover if $u_3 =u_3'$, that is $c \oplus t=c' \oplus t'$, then after oplus different tweak, the input of the $S_4$ must be different, so the collision would not happen. Hence we must have $u_3 \neq u_3'$. The condition can be divided into two conditions: the first concerning with $j\neq j'$, while the second concerning with $j=j'$.
 
 For the first case, to make 
 $$
@@ -251,6 +290,11 @@ $$
 \operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)} + \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N- p)}.
 $$
 
+\noindent Similarly, we have
+
+$$
+\operatorname{Pr}\left[\tau_{inner} \in \Theta_{9}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)} + \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N- p)}.
+$$
 
 
 
