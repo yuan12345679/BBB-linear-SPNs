@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.22)  22 MAR 2020 15:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.22)  29 MAR 2020 09:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1295,24 +1295,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 315--316
  []
 
 [13]
-Overfull \hbox (0.68912pt too wide) detected at line 366
+Overfull \hbox (0.68912pt too wide) detected at line 367
 [][]
  []
 
 [14]
-Overfull \hbox (0.27722pt too wide) detected at line 405
+Overfull \hbox (0.27722pt too wide) detected at line 406
 [][]
  []
 
 
-Overfull \hbox (5.19629pt too wide) in paragraph at lines 442--443
+Overfull \hbox (5.19629pt too wide) in paragraph at lines 443--444
 []\T1/lmr/m/n/10 (-20) The pre-vi-ous proof is con-di-tioned on $\OML/lmm/m/it/
 10 S[] \OMS/lmsy/m/n/10 ` Q[]\OML/lmm/m/it/10 ; S[] \OMS/lmsy/m/n/10 ` Q[]$\T1/
 lmr/m/n/10 (-20) , but $[] []$,
  []
 
 
-Overfull \hbox (3.48996pt too wide) in paragraph at lines 442--443
+Overfull \hbox (3.48996pt too wide) in paragraph at lines 443--444
 \T1/lmr/m/n/10 (-20) we need to con-sider $\OML/lmm/m/it/10 S[] \OMS/lmsy/m/n/1
 0 ` Q[]\OML/lmm/m/it/10 ; S[] \OMS/lmsy/m/n/10 ` Q[]$\T1/lmr/m/n/10 (-20) . Tha
 t is the prob-a-bil-ity $[] \OT1/lmr/m/n/10 (-20) [\OML/lmm/m/it/10 i\OT1/lmr/m
@@ -1321,7 +1321,7 @@ t is the prob-a-bil-ity $[] \OT1/lmr/m/n/10 (-20) [\OML/lmm/m/it/10 i\OT1/lmr/m
 
 
 LaTeX Warning: Citation `cogliati2018wide' on page 15 undefined on input line 4
-52.
+53.
 
 [15]) (./chapters/ch5-tweakable-linear-SPN.tex
 
@@ -1362,32 +1362,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 140--141
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 148--149
-
- []
-
 [19]
-Underfull \hbox (badness 10000) in paragraph at lines 167--168
+Underfull \hbox (badness 10000) in paragraph at lines 166--167
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 169--171
+Underfull \hbox (badness 10000) in paragraph at lines 193--194
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 172--173
+Underfull \hbox (badness 10000) in paragraph at lines 204--205
 
  []
 
 
-Overfull \hbox (2.74942pt too wide) detected at line 180
-[][][][]
+Underfull \hbox (badness 10000) in paragraph at lines 206--208
+
  []
 
-[20] [21])
+
+Underfull \hbox (badness 10000) in paragraph at lines 209--210
+
+ []
+
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 270--271
+
+ []
+
+[21])
 No file BB-linear-SPN.bbl.
 
 AED: lastpage setting LastPage
@@ -1405,13 +1410,13 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 13022 strings out of 492616
- 196266 string characters out of 6129481
- 366221 words of memory out of 5000000
- 16322 multiletter control sequences out of 15000+600000
- 149987 words of font info for 216 fonts, out of 8000000 for 9000
+ 13024 strings out of 492616
+ 196239 string characters out of 6129481
+ 366320 words of memory out of 5000000
+ 16330 multiletter control sequences out of 15000+600000
+ 149738 words of font info for 213 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,12n,69p,1900b,445s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,12n,69p,1900b,443s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/
 texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2019/t
 exmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2019/texmf-dist/
@@ -1440,7 +1445,7 @@ m/lmtt10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmtt9.pf
 b></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msam1
 0.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/m
 sbm10.pfb>
-Output written on BB-linear-SPN.pdf (22 pages, 517482 bytes).
+Output written on BB-linear-SPN.pdf (22 pages, 519531 bytes).
 PDF statistics:
  311 PDF objects out of 1000 (max. 8388607)
  256 compressed objects within 3 object streams
