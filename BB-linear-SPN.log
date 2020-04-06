@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.22)  29 MAR 2020 10:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.22)  6 APR 2020 12:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1164,137 +1164,159 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--18
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--63
+Underfull \hbox (badness 10000) in paragraph at lines 60--63
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 78--79
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
 
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 113--114
-
- []
-
-LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 121.
-
-Underfull \hbox (badness 10000) in paragraph at lines 137--138
+Underfull \hbox (badness 10000) in paragraph at lines 114--115
 
  []
 
 
-Overfull \hbox (6.22243pt too wide) in paragraph at lines 145--146
+Underfull \hbox (badness 10000) in paragraph at lines 129--130
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 131--132
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 137--140
+
+ []
+
+[9]
+Overfull \hbox (6.22243pt too wide) in paragraph at lines 147--148
 []\T1/lmr/m/n/10 (-20) Similarly, since $\OML/lmm/m/it/10 k[]$ \T1/lmr/m/n/10 (
 -20) and $\OML/lmm/m/it/10 k[]$ \T1/lmr/m/n/10 (-20) are ran-dom and in-de-pen-
 dent, and we have at most $\OML/lmm/m/it/10 w[]qp []$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--146
+Underfull \hbox (badness 10000) in paragraph at lines 147--148
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 157--159
-
- []
-
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 160--162
+Underfull \hbox (badness 10000) in paragraph at lines 153--155
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 163--164
+Underfull \hbox (badness 10000) in paragraph at lines 156--159
 
  []
 
 
-Overfull \hbox (2.16739pt too wide) in paragraph at lines 165--166
+Overfull \hbox (2.16739pt too wide) in paragraph at lines 160--161
 [][]$\T1/lmr/m/n/10 (-20) (if $\OT1/lmr/m/n/10 (-20) (\OML/lmm/m/it/10 a; b\OT1
 /lmr/m/n/10 (-20) )$ \T1/lmr/m/n/10 (-20) col-lides at the in-put of $\OML/lmm/
 m/it/10 S[]$\T1/lmr/m/n/10 (-20) ) or $[][]$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 165--166
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 190--191
+Underfull \hbox (badness 10000) in paragraph at lines 160--161
 
  []
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 231--232
+Underfull \hbox (badness 10000) in paragraph at lines 185--186
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 233--234
+Underfull \hbox (badness 10000) in paragraph at lines 226--227
 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 281--282
+Underfull \hbox (badness 10000) in paragraph at lines 265--266
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 267--268
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 278--279
 
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 315--316
+Underfull \hbox (badness 10000) in paragraph at lines 312--313
 
  []
 
 [13]
-Overfull \hbox (0.68912pt too wide) detected at line 367
-[][]
+Underfull \hbox (badness 10000) in paragraph at lines 338--340
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
+
  []
 
 [14]
-Overfull \hbox (0.27722pt too wide) detected at line 406
+Overfull \hbox (0.68912pt too wide) detected at line 368
 [][]
  []
 
 
-Overfull \hbox (5.19629pt too wide) in paragraph at lines 443--444
+Overfull \hbox (0.27722pt too wide) detected at line 407
+[][]
+ []
+
+[15]
+Overfull \hbox (5.19629pt too wide) in paragraph at lines 444--445
 []\T1/lmr/m/n/10 (-20) The pre-vi-ous proof is con-di-tioned on $\OML/lmm/m/it/
 10 S[] \OMS/lmsy/m/n/10 ` Q[]\OML/lmm/m/it/10 ; S[] \OMS/lmsy/m/n/10 ` Q[]$\T1/
 lmr/m/n/10 (-20) , but $[] []$,
  []
 
 
-Overfull \hbox (3.48996pt too wide) in paragraph at lines 443--444
+Overfull \hbox (3.48996pt too wide) in paragraph at lines 444--445
 \T1/lmr/m/n/10 (-20) we need to con-sider $\OML/lmm/m/it/10 S[] \OMS/lmsy/m/n/1
 0 ` Q[]\OML/lmm/m/it/10 ; S[] \OMS/lmsy/m/n/10 ` Q[]$\T1/lmr/m/n/10 (-20) . Tha
 t is the prob-a-bil-ity $[] \OT1/lmr/m/n/10 (-20) [\OML/lmm/m/it/10 i\OT1/lmr/m
 /n/10 (-20) ] =
  []
 
-[15]) (./chapters/ch5-tweakable-linear-SPN.tex [16]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [16])
+(./chapters/ch5-tweakable-linear-SPN.tex
 Underfull \hbox (badness 10000) in paragraph at lines 17--18
 
  []
 
-
+[17]
 Underfull \hbox (badness 10000) in paragraph at lines 58--59
 
  []
 
-[17]
+
 Underfull \hbox (badness 10000) in paragraph at lines 74--75
 
  []
 
-
+[18]
 Underfull \hbox (badness 10000) in paragraph at lines 109--110
 
  []
 
-[18]
+[19]
 Underfull \hbox (badness 10000) in paragraph at lines 132--133
 
  []
@@ -1304,12 +1326,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 140--141
 
  []
 
-[19]
+
 Underfull \hbox (badness 10000) in paragraph at lines 166--167
 
  []
 
-
+[20]
 Underfull \hbox (badness 10000) in paragraph at lines 193--194
 
  []
@@ -1329,14 +1351,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 209--210
 
  []
 
-[20]
+[21]
 Underfull \hbox (badness 10000) in paragraph at lines 270--271
 
  []
 
-[21]) (./BB-linear-SPN.bbl [22]) 
+[22]) (./BB-linear-SPN.bbl [23]) 
 AED: lastpage setting LastPage
-[23]
+[24]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 103.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 103.
  (./BB-linear-SPN.aux)
@@ -1346,11 +1368,11 @@ Package rerunfilecheck Info: File `BB-linear-SPN.out' has not changed.
 (rerunfilecheck)             Checksum: 4BED2BD7CB46B961A5C7B89892E0E963;1064.
  ) 
 Here is how much of TeX's memory you used:
- 13050 strings out of 492616
- 196684 string characters out of 6129481
- 366586 words of memory out of 5000000
- 16340 multiletter control sequences out of 15000+600000
- 149951 words of font info for 215 fonts, out of 8000000 for 9000
+ 13058 strings out of 492616
+ 196749 string characters out of 6129481
+ 366580 words of memory out of 5000000
+ 16337 multiletter control sequences out of 15000+600000
+ 150507 words of font info for 220 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,12n,69p,1900b,447s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/
@@ -1381,10 +1403,10 @@ m/lmtt10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmtt9.pf
 b></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msam1
 0.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/m
 sbm10.pfb>
-Output written on BB-linear-SPN.pdf (23 pages, 526752 bytes).
+Output written on BB-linear-SPN.pdf (24 pages, 530172 bytes).
 PDF statistics:
- 341 PDF objects out of 1000 (max. 8388607)
- 285 compressed objects within 3 object streams
- 63 named destinations out of 1000 (max. 500000)
+ 345 PDF objects out of 1000 (max. 8388607)
+ 288 compressed objects within 3 object streams
+ 64 named destinations out of 1000 (max. 500000)
  37493 words of extra memory for PDF output out of 42996 (max. 10000000)
 
