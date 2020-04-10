@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.22)  10 APR 2020 09:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.22)  10 APR 2020 09:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1327,42 +1327,47 @@ Underfull \hbox (badness 10000) in paragraph at lines 109--110
  []
 
 [19]
-Underfull \hbox (badness 10000) in paragraph at lines 132--133
+Underfull \hbox (badness 10000) in paragraph at lines 126--127
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--141
+Underfull \hbox (badness 10000) in paragraph at lines 134--135
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--167
+Underfull \hbox (badness 10000) in paragraph at lines 142--143
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 168--169
 
  []
 
 [20]
-Underfull \hbox (badness 10000) in paragraph at lines 193--194
+Underfull \hbox (badness 10000) in paragraph at lines 195--196
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 204--205
+Underfull \hbox (badness 10000) in paragraph at lines 206--207
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--208
+Underfull \hbox (badness 10000) in paragraph at lines 208--210
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 209--210
+Underfull \hbox (badness 10000) in paragraph at lines 211--212
 
  []
 
 [21]
-Underfull \hbox (badness 10000) in paragraph at lines 270--271
+Underfull \hbox (badness 10000) in paragraph at lines 272--273
 
  []
 
@@ -1378,10 +1383,10 @@ Package rerunfilecheck Info: File `BB-linear-SPN.out' has not changed.
 (rerunfilecheck)             Checksum: 4BED2BD7CB46B961A5C7B89892E0E963;1064.
  ) 
 Here is how much of TeX's memory you used:
- 13056 strings out of 492616
- 196729 string characters out of 6129481
- 366579 words of memory out of 5000000
- 16337 multiletter control sequences out of 15000+600000
+ 13057 strings out of 492616
+ 196731 string characters out of 6129481
+ 366590 words of memory out of 5000000
+ 16338 multiletter control sequences out of 15000+600000
  150424 words of font info for 219 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,12n,69p,1900b,447s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1413,7 +1418,7 @@ m/lmtt10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmtt9.pf
 b></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msam1
 0.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/m
 sbm10.pfb>
-Output written on BB-linear-SPN.pdf (24 pages, 530123 bytes).
+Output written on BB-linear-SPN.pdf (24 pages, 529975 bytes).
 PDF statistics:
  345 PDF objects out of 1000 (max. 8388607)
  288 compressed objects within 3 object streams
