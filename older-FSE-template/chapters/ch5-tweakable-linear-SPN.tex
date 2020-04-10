@@ -1,0 +1,317 @@
+
+
+\section{beyond birthday bound for tweakable linear SPNs}
+\label{section:beyond birthday bound for tweakable linear SPNs}
+
+We also explore conditions under which 6-round, tweakable linear SPNs are secure. A 6-round SPN has seven round permutations $\{\pi_i\}_{i=0}^6$, and without loss of generality we may assume
+
+$$
+\pi_{i}\left(k_{i}, t, x\right)=\left\{\begin{array}{ll}
+{x \oplus k_{i} \oplus t} & {i \in\{0,6\}} \\
+{T_{i} \cdot\left(x \oplus k_{i} \oplus t \right)} & {i \in\{1,2,3,4,5\}}
+\end{array}\right.
+$$
+
+where $T_{1}, T_{2}, T_{3}, T_{4}, T_{5}\in \mathbb{F}^{w \times w}$ are invertible linear transformations. We prove that a 6-round, linear SPN is secure so long as (i) $T_1$, $T_2$ $T_3$ and $T_{3}^{-1}$, $T_{4}^{-1}$,$T_{5}^{-1}$ contain no zero entries(Miles and Viola ~\cite{miles2015substitution} show that matrices with maximal branch number ~\cite{daemen1995cipher} satisfy this property), and (ii) round keys $\{k_i\}(i=0, 1, 2, 3, 4, 5, 6)$ are (individually) uniform.
+
+We will prove the following theorem firstly.\\
+
+\noindent
+\textbf{Theorem 2}. Assume $w>1$, Let $\mathcal{C}$ be a 6-round, tweakable linear SPN with round permutations as in subsection 2.1 showed and with distribution $\mathcal{K}$ over keys $k_{0}, k_{1}, k_{2}, k_{3}, k_{4}, k_{5}, k_{6}$. If round keys $\{k_i\}(i=0, 1, 2, 3, 4, 5, 6)$ are (individually) uniform and $T_1$ and $T_{5}^{-1}$ contain no zero entries, then for any integers $\mathit{p}$ and $\mathit{q}$ such that $p+wq \leq \frac{2^n}{2}$, one has
+
+\begin{equation}
+\begin{aligned}
+\operatorname{Adv}_{\mathcal{C}}\left(p, q\right) &\leq \frac{q^2}{2^{n w}} + \frac{8 w^2 q(p+wq)^2+w^2 q}{2^n}\\
+&+ \frac{16 w^2 q(p+w q)(p+w q +3 q)+4 w^2 q(p+3 wq)^2+ w^2q(p+w q)(3p+w q)}{2^{2 n}}.
+\end{aligned}
+\end{equation}
+
+
+\noindent \textbf{Outline of Proof of Theorem 2}. Throughout the proof, we will write a 6-round SP construction as $\operatorname{SP}^T_{k}[\mathcal{S}](x)$, where $\mathcal{S}=(S_1, S_2, S_3, S_4, S_5, S_6)$  is a pair of six public random permutations of $\{0,1\}^{n}$, and $k = (k_{0}, k_{1}, k_{2}, k_{3}, k_{4}, k_{6}, k_{7}) \in \mathcal{K}^{7}$ is the key, $x \in \{0,1\}^{w n}$ is the plaintext. and, for i = 1, 2, 3, 4,
+
+$$
+\begin{array}{c}
+{S_{i}^{\|}:\{0,1\}^{w n} \rightarrow\{0,1\}^{w n}} \\
+{x=x_{1}\left\|x_{2}\right\| \ldots\left\|x_{w} \longmapsto S_{i}\left(x_{1}\right)\right\| S_{i}\left(x_{2}\right)\|\ldots\| S_{i}\left(x_{w}\right)}.
+\end{array}
+$$
+
+We also fix a distinguisher $\mathcal{D}$ as described in the statement and fix an attainable transcript $\tau =\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}\right)$ obtained $\mathcal{D}$. For $i \in \{1, \cdots, 6\}$, let
+
+$$
+\begin{aligned}
+&\mathcal{Q}_{S_{i}}^{(0)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(i, u, v) \in \mathcal{Q}_{S} \right\},\\
+\end{aligned}
+$$
+
+\noindent and let
+
+$$
+\begin{aligned}
+&U_{i}^{(0)}=\left\{u_{i} \in\{0,1\}^{n}:\left(i, u_{i}, v_{i}\right) \in \mathcal{Q}_{S_{i}}^{(0)}\right\}\\
+&V_{i}^{(0)}=\left\{v_{i} \in\{0,1\}^{n}:\left(i, u_{i}, v_{i}\right) \in \mathcal{Q}_{S_{i}}^{(0)}\right\},\\
+\end{aligned}
+$$
+
+\noindent denote the domains and ranges of $\mathcal{Q}_{S_{i}}^{(0)}, i \in \{1, \cdots, 6\}$, respectively.
+
+Similar to the 4-round SPN, we will first define what we mean by an extension of the transcript $\tau$. Next, we will define bad extensions and explain the link between good extended transcripts and the ratio $\frac{p_2}{p_1}$. Finally, we will show that the number of bad extended transcripts is small enough, and then show that the probability to obtain any good extension in the real world is sufficiently close to the probability to obtain $\tau$ the ideal world. We stress that extended transcripts are completely virtual and are not disclosed to the adversary. They are just an artificial intermediate step to lower bound the probability to observe transcript $\tau$ in the real world.\\
+
+\noindent
+\textsc{EXTENSION OF A TRANSCRIPT(OUTER FOUR ROUNDS)}. We will extend the transcript $\tau$ of the attack via a certain randomized process. We begin with choosing a pair of keys $\left(k_{0}, k_{6}\right) \in \mathcal{K}^{2}$ uniformly at random. Once these keys have been chosen, some construction queries will become involved in collisions. Then a colliding query is defined as a construction query $(t, x, y) \in \mathcal{Q}_{C}$ such that one of the following conditions holds:
+
+\begin{itemize}
+  \item[1.]
+  there exist an S-box query $(1, u, v) \in \mathcal{Q}_{S}$ and an integer $i \in\{1, \ldots, w\}$ such that $\left(x \oplus k_{0} \oplus t \right)[i]=u$.
+  \item[2.]
+  there exist an S-box query $(6, u, v) \in \mathcal{Q}_{S}$ and an integer $i \in\{1, \ldots, w\}$ such that $\left(y \oplus k_{6} \oplus t \right)[i]=v$.
+  \item[3.]
+  there exist a construction query $\left(t', x^{\prime}, y^{\prime}\right) \in \mathcal{Q}_{C}$ and an integer $i,j \in\{1, \ldots, w\}$ such that $(t, x, y, i) \neq\left(t', x^{\prime}, y^{\prime}, j\right)$ and $\left(x \oplus k_{0} \oplus t \right)[i] = \left(x' \oplus k_{0} \oplus t \right)[j]$.
+  \item[4.]
+  there exist a construction query $\left(t', x^{\prime}, y^{\prime}\right) \in \mathcal{Q}_{C}$ and an integer $i,j \in\{1, \ldots, w\}$ such that $(t, x, y, i) \neq\left(t, x^{\prime}, y^{\prime}, j\right)$ and $i \in\{1, \ldots, w\}$ such that $\left(y \oplus k_{6} \oplus t \right)[i] = \left(y' \oplus k_{6} \oplus t\right)[j]$.
+\end{itemize}
+
+We are now going to build a new set $\mathcal{Q}_{S_{outmost}}^{\prime}$ of S-box evaluations that will play the role of an extension of $\mathcal{Q}_{S}$. For each colliding query $(t, x, y) \in \mathcal{Q}_{C}$, we will add tuples $\left(1, \left(x \oplus k_{0} \oplus t\right)[i], v_1^{\prime}\right)_{1 \leq i \leq w}$ (if ($t, \mathit{x}$, $\mathit{y}$) collides at the input of $S_1$), or (if ($t, \mathit{x}, \mathit{y}$) collides at the output of $S_6$) $\left(6, u_6^{\prime}, \left(y \oplus k_{6} \oplus t\right)[i]\right)_{1 \leq i \leq w}$, by lazy sampling $v_1^{\prime}=S_{1}(\left(x \oplus k_{0} \oplus t\right)[i])$, or $u_6^{\prime}=S_{6}^{-1}(\left(y \oplus k_{6} \oplus t\right)[i])$, as long as it has not been determined by any existing query in $\mathcal{Q}_{S}$. Then we choose the key $k_1, k_2, k_3, k_4, k_5$ uniformly at random. An extended transcript of $\tau$ will be defined as a tuple $\tau^{\prime}=\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}, \mathcal{Q}_{S_{outmost}}^{\prime}, \mathbf{k}\right)$ where $\mathbf{k}=\left(k_{0}, k_{1}, k_{2},k_{3},k_{4}, k_{5}, k_{6}\right)$. For each collision between a construction query and a primitive query, or between two construction queries, the extended transcript will contain enough information to compute a complete round of the evaluation of the SPN. This will be useful to lower bound the probability to get the transcript $\tau$ in the real world.\\
+
+\noindent Let
+
+$$
+\begin{aligned}
+&\mathcal{Q}_{S_{1}}^{(1)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(1, u, v) \in \mathcal{Q}_{S} \cup \mathcal{Q}_{S_{outmost}}^{\prime}\right\}\\
+&\mathcal{Q}_{S_{6}}^{(1)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(6, u, v) \in \mathcal{Q}_{S} \cup \mathcal{Q}_{S_{outmost}}^{\prime}\right\}\\
+\end{aligned}
+$$
+
+\noindent In words, $\mathcal{Q}_{S_{i}}^{(1)}$ summarizes each constraint that is forced on $S_{i}$ by $\mathcal{Q}_{S}$ and $\mathcal{Q}_{S_{outmost}}^{\prime}$. Let
+
+$$
+\begin{aligned}
+&U_{1}=\left\{u_{1} \in\{0,1\}^{n}:\left(1, u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(1)}\right\}, \quad V_{1}=\left\{v_{1} \in\{0,1\}^{n}:\left(1, u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(1)}\right\},\\
+&U_{6}=\left\{u_{6} \in\{0,1\}^{n}:\left(6, u_{6}, v_{6}\right) \in \mathcal{Q}_{S_{6}}^{(1)}\right\}, \quad V_{6}=\left\{v_{6} \in\{0,1\}^{n}:\left(6, u_{6}, v_{6}\right) \in \mathcal{Q}_{S_{6}}^{(1)}\right\}\\
+\end{aligned}
+$$
+
+\noindent be the domains and ranges of $\mathcal{Q}_{S_{1}}^{(1)}$, $\mathcal{Q}_{S_{6}}^{(1)}$ respectively. We define two quantities characterizing an extended transcript $\tau^{\prime}$, namely
+
+$$
+\begin{aligned}
+&\alpha_{1} \stackrel{\text { def }}{=} |\left\{(t, x, y) \in \mathcal{Q}_{C}: \left(x \oplus k_{0} \oplus t\right)[i] \in U_{1} \text { for some } i \in\{1, \ldots, w\}\right\} |\\
+&\alpha_{6} \stackrel{\text { def }}{=} |\left\{(t, x, y) \in \mathcal{Q}_{C}: \left(y \oplus k_{6} \oplus t\right)[i] \in V_{6} \text { for some } i \in\{1, \ldots, w\}\right\} |
+\end{aligned}
+$$
+
+In words, $\alpha_1$ (resp. $\alpha_6$) is the number of queries $(t, x, y) \in \mathcal{Q}_{C}$ which collide with a query $\left(u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(1)}$ (resp. $\left(u_{6}, v_{6}\right) \in \mathcal{Q}_{S_{6}}^{(1)}$) in the extended transcript. This corresponds to the number of queries $(t, x, y) \in \mathcal{Q}_{C}$ which collide with either an original query $\left(u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(0)}$ (resp. which collide with a query $\left(u_{6}, v_{6}\right) \in \mathcal{Q}_{S_{6}}^{(0)}$) or with a query $\left(t' x^{\prime}, y^{\prime}\right) \in \mathcal{Q}_{C}$ at an input of $S_1$ (resp. at the output of $S_6$), once the choice of $\left(k_{0}, k_{6}\right)$  has been made. We will also denote
+
+$$
+\beta_{i}=\left|\mathcal{Q}_{S_{i}}^{(1)}\right|-\left|\mathcal{Q}_{S_{i}}^{(0)}\right|=\left|\mathcal{Q}_{S_{i}}^{(1)}\right|-p.
+$$
+
+for $i=1, 6$ the number of additional queries included in the extended transcript.\\
+
+\subsection{Bad Transcript for 6-rounds tweakable linear SPN and Probability}
+
+\noindent \textbf{Definition 4} \emph{We say an extended transcript $\tau^{\prime}$ is bad if at least one of the following conditions is fulfilled:}
+
+\begin{itemize}
+  \item[\eone]
+  there exists $(t, x, y) \in \mathcal{Q}_{C}, \left(u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(1)}, \left(u_{6}, v_{6}\right) \in \mathcal{Q}_{S_{6}}^{(1)}$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(x \oplus k_{0} \oplus t\right)[i]=u_1$ and $\left(y \oplus k_{6} \oplus t\right)[j]=v_6$.
+  \item[\etwo]
+  there exists $(t, x, y) \in \mathcal{Q}_{C}, \left(u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(1)}, \left(u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(x \oplus k_{0} \oplus t\right)[i]=u_1$ and $\left(T_{1}\left(S_{1}\left(x \oplus k_{0} \oplus t\right) \oplus k_{1} \oplus t\right)\right)[j]=u_2$.
+  \item[\ethree]
+  there exists $(t, x, y) \in \mathcal{Q}_{C}, \left(u_{5}, v_{5}\right) \in \mathcal{Q}_{S_{5}}, \left(u_{6}, v_{6}\right) \in \mathcal{Q}_{S_{6}}^{(1)}$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(y \oplus k_{6} \oplus t\right)[j]=v_6$ and $\left(T_{5}^{-1}\left(S_{6}^{-1}\left(y \oplus k_{6} \oplus t\right)\right) \oplus k_{5} \oplus t\right)[i]=v_5$.
+  \item[\efour]
+  there exists $(t, x, y) \in \mathcal{Q}_{C}$ and distinct indices $i, j \in \{1, \ldots, w\}$ such that $(x\xor k_0 \xor t)[i]=(x\xor k_0 \xor t)[j]$, or $(y\xor k_6 \xor t)[i]=(y\xor k_6 \xor t)[j]$.
+\end{itemize}
+
+\noindent \emph{Any extended transcript that is not bad will be called good. }\\
+
+\noindent \textbf{Lemma 10} \emph{One has}
+
+\begin{equation}
+\operatorname{Pr}[\tau^{\prime} \in \Theta_{bad}(\tau)] \leq \frac{w^2 q (p+w q) (3 p +w q)}{N^{2}} + \frac{w^{2} q}{N}.
+\end{equation}
+
+\noindent \emph{Proof:} We fix any extended transcript, denoted $\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}, \mathcal{Q}_{S_{outmost}}^{\prime}\right)$. For any fixed construction query $(t, x, y) \in \mathcal{Q}_{C}$, now we upper bound the probabilities of the bad extended transcript.\\
+
+\noindent Consider \eone: Since we have at most $w^{2} q \left(p+w q\right)^{2}$ choices for $(t, x, y) \in \mathcal{Q}_{C}, \left(u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(1)}, \left(u_{6}, v_{6}\right) \in \mathcal{Q}_{S_{6}}^{(1)}$ and index $i, j \in \{1, \ldots, w\}$ and since the random choice of $k_{0}$ and $k_{6}$ are independent, one has
+
+$$
+\operatorname{Pr}\left[\eone\right] \leq \frac{w^{2} q \left(p+w q\right)^{2}}{N^{2}}.
+$$
+
+\noindent Similarly, since $k_{0}$ and $k_{1}$ are random and independent, and we have at most $w^{2} q p \left(p+w q\right)$ for $(t, x, y) \in \mathcal{Q}_{C}, \left(u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(1)}, \left(u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}$ and index $i, j \in \{1, \ldots, w\}$, we have $\operatorname{Pr}\left[\etwo\right] \leq \frac{w^{2} q p \left(p+w q\right)}{N^{2}}$; by symmetry, $\operatorname{Pr}\left[\ethree\right] \leq \frac{w^{2} q p \left(p+w q\right)}{N^{2}}$. \\
+
+\noindent Then consider \bfour. We assume that $w \neq 2$, because of $w = 1$ does not belong to the primary problem of the SP-networks. Since the random choice of $k_{0}$ and $k_{6}$ are independent, then we have
+
+$$
+\operatorname{Pr}\left[\efour\right] \leq \frac{w^{2} q}{N}.
+$$
+
+Similar to the outermost two round, we will extend the inner two round (the two and the five round).  Pick a pair of S-box $(S_1, S_6)$ such that $S_{1} \vdash \mathcal{Q}_{S_{1}}^{(0)}$ and $S_{6} \vdash \mathcal{Q}_{S_{6}}^{(0)}$, and for each $ (t, x, y) \in \mathcal{Q}_{C}$ we set $a=S_{1}\left(x \oplus k_{0} \oplus t\right)$, $b=S_{6}^{-1}\left(y \oplus k_{6} \oplus t\right)$. In this way we obtain $\mathnormal{q}$ tuples of the form $(t, a, b)$; for convenience we denote the set of such induced tuples by $\mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right)$. Then we choose a pair of keys $\left(k_{1}, k_{5}\right) \in \mathcal{K}^{2}$ uniformly at random. Once these keys have been chosen, some construction queries will become involved in collisions. A colliding query is defined as a construction query $(t, a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right)$. After that, we build a new set $\mathcal{Q}_{S_{outer}}^{\prime}$ of S-box evaluations that will play the role of an extension of $\mathcal{Q}_{S}$. Then we choose the key $k_2, k_3, k_4$ uniformly at random. An extended transcript of $\tau$ will be defined as a tuple $\tau''=\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}, \mathcal{Q}_{S_{outer}}^{\prime}, \mathbf{k}\right)$ where $\mathbf{k}=\left(k_{1}, k_{2},k_{3},k_{4}, k_{5}\right)$. We also let
+
+$$
+\begin{aligned}
+&\mathcal{Q}_{S_{2}}^{(1)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(2, u, v) \in \mathcal{Q}_{S} \cup \mathcal{Q}_{S_{outer}}^{\prime}\right\}\\
+&\mathcal{Q}_{S_{5}}^{(1)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(5, u, v) \in \mathcal{Q}_{S} \cup \mathcal{Q}_{S_{outer}}^{\prime}\right\}\\
+\end{aligned}
+$$
+
+\noindent In words, $\mathcal{Q}_{S_{i}}^{(1)}$ summarizes each constraint that is forced on $S_{i}$ by $\mathcal{Q}_{S}$ and $\mathcal{Q}_{S_{outer}}^{\prime}$. Let
+
+$$
+\begin{aligned}
+&U_{2}=\left\{u_{2} \in\{0,1\}^{n}:\left(2, u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}^{(1)}\right\}, \quad V_{2}=\left\{v_{2} \in\{0,1\}^{n}:\left(2, u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}^{(1)}\right\},\\
+&U_{5}=\left\{u_{5} \in\{0,1\}^{n}:\left(5, u_{5}, v_{5}\right) \in \mathcal{Q}_{S_{5}}^{(1)}\right\}, \quad V_{5}=\left\{v_{5} \in\{0,1\}^{n}:\left(5, u_{5}, v_{5}\right) \in \mathcal{Q}_{S_{5}}^{(1)}\right\}\\
+\end{aligned}
+$$
+
+\noindent be the domains and ranges of $\mathcal{Q}_{S_{1}}^{(1)}$, $\mathcal{Q}_{S_{6}}^{(1)}$ respectively. After define the extended transcript $\tau''$ is bad, \\
+
+\begin{itemize}
+  \item[\feai]
+  there exists $(t, a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right), \left(u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}^{(1)}, \left(u_{5}, v_{5}\right) \in \mathcal{Q}_{S_{5}}^{(1)}$, and index $i, j \in \{1, \ldots, w\}$ such that $(T_1\left(a \oplus k_{1} \oplus t\right))[i]=u_2$ and $(T_5^{-1}\left(b\right) \oplus k_{5} \oplus t)[j]=v_5$.
+  \item[\feaii]
+  there exists $(t, a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right), \left(u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}^{(1)}, \left(u_{3}, v_{3}\right) \in \mathcal{Q}_{S_{3}}$, and index $i, j \in \{1, \ldots, w\}$ such that $(T_1\left(a \oplus k_{1} \oplus t\right))[i]=u_2$ and 
+  $$
+  \left(T_{2}\left(S_{2}\left(T_1(a \oplus k_{1} \oplus t)\right) \oplus k_{2} \oplus t\right)\right)[j]=u_3.
+  $$
+  \item[\feaiii]
+  there exists $(t, a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right), \left(u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}, \left(u_{5}, v_{5}\right) \in \mathcal{Q}_{S_{5}}^{(1)}$, and index $i, j \in \{1, \ldots, w\}$ such that $(T_5^{-1}\left(b\right) \oplus k_{5} \oplus t)[j]=v_5$ and 
+  $$
+  \left(T_{4}^{-1}\left(S_{5}^{-1}\left(T_5^{-1}(b) \oplus k_{5} \oplus t\right)\right) \oplus k_{4} \oplus t\right)[i]=v_4.
+  $$
+  \item[\feaiv]
+  there exists $(t, x, y) \in \mathcal{Q}_{C}$ and distinct indices $i, j \in \{1, \ldots, w\}$ such that 
+  $$(T_1\left(a \oplus k_{1} \oplus t\right))[i]=(T_1\left(a \oplus k_{1} \oplus t\right))[j], \text{ or }$$
+  $$(T_5^{-1}\left(b\right) \oplus k_{5} \oplus t)[i]=(T_5^{-1}\left(b\right) \oplus k_{5} \oplus t)[j].$$
+\end{itemize}
+
+\noindent \textbf{Lemma 11} \emph{One has}
+
+\begin{equation}
+\operatorname{Pr}[\tau'' \in \Theta_{bad}(\tau)] \leq \frac{w^2 q (p+w q) (3 p +w q)}{N^{2}} + \frac{w^{2} q}{N}.
+\end{equation}
+
+\noindent The proof is similar to Lemma 10.\\
+
+Let $\tau_{1} = \tau' \cup \tau''$. Then combine (11), (12), we can get
+
+\begin{equation}
+\operatorname{Pr}[\tau_{1} \in \Theta_{bad}(\tau)] \leq \frac{2w^2 q (p+w q) (3 p +w q)}{N^{2}} + \frac{2w^{2} q}{N}.
+\end{equation}
+
+
+\subsection{Analysis for Good Transcript}
+
+\noindent Fix a good transcript and a good round-key vector $\mathnormal{k}$, we are to derive a lower bound for the probability  $\operatorname{Pr}\left[\mathcal{S} \stackrel{\mathbf{s}}{\leftarrow}(\mathcal{S}(n))^{6}: \mathrm{SP}_{k}[\mathcal{S}] \vdash \mathcal{Q}_{C} | \mathcal{S} \vdash \mathcal{Q}_{S}\right]$. We ``peel off'' the outer four rounds. Then assuming $(S_{1}, S_2, S_{5}, S_6)$ is good, we analyze the induced 2-round transcript to yield the final bounds.\\
+
+\noindent
+\textsc{PEELING OFF THE OUTER FOUR ROUNDS}. Pick a pair of S-box $(S_1, S_2, S_{5}, S_6)$ such that $S_{1} \vdash \mathcal{Q}_{S_{1}}^{(0)}, S_{2} \vdash \mathcal{Q}_{S_{2}}^{(0)}, S_{5} \vdash \mathcal{Q}_{S_{5}}^{(0)}$   and $S_{6} \vdash \mathcal{Q}_{S_{6}}^{(0)}$, and for each $ (t, a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right)$ we set $c=S_{2}\left(T_1\left(a \oplus k_{1} \oplus t\right)\right)$, $d=S_{5}^{-1}\left(T_5^{-1}\left(b\right) \oplus k_{5} \oplus t\right)$. In this way we obtain $\mathnormal{q}$ tuples of the form $(c, d)$; for convenience we denote the set of such induced tuples by $\mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right)$. Similarly, we also extended the innermost two rounds:\\
+
+Then we build a new set $\mathcal{Q}_{S_{inner}}^{\prime}$ of S-box evaluations that will play the role of an extension of $\mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right)$. Then we choose the key $k_3$ uniformly at random. An extended transcript of $\tau_{inner}$ will be defined as a tuple $\tau_{inner}^{\prime}=\left(\mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right), \mathcal{Q}_{S_{inner}}, \mathcal{Q}_{S_{inner}}^{\prime}, \mathbf{k}\right)$ where $\mathbf{k}=\left(k_{2}, k_{3}, k_{4}\right)$.\\
+
+\noindent \textbf{Lemma 12} \emph{ For any extended $S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{2} \vdash \mathcal{Q}_{S_{2}}, S_{5} \vdash \mathcal{Q}_{S_{5}}, S_{6} \vdash \mathcal{Q}_{S_{6}}$, we have}
+\begin{equation}
+\begin{aligned}
+&\operatorname{Pr}\left[\operatorname{Bad}\left(S_{1}, S_2, S_{5}, S_6\right) | S_{i} \vdash \mathcal{Q}_{S_{i}}, i = 1, 2, 5, 6\right] \geq \frac{2 w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)}\\
+& +\frac{2 w^{2} q (p+w q)(p+w q+2 q)}{N \cdot (N-p)} +\frac{w^{2} q (p+w q)(p+w q+2 q)}{(N-p)^2} +\frac{2 w^{2} q (p+w q)^{2}}{(N-p)}.
+\end{aligned}
+\end{equation}
+
+\noindent \emph{Proof:} Then we define a predicate $\operatorname{Bad}\left(S_{1}, S_2, S_{5}, S_6\right)$ on the pair $(S_1,S_2, S_5, S_6)$, which holds if the corresponding induced set $\mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right)$ fulfills at least one of the following seven ``collision'' conditions:
+
+\begin{itemize}
+  \item[\hone]
+  there exist $(t, c, d) \in \mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right)$, $i, j \in\{1, \ldots, w\}$, $u_{3} \in U_{3}$ and $v_{4} \in V_{4}$ such that $\left(T_2\left(c \oplus k_{2} \oplus t\right)\right)[i] = u_3$ and $\left(T_{4}^{-1}\left(d \right) \oplus k_{4} \oplus t\right)[i] = v_4$.
+  \item[\htwo]
+  there exist $(t, c, d) \in \mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right)$, $i, j \in\{1, \ldots, w\}$, $u_{3} \in U_{3}$ and $u_{4} \in U_{4}$ such that $\left(T_2\left(c \oplus k_{2} \oplus t\right)\right)[i] = u_3$ and $\left(T_{3}\left(S_{3}\left(T_2\left(c \oplus k_{2} \oplus t\right)\right) \oplus k_{3} \oplus t\right)\right)[j] = u_4$.
+  \item[\hthree]
+  there exist $(t, c, d) \in \mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right)$, $i, j \in\{1, \ldots, w\}$, $v_{3} \in V_{3}$ and $v_{4} \in V_{4}$ such that $\left(T_{4}^{-1}\left(d \right) \oplus k_{4} \oplus t\right)[i] = v_4$ and $\left(T_{3}^{-1}\left(S_{4}^{-1}\left(T_{4}^{-1}\left(d\right) \oplus k_{4} \oplus t\right)\right) \oplus k_{3} \oplus t\right)[j] = v_3$.
+  \item[\hfour]
+  there exist $(t, c, d) \in \mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, $u_{3},u_{3}' \in U_{3}$ such that
+  $$\left(T_2\left(c \oplus k_{2} \oplus t\right)\right)[i] = u_3,\text{ and }
+  \left(T_2\left(c \oplus k_{2} \oplus t\right)\right)[i'] = u_3'.$$
+  \item[\hfive]
+  there exist distinct $(t, c, d),(t', c', d') \in \mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, $u_{3} \in U_{3}$ such that
+  $$\left(T_2\left(c \oplus k_{2} \oplus t\right)\right)[i] = u_3,\text{ and }
+  \left(T_2\left(c \oplus k_{2} \oplus t\right)\right)[i'] =\left(T_2\left(c' \oplus k_{2} \oplus t'\right)\right)[i'].$$
+  \item[\hsix]
+  there exist $(t, c, d), (t', c^{\prime}, d^{\prime}) \in \mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right)$, $i, i^{\prime},j, j^{\prime} \in\{1, \ldots, w\}$, with$(t, c, j) \neq \left(t', c^{\prime}, j^{\prime}\right)$, $u_{3}, u_{3}^{\prime} \in U_{3}$ such that $\left(T_2\left(c \oplus k_{2} \oplus t\right)\right)[i] = u_3,\left(T_2\left(c' \oplus k_{2} \oplus t'\right)\right)[i] = u_3'$ and
+$$
+  \left(T_{3}\left(S_{3}\left(T_2\left(c \oplus k_{2} \oplus t\right)\right) \oplus k_{3} \oplus t\right)\right)[j] = \left(T_{3}\left(S_{3}\left(T_2\left(c' \oplus k_{2} \oplus t'\right)\right) \oplus k_{3} \oplus t'\right)\right)[j'].
+$$
+  \item[\hseven]
+  there exist $(t, c, d) \in \mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right)$, distinct $j, j^{\prime}\in\{1, \ldots, w\}$, $v_{4},v_{4}' \in V_{4}$ such that
+  $$
+  \begin{aligned}  
+ \left(T_{4}^{-1}\left(d \right) \oplus k_{4} \oplus t\right)[j] = v_4, \\
+  \left(T_{4}^{-1}\left(d \right) \oplus k_{4} \oplus t\right)[j'] = v_4.
+  \end{aligned}
+  $$
+  \item[\height]
+  there exist distinct $(t, c, d),(t', c', d') \in \mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right)$, distinct $j, j^{\prime}\in\{1, \ldots, w\}$, $v_{4} \in V_{4}$ such that
+  $$
+  \begin{aligned}
+  &\left(T_{4}^{-1}\left(d \right) \oplus k_{4} \oplus t\right)[j] = v_4, \\
+  &\left(T_{4}^{-1}\left(d \right) \oplus k_{4} \oplus t\right)[j] = \left(T_{4}^{-1}\left(d' \right) \oplus k_{4} \oplus t'\right)[j'].
+  \end{aligned}
+  $$
+  \item[\hnine]
+  there exist $(t, c, d), (t', c', d') \in \mathcal{Q}_{C}^{**}\left(S_{2}, S_{5}\right)$, $i, i^{\prime}, j, j^{\prime} \in\{1, \ldots, w\}$, with$(t, d, j) \neq \left(t', d^{\prime}, j^{\prime}\right)$, $u_{3} \in U_{3}$, $v_{4},v_{4}^{\prime} \in V_{4}$ such that 
+  $$
+ \left(T_{4}^{-1}\left(d \right) \oplus k_{4} \oplus t\right)[i] = v_4, \text{ and }
+  \left(T_{4}^{-1}\left(d' \right) \oplus k_{4} \oplus t'\right)[i] = v_4'. $$ 
+  $$
+\begin{aligned}
+  &\left(T_{3}^{-1}\left(S_{4}^{-1}\left(T_{4}^{-1}\left(d\right) \oplus k_{4} \oplus t\right)\right) \oplus k_{3} \oplus t\right)[j] \\
+  &=  \left(T_{3}^{-1}\left(S_{4}^{-1}\left(T_{4}^{-1}\left(d'\right) \oplus k_{4} \oplus t'\right)\right) \oplus k_{3} \oplus t'\right)[j'].
+\end{aligned}
+$$
+\end{itemize}
+
+\noindent \emph{Proof:} We upper bound the probabilities of the nine conditions in turn. We denote $\Theta_i$ the set of attainable transcripts satisfying condition \hi.\\
+
+The proof of \hone to \hfive and \hseven , \height is similar to the Lemma 8, there are no more details. So we just consider \hsix and \hnine here. We first note that, if the condition is satisfied, we have $\left(S_{2}\left(a \oplus k_{1} \oplus t\right)\right)[i]$ remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{2}} \cup \mathcal{Q}_{S_{5}} \cup \mathcal{Q}_{S_{6}})$.  Moreover if $u_3 =u_3'$, that is $c \oplus t=c' \oplus t'$, then after oplus different tweak, the input of the $S_4$ must be different, so the collision would not happen. Hence we must have $u_3 \neq u_3'$. The condition can be divided into two conditions: the first concerning with $j\neq j'$, while the second concerning with $j=j'$.
+
+For the first case, to make 
+$$
+  \left(T_{3}\left(S_{3}\left(T_2\left(c \oplus k_{2} \oplus t\right)\right) \oplus k_{3} \oplus t\right)\right)[j] = \left(T_{3}\left(S_{3}\left(T_2\left(c' \oplus k_{2} \oplus t'\right)\right) \oplus k_{3} \oplus t'\right)\right)[j'].
+$$
+\noindent achieved, we just leverage the fact that $k_3[j]$ and $k_3[j']$ are uniform and independent, so the collision holds with probability $1/N$. Because of $a$remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{2}} \cup \mathcal{Q}_{S_{5}} \cup\mathcal{Q}_{S_{6}})$, let $(a', b')$ be the unique query such that the collision happened. Then the probability that $\left(T_2\left(c \oplus k_{2} \oplus t\right)\right)[i] = u_3, \left(T_2\left(c' \oplus k_{2} \oplus t'\right)\right)[i] = u_3'$ is at most $\frac{1}{N-p}$, because we have at most $w^2 q^2(p+ w q)$ such tuples, one has
+
+$$
+\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)}.
+$$
+
+For the case of $j=j'$ with distinct $(c,d),(c',d')$, that is there is only one index has different value of input and output. Because of the value $S_{2}\left(T_1\left(a' \oplus k_{1} \oplus t\right)\right)[i]$ also remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{2}} \cup \mathcal{Q}_{S_{5}} \cup \mathcal{Q}_{S_{6}})$, then we leverage the randomness due to lazy sampling $S_3(T_2(c\xor k_2\xor t))$. Conditioned on \feaiv, for $i''\neq i$, the value $T_2(c \oplus k_2 \oplus t)[i'']$ ``does not collide with'' pairs in $\mathcal{Q}_{S_{3}}^{(1)}$, and will be assigned a random outputs during the lazy sampling process. Simultaneously conditioned on $\feav$, for distinct $i'' \neq i$, if $(T_2\left(c \oplus k_{2} \oplus t\right))[i] = u_3$, it holds $(T_2(c\xor k_2 \xor t))[i'']\neq (T_2(c'\xor k_2 \xor t'))[i'']$. Since $T_3$ contain no zero entries, so the value $ \left(T_{3}\left(S_{3}\left(T_2\left(c \oplus k_{2} \oplus t\right)\right) \oplus k_{3} \oplus t\right)\right)[i'']$ could not be disturbed by the value of $ \left(T_{3}\left(S_{3}\left(T_2\left(c' \oplus k_{2} \oplus t'\right)\right) \oplus k_{3} \oplus t'\right)\right)[i'']$ and thus uniform in at least $\frac{1}{N - p- wq}$. One has,
+$$
+\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)}.
+$$
+\noindent So, combine these two subevents, one has
+$$
+\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)} + \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N- p)}.
+$$
+
+\noindent Similarly, we have
+
+$$
+\operatorname{Pr}\left[\tau_{inner} \in \Theta_{9}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)} + \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N- p)}.
+$$
+
+\noindent Then combining Lemma 9, we complete the proof of Theorem 2.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
