@@ -1,6 +1,6 @@
 
 
-\section{security of 4-round SPNs}
+\section{SPRP Security of 4-Round SPNs}
 \label{section:security of 4-round SPNs}
 
 We now explore conditions under which 4-round, linear SPNs are secure. Recall from subsection 2.1 that a 4-round SPN has five round permutations $\{\pi_i\}_{i=0}^4$, and without loss of generality we may assume
@@ -16,15 +16,22 @@ where $T_{1}, T_{2}, T_{3} \in \mathbb{F}^{w \times w}$ are invertible linear tr
 
 In this section, we will prove the following theorem.\\
 
-\noindent
-\textbf{Theorem 1}. Assume $w>1$, Let $\mathcal{C}$ be a 4-round, linear SPN with round permutations as in subsection 2.1 showed and with distribution $\mathcal{K}$ over keys $k_{0}, k_{1}, k_{2}, k_{3}, k_{4}$. If round keys $\{k_i\}(i=0, 1, 2, 3, 4)$ are (individually) uniform and $T_1$ and $T_{3}^{-1}$ contain no zero entries, then for any integers $\mathit{p}$ and $\mathit{q}$ such that $p+wq \leq \frac{2^n}{2}$, one has
-
-\begin{equation}
-\begin{aligned}
+\begin{theorem}
+\label{theorem:5-round-pub-pspn}
+	
+Assume $w>1$, Let $\mathcal{C}$ be a 4-round, linear SPN with round permutations as in subsection 2.1 showed and with distribution $\mathcal{K}$ over keys $k_{0}, k_{1}, k_{2}, k_{3}, k_{4}$. If round keys $\{k_i\}(i=0, 1, 2, 3, 4)$ are (individually) uniform and $T_1$ and $T_{3}^{-1}$ contain no zero entries, then for any integers $\mathit{p}$ and $\mathit{q}$ such that $p+wq \leq \frac{2^n}{2}$, one has
+\begin{align}
 \operatorname{Adv}_{\mathcal{C}}\left(p, q\right) &\leq \frac{q^2}{2^{n w}} + \frac{8 w^2 q(p+wq)^2+w^2 q}{2^n}\\
 &+ \frac{16 w^2 q(p+w q)(p+w q +3 q)+4 w^2 q(p+3 wq)^2+ w^2q(p+w q)(3p+w q)}{2^{2 n}}.
-\end{aligned}
-\end{equation}
+\label{eq:bound-4-rounds}
+%\begin{aligned}
+%\operatorname{Adv}_{\mathrm{SP}^{T}}^{su}(p, q) & \leq w^{2} q\left(\delta^{\prime} p+\delta w q\right)\left(3 \delta^{\prime} p+3 \delta w q+2 \delta^{\prime} w q\right)+\frac{q^{2}}{2 w n}+\frac{q\left(2 w p+6 w^{2} q\right)^{2}}{2^{2 n}}. \\
+%\operatorname{Adv}_{\mathrm{SP}^{T}}^{mu}(p, q) & \leq w^{2} q\left(\delta^{\prime} p+\left(\delta+\delta^{\prime}\right) w q\right)\left(3 \delta^{\prime} p+3 \delta w q+5 \delta^{\prime} w q\right) \\
+%&+\frac{q^{2}}{2^{w n}}+\frac{q\left(2 w p+8 w^{2} q\right)^{2}}{2^{2 n}}.
+%\end{aligned}
+\end{align}
+\end{theorem}
+
 
 \noindent \textbf{Outline of Proof of Theorem 1}. Throughout the proof, we will write a 4-round SP construction as $\operatorname{SP}_{k}[\mathcal{S}](x)$, where $\mathcal{S}=(S_1, S_2, S_3, S_4)$  is a pair of four public random permutations of $\{0,1\}^{n}$, and $k = (k_{0}, k_{1}, k_{2}, k_{3}, k_{4}) \in \mathcal{K}^{5}$ is the key, $x \in \{0,1\}^{w n}$ is the plaintext, and, for i = 1, 2, 3, 4,
 
@@ -76,7 +83,8 @@ We will first define what we mean by an extension of the transcript $\tau$. Then
   there exist a construction query $\left(x^{\prime}, y^{\prime}\right) \in \mathcal{Q}_{C}$ and an integer $i,j \in\{1, \ldots, w\}$ such that $(x, y, i) \neq\left(x^{\prime}, y^{\prime}, j\right)$ and $i \in\{1, \ldots, w\}$ such that $\left(y \oplus k_{4}\right)[i] = \left(y' \oplus k_{4}\right)[j]$.
 \end{itemize}
 
-We are now going to build a new set $\mathcal{Q}_{S_{outer}}^{\prime}$ of S-box evaluations that will play the role of an extension of $\mathcal{Q}_{S}$. For each colliding query $(x, y) \in \mathcal{Q}_{C}$, we will add tuples $\left(1, \left(x \oplus k_{0}\right)[i], v^{\prime}\right)_{1 \leq i \leq w}$ (if ($\mathit{x}$, $\mathit{y}$) collides at the input of $S_1$) or $\left(4, u^{\prime}, \left(y \oplus k_{4}\right)[i]\right)_{1 \leq i \leq w}$ (if ($\mathit{x}$, $\mathit{y}$) collides at the output of $S_4$) by lazy sampling $v^{\prime}=S_{1}(\left(x \oplus k_{0}\right)[i])$ or $u^{\prime}=S_{4}^{-1}(\left(y \oplus k_{4}\right)[i])$, as long as it has not been determined by any existing query in $\mathcal{Q}_{S}$. Then we choose the key $k_1, k_2, k_3$ uniformly at random. An extended transcript of $\tau$ will be defined as a tuple $\tau^{\prime}=\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}, \mathcal{Q}_{S_{outer}}^{\prime}, \mathbf{k}\right)$ where $\mathbf{k}=\left(k_{0}, k_{1}, k_{2},k_{3},k_{4}\right)$. For each collision between a construction query and a primitive query, or between two construction queries, the extended transcript will contain enough information to compute a complete round of the evaluation of the SPN. This will be useful to lower bound the probability to get the transcript $\tau$ in the real world.\\
+We are now going to build a new set $\mathcal{Q}_{S_{outer}}^{\prime}$ of S-box evaluations that will play the role of an extension of $\mathcal{Q}_{S}$. For each colliding query $(x, y) \in \mathcal{Q}_{C}$, we will add tuples $\left(1, \left(x \oplus k_{0}\right)[i], v^{\prime}\right)_{1 \leq i \leq w}$ (if ($\mathit{x}$, $\mathit{y}$) collides at the input of $S_1$) or $\left(4, u^{\prime}, \left(y \oplus k_{4}\right)[i]\right)_{1 \leq i \leq w}$ (if ($\mathit{x}$, $\mathit{y}$) collides at the output of $S_4$) by lazy sampling $v^{\prime}=S_{1}(\left(x \oplus k_{0}\right)[i])$ or $u^{\prime}=S_{4}^{-1}(\left(y \oplus k_{4}\right)[i])$, as long as it has not been determined by any existing query in $\mathcal{Q}_{S}$. Then we choose the key $k_1, k_2, k_3$ uniformly at random. An extended transcript of $\tau$ will be defined as a tuple $\tau^{\prime}=\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}, \mathcal{Q}_{S_{outer}}^{\prime}, \mathbf{k}\right)$ where $\mathbf{k}=\left(k_{0}, k_{1}, k_{2},k_{3},k_{4}\right)$. For each collision between a construction query and a primitive query, or between two construction queries, the extended transcript will contain enough information to compute a complete round of the evaluation of the SPN. This will be useful to lower bound the probability to get the transcript $\tau$ in the real world.
+
 
 \subsection{Bad Transcript for 4-rounds SPN and Probability}
 
