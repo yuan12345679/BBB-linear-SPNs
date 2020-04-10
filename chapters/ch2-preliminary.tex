@@ -4,8 +4,9 @@
 \label{section:preliminary}
 
 
+
 \subsection{(Tweakable) Substitution-Permutation Networks}
-A \emph{substitution-permutation network }(SPN) defines a keyed permutation via repeated invocation of two transformations: blockwise computation of a public, cryptographic permutation called an ``S-box,'' and application of a keyed, non-cryptographic permutation. Formally, an r-round SPN taking inputs of length $w n$ where $w \in \mathcal{N}$ is the width of the network, is defined by $\mathnormal{r}+1$ keyed permutations $\left\{\pi_{i}: K_{i} \times\{0,1\}^{w n} \rightarrow\{0,1\}^{w n}\right\}_{i=0}^{r}$, a distribution $\mathcal{K}$ over $\mathcal{K}_{0} \times \dots \times \mathcal{K}_{r}$, and a permutation $\mathcal{S}:\{0,1\}^{n} \rightarrow \{0,1\}^{n}$. Given round keys $(k_{0},\dots, k_{r}) \in \mathcal{K}_{0} \times \dots \times \mathcal{K}_{r}$ and an input $x \in \{0,1\}^{w n}$, the output of the SPN is computed as follows
+A \emph{substitution-permutation network} (SPN) defines a keyed permutation via repeated invocation of two transformations: blockwise computation of a public, cryptographic permutation called an ``S-box,'' and application of a keyed, non-cryptographic permutation. Formally, an r-round SPN taking inputs of length $w n$ where $w \in \mathcal{N}$ is the width of the network, is defined by $\mathnormal{r}+1$ keyed permutations $\left\{\pi_{i}: K_{i} \times\{0,1\}^{w n} \rightarrow\{0,1\}^{w n}\right\}_{i=0}^{r}$, a distribution $\mathcal{K}$ over $\mathcal{K}_{0} \times \dots \times \mathcal{K}_{r}$, and a permutation $\mathcal{S}:\{0,1\}^{n} \rightarrow \{0,1\}^{n}$. Given round keys $(k_{0},\dots, k_{r}) \in \mathcal{K}_{0} \times \dots \times \mathcal{K}_{r}$ and an input $x \in \{0,1\}^{w n}$, the output of the SPN is computed as follows
 
 \begin{itemize}
   \item[--]
@@ -22,7 +23,8 @@ A \emph{substitution-permutation network }(SPN) defines a keyed permutation via 
   The output is $x_{r+1}$.
 \end{itemize}
 
-If $\mathcal{S}$ is efficiently invertible and each $\pi_{i}$ is efficiently invertible (given the appropriate key), then the above process is reversible given the round keys $k_{0}, \dots ,k_{r}$. In our definition of an SPN, we apply a fixed permutation $\mathcal{S}$ to all $\mathnormal{w}$ blocks of the intermediate state in each round. More generally, one could consider using $\mathnormal{w}$ different functions $S_{1}, \dots ,S_{w}$ in each round, or even different S-boxes in different rounds. Our positive results hold even when a single permutation $\mathcal{S}$ is used, and our negative result holds even if multiple permutations are used.\\
+If $\mathcal{S}$ is efficiently invertible and each $\pi_{i}$ is efficiently invertible (given the appropriate key), then the above process is reversible given the round keys $k_{0}, \dots ,k_{r}$. In our definition of an SPN, we apply a fixed permutation $\mathcal{S}$ to all $\mathnormal{w}$ blocks of the intermediate state in each round. More generally, one could consider using $\mathnormal{w}$ different functions $S_{1}, \dots ,S_{w}$ in each round, or even different S-boxes in different rounds. Our positive results hold even when a single permutation $\mathcal{S}$ is used, and our negative result holds even if multiple permutations are used.
+
 
 
 \subsection{Linear SPNs}
@@ -178,4 +180,73 @@ $$
 $$
 where the maximum is taken over all adversaries $\mathcal{D}$ making at most $\mathnormal{p}$ queries to each of the S-boxes and at most $\mathnormal{q}$ queries to the outer permutations. In the single-user setting with $\emph{l} = 1$. $\operatorname{Adv}^{mu}_{\mathrm{SP}}(\mathcal{D})$ and $\operatorname{Adv}^{mu}_{\mathrm{SP}}(p, q)$  will also be written as $\operatorname{Adv}^{su}_{\mathrm{SP}}(\mathcal{D})$ and $\operatorname{Adv}^{su}_{\mathrm{SP}}(p, q)$, respectively.
 
+
+
+
+
+
+
+\medskip\noindent{\bf H-coefficient Technique.}
+%
+Fix a transcript $\tau = (\mathcal{Q}_C,\mathcal{Q}_S)$, a key $k \in \mathcal{K}^{r+1}$, a tweakable permutation $\widetilde{\mathcal{P}} \in \widetilde{\operatorname{Perm}}(\mathcal{T}, w n)$,  a set of S-boxes $\mathcal{S}=(S_1, \cdots  ,S_r) \in \operatorname{Perm}(n)^r $ and $j \in \{1, \cdots, \ell \}$. Let $k_1, \cdots ,k_{\ell} \in \mathcal{K}^{r+1}$ and $\mathcal{P} = (\operatorname{P}_1, \cdots ,\operatorname{P}_\ell) \in \widetilde{\operatorname{Perm}}(\mathcal{T},wn)^l$, if $\operatorname{SP}_{k_j}^{T}[\mathcal{S}] \vdash \mathcal{Q}_{C_j}$ (resp. $\mathcal{P}_j \vdash \mathcal{Q}_{C_j}$) for every $j = 1, \cdots ,\ell$, then we will write $(\operatorname{SP} ^{T}_{k_j}[\mathcal{S}])_{j = 1, \cdots ,\ell} \vdash \mathcal{Q}_C$ (resp. $\mathcal{P} \vdash \mathcal{Q}_{C_j}$).\\
+
+If there exist $\widetilde{\mathcal{P}} \in \widetilde{\operatorname{Perm}}(\mathcal{T},w n)$ and $\mathcal{S} \in \operatorname{Perm}(\emph{n})^w$ that outputs $\tau$ at the end of the interaction with $\mathcal{D}$, then for an attainable transcript $\tau = (\mathcal{Q}_C,\mathcal{Q}_S)$, let
+
+$$
+\begin{aligned}
+&\mathrm{p}_{1}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)=\operatorname{Pr}\left[\widetilde{\mathcal{P}} \stackrel{s}{\leftarrow} \widetilde{{\operatorname{Perm}}}(\mathcal{T}, w n)^{\ell}, \mathcal{S} \stackrel{s}{\leftarrow} \operatorname{Perm}(n)^{r}: \widetilde{\mathcal{P}} \vdash \mathcal{Q}_{C} | \mathcal{S} \vdash \mathcal{Q}_{S}\right],\\
+&\mathrm{p}_{2}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)=\operatorname{Pr}\left[k_{1}, \ldots, k_{\ell} \stackrel{s}{\leftarrow} \mathcal{K}^{r+1}, \mathcal{S} \stackrel{s}{\leftarrow} \operatorname{Perm}(n)^{r}:\left(\mathrm{SP}_{k_{j}}^{T}[\mathcal{S}]\right)_{j} \vdash \mathcal{Q}_{C} | \mathcal{S} \vdash \mathcal{Q}_{S}\right].
+\end{aligned}
+$$
+With these definitions, we can get the following lemma, the core of the H-coefficients technique (without defining ``bad'' transcripts).\\
+
+\noindent \textbf{Lemma 1} \emph{Let $\epsilon \geq 0$, Suppose that for any attainable transcript $\tau = (\mathcal{Q}_C,\mathcal{Q}_S)$,}
+
+$$
+\mathrm{p}_{2}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right) \geq (1 - \epsilon) \mathrm{p}_{1}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right),
+$$
+\emph{Then one has}
+$$
+\operatorname{Adv}^{mu}_{\mathrm{SP}^T}(\mathcal{D}) \leq \epsilon.
+$$
+
+The lower bound is called \emph{$\epsilon$ -point-wise proximity} of the transcript $\tau = (\mathcal{Q}_C, \mathcal{Q}_S)$. The point-wise proximity of a transcript in the multi-user setting is guaranteed by the point-wise proximity of $(\mathcal{Q}_{C_{j}}, \mathcal{Q}_S)$ for each $j = 1, \cdots ,\ell$ in the single user setting. The following lemma is a restatement of Lemma 3  in ~\cite{hoang2016key}.\\
+
+\noindent \textbf{Lemma 2} \emph{Let $\epsilon : \mathbb{N} \times \mathbb{N} \rightarrow \mathbb{R}^{\geq 0}$ be a function such that}
+
+\emph{
+	\begin{itemize}
+		\item[1.]
+		$\epsilon (x, y) + \epsilon (x, z) \leq \epsilon (x, y + z)$ for every $x, y, z \in \mathbb{N}$,
+		\item[2.]
+		$\epsilon (\cdot, z)$ and $\epsilon (z, \cdot)$ are non-decreasing functions on $\mathbb{N}$ for every $z \in \mathbb{N}$.
+	\end{itemize}
+}
+
+\emph{Suppose that for any distinguisher $\mathcal{D}$ in the single-user setting that makes p primitive queries to each of the underlying S-boxes and makes q construction queries, and for any attainable transcript $\tau = (\mathcal{Q}_C, \mathcal{Q}_S)$ obtained by $\mathcal{D}$, one has}
+
+$$
+\mathrm{p}_{2}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right) \geq (1 - \epsilon(p,q)) \mathrm{p}_{1}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right).
+$$
+\emph{Then for any distinguisher $\mathcal{D}$ in the multi-user setting that makes $\mathnormal{p}$ primitive queries to each of the underlying S-boxes and makes total $\mathnormal{q}$ construction queries, and for any attainable transcript $\tau = (\mathcal{Q}_C, \mathcal{Q}_S)$ obtained by $\mathcal{D}$, one has}
+$$
+\mathrm{p}_{2}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right) \geq (1 - \epsilon(p + wq,q)) \mathrm{p}_{1}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right).
+$$
+
+
+
+
+For any  extended transcript $\tau^{\prime} = (\mathcal{Q}_C, \mathcal{Q}_S, \mathcal{Q}_S^{\prime},k)$, where $\mathcal{Q}_{S}^{(1)} = \mathcal{Q}_S \cup \mathcal{Q}_S^{\prime}$, denote
+
+$$
+\mathrm{p}\left(\tau^{\prime}\right)=\operatorname{Pr}\left[\mathcal{S} \stackrel{\mathrm{s}}{\leftarrow} \operatorname{Perm}(n)^{2}: \mathrm{\operatorname{SP}}^{T}_{k}[\mathcal{S}] \vdash \mathcal{Q}_{C} |\left(S_{1} \vdash \mathcal{Q}_{S_{1}}^{(1)}\right) \wedge\left(S_{2} \vdash \mathcal{Q}_{S_{2}}^{(1)}\right)\right].
+$$
+
+Then we will get the following lemma:\\
+
+\noindent \textbf{Lemma 4} \emph{For any good extended transcript $\tau^{\prime}$, one has}
+
+$$
+\left(2^{w n}\right)_{q} \mathrm{p}\left(\tau^{\prime}\right) \geq 1-\frac{q^{2}}{2^{w n}}-\frac{q\left(2 w p+6 w^{2} q\right)^{2}}{2^{2 n}}.
+$$
 
