@@ -3,9 +3,7 @@
 \label{section:Introduction}
 
 
-
 \medskip\noindent{\bf Substitution-Permutation Networks.}
-
 Nowadays block ciphers are mainly
 built around two different generic structures: Feistel networks or substitution-permutation
 networks (SPNs). These two approaches revolve around the extension of a ``complex'' function or permutation on a small domain to a keyed pseudorandom
@@ -25,7 +23,7 @@ this approach. Proving the security of a particular concrete block cipher is
 currently beyond our techniques. Thus, the usual approach is to prove that the
 high-level structure is sound in a relevant security model. As for Feistel networks,
 a substantial line of work starting with Luby and Rackoff's seminal work [LR88]
-and culminating with Patarin’s results [Pat03, Pat04] proves optimal security with
+and culminating with Patarin's results [Pat03, Pat04] proves optimal security with
 a sufficient number of rounds. Numerous other articles [Pat10, HR10, HKT11,
 Tes14, CHK+16] study the security of (variants of) Feistel networks in various
 security models. On the other hand, SPNs have comparatively seen very little
@@ -36,31 +34,30 @@ interest which seems rather surprising.
 
 
 \medskip\noindent{\bf Tweaking SPNs.}
-
 Recently, a similar study
 was undertaken for the second large class of block ciphers besides Feistel ciphers, namely
 key-alternating ciphers [DR01], a super-class of Substitution-Permutation Networks (SPNs).
-An r-round key-alternating cipher based on a tuple of public n-bit permutations (P1, . . . , Pr)
-maps a plaintext x 2 {0, 1}n to the ciphertext defined as
+An r-round key-alternating cipher based on a tuple of public n-bit permutations $(P_1, . . . , P_r)$
+maps a plaintext $x\in\{0,1\}^n$ to the ciphertext defined as
 %
 %
 %
 %
 %
-where the n-bit round keys k0, . . . , kr are either independent or derived from a master key k.
-When the Pi’s are modeled as public permutation oracles, construction (1) is also referred to
+where the n-bit round keys $k_0, . . . , k_r$ are either independent or derived from a master key k.
+When the $P_i$'s are modeled as public permutation oracles, construction (1) is also referred to
 as the (iterated) Even-Mansour construction, in reference to Even and Mansour who pioneered
 the analysis of this construction in the Random Permutation Model [EM97]. While Even
 and Mansour limited themselves to proving birthday-bound security in the case r = 1, larger
 numbers of rounds were studied in subsequent works [BKL+12, Ste12, LPS12]. The general
 case has been recently (tightly) settled by Chen and Steinberger [CS14], who proved that the
 r-round iterated Even-Mansour cipher with r-wise independent round keys ensures security
-up to roughly 2 rn
+up to roughly $2^{rn}$
 r+1 adversarial queries.
 In order to incorporate a tweak t in the iterated Even-Mansour construction, it is tantalizing
-to generalize (1) by replacing round keys ki by some function fi(k, t) of the master key k and
-the tweak t (see Figure 1). We will refer to such a construction as a Tweakable Even-Mansour
-(TEM) construction.1 This is exactly the spirit of the TWEAKEY framework introduced by
+to generalize (1) by replacing round keys $k_i$ by some function $f_i(\bfk,\bft)$ of the master key $\bfk$ and
+the tweak $\bft$ (see Figure 1). We will refer to such a construction as a Tweakable Even-Mansour
+(TEM) construction. This is exactly the spirit of the TWEAKEY framework introduced by
 Jean et al. [JNP14]. In fact, these authors go one step further and propose to unify the key
 and tweak inputs into what they dub the tweakey. The main topic of this paper being provable
 security (in the traditional model where the key is secret and the tweak is chosen by the
@@ -72,38 +69,50 @@ security model adequately capturing what Jean et al. had in mind.
 The investigation of the theoretical soundness of this design strategy was initiated in three
 recent papers. First, Cogliati and Seurin [CS15], and independently Farshim and Procter [FP15],
 analyzed the simple case of an n-bit key k and an n-bit tweak t simply xored together at each
-round, i.e., fi(k, t) = kt for each i = 0, . . . , r.2 They gave attacks up to two rounds, and proved
-birthday-bound security for three rounds. In fact, the security of this construction caps at 2n/2
-queries independently of the number of rounds. Indeed, it can be written eE (k, t, x) = E(kt, x),
-where E is the conventional iterated Even-Mansour cipher with the trivial key-schedule (i.e.,
+round, i.e., $f_i(k,t) = k_t$ for each $i = 0, . . . , r$. They gave attacks up to two rounds, and proved
+birthday-bound security for three rounds. In fact, the security of this construction caps at $2^{n/2}$
+queries independently of the number of rounds. Indeed, it can be written $\widehat{E}(k, t, x) = E(k\xor t, x)$,
+where $E$ is the conventional iterated Even-Mansour cipher with the trivial key-schedule (i.e.,
 the same round key is xored between each round), and by a result of Bellare and Kohno [BK03,
-Corollary 5.7], a tweakable block cipher of this form can never offer more than /2 bits of
-security, where  is the key-length of E (i.e.,  = n in the case at hand). Hence, if we want
-beyond-birthday-bound security, we have no choice but to consider more complex functions fi
+Corollary 5.7], a tweakable block cipher of this form can never offer more than $\kappa/2$ bits of
+security, where $\kappa$ is the key-length of E (i.e., $\kappa = n$ in the case at hand). Hence, if we want
+beyond-birthday-bound security, we have no choice but to consider more complex functions $f_i$
 (at the bare minimum, these functions, even if linear, should prevent the TBC construction
-from being of the form E(k  t, x) for some block cipher E with n-bit keys).
+from being of the form $E(k\xor t, x)$ for some block cipher E with n-bit keys).
 
 
 
 
 This was undertaken by Cogliati, Lampe, and Seurin [CLS15], who considered nonlinear
-ways of mixing the key and the tweak. More specifically, they studied the case where fi(k, t) =
-Hki(t), where the family of functions (Hk) is uniform and almost XOR-universal, and the
-master key is k = (k0, . . . , kr). A classical example is multiplication-based hashing, i.e.,
-fi(k, t) = ki 
-t, where 
-denotes the multiplication in the finite field F2n, the tweak t = 0
-being forbidden. Cogliati et al. showed that one round is secure up to the birthday bound,
-and that two rounds are secure up to roughly 22n/3 adversarial queries.3 They also provided a
+ways of mixing the key and the tweak. More specifically, they studied the case where $f_i(\bfk, t) =
+H_{k_i}(t)$, where the family of functions $(H_k)$ is uniform and almost XOR-universal, and the
+master key is $\bfk = (k_0, . . . , k_r)$. Cogliati et al. showed that one round is secure up to the birthday bound,
+and that two rounds are secure up to roughly $2^{2n/3}$ adversarial queries. They also provided a
 (non-tight) asymptotic security bound improving as the number of rounds grows. However,
-implementing a xor-universal hash function might be costly, and linear functions fi’s would be
-highly preferable for obvious efficiency reasons.
+implementing a xor-universal hash function might be costly, and linear functions $f_i$'s would be highly preferable for obvious efficiency reasons.
 
 
 
 
-\subsection{Our Contribution}
+\subsection{Our Results}
 
+%In this paper, we ask whether it is possible to come with a tweakable Even-
+%Mansour construction achieving both:
+%1. a linear mixing of the tweak and the key to the state;
+%2. beyond-birthday-bound security.
+%We answer positively, by providing a construction with 2n-bit keys and n-bit tweaks.
+
+In this paper, we ask whether it is possible to achieve security beyond the birthday barrier with linear SPN structures. In detail, we focus on linear SPNs with independent S-boxes and independent round keys. Specifically, we focus on non-linear tweakable SPNs; the permutation layer
+accepts tweaks, while it is non-linear in the state, the key and the tweak.
+
+In particular, we will focus on the case where $w\geq2$, since, when $w = 1$, we
+recover the standard Even-Mansour construction that has already been the focus
+of a long line of work (as briefly reviewed later). Our results can be seen as an
+extension of the work initiated by Dodis et al. [DKS+17] in two directions.
+\begin{enumerate}
+	\item[1.] We prove...
+	\item[2.] We further...
+\end{enumerate}
 
 
 
