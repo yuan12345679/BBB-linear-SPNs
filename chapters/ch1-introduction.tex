@@ -42,6 +42,78 @@ was undertaken for the second large class of block ciphers besides Feistel ciphe
 key-alternating ciphers [DR01], a super-class of Substitution-Permutation Networks (SPNs).
 An r-round key-alternating cipher based on a tuple of public n-bit permutations (P1, . . . , Pr)
 maps a plaintext x 2 {0, 1}n to the ciphertext defined as
+%
+%
+%
+%
+%
+where the n-bit round keys k0, . . . , kr are either independent or derived from a master key k.
+When the Pi’s are modeled as public permutation oracles, construction (1) is also referred to
+as the (iterated) Even-Mansour construction, in reference to Even and Mansour who pioneered
+the analysis of this construction in the Random Permutation Model [EM97]. While Even
+and Mansour limited themselves to proving birthday-bound security in the case r = 1, larger
+numbers of rounds were studied in subsequent works [BKL+12, Ste12, LPS12]. The general
+case has been recently (tightly) settled by Chen and Steinberger [CS14], who proved that the
+r-round iterated Even-Mansour cipher with r-wise independent round keys ensures security
+up to roughly 2 rn
+r+1 adversarial queries.
+In order to incorporate a tweak t in the iterated Even-Mansour construction, it is tantalizing
+to generalize (1) by replacing round keys ki by some function fi(k, t) of the master key k and
+the tweak t (see Figure 1). We will refer to such a construction as a Tweakable Even-Mansour
+(TEM) construction.1 This is exactly the spirit of the TWEAKEY framework introduced by
+Jean et al. [JNP14]. In fact, these authors go one step further and propose to unify the key
+and tweak inputs into what they dub the tweakey. The main topic of this paper being provable
+security (in the traditional model where the key is secret and the tweak is chosen by the
+adversary), we will not make such a bold move here, since we are not aware of any formal
+security model adequately capturing what Jean et al. had in mind.
+
+
+
+The investigation of the theoretical soundness of this design strategy was initiated in three
+recent papers. First, Cogliati and Seurin [CS15], and independently Farshim and Procter [FP15],
+analyzed the simple case of an n-bit key k and an n-bit tweak t simply xored together at each
+round, i.e., fi(k, t) = kt for each i = 0, . . . , r.2 They gave attacks up to two rounds, and proved
+birthday-bound security for three rounds. In fact, the security of this construction caps at 2n/2
+queries independently of the number of rounds. Indeed, it can be written eE (k, t, x) = E(kt, x),
+where E is the conventional iterated Even-Mansour cipher with the trivial key-schedule (i.e.,
+the same round key is xored between each round), and by a result of Bellare and Kohno [BK03,
+Corollary 5.7], a tweakable block cipher of this form can never offer more than /2 bits of
+security, where  is the key-length of E (i.e.,  = n in the case at hand). Hence, if we want
+beyond-birthday-bound security, we have no choice but to consider more complex functions fi
+(at the bare minimum, these functions, even if linear, should prevent the TBC construction
+from being of the form E(k  t, x) for some block cipher E with n-bit keys).
+
+
+
+
+This was undertaken by Cogliati, Lampe, and Seurin [CLS15], who considered nonlinear
+ways of mixing the key and the tweak. More specifically, they studied the case where fi(k, t) =
+Hki(t), where the family of functions (Hk) is uniform and almost XOR-universal, and the
+master key is k = (k0, . . . , kr). A classical example is multiplication-based hashing, i.e.,
+fi(k, t) = ki 
+t, where 
+denotes the multiplication in the finite field F2n, the tweak t = 0
+being forbidden. Cogliati et al. showed that one round is secure up to the birthday bound,
+and that two rounds are secure up to roughly 22n/3 adversarial queries.3 They also provided a
+(non-tight) asymptotic security bound improving as the number of rounds grows. However,
+implementing a xor-universal hash function might be costly, and linear functions fi’s would be
+highly preferable for obvious efficiency reasons.
+
+
+
+
+
+
+\subsection{Our Contribution}
+
+
+
+
+\medskip\noindent{\bf Beyond-birthday-bound Security for 4-round linear SPNs.}
+
+
+
+\medskip\noindent{\bf Tweaking linear SPNs and Beyond-birthday-bound Security at 6 rounds.}
 
 
 
@@ -50,8 +122,7 @@ maps a plaintext x 2 {0, 1}n to the ciphertext defined as
 
 
 
-
-\medskip\noindent{\bf Related Work.}
+\subsection{Related Work}
 
 
 Unfortunately, none of the currently known black-box
