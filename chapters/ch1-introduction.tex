@@ -2,8 +2,65 @@
 \section{Introduction}
 \label{section:Introduction}
 
-\medskip\noindent{\bf Further Related Work.}
-Various MACs ...
+
+
+\medskip\noindent{\bf Substitution-Permutation Networks.}
+
+Nowadays block ciphers are mainly
+built around two different generic structures: Feistel networks or substitution-permutation
+networks (SPNs). These two approaches revolve around the extension of a ``complex'' function or permutation on a small domain to a keyed pseudorandom
+permutation on a larger domain by iterating several times simple rounds.
+SPNs start with a set of public permutations on the set of n-bit strings which
+are called S-boxes. These public permutations are then extended to a keyed
+permutation on wn-bit inputs for some integer w by iterating the following steps:
+\begin{enumerate}
+	\item[1.] break down the state in w n-bit blocks;
+	\item[2.] compute an S-box on each block of the state;
+	\item[3.] apply a keyed permutation layer to the whole wn-bit state (which is also applied to the plaintext before the first round).
+\end{enumerate}
+
+
+Many well-known block ciphers including AES, Serpent and PRESENT follow
+this approach. Proving the security of a particular concrete block cipher is
+currently beyond our techniques. Thus, the usual approach is to prove that the
+high-level structure is sound in a relevant security model. As for Feistel networks,
+a substantial line of work starting with Luby and Rackoff's seminal work [LR88]
+and culminating with Patarin’s results [Pat03, Pat04] proves optimal security with
+a sufficient number of rounds. Numerous other articles [Pat10, HR10, HKT11,
+Tes14, CHK+16] study the security of (variants of) Feistel networks in various
+security models. On the other hand, SPNs have comparatively seen very little
+interest which seems rather surprising.
+
+
+
+
+
+\medskip\noindent{\bf Tweaking SPNs.}
+
+Recently, a similar study
+was undertaken for the second large class of block ciphers besides Feistel ciphers, namely
+key-alternating ciphers [DR01], a super-class of Substitution-Permutation Networks (SPNs).
+An r-round key-alternating cipher based on a tuple of public n-bit permutations (P1, . . . , Pr)
+maps a plaintext x 2 {0, 1}n to the ciphertext defined as
+
+
+
+
+
+
+
+
+
+\medskip\noindent{\bf Related Work.}
+
+
+Unfortunately, none of the currently known black-box
+TBC constructions with beyond-birthday-bound security can be deemed truly practical (even
+though some of them might come close to it [Men15]). Hence, it might be beneficial to “open
+the hood” and to study how to build a TBC from some lower level primitive than a full-fledged
+conventional block cipher, e.g., a pseudorandom function or a public permutation. For example,
+Goldenberg et al. [GHL+07] investigated how to include a tweak in Feistel ciphers. This was
+extended to generalized Feistel ciphers by Mitsuda and Iwata [MI08].
 
 
 
