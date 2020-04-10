@@ -55,7 +55,7 @@ $$
 
 \noindent denote the domains and ranges of $\mathcal{Q}_{S_{i}}^{(0)}, i \in \{1, \cdots, 6\}$, respectively.
 
-Similar to the 4-round SPN, we will first define what we mean by an extension of the transcript $\tau$. Then we will extension the outer four rounds and the inner two rounds transcripts respectively. Next, we will define bad transcripts, which is the most important step in our proof. Finally, we will peel off he outer two rounds(for the outer four round, we will peel off the outermost two round first) and analyzing the inner two rounds. We stress that extended transcripts are completely virtual and are not disclosed to the adversary. They are just an artificial intermediate step to lower bound the probability to observe transcript $\tau$ in the real world.\\
+Similar to the 4-round SPN, we will first define what we mean by an extension of the transcript $\tau$. Next, we will define bad extensions and explain the link between good extended transcripts and the ratio $\frac{p_2}{p_1}$. Finally, we will show that the number of bad extended transcripts is small enough, and then show that the probability to obtain any good extension in the real world is sufficiently close to the probability to obtain $\tau$ the ideal world. We stress that extended transcripts are completely virtual and are not disclosed to the adversary. They are just an artificial intermediate step to lower bound the probability to observe transcript $\tau$ in the real world.\\
 
 \noindent
 \textsc{EXTENSION OF A TRANSCRIPT(OUTER FOUR ROUNDS)}. We will extend the transcript $\tau$ of the attack via a certain randomized process. We begin with choosing a pair of keys $\left(k_{0}, k_{6}\right) \in \mathcal{K}^{2}$ uniformly at random. Once these keys have been chosen, some construction queries will become involved in collisions. Then a colliding query is defined as a construction query $(t, x, y) \in \mathcal{Q}_{C}$ such that one of the following conditions holds:
@@ -110,7 +110,7 @@ for $i=1, 6$ the number of additional queries included in the extended transcrip
 
 \subsection{Bad Transcript for 6-rounds tweakable linear SPN and Probability}
 
-\noindent We say an extended transcript $\tau^{\prime}$ is bad if at least one of the following conditions is fulfilled:
+\noindent \textbf{Definition 4} \emph{We say an extended transcript $\tau^{\prime}$ is bad if at least one of the following conditions is fulfilled:}
 
 \begin{itemize}
   \item[\eone]
@@ -122,6 +122,8 @@ for $i=1, 6$ the number of additional queries included in the extended transcrip
   \item[\efour]
   there exists $(t, x, y) \in \mathcal{Q}_{C}$ and distinct indices $i, j \in \{1, \ldots, w\}$ such that $(x\xor k_0 \xor t)[i]=(x\xor k_0 \xor t)[j]$, or $(y\xor k_6 \xor t)[i]=(y\xor k_6 \xor t)[j]$.
 \end{itemize}
+
+\noindent \emph{Any extended transcript that is not bad will be called good. }\\
 
 \noindent \textbf{Lemma 10} \emph{One has}
 
@@ -211,8 +213,8 @@ Then we build a new set $\mathcal{Q}_{S_{inner}}^{\prime}$ of S-box evaluations 
 \noindent \textbf{Lemma 12} \emph{ For any extended $S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{2} \vdash \mathcal{Q}_{S_{2}}, S_{5} \vdash \mathcal{Q}_{S_{5}}, S_{6} \vdash \mathcal{Q}_{S_{6}}$, we have}
 \begin{equation}
 \begin{aligned}
-1-&\operatorname{Pr}\left[\operatorname{Bad}\left(S_{1}, S_2, S_{5}, S_6\right) | S_{i} \vdash \mathcal{Q}_{S_{i}}, i = 1, 2, 5, 6\right] \geq 1- \frac{2 w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)}\\
-& -\frac{2 w^{2} q (p+w q)(p+w q+2 q)}{N \cdot (N-p)} - \frac{w^{2} q (p+w q)(p+w q+2 q)}{(N-p)^2} - \frac{2 w^{2} q (p+w q)^{2}}{(N-p)}.
+&\operatorname{Pr}\left[\operatorname{Bad}\left(S_{1}, S_2, S_{5}, S_6\right) | S_{i} \vdash \mathcal{Q}_{S_{i}}, i = 1, 2, 5, 6\right] \geq \frac{2 w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)}\\
+& +\frac{2 w^{2} q (p+w q)(p+w q+2 q)}{N \cdot (N-p)} +\frac{w^{2} q (p+w q)(p+w q+2 q)}{(N-p)^2} +\frac{2 w^{2} q (p+w q)^{2}}{(N-p)}.
 \end{aligned}
 \end{equation}
 
@@ -267,7 +269,7 @@ $$
 $$
 \end{itemize}
 
-\noindent \emph{Proof:} The sets of attainable transcripts fulfilling condition \hone, \htwo, \hthree, \hfour, \hfive, \hsix, \hseven \height, \hnine will be denoted $\Theta_{1}, \Theta_{2}, \Theta_{3}, \Theta_{4}, \Theta_{5}, \Theta_{6}, \Theta_{7}, \Theta_{8}, \Theta_{9}$, respectively.\\
+\noindent \emph{Proof:} We upper bound the probabilities of the nine conditions in turn. We denote $\Theta_i$ the set of attainable transcripts satisfying condition \hi.\\
 
 The proof of \hone to \hfive and \hseven , \height is similar to the Lemma 8, there are no more details. So we just consider \hsix and \hnine here. We first note that, if the condition is satisfied, we have $\left(S_{2}\left(a \oplus k_{1} \oplus t\right)\right)[i]$ remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{2}} \cup \mathcal{Q}_{S_{5}} \cup \mathcal{Q}_{S_{6}})$.  Moreover if $u_3 =u_3'$, that is $c \oplus t=c' \oplus t'$, then after oplus different tweak, the input of the $S_4$ must be different, so the collision would not happen. Hence we must have $u_3 \neq u_3'$. The condition can be divided into two conditions: the first concerning with $j\neq j'$, while the second concerning with $j=j'$.
 
