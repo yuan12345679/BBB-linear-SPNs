@@ -1,7 +1,28 @@
 
 
 \section{Preliminaries}
-\label{section:preliminary}
+\label{sec:preliminary}
+
+For an integer $m\geq1$, the set of all permutations on $\{0, 1\}^m$ will be denoted $\textsf{Perm}(m)$. A tweakable permutation with tweak space
+$\mathcal{T}$ and message space $\mathcal{X}$ is a mapping $\widehat{P}:\mathcal{T}\times\mathcal{X}\rightarrow\mathcal{X}$ such that, for any tweak
+$t\in\mathcal{T}$,
+%
+$$x\mapsto\widehat{P}(t,x)$$
+%
+is a permutation of $\mathcal{X}$. The set of all tweakable permutations with tweak space
+$\mathcal{T}$ and message space $\{0, 1\}^m$ will be denoted $\widehat{\textsf{Perm}}(\mathcal{T},m)$.
+
+
+A keyed tweakable permutation with key space $\mathcal{K}$, tweak space $\mathcal{T}$ and message
+space $\mathcal{X}$ is a mapping $T:\mathcal{K}\times\mathcal{T}\times\mathcal{X}\rightarrow\mathcal{X}$ such that, for any key $k\in\mathcal{K}$,
+%
+$$(t,x)\mapsto T(k,t,x).$$
+%
+is a tweakable permutation with tweak space $\mathcal{T}$ and message space $\mathcal{X}$.
+%We
+%will sometimes write $T(k, t, x)$ as Tk(t, x) or Tk,t(x). For an integer s  1,
+%let t = (t1, . . . , ts) 2 T s, and let x = (x1, . . . , xs) 2 (X)s. We will write
+%(T(k, ti, xi))1is as Tk(t, x) or Tk,t(x).
 
 
 
@@ -210,43 +231,48 @@ $$
 \operatorname{Adv}^{mu}_{\mathrm{SP}^T}(\mathcal{D}) \leq \epsilon.
 $$
 
-The lower bound is called \emph{$\epsilon$ -point-wise proximity} of the transcript $\tau = (\mathcal{Q}_C, \mathcal{Q}_S)$. The point-wise proximity of a transcript in the multi-user setting is guaranteed by the point-wise proximity of $(\mathcal{Q}_{C_{j}}, \mathcal{Q}_S)$ for each $j = 1, \cdots ,\ell$ in the single user setting. The following lemma is a restatement of Lemma 3  in ~\cite{hoang2016key}.\\
+The lower bound is called \emph{$\epsilon$ -point-wise proximity} of the transcript $\tau = (\mathcal{Q}_C, \mathcal{Q}_S)$. The point-wise proximity of a transcript in the multi-user setting is guaranteed by the point-wise proximity of $(\mathcal{Q}_{C_{j}}, \mathcal{Q}_S)$ for each $j = 1, \cdots ,\ell$ in the single user setting. The following lemma is a restatement of Lemma 3  in ~\cite{hoang2016key}.
 
-\noindent \textbf{Lemma 2} \emph{Let $\epsilon : \mathbb{N} \times \mathbb{N} \rightarrow \mathbb{R}^{\geq 0}$ be a function such that}
+\begin{lemma}
+\label{lemma:point-wise}
 
-\emph{
+Let $\epsilon : \mathbb{N} \times \mathbb{N} \rightarrow \mathbb{R}^{\geq 0}$ be a function such that
 	\begin{itemize}
 		\item[1.]
 		$\epsilon (x, y) + \epsilon (x, z) \leq \epsilon (x, y + z)$ for every $x, y, z \in \mathbb{N}$,
 		\item[2.]
 		$\epsilon (\cdot, z)$ and $\epsilon (z, \cdot)$ are non-decreasing functions on $\mathbb{N}$ for every $z \in \mathbb{N}$.
 	\end{itemize}
-}
-
-\emph{Suppose that for any distinguisher $\mathcal{D}$ in the single-user setting that makes p primitive queries to each of the underlying S-boxes and makes q construction queries, and for any attainable transcript $\tau = (\mathcal{Q}_C, \mathcal{Q}_S)$ obtained by $\mathcal{D}$, one has}
-
+Suppose that for any distinguisher $\mathcal{D}$ in the single-user setting that makes p primitive queries to each of the underlying S-boxes and makes q construction queries, and for any attainable transcript $\tau = (\mathcal{Q}_C, \mathcal{Q}_S)$ obtained by $\mathcal{D}$, one has
+%
 $$
 \mathrm{p}_{2}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right) \geq (1 - \epsilon(p,q)) \mathrm{p}_{1}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right).
 $$
-\emph{Then for any distinguisher $\mathcal{D}$ in the multi-user setting that makes $\mathnormal{p}$ primitive queries to each of the underlying S-boxes and makes total $\mathnormal{q}$ construction queries, and for any attainable transcript $\tau = (\mathcal{Q}_C, \mathcal{Q}_S)$ obtained by $\mathcal{D}$, one has}
+%
+Then for any distinguisher $\mathcal{D}$ in the multi-user setting that makes $\mathnormal{p}$ primitive queries to each of the underlying S-boxes and makes total $\mathnormal{q}$ construction queries, and for any attainable transcript $\tau = (\mathcal{Q}_C, \mathcal{Q}_S)$ obtained by $\mathcal{D}$, one has
+%
 $$
 \mathrm{p}_{2}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right) \geq (1 - \epsilon(p + wq,q)) \mathrm{p}_{1}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right).
 $$
+\end{lemma}
 
 
 
-
-For any  extended transcript $\tau^{\prime} = (\mathcal{Q}_C, \mathcal{Q}_S, \mathcal{Q}_S^{\prime},k)$, where $\mathcal{Q}_{S}^{(1)} = \mathcal{Q}_S \cup \mathcal{Q}_S^{\prime}$, denote
+For any extended transcript $\tau^{\prime} = (\mathcal{Q}_C, \mathcal{Q}_S, \mathcal{Q}_S^{\prime},k)$, where $\mathcal{Q}_{S}^{(1)} = \mathcal{Q}_S \cup \mathcal{Q}_S^{\prime}$, denote
 
 $$
 \mathrm{p}\left(\tau^{\prime}\right)=\operatorname{Pr}\left[\mathcal{S} \stackrel{\mathrm{s}}{\leftarrow} \operatorname{Perm}(n)^{2}: \mathrm{\operatorname{SP}}^{T}_{k}[\mathcal{S}] \vdash \mathcal{Q}_{C} |\left(S_{1} \vdash \mathcal{Q}_{S_{1}}^{(1)}\right) \wedge\left(S_{2} \vdash \mathcal{Q}_{S_{2}}^{(1)}\right)\right].
 $$
 
-Then we will get the following lemma:\\
+Then we will get the following lemma:
 
-\noindent \textbf{Lemma 4} \emph{For any good extended transcript $\tau^{\prime}$, one has}
+\begin{lemma}
+\label{lemma:ratio-2-rounds}
 
+For any good extended transcript $\tau^{\prime}$, one has
 $$
 \left(2^{w n}\right)_{q} \mathrm{p}\left(\tau^{\prime}\right) \geq 1-\frac{q^{2}}{2^{w n}}-\frac{q\left(2 w p+6 w^{2} q\right)^{2}}{2^{2 n}}.
 $$
+\end{lemma}
+
 
