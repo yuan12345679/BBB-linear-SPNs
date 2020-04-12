@@ -17,6 +17,7 @@
 \usepackage{amsfonts,amssymb}
 \usepackage{multicol}
 \usepackage{diagbox}
+\usepackage[misc]{ifsym}
 %\usepackage[noend]{algpseudocode}
 
 
@@ -68,12 +69,12 @@ linkcolor=blue,urlcolor=blue]{hyperref}
 
 
 
-\title{Beyond-birthday Security for 4-round Linear SP-networks}
+\title{Beyond-Birthday-Bound Security for (Tweakable) Linear SP-networks}
 
 
 %\author{\today}
-\urldef{\mails}\path|18340823418@163.com,chun.guo@sdu.edu.cn,|
-\author{Yuan Gao\inst{1}\inst{2} \and Chun Guo\inst{1}\inst{2} \and Meiqin Wang\inst{1}\inst{2}}
+\urldef{\mails}\path|18340823418@163.com,chun.guo@sdu.edu.cn,mqwang@sdu.edu.cn|
+\author{Yuan Gao\inst{1,2} \and Chun Guo\inst{1,2 \text{(\Letter)}} \and Meiqin Wang\inst{1,2 \text{(\Letter)}}}
 \institute{Key Laboratory of Cryptologic Technology and Information Security of Ministry of Education, Shandong University, Qingdao, Shandong, 266237, China,    \and
 School of Cyber Science and Technology, Shandong University, Qingdao, Shandong, China    \\
 \mails
@@ -93,7 +94,7 @@ This paper solves this open problem, and proves that a 4-round SPN with linear d
 \end{abstract}
 
 \begin{keywords}
-Blockcipher \and Provable security \and Key-alternating cipher \and Substitution-Permutation networks \and  domain extension of block ciphers \and beyond-birthday-bound
+Blockcipher \and Key-alternating cipher \and Substitution-Permutation networks \and  domain extension of block ciphers \and beyond-birthday-bound
 \end{keywords}
 
 %\tableofcontents
@@ -103,8 +104,6 @@ Blockcipher \and Provable security \and Key-alternating cipher \and Substitution
 
 \input{chapters/ch2-preliminary.tex}
 
-\input{chapters/ch3-related-work.tex}
-
 \input{chapters/ch4-4-round-proof.tex}
 
 \input{chapters/ch5-tweakable-linear-SPN.tex}
@@ -113,26 +112,24 @@ Blockcipher \and Provable security \and Key-alternating cipher \and Substitution
 
 
 
-\section*{Acknowledgements}
-
-Chun Guo was partly supported by the Program of Qilu Young Scholars (Grant No. 61580089963177) of Shandong University.
-Weijia Wang was partly supported by the Program of Qilu Young Scholars of Shandong University.
-Meiqin Wang was supported by ...
+%\section*{Acknowledgements}
+%
+%Chun Guo was partly supported by the Program of Qilu Young Scholars (Grant No. 61580089963177) of Shandong University.
+%Weijia Wang was partly supported by the Program of Qilu Young Scholars of Shandong University.
+%Meiqin Wang was supported by ...
 
 
 \bibliography{reference-set,crypto/abbrev3,crypto/crypto}
 
-\newpage
-\begin{center}
-\bf\huge Supplementary Material
-\end{center}
-\vspace{5pt}
-%{\small
-\appendix
+%\newpage
+%\begin{center}
+%\bf\huge Supplementary Material
+%\end{center}
+%\vspace{5pt}
+%\appendix
 %\section{4 Rounds with Rate 1/2}
 %\label{sec:on-4-rounds-sprp}
 %\input{sections/app-sprp-4-rounds}
 
-%}
 
 \end{document}
