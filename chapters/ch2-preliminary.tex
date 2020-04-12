@@ -26,97 +26,50 @@ is a tweakable permutation with tweak space $\mathcal{T}$ and message space $\ma
 
 
 
-\subsection{(Tweakable) Substitution-Permutation Networks}
-A \emph{substitution-permutation network} (SPN) defines a keyed permutation via repeated invocation of two transformations: blockwise computation of a public, cryptographic permutation called an ``S-box,'' and application of a keyed, non-cryptographic permutation. Formally, an r-round SPN taking inputs of length $w n$ where $w \in \mathcal{N}$ is the width of the network, is defined by $\mathnormal{r}+1$ keyed permutations $\left\{\pi_{i}: K_{i} \times\{0,1\}^{w n} \rightarrow\{0,1\}^{w n}\right\}_{i=0}^{r}$, a distribution $\mathcal{K}$ over $\mathcal{K}_{0} \times \dots \times \mathcal{K}_{r}$, and a permutation $\mathcal{S}:\{0,1\}^{n} \rightarrow \{0,1\}^{n}$. Given round keys $(k_{0},\dots, k_{r}) \in \mathcal{K}_{0} \times \dots \times \mathcal{K}_{r}$ and an input $x \in \{0,1\}^{w n}$, the output of the SPN is computed as follows
+\subsection{(Tweakable) Linear Substitution-Permutation Networks}
+\label{sec:prelim-tspn}
+
+A \emph{substitution-permutation network} (SPN) defines a keyed permutation via repeated invocation of two transformations: blockwise computation of a public, cryptographic permutation called an ``S-box,'' and application of a keyed, non-cryptographic permutation. In this paper we will only introduce a model of linear SPNs. Formally, fix integers $n,r\geq1$. Let $\calK$ and $\calT$ be two
+sets, and let $\bff= (f_0,...,f_r)$ be a $(r+1)$-tuple of functions from $\calK\times\calT$ to $\{0, 1\}^n$.
+
+%The $r$-round tweakable Even-Mansour construction TEM[n, r, f] specifies, from an r-tuple P = (P1, . . . , Pr)
+%of permutations of {0, 1}n, a tweakable block cipher with key space K, tweak space T , and
+%message space {0, 1}n, simply denoted TEMP in the following (parameters [n, r, f] will always
+%be clear from the context) which maps a key k 2 K, a tweak t 2 T , and a plaintext x 2 {0, 1}n
+%to the ciphertext defined as (see Figure 1):
+
+
+
+
+Formally, an r-round SPN taking inputs of length $w n$ where $w \in \mathcal{N}$ is the width of the network, is defined by $\mathnormal{r}+1$ keyed permutations $\left\{\pi_{i}: K_{i} \times\{0,1\}^{w n} \rightarrow\{0,1\}^{w n}\right\}_{i=0}^{r}$, a distribution $\mathcal{K}$ over $\mathcal{K}_{0} \times \dots \times \mathcal{K}_{r}$, and a permutation $\mathcal{S}:\{0,1\}^{n} \rightarrow \{0,1\}^{n}$. Given round keys $(k_{0},\dots, k_{r}) \in \mathcal{K}_{0} \times \dots \times \mathcal{K}_{r}$ and an input $x \in \{0,1\}^{w n}$, the output of the SPN is computed as follows
 
 \begin{itemize}
   \item[--]
-  Let $x_{1} := \pi_{0}(k_{0},x)$.
+  Let $x_1 := x$.
   \item[--]
-  For $i = 1$ to $\mathnormal{r}$ do:
+  For $i = 1$ to $r-1$ do:
   \begin{itemize}
-    \item[1.]
-    $y_{i} := \bar{S}(x_{i})$, where $\bar{S}(x[1]\|\cdots\| x[w]) \stackrel{\text { def }}{=} S(x[1])\|\cdots\| S(x[w])$.
-    \item[2.]
-    $x_{i + 1} := \pi_{i}(k_{i},y_{i})$.
+  	\item[1.] $y_{i} := \overline{S_i}(x_{i}\xor tk_{i-1})$, where $\overline{S_i}(x[1]\xor tk_{i-1}[1]\|\cdots\| x[w]\xor tk_{i-1}[w]) \stackrel{\text { def }}{=} S_i(x[1]\xor tk_{i-1}[1])\|\cdots\| S_i(x[w]\xor tk_{i-1}[w])$.
+    \item[2.] 
+    $x_{i + 1} := T_i\cdot y_i$.
   \end{itemize}
+  \item[--] $x_{r+1} := \overline{S_r}(x_r\xor tk_{r-1})\xor tk_r$.
   \item[--]
   The output is $x_{r+1}$.
 \end{itemize}
 
-If $\mathcal{S}$ is efficiently invertible and each $\pi_{i}$ is efficiently invertible (given the appropriate key), then the above process is reversible given the round keys $k_{0}, \dots ,k_{r}$. In our definition of an SPN, we apply a fixed permutation $\mathcal{S}$ to all $\mathnormal{w}$ blocks of the intermediate state in each round. More generally, one could consider using $\mathnormal{w}$ different functions $S_{1}, \dots ,S_{w}$ in each round, or even different S-boxes in different rounds. Our positive results hold even when a single permutation $\mathcal{S}$ is used, and our negative result holds even if multiple permutations are used.
+Note that this model matches the structure of popular SPN ciphers such as the AES, Serpent, and the ISO/IEC lightweight standard PRESENT. Also note that our model follows~\cite[Sect. 4.2]{C:CDKLST18} and uses different $S$-boxes in different rounds. We remark that some other~\cite[Sect. 3]{C:CDKLST18} assumed the same $S$-box in every round. Finally, we refer to~\cite[Sect. 2.1]{EPRINT:DKSTZ17} for a more general model of SPNs and its connection to the above model.
 
 
 
-\subsection{Linear SPNs}
-We are interested in understanding the security of both linear and non-linear SPNs. We now define what we mean by these terms.\\
-
-\noindent \textbf{Definition 1}.A \emph{keyed permutation $\pi$ : $\mathbb{F}^{w} \times \mathbb{F}^{w} \rightarrow \mathbb{F}^{w}$ is} \textbf{linear} \emph{if}
-
-$$
-\begin{aligned}
-\pi(k,x) = (\mathnormal{T}_{k} \cdot k) + (\mathnormal{T}_{x} \cdot x) + \Delta,
-\end{aligned}
-$$
-
-\emph{where $\mathnormal{T}_{k}, \mathnormal{T}_{x} \in \mathbb{F}^{w \times w}$ are linear transformations, $\mathnormal{T}_{x}$ is invertible, and $\Delta \in \mathbb{F}^{w}$. An SPN is} \textbf{linear} \emph{ if all its round permutations $\{\pi_{i}\}_{i=0}^{r}$ are linear.}
-
-If $\pi(k,x) = (\mathnormal{T}_{k} \cdot k) + (\mathnormal{T}_{x} \cdot x) + \Delta$ is linear, then we may write
-
-$$
-\begin{aligned}
-\pi(k,x) = \mathnormal{T} \cdot ((\mathnormal{T}^{-1} \mathnormal{T}_{k} \cdot k) + (\mathnormal{T}^{-1} \cdot \Delta) + x);
-\end{aligned}
-$$
-
-thus, by setting $k^{\prime} = (\mathnormal{T}^{-1} \mathnormal{T}_{k} \cdot k) + (\mathnormal{T}^{-1} \cdot \Delta)$  we can express $\pi$ as
-
-\begin{equation}
-\begin{aligned}
-\pi(k^{\prime},x) = \mathnormal{T} \cdot (k^{\prime} + x).
-\end{aligned}
-\end{equation}
-
-In other words, if an SPN is linear, then we may assume (by redefining the distribution $\mathcal{K}$  on keys appropriately) that each of its permutations $\pi_{i}$ takes the
-form (1). This matches what is often done in practice (e.g., in AES, Serpent,PRESENT, etc.), where round permutations are computed by first performing a key-mixing step followed by an invertible linear transformation. Since the linear transformation and key mixing commute, and the adversary can compute $\mathnormal{T}$ and $\mathnormal{T}^{-1}$ on its own (as  $\mathnormal{T}$ is public), we may further assume without loss of generality that the first and last permutations involve only a key-mixing step. In other words, we may set
-$\pi_{i}(k_{i},x) = k_{i} + x$ for $i \in \{0,r\}$.
+We will mostly be interested in the case where
+%K = ({0, 1}n)a and T = ({0, 1}n)b for
+%integers a, b  1. In this setting, we will denote k = (k0, . . . , ka−1) and t = (t0, . . . , tb−1), all
+%ki’s and tj ’s being n-bit strings, or simply k = k, resp. t = t when a = 1, resp. b = 1. When all
+%fi’s are linear over ({0, 1}n)a+b,
+we say that the construction has linear tweak and key mixing.
 
 
-\subsection{Tweakable linear Substitution-Permutation Networks}
-\textsc{Tweakable Permutations.} For an integer $m \geq 1$, the set of all permutations
-on $\{0,1\}^{m}$ will be denoted $\operatorname{Perm}(m)$. A tweakable permutation with tweak space $\mathcal{T}$ and message space $\mathcal{X}$ is a mapping $\widetilde{P} :\mathcal{T} \times \mathcal{X} \rightarrow \mathcal{X}$ such that, for any tweak $t \in \mathcal{T}$,
-$$
-x \mapsto \widetilde{P}(t,x)
-$$
-\noindent is a permutation of $\mathcal{X}$. The set of all tweakable permutations with tweak space $\mathcal{T}$ and message space $\{0,1\}^{m}$ will be denoted $\widetilde{\operatorname{Perm}}(\mathcal{T}, m)$.
-  A keyed tweakable permutation with key space $\mathcal{K}$, tweak space $\mathcal{T}$ and message space $\mathcal{X}$ is a mapping $T : \mathcal{K} \times \mathcal{T} \times \mathcal{X} \rightarrow \mathcal{X}$ such that, for any key $k \in \mathcal{K}$,
-$$
-(t,x) \mapsto T(k,t,x)
-$$
-\noindent is a tweakable permutation with tweak space $\mathcal{T}$ and message space $\mathcal{X}$.\\
-
-\textsc{Tweakable linear SPNs.} For fixed parameters $w$ and $n$, let $\mathcal{K}$ and $\mathcal{T}$ be two $w n$-bit blocks, we denote $f(k, t) = k \oplus t$ with $k \in \mathcal{K}$ and $t \in \mathcal{T}$, then let
-$$
-T: f(k, t) \times \{0,1\}^{w n} \rightarrow \{0,1\}^{w n}
-$$
-be a keyed tweakable linear permutation with key space $\mathcal{K}$, tweak space $\mathcal{T}$ and message space $\{0,1\}^{w n}$.We simply write $T(k,t,x)$ as $T_{f(k, t)}(x)$For a fixed number of rounds $r$, an $r$-round linear substitution-permutation network (SPN) based on $T$, denoted $\operatorname{SP}^T$, takes as input a set of $n$-bit permutations $\mathcal{S} = (S_1, \ldots, S_r)$, and defines a keyed tweakable  linear permutation $\operatorname{SP}^{T}[S]$ operating on $w n$-bit blocks with key space $\mathcal{K}^{r+1}$ and tweak space $\mathcal{T}$: on input $x \in \{0,1\}^{w n}$, key $\mathbf{k} = (k_0, k_1, \ldots, k_r) \in \mathcal{K}^{r+1}$ and tweak $t \in \mathcal{T}$, the output of $\operatorname{SP}^T[\mathcal{S}]$ is computed as follows.
-
-\begin{itemize}
-  \item[--]
-  $y \leftarrow x$
-  \item[--]
-  For $i \leftarrow 1$ to $\mathnormal{r}$ do:
-  \begin{itemize}
-    \item[1.]
-    $y \leftarrow T_{f(k_{i-1}, t)}(y)$.
-    \item[2.]
-    Break $y = y_1 \| \cdots \| y_w$ into $n$-bit blocks.
-    \item[3.]
-   $y \leftarrow S_i(y_1) \| \cdots \| S_i(y_w)$.
-  \end{itemize}
-  \item[--]
-  $y \leftarrow T_{f(k_{r}, t)}(y)$.
-\end{itemize}
 
 
 \subsection{The H-coefficient Technique}
