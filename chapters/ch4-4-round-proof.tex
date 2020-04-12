@@ -3,18 +3,16 @@
 \section{SPRP Security of 4-Round SPNs}
 \label{section:security of 4-round SPNs}
 
-We now explore conditions under which 4-round, linear SPNs are secure. Recall from subsection 2.1 that a 4-round SPN has five round permutations $\{\pi_i\}_{i=0}^4$, and without loss of generality we may assume
+We now explore conditions under which 4-round, linear SPNs {\it with no tweak} are secure as SPRPs. Recall from Sect. \ref{sec:prelim-tspn} that,
 
-$$
-\pi_{i}\left(k_{i}, x\right)=\left\{\begin{array}{ll}
-{x \oplus k_{i}} & {i \in\{0,4\}} \\
-{T_{i} \cdot\left(x \oplus k_{i}\right)} & {i \in\{1,2,3\}}
-\end{array}\right.
-$$
 
+
+Concretely, let $\calC3$ be the 4-round SPN using any linear transformations $T_1,T_2$. I.e.,
+%
+$$\calC3_{\kvector}^\calS(x):=k_4\xor\overline{S_4}(k_3\xor T_3(\overline{S_3}(k_2\xor T_2(\overline{S_2}(k_1\xor T_1(\overline{S_1}(k_0\xor x))))))).$$
+%
 where $T_{1}, T_{2}, T_{3} \in \mathbb{F}^{w \times w}$ are invertible linear transformations. We prove that a 4-round, linear SPN is secure so long as (i) $T_1$, $T_2$ and $T_{2}^{-1}$, $T_{3}^{-1}$ contain no zero entries(Miles and Viola ~\cite{miles2015substitution} show that matrices with maximal branch number ~\cite{daemen1995cipher} satisfy this property), and (ii) round keys $\{k_i\}(i=0, 1, 2, 3, 4)$ are (individually) uniform.
 
-In this section, we will prove the following theorem.\\
 
 \begin{theorem}
 \label{theorem:5-round-pub-pspn}
