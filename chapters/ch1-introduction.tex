@@ -102,25 +102,16 @@ implementing a xor-universal hash function might be costly, and linear functions
 %2. beyond-birthday-bound security.
 %We answer positively, by providing a construction with 2n-bit keys and n-bit tweaks.
 
-In this paper, we ask whether it is possible to achieve security beyond the birthday barrier with linear SPN structures. In detail, we focus on linear SPNs with independent S-boxes and independent round keys. Specifically, we focus on non-linear tweakable SPNs; the permutation layer
-accepts tweaks, while it is non-linear in the state, the key and the tweak.
-
-In particular, we will focus on the case where $w\geq2$, since, when $w = 1$, we
-recover the standard Even-Mansour construction that has already been the focus
-of a long line of work (as briefly reviewed later). Our results can be seen as an
-extension of the work initiated by Dodis et al. [DKS+17] in two directions.
-\begin{enumerate}
-	\item[1.] We prove...
-	\item[2.] We further...
-\end{enumerate}
+In this paper, we ask whether it is possible to achieve security beyond the birthday barrier with linear SPN structures. In detail, we focus on linear SPNs with independent S-boxes and independent round keys, and we will focus on the case where $w\geq2$, since, when $w = 1$, we recover the standard Even-Mansour construction that has already been the focus
+of a long line of work (as briefly reviewed later). For such linear SPNs, we prove the first beyond-birthday-bound (BBB) result on 4 rounds. To tweak such linear SPNs, we consider the simplest approach, i.e., directly xoring a $wn$-bit tweak with each round key, and prove BBB result on 6 rounds. We will elaborate in detail as follows.
 
 
 
-\medskip\noindent{\bf Beyond-birthday-bound Security for 4-round linear SPNs.}
+\medskip\noindent{\bf BBB Security for 4-round linear SPNs.}
 
 
 
-\medskip\noindent{\bf Tweaking linear SPNs and Beyond-birthday-bound Security at 6 rounds.}
+\medskip\noindent{\bf Tweaking linear SPNs and BBB Security at 6 rounds.}
 
 
 
