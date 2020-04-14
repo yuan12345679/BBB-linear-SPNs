@@ -1,34 +1,42 @@
 
-
 \section{SPRP Security of 4-Round SPNs}
 \label{section:security of 4-round SPNs}
 
-We now explore conditions under which 4-round, linear SPNs {\it with no tweak} are secure as SPRPs. Recall from Sect. \ref{sec:prelim-tspn} that,
-
-
-
-Concretely, let $\calC3$ be the 4-round SPN using any linear transformations $T_1,T_2$. I.e.,
+In this section, we prove beyond-birthday-bound SPRP security for 4-round linear SPNs. Concretely, let $\spn_{\bfk}[\mathcal{S}]$ be the 4-round SPN using any linear transformations $T$. I.e.,
 %
-$$\calC3_{\kvector}^\calS(x):=k_4\xor\overline{S_4}(k_3\xor T_3(\overline{S_3}(k_2\xor T_2(\overline{S_2}(k_1\xor T_1(\overline{S_1}(k_0\xor x))))))).$$
+\begin{align}
+\spn_{\bfk}^T[\mathcal{S}](x):=k_4\xor\overline{S_4}(k_3\xor T(\overline{S_3}(k_2\xor T(\overline{S_2}(k_1\xor T(\overline{S_1}(k_0\xor x))))))).
+\label{eq:defn-4-round-spn}
+\end{align}
 %
-where $T_{1}, T_{2}, T_{3} \in \mathbb{F}^{w \times w}$ are invertible linear transformations. We prove that a 4-round, linear SPN is secure so long as (i) $T_1$, $T_2$ and $T_{2}^{-1}$, $T_{3}^{-1}$ contain no zero entries(Miles and Viola ~\cite{miles2015substitution} show that matrices with maximal branch number ~\cite{daemen1995cipher} satisfy this property), and (ii) round keys $\{k_i\}(i=0, 1, 2, 3, 4)$ are (individually) uniform.
+We show that $\spn^T$ is an SPRP as long as: (i) the linear layer $T$ contains no zero entries (Miles and Viola~\cite{miles2015substitution} show that matrices with maximal branch number~\cite{daemen1995cipher} satisfy this property), and (ii) the round keys $\{k_i\}(i=0, 1, 2, 3, 4)$ are uniform and independent.
 
 
 \begin{theorem}
-\label{theorem:5-round-pub-pspn}
-	
-Assume $w>1$, Let $\mathcal{C}$ be a 4-round, linear SPN with round permutations as in subsection 2.1 showed and with distribution $\mathcal{K}$ over keys $k_{0}, k_{1}, k_{2}, k_{3}, k_{4}$. If round keys $\{k_i\}(i=0, 1, 2, 3, 4)$ are (individually) uniform and $T_1$ and $T_{3}^{-1}$ contain no zero entries, then for any integers $\mathit{p}$ and $\mathit{q}$ such that $p+wq \leq \frac{2^n}{2}$, one has
+\label{theorem:4-round-spn}
+
+Assume $w\geq2$, and $p+wq\leq N/2$. Let $\spn_{\bfk}[\mathcal{S}]$ be a 4-round, linear SPN as defined by Eq. (\ref{eq:defn-4-round-spn}). If round keys $\bfk=(k_0,k_1,k_2,k_3,k_4)$ are uniform and independent, and $T$ contains no zero entries, then
+%
 \begin{align}
-\operatorname{Adv}_{\mathcal{C}}\left(p, q\right) &\leq \frac{q^2}{2^{n w}} + \frac{8 w^2 q(p+wq)^2+w^2 q}{2^n}\\
+\operatorname{Adv}_{\spn^T}^{\mathrm{su}}(p, q) &\leq \frac{q^2}{2^{n w}} + \frac{8 w^2 q(p+wq)^2+w^2 q}{2^n}\\
 &+ \frac{16 w^2 q(p+w q)(p+w q +3 q)+4 w^2 q(p+3 wq)^2+ w^2q(p+w q)(3p+w q)}{2^{2 n}}.
 \label{eq:bound-4-rounds}
-%\begin{aligned}
-%\operatorname{Adv}_{\mathrm{SP}^{T}}^{su}(p, q) & \leq w^{2} q\left(\delta^{\prime} p+\delta w q\right)\left(3 \delta^{\prime} p+3 \delta w q+2 \delta^{\prime} w q\right)+\frac{q^{2}}{2 w n}+\frac{q\left(2 w p+6 w^{2} q\right)^{2}}{2^{2 n}}. \\
-%\operatorname{Adv}_{\mathrm{SP}^{T}}^{mu}(p, q) & \leq w^{2} q\left(\delta^{\prime} p+\left(\delta+\delta^{\prime}\right) w q\right)\left(3 \delta^{\prime} p+3 \delta w q+5 \delta^{\prime} w q\right) \\
-%&+\frac{q^{2}}{2^{w n}}+\frac{q\left(2 w p+8 w^{2} q\right)^{2}}{2^{2 n}}.
-%\end{aligned}
 \end{align}
 \end{theorem}
+The proof of Theorem \ref{eq:bound-4-rounds} relies on the following lemma and on Lemma \ref{lemma:h-coeff} and Lemma \ref{lemma:point-wise}.
+
+
+\begin{lemma}
+	\label{lemma:proximity-4-round}
+	
+	Assume $p+wq\leq N/2$. Let $\dis$ be a distinguisher in the single-user setting that makes $p$ primitive queries to each of $S_1$ and $S_2$ and makes $q$ construction queries. Then for any attainable
+	transcript $\tau=(\mathcal{Q}_C,\mathcal{Q}_S)$, one has
+	\begin{align}
+	\frac{\mathsf{p}_{2}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)}{\mathsf{p}_{1}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)}
+	\geq 1 - xxx.
+	\label{eq:bound-proximity-4-round}
+	\end{align}
+\end{lemma}
 
 
 
@@ -36,17 +44,8 @@ Assume $w>1$, Let $\mathcal{C}$ be a 4-round, linear SPN with round permutations
 \subsection{Outline of the Proof}
 \label{sec:proof-sketch-4-rounds}
 
-Throughout the proof, we will write a 4-round SP construction as $\operatorname{SP}_{k}[\mathcal{S}](x)$, where $\mathcal{S}=(S_1, S_2, S_3, S_4)$  is a pair of four public random permutations of $\{0,1\}^{n}$, and $k = (k_{0}, k_{1}, k_{2}, k_{3}, k_{4}) \in \mathcal{K}^{5}$ is the key, $x \in \{0,1\}^{w n}$ is the plaintext, and, for i = 1, 2, 3, 4,
-
-$$
-\begin{array}{c}
-{S_{i}^{\|}:\{0,1\}^{w n} \rightarrow\{0,1\}^{w n}} \\
-{x=x_{1}\left\|x_{2}\right\| \ldots\left\|x_{w} \longmapsto S_{i}\left(x_{1}\right)\right\| S_{i}\left(x_{2}\right)\|\ldots\| S_{i}\left(x_{w}\right)}.
-\end{array}
-$$
-
-We also fix a distinguisher $\mathcal{D}$ as described in the statement and fix an attainable transcript $\tau =\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}\right)$ obtained $\mathcal{D}$. Let
-
+Throughout the proof, we fix a distinguisher $\mathcal{D}$ as described in the statement and fix an attainable transcript $\tau =\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}\right)$ obtained $\mathcal{D}$. Let
+%
 $$
 \begin{aligned}
 &\mathcal{Q}_{S_{1}}^{(0)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(1, u, v) \in \mathcal{Q}_{S} \right\},\\
@@ -56,7 +55,7 @@ $$
 \end{aligned}
 $$
 %
-and let
+and let       {\small
 %
 \begin{align*}
 &U_{1}^{(0)}=\left\{u_{1} \in\{0,1\}^{n}:\left(1, u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(0)}\right\}, \quad V_{1}^{(0)}=\left\{v_{1} \in\{0,1\}^{n}:\left(1, u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(0)}\right\},\\
@@ -64,6 +63,7 @@ and let
 &U_{3}^{(0)}=\left\{u_{3} \in\{0,1\}^{n}:\left(3, u_{3}, v_{3}\right) \in \mathcal{Q}_{S_{3}}^{(0)}\right\}, \quad V_{3}^{(0)}=\left\{v_{3} \in\{0,1\}^{n}:\left(3, u_{3}, v_{3}\right) \in \mathcal{Q}_{S_{3}}^{(0)}\right\},\\
 &U_{4}^{(0)}=\left\{u_{4} \in\{0,1\}^{n}:\left(4, u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}^{(0)}\right\}, \quad V_{4}^{(0)}=\left\{v_{4} \in\{0,1\}^{n}:\left(4, u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}^{(0)}\right\}.
 \end{align*}
+}%
 %
 Denote the domains and ranges of $\mathcal{Q}_{S_{1}}^{(0)}, \mathcal{Q}_{S_{2}}^{(0)}, \mathcal{Q}_{S_{3}}^{(0)}, \mathcal{Q}_{S_{4}}^{(0)}$, respectively.
 
@@ -97,7 +97,7 @@ We are now going to build a new set $\mathcal{Q}_{S_{outer}}^{\prime}$ of S-box 
 \subsection{Bad Transcript for 4-rounds SPN and Probability}
 \label{sec:bad-tau-4-rounds}
 
-The first step is to define the set of bad transcripts. Let $\tau = (\mathcal{Q}_C, \mathcal{Q}_{S})$ be an attainable transcript, with $|\mathcal{Q}_C| = q$ and $|\mathcal{Q}_{S_i}| = p$ for $i = 1, \cdots, 4$. Let
+The first step is to define the set of bad transcripts. Let $\tau = (\mathcal{Q}_C, \mathcal{Q}_{S})$ be an attainable transcript, with $|\mathcal{Q}_C| = q$ and $|\mathcal{Q}_{S_i}| = p$ for $i = 1, \ldots, 4$. Let
 %
 $$
 \begin{aligned}
@@ -293,8 +293,7 @@ Then we define a predicate $\operatorname{Bad}\left(S_{1},S_{4}\right)$ on the p
 		there exist $(a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, $u_{2},u_{2}' \in U_{2}^{(0)}$ such that
 		$$(a \oplus k_1)[i] = u_2,\text{ and }
 		(a \oplus k_1)[i'] = u_2'.$$
-		\item[\cfive]
-		there exist distinct $(a, b),(a',b') \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, $u_{2} \in U_{2}$ such that
+		\item[\cfive] \textcolor{red}{there exist distinct $(a, b),(a',b') \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, $u_{2} \in U_{2}$ such that}
 		$$\left(T_1\left(a \oplus k_{1}\right)\right)[i] = u_2,\text{ and }
 		\left(T_1\left(a \oplus k_{1}\right)\right)[i'] = \left(T_1\left(a' \oplus k_{1}\right)\right)[i'].$$
 		\item[\csix]
@@ -308,7 +307,7 @@ Then we define a predicate $\operatorname{Bad}\left(S_{1},S_{4}\right)$ on the p
 		$$\left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)[i] = v_3,\text{ and }
 		\left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)[i'] = v_3'.$$
 		\item[\ceight]
-		there exist distinct $(a, b),(a',b') \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, $v_{3} \in V_{3}$ such that
+		\textcolor{red}{there exist distinct $(a, b),(a',b') \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, $v_{3} \in V_{3}$ such that}
 		$$\left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)[i] = v_3,\text{ and }
 		\left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)[i] =\left(T_{3}^{-1}\left(b'\right) \oplus k_{3}\right)[i'].$$
 		\item[\cnine]
@@ -328,11 +327,10 @@ In all the following, we denote \emph{$\Pi$} the set of pairs of permutations $(
 \begin{lemma}
 	\label{lemma:bad-outer-4-rounds}
 	
-	It holds
+	Assuming $p+wq\leq N/2$, then it holds
 	\begin{align}
-	& \operatorname{Pr}_{S_1,S_4}[(S_1,S_4) \in \emph{$\Pi_{bad}$}\mid (S_{1}, S_{4})\in\Pi]     \\
-	\leq  &\frac{2 w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)} +\frac{2 w^{2} q (p+w q)(p+w q+2 q)}{N \cdot (N-p)}\\
-	& + \frac{w^{2} q (p+w q)(p+w q+2 q)}{(N-p)^2} + \frac{2 w^{2} q (p+w q)^{2}}{(N-p)}.
+	 \operatorname{Pr}_{S_1,S_4}[(S_1,S_4) \in \emph{$\Pi_{bad}$}\mid (S_{1}, S_{4})\in\Pi]    
+	\leq    \frac{9w^2 q (p+w q)^{2}}{N^2}+ \frac{16w^3q^2p}{N^2} .
 	\label{eq:bound-bad-outer-4-rounds}
 	\end{align}
 \end{lemma}
@@ -381,14 +379,23 @@ $$
 
 
 
-\smallskip
-\noindent\textsc{\cfive and \ceight}. Consider any of the $qw^2p^2/2$ choices of $(a, b),(a',b') \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, and $u_{2} \in U_{2}$.
+
+%
+%\smallskip
+%\noindent\textsc{\cfive and \ceight}. Consider any of the $qw^2p^2/2$ choices of $(a, b),(a',b') \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, and $u_{2} \in U_{2}$.
+%
+%
+%By $\neq\btwo$, to have $\left(T_1\left(a \oplus k_{1}\right)\right)[i] = u_2$, it has to be that $(x\xor k_0)[i_0]\notin U_1$ for any $i_0$.
+%
+%
+%There exists $i_0$ such that $(x\xor k_0)[i_0]\neq(x'\xor k_0)[i_0]$.
 
 
-By $\neq\btwo$, to have $\left(T_1\left(a \oplus k_{1}\right)\right)[i] = u_2$, it has to be that $(x\xor k_0)[i_0]\notin U_1$ for any $i_0$.
 
 
-There exists $i_0$ such that $(x\xor k_0)[i_0]\neq(x'\xor k_0)[i_0]$.
+
+
+
 
 
 
@@ -408,44 +415,103 @@ $$
 
 
 \smallskip
-\noindent\textsc{Conditions \csix and \cnine}. Consider \csix first.  Consider each choice of
-$(a, b), (a^{\prime}, b^{\prime}) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $i, i^{\prime},j, j^{\prime} \in\{1, \ldots, w\}$, with $(a, j) \neq \left(a^{\prime}, j^{\prime}\right)$, $u_{2}, u_{2}^{\prime} \in U_{2}$. Depending on $j\neq j'$ or not, we distinguish two cases.
-
-
-For the case of $j\neq j'$, we have
+\noindent\textsc{Conditions \csix and \cnine}. Consider \csix first. For any choice of $(a, b), (a^{\prime}, b^{\prime}) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $i, i^{\prime},j, j^{\prime} \in\{1, \ldots, w\}$, with $(a, j) \neq \left(a^{\prime}, j^{\prime}\right)$, $u_{2}, u_{2}^{\prime} \in U_{2}$, denote by $\coll(a,a',i,i',j,j',u_2,u_2')$ the event that
 %
-$$\Pr\bigg[\Big(\big(T_2(\overline{S_2}(a\xor k_1))\xor k_2\big)\xor k_3\Big)[j]=\Big(\big(T_2(\overline{S_2}(a'\xor k_1))\xor k_2\big)\xor k_3\Big)[j']\bigg]=\frac{1}{N},$$
-simply by that $k_2[j]$ and $k_2[j']$ are uniform and independent. Moreover, as argued before, the probability to have $(T_1(\overline{S_1}(x\xor k_0))\xor k_1)[i]=u_2$ is at most $1/(N-p-wq)$. The number of choices of ...... is at most $w^3q^2(p+wq)/2$. By this, the probability of this case is at most $w^3q^2(p+wq)/N(N-p-wq)$.
+%
+$$(a \oplus k_1)[i] = u_2\bigwedge(a' \oplus k_1)[i'] = u_2'\bigwedge\big(T_2(\overline{S_2}(a\xor k_1))\xor k_2\big)[j]=\big(T_2(\overline{S_2}(a'\xor k_1))\xor k_2\big)[j'].
+$$
+%
+%
+With this, we derive the probability via the following calculations.
+%
+%
+\begin{align*}
+ \Pr[\csix]  
+=   &  \underbrace{\sum_{(a,b),(a',b')}\sum_{i,i'}\sum_{(u_2,v_2),(u_2',v_2')}\sum_{j\neq j'}\Pr[\coll(a,a',i,i',j,j',u_2,u_2')]}_{A_1}    \\
+&  + \underbrace{\sum_{(a,b)\neq(a',b')}\sum_{i,i'}\sum_{(u_2,v_2)}\sum_{j}\Pr[\coll(a,a',i,i',j,j',u_2,u_2')]}_{A_2}      \\
+  &  +  \underbrace{\sum_{(a,b)\neq(a',b')}\sum_{i\neq i'}\sum_{(u_2,v_2)\neq(u_2',v_2')}\sum_{j}\Pr[\coll(a,a',i,i',j,j',u_2,u_2')]}_{A_3}       \\
+    &  + \underbrace{\sum_{(a,b)\neq(a',b')}\sum_{i}\sum_{(u_2,v_2)\neq(u_2',v_2')}\sum_{j}\Pr[\coll(a,a',i,i',j,j',u_2,u_2')]}_{A_4}   .
+\end{align*}
+
+
+
+Regarding the term $A_1$, i.e., $j\neq j'$, we have
+%
+$$\Pr\bigg[\Big(\big(T_2(\overline{S_2}(a\xor k_1))\xor k_2\big)\xor k_3\Big)[j]=\Big(\big(T_2(\overline{S_2}(a'\xor k_1))\xor k_2\big)\xor k_3\Big)[j']\bigg]=\frac{1}{N}$$
+simply by that $k_2[j]$ and $k_2[j']$ are uniform and independent. Moreover, as argued before, the probability to have $(T_1(\overline{S_1}(x\xor k_0))\xor k_1)[i]=u_2$ is at most $1/(N-p-wq)$. By this,
+%
+$$\Pr\big[A_1\big]\leq\frac{w^3q^2p^2}{N(N-p-wq)^2}\leq\frac{w^3q^2p}{N(N-p-wq)}.$$
+
+
+
+Regarding the term $A_2$, since the number of choices for $(a, b), (a^{\prime}, b^{\prime}) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $i, i^{\prime},j, j^{\prime} \in\{1, \ldots, w\}$, with $(a, j) \neq \left(a^{\prime}, j^{\prime}\right)$, $u_{2}=u_{2}^{\prime} \in U_{2}$ is at most $w^4q^2p$, we have
+%
+$$\Pr\big[A_2\big]\leq\frac{w^4q^2p}{N(N-p-wq)}.$$
+
+
+
+
+
+
+
+
+Regarding the term $A_3$, since $(a\xor k_1)[i]\in U_2^{(0)}$, it holds $(a\xor k_1)[i']\notin U_2^{(0)}$ by $\neg\cfour$. Therefore, a random output $v_2^*$ will be sampled during the extension process, so that $((a\xor k_1)[i'],v_2^*)\in\mathcal{Q}_{S_2}^{(1)}$. Conditioned on the values in $V_2^{(0)}$ (which includes $v_2'$), $v_2^*$ is uniform in {\it at least} $N-p-wq$ possibilities. This means the probability to have $T(\overline{S_2}(a\xor k_1))[j]=T(\overline{S_2}(a'\xor k_1))[j]$ is at most $1/(N-p-wq)$, as every entry in the $i'$th column of $T$ is nonzero. Moreover, as argued before, the probability to have $(T_1(\overline{S_1}(x\xor k_0))\xor k_1)[i]=u_2$ is at most $1/(N-p-wq)$. By this,
+%
+$$\Pr\big[A_3\big]\leq\frac{w^3q^2p^2}{N(N-p-wq)^2}\leq\frac{w^3q^2p}{N(N-p-wq)}.$$
+
+
+
+
+Finally, consider the term $A_4$. Assume that $\overline{S_2}(a\xor k_1)=\bfv_1\|v_1\|\bfv_2$ and
+$\overline{S_2}(a\xor k_1)=\bfv_1'\|v_1'\|\bfv_2'$ after the extension process.
+
+Then the equality $T(\overline{S_2}(a\xor k_1))[j]=T(\overline{S_2}(a'\xor k_1))[j]$ implies
+%
+%
+\begin{align}
+\bft_1^*\cdot\bfv_1\xor t^*\xor v_1\xor\bft_2^*\cdot\bfv_2=\bft_1^*\cdot\bfv_1'\xor t^*\xor v_1'\xor\bft_2^*\cdot\bfv_2'.
+\label{eq:interm-eq-c5}
+\end{align}
+%
+%
+for two vectors $\bft_1^*,\bft_2^*$ and $t^*\in\{0,1\}^n$. Now:
+\begin{itemize}
+	\item If $\bfv_1=\bfv_1'$ and $\bfv_2=\bfv_2'$, then Eq. (\ref{eq:interm-eq-c5}) collapses to $t^*\xor v_1=t^*\xor v_1'$ which is not possible;
+	\item Else, Eq. (\ref{eq:interm-eq-c5}) holds with probability at most $1/(N-p-wq)$.
+\end{itemize}
+Moreover, as argued before, the probability to have $(T_1(\overline{S_1}(x\xor k_0))\xor k_1)[i]=u_2$ is at most $1/(N-p-wq)$. By this,
+%
+$$\Pr\big[A_4\big]\leq\frac{w^3q^2p^2}{N(N-p-wq)^2}\leq\frac{w^3q^2p}{N(N-p-wq)}.$$
+%
+%
+
+Summing over the above, we reach
+%
+$$\Pr[\cfive]\leq\frac{4w^3q^2p}{N(N-p-wq)}.$$
+%
+
+The analysis of \cseven is similar by symmetry, resulting in
+%
+%
+$$\Pr[\cseven]\leq\frac{4w^3q^2p}{N(N-p-wq)}.$$
+%
+
 
 
 \arrangespace
 
 
-For the case of $j=j'$ with distinct $(a,b),(a',b')$. Conditioned on $\neg\cfour$, it holds $(a \oplus k_1)[i'']\notin U_2^{(0)}$ for any $i''\neq i$, and thus a random output $v_2$ will be sampled during the extension process, so that $((a \oplus k_1)[i''],v_2)\in\mathcal{Q}_{S_2}^{(1)}$. Moreover, conditioned on $\neg\cfive$, for distinct $i'' \neq i$, if $(T_1\left(a \oplus k_{1}\right))[i] = u_2$, it holds $(T_1(a\xor k_1))[i'']\neq(T_1(a'\xor k_1))[i'']$. Since $T_2$ contain no zero entries, so the value $\left(T_{2}\left(S_{2}\left(T_1\left(a \oplus k_{1}\right)\right) \oplus k_{2}\right)\right)[i'']$ could not be disturbed by the value of $\left(T_{2}\left(S_{2}\left(T_1\left(a' \oplus k_{1}\right)\right) \oplus k_{2}\right)\right)[i'']$ and thus uniform in at least
-$\frac{1}{N - p- wq}$. One has,
-$$
-\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)}.
-$$
-So, combine these two subevents, one has
-$$
-\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)} + \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N- p)}.
-$$
+By the above, we have
 %
-Similarly, one has
+\begin{align*}
+&  \operatorname{Pr}_{S_1,S_4}[(S_1,S_4) \in \emph{$\Pi_{bad}$}\mid (S_{1}, S_{4})\in\Pi]  \leq \sum_{i=1}^7\Pr[\ci]       \\
+\leq  & \frac{w^2 q (p+w q)^{2}}{(N-p-wq)^{2}}+
+\frac{2w^2 q (p+w q)^{2}}{N  (N-p-wq)}+
+\frac{w^2qp^2}{N^2}+
+\frac{8w^3q^2p}{N(N-p-wq)}      \\
+\leq  & \frac{9w^2 q (p+w q)^{2}}{N^2}+ \frac{16w^3q^2p}{N^2} .
+\end{align*}
 %
-$$
-\operatorname{Pr}\left[\tau_{inner} \in \Theta_{9}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)} + \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)}.
-$$
-The result follows by an union bound over all conditions.
-
-
-Then we have
-$$
-\begin{aligned}
-1&-\operatorname{Pr}\left[\operatorname{Bad}\left(S_{1},S_{4}\right) | S_{1} \vdash \mathcal{Q}_{S_{1}},S_{4} \vdash \mathcal{Q}_{S_{4}}\right] \geq 1 - \frac{2 w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)}\\
-& -\frac{2 w^{2} q (p+w q)(p+w q+2 q)}{N \cdot (N-p)} - \frac{w^{2} q (p+w q)(p+w q+2 q)}{(N-p)^2} - \frac{2 w^{2} q (p+w q)^{2}}{(N-p)}.
-\end{aligned}
-$$
 as claimed.       \qed
 \end{proof}
 
