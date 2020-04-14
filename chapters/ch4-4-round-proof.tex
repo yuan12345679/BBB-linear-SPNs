@@ -212,7 +212,7 @@ A colliding query is defined as a construction query $(a, b) \in \mathcal{Q}_{C}
 \end{itemize}
 %
 %
-Recall that the domains and ranges of $\mathcal{Q}_{S_{2}}^{(0)}$ and $\mathcal{Q}_{S_{3}}^{(0)}$ and denoted by $U_{2}^{(0)},V_{2}^{(0)},U_{3}^{(0)}$, and $V_{3}^{(0)}$ respectively. We will further extend the extended transcript $\tau'$. In detail, we build a new set $\mathcal{Q}_{S_{inner}}^{\prime}$ of S-box evaluations that will play the role of an extension of $\mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$. For each colliding query $(a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, we will add tuples $\left(2, T_1\left(a \oplus k_{1}\right)[i], v^{\prime}\right)_{1 \leq i \leq w}$(if $(a, b)$ collides at the input of $S_2$) or $\left(3, u^{\prime}, T_{3}^{-1}\left(b\right) \oplus k_{3}[i]\right)_{1 \leq i \leq w}$ (if $(a, b)$ collides at the output of $S_3$) by lazy sampling, as long as it has not been determined by any existing query in $\mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $v^{\prime}=S_{2}(\left(T_1\left(a \oplus k_{1}\right)\right))[i])$ or $u^{\prime}=S_{3}^{-1}(\left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)[i])$. Then we choose the key $k_2$ uniformly at random. An extended transcript of $\tau_{inner}$ will be defined as a tuple $\tau_{inner}^{\prime}=\left(\mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right), \mathcal{Q}_{S_{inner}}, \mathcal{Q}_{S_{inner}}^{\prime}, \mathbf{k}\right)$ where $\mathbf{k}=\left(k_{1}, k_{2}, k_{3}\right)$. For each collision between a construction query and a primitive query, or between two construction queries, the extended transcript will contain enough information to compute a complete round of the evaluation of the SPN. This will be useful to lower bound the probability to get the transcript $\tau_{inner}$ in the real world. At this stage, let
+Recall that the domains and ranges of $\mathcal{Q}_{S_{2}}^{(0)}$ and $\mathcal{Q}_{S_{3}}^{(0)}$ and denoted by $U_{2}^{(0)},V_{2}^{(0)},U_{3}^{(0)}$, and $V_{3}^{(0)}$ respectively. We will further extend the extended transcript $\tau'$. In detail, we build a new set $\mathcal{Q}_{S_{inner}}^{\prime}$ of S-box evaluations that will play the role of an extension of $\mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$. For each colliding query $(a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, we will add tuples $\left(2, T_1\left(a \oplus k_{1}\right)[i], v^{\prime}\right)_{1 \leq i \leq w}$(if $(a, b)$ collides at the input of $S_2$) or $\left(3, u^{\prime}, T_{3}^{-1}\left(b\right) \oplus k_{3}[i]\right)_{1 \leq i \leq w}$ (if $(a, b)$ collides at the output of $S_3$) by lazy sampling, as long as it has not been determined by any existing query in $\mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $v^{\prime}=S_{2}(\left(T_1\left(a \oplus k_{1}\right)\right))[i]$ or $u^{\prime}=S_{3}^{-1}(\left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)[i]$. Then we choose the key $k_2$ uniformly at random. An extended transcript of $\tau_{inner}$ will be defined as a tuple $\tau_{inner}^{\prime}=\left(\mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right), \mathcal{Q}_{S_{inner}}, \mathcal{Q}_{S_{inner}}^{\prime}, \mathbf{k}\right)$ where $\mathbf{k}=\left(k_{1}, k_{2}, k_{3}\right)$. For each collision between a construction query and a primitive query, or between two construction queries, the extended transcript will contain enough information to compute a complete round of the evaluation of the SPN. This will be useful to lower bound the probability to get the transcript $\tau_{inner}$ in the real world. At this stage, let
 %
 $$
 \begin{aligned}
@@ -298,7 +298,7 @@ Then we define a predicate $\operatorname{Bad}\left(S_{1},S_{4}\right)$ on the p
 		$$\left(T_1\left(a \oplus k_{1}\right)\right)[i] = u_2,\text{ and }
 		\left(T_1\left(a \oplus k_{1}\right)\right)[i'] = \left(T_1\left(a' \oplus k_{1}\right)\right)[i'].$$
 		\item[\csix]
-		there exist $(a, b), (a^{\prime}, b^{\prime}) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $i, i^{\prime},j, j^{\prime} \in\{1, \ldots, w\}$, with $(a, j) \neq \left(a^{\prime}, j^{\prime}\right)$, $u_{2}, u_{2}^{\prime} \in U_{2}$ such that $(a \oplus k_1)[i] = u_2, (a' \oplus k_1)[i'] = u_2'$, and
+		there exist $(a, b), (a^{\prime}, b^{\prime}) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $i, i^{\prime},j, j^{\prime} \in\{1, \ldots, w\}$, with $(a,b, j) \neq \left(a^{\prime}, b',j^{\prime}\right)$, $u_{2}, u_{2}^{\prime} \in U_{2}$ such that $(a \oplus k_1)[i] = u_2, (a' \oplus k_1)[i'] = u_2'$, and
 		%
 		$$\big(T_2(\overline{S_2}(a\xor k_1))\xor k_2\big)[j]=\big(T_2(\overline{S_2}(a'\xor k_1))\xor k_2\big)[j'].
 		$$
@@ -312,7 +312,7 @@ Then we define a predicate $\operatorname{Bad}\left(S_{1},S_{4}\right)$ on the p
 		$$\left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)[i] = v_3,\text{ and }
 		\left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)[i] =\left(T_{3}^{-1}\left(b'\right) \oplus k_{3}\right)[i'].$$
 		\item[\cnine]
-		there exist $(a, b), (a^{\prime}, b^{\prime}) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $i, i^{\prime}, j, j^{\prime} \in\{1, \ldots, w\}$, with $(b, j) \neq \left(b^{\prime}, j^{\prime}\right)$, $v_{3},v_{3}^{\prime} \in V_{3}$ such that $\big(b \oplus T^{-1}(k_3)\big)[i] = v_3, \big(b' \oplus T^{-1}(k_3)\big)[i'] = v_3'$, and
+		there exist $(a, b), (a^{\prime}, b^{\prime}) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $i, i^{\prime}, j, j^{\prime} \in\{1, \ldots, w\}$, with $(a,b, j) \neq \left(a',b^{\prime}, j^{\prime}\right)$, $v_{3},v_{3}^{\prime} \in V_{3}$ such that $\big(b \oplus T^{-1}(k_3)\big)[i] = v_3, \big(b' \oplus T^{-1}(k_3)\big)[i'] = v_3'$, and
 		%
 		$$\big(T^{-1}(\overline{S_3^{-1}}(b \oplus T^{-1}(k_3))\xor k_2)\big)[j]=\big(T^{-1}(\overline{S_3^{-1}}(b' \oplus T^{-1}(k_3))\xor k_2)\big)[j'].
 		$$
@@ -382,7 +382,22 @@ $$
 
 
 \smallskip
-\noindent\textsc{\cfive and \ceight}. We have the value $\left(S_{1}\left(x \oplus k_{0}\right)\right)[i]$ remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{4}})$.  Because of the fact that there exists $i$ with $x[i]\neq x'[i]$, that is there exist $i$ with $\left(a \oplus k_{1}\right)[i'] \neq \left(a' \oplus k_{1}\right)[i']$. So,
+\noindent\textsc{\cfive and \ceight}. Consider any of the $qw^2p^2/2$ choices of $(a, b),(a',b') \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, and $u_{2} \in U_{2}$.
+
+
+By $\neq\btwo$, to have $\left(T_1\left(a \oplus k_{1}\right)\right)[i] = u_2$, it has to be that $(x\xor k_0)[i_0]\notin U_1$ for any $i_0$.
+
+
+There exists $i_0$ such that $(x\xor k_0)[i_0]\neq(x'\xor k_0)[i_0]$.
+
+
+
+%$$\left(T_1\left(a \oplus k_{1}\right)\right)[i] = u_2,\text{ and }
+%\left(T_1\left(a \oplus k_{1}\right)\right)[i'] = \left(T_1\left(a' \oplus k_{1}\right)\right)[i'].$$
+
+
+
+We have the value $\left(S_{1}\left(x \oplus k_{0}\right)\right)[i]$ remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{4}})$.  Because of the fact that there exists $i$ with $x[i]\neq x'[i]$, that is there exist $i$ with $\left(a \oplus k_{1}\right)[i'] \neq \left(a' \oplus k_{1}\right)[i']$. So,
 
 $$
 \operatorname{Pr}\left[\tau_{inner} \in \Theta_{5}\right] \leq \frac{w^{2} q^{2} (p+w q)}{(N-p)^2}.
@@ -400,11 +415,13 @@ $(a, b), (a^{\prime}, b^{\prime}) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\righ
 For the case of $j\neq j'$, we have
 %
 $$\Pr\bigg[\Big(\big(T_2(\overline{S_2}(a\xor k_1))\xor k_2\big)\xor k_3\Big)[j]=\Big(\big(T_2(\overline{S_2}(a'\xor k_1))\xor k_2\big)\xor k_3\Big)[j']\bigg]=\frac{1}{N},$$
-simply by that $k_2[j]$ and $k_2[j']$ are uniform and independent. Moreover, as argued before, the probability to have $(T_1(\overline{S_1}(x\xor k_0))\xor k_1)[i]=u_2$ is at most $1/(N-p-wq)$. The number of choices of ...... is at most $w^3q^2(p+wq)/2$. By this, the probability of this case is at most $w^3q^2(p+wq)/N(N-p-wq)$.	\\
+simply by that $k_2[j]$ and $k_2[j']$ are uniform and independent. Moreover, as argued before, the probability to have $(T_1(\overline{S_1}(x\xor k_0))\xor k_1)[i]=u_2$ is at most $1/(N-p-wq)$. The number of choices of ...... is at most $w^3q^2(p+wq)/2$. By this, the probability of this case is at most $w^3q^2(p+wq)/N(N-p-wq)$.
 
 
+\arrangespace
 
-For the case of $j=j'$ with distinct $(a,b),(a',b')$, that is there is only one index has different value of input and output. Because of the value $\left(S_{1}\left(x' \oplus k_{0}\right)\right)[i]$ also remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{4}})$ conditioned on the fact that the value $\left(S_{1}\left(x \oplus k_{0}\right)\right)[i]$ is uniform. Then we leverage the randomness due to lazy sampling $S_2(T_1(a\xor k_1))$. Conditioned on $\cfour$, for $i''\neq i$, the value $T_1(a \oplus k_1)[i'']$ ``does not collide with'' pairs in $\mathcal{Q}_{S_{2}}^{(1)}$, and will be assigned a random outputs during the lazy sampling process. Simultaneously conditioned on $\cfive$, for distinct $i'' \neq i$, if $(T_1\left(a \oplus k_{1}\right))[i] = u_2$, it holds $(T_1(a\xor k_1))[i'']\neq(T_1(a'\xor k_1))[i'']$. Since $T_2$ contain no zero entries, so the value $\left(T_{2}\left(S_{2}\left(T_1\left(a \oplus k_{1}\right)\right) \oplus k_{2}\right)\right)[i'']$ could not be disturbed by the value of $\left(T_{2}\left(S_{2}\left(T_1\left(a' \oplus k_{1}\right)\right) \oplus k_{2}\right)\right)[i'']$ and thus uniform in at least
+
+For the case of $j=j'$ with distinct $(a,b),(a',b')$. Conditioned on $\neg\cfour$, it holds $(a \oplus k_1)[i'']\notin U_2^{(0)}$ for any $i''\neq i$, and thus a random output $v_2$ will be sampled during the extension process, so that $((a \oplus k_1)[i''],v_2)\in\mathcal{Q}_{S_2}^{(1)}$. Moreover, conditioned on $\neg\cfive$, for distinct $i'' \neq i$, if $(T_1\left(a \oplus k_{1}\right))[i] = u_2$, it holds $(T_1(a\xor k_1))[i'']\neq(T_1(a'\xor k_1))[i'']$. Since $T_2$ contain no zero entries, so the value $\left(T_{2}\left(S_{2}\left(T_1\left(a \oplus k_{1}\right)\right) \oplus k_{2}\right)\right)[i'']$ could not be disturbed by the value of $\left(T_{2}\left(S_{2}\left(T_1\left(a' \oplus k_{1}\right)\right) \oplus k_{2}\right)\right)[i'']$ and thus uniform in at least
 $\frac{1}{N - p- wq}$. One has,
 $$
 \operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)}.
