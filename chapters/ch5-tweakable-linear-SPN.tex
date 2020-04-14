@@ -3,12 +3,21 @@
 \section{TSPRP Security of 6-Round Tweakable Linear SPNs}
 \label{section:beyond birthday bound for tweakable linear SPNs}
 
-We will prove the following theorem firstly.
+In this section, we prove beyond-birthday-bound STPRP security for 6-round tweakable linear SPNs. Concretely, let $\spn_{\bfk}[\mathcal{S}]$ be the 6-round SPN using any linear transformations $T$. I.e.,
+%
+\begin{align}
+\spn_{\bfk}^T[\mathcal{S}](x):=k_6\xor t\xor&\overline{S_6}(k_5\xor t\xor  T(\overline{S_5}(k_4\xor t\xor\overline{S_4}(k_3\xor t\xor T(\overline{S_3}(k_2\xor t\xor T(    \notag    \\
+&  \overline{S_2}(k_1\xor t\xor T(\overline{S_1}(k_0\xor t\xor x)))))))))).
+\label{eq:defn-6-round-spn}
+\end{align}
+%
+We show that $\spn^T$ is an STPRP as long as: (i) the linear layer $T$ contains no zero entries, and (ii) the round keys $\{k_i\}(i=0, \ldots , 6)$ are uniform and independent, and (iii) the tweak $t$ is directly xored into each round key.
+
 
 \begin{theorem}
 	\label{theorem:6-rounds}
 	
-	Assume $w>1$, Let $\mathcal{C}$ be a 6-round, tweakable linear SPN with round permutations as in subsection 2.1 showed and with distribution $\mathcal{K}$ over keys $k_{0}, k_{1}, k_{2}, k_{3}, k_{4}, k_{5}, k_{6}$. If round keys $\{k_i\}(i=0, 1, 2, 3, 4, 5, 6)$ are (individually) uniform and $T_1$ and $T_{5}^{-1}$ contain no zero entries, then for any integers $\mathit{p}$ and $\mathit{q}$ such that $p+wq \leq \frac{2^n}{2}$, one has
+	Assume $w\geq2$, and $p+wq\leq N/2$. Let $\spn_{\bfk}[\mathcal{S}]$ be a 6-round, tweakable linear SPN as defined by Eq. (\ref{eq:defn-6-round-spn}). If round keys $\bfk=(k_0,\ldots,k_6)$ are uniform and independent, and $T$ contains no zero entries, then
 	\begin{align}
 	\operatorname{Adv}_{\mathcal{C}}\left(p, q\right) &\leq \frac{q^2}{2^{n w}} + \frac{8 w^2 q(p+wq)^2+w^2 q}{2^n}\\
 	&+ \frac{16 w^2 q(p+w q)(p+w q +3 q)+4 w^2 q(p+3 wq)^2+ w^2q(p+w q)(3p+w q)}{2^{2 n}}.
