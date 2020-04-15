@@ -518,72 +518,148 @@ as claimed.       \qed
 
 
 
+
 \paragraph{\textsc{The inner two rounds.}}
 
 
-We are now ready for the second step of the reasoning. For $Y \in \mathcal{T}_{1}$, define
-
-\begin{equation}
-\begin{aligned}
-\mathrm{p}\left(\tau, S_{1}, S_{4}\right)&=\operatorname{Pr}\left[S^{*} \stackrel{\mathrm{s}}{\leftarrow}(\mathcal{S}(n))^{2}:
-\mathrm{SP}_{k}^{S^{*}} \vdash \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right) | S_{i} \vdash \mathcal{Q}_{S_{i}}, i=1,2,3,4\right] \\
-&=\operatorname{Pr}\left[S^{*} \stackrel{\mathrm{s}}{\leftarrow}(\mathcal{S}(n))^{2}: \mathrm{SP}_{k}^{S^{*}} \vdash \mathcal{Q}_{C}^{*}\left(S_{1},
-S_{4}\right) | S_{2} \vdash \mathcal{Q}_{S_{2}}, S_{3} \vdash \mathcal{Q}_{S_{3}}\right] \\
-& \cdot \operatorname{Pr}\left[S_{2} \vdash \mathcal{Q}_{S_{2}}, S_{3} \vdash \mathcal{Q}_{S_{3}}| S_{i} \vdash \mathcal{Q}_{S_{i}}, i=1,2,3,4\right]\\
-&=\operatorname{Pr}\left[S^{*} \stackrel{\mathrm{s}}{\leftarrow}(\mathcal{S}(n))^{2}: \mathrm{SP}_{k}^{S^{*}} \vdash \mathcal{Q}_{C}^{*}\left(S_{1},
-S_{4}\right) | S_{2} \vdash \mathcal{Q}_{S_{2}}, S_{3} \vdash \mathcal{Q}_{S_{3}}\right].
-\end{aligned}
-\end{equation}
-
-We define $\mathrm{p}\left(S_{1}, S_{4}\right) = \operatorname{Pr}\left[\left(S_{1}^{*}, S_{4}^{*}\right)
-\stackrel{\mathrm{S}}{\leftarrow}(\mathcal{S}(n))^{2}: \left(S_{1}^{*}, S_{4}^{*}\right)=\left(S_{1}, S_{4}\right)\right]$ for convenience. Next we need to consider  $\frac{\operatorname{Pr}_{r e}(\tau, k)}{\operatorname{Pr}_{i d}(\tau, k)}$. Clearly, once $S_{1}$ and $S_{4}$ are fixed such that $S_{1} \vdash \mathcal{Q}_{S_{1}}$ and $S_{4} \vdash \mathcal{Q}_{S_{4}}$, the event
-$\mathrm{SP}_{k}[\mathcal{S}] \vdash \mathcal{Q}_{C}$ is equivalent to $\mathrm{SP}_{k}^{S^{*}} \vdash \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$. Hence,
-
-$$
-\operatorname{Pr}_{r e}(\tau, k) \geq \sum_{S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{4} \vdash \mathcal{Q}_{S_{4}}:\left(S_{1}, S_{4}\right) good }
-\mathrm{p}\left(S_{1}, S_{4}\right) \cdot \mathrm{p}\left(\tau, S_{1}, S_{4}\right) \cdot \mathrm{p}\left(S_{2} \vdash \mathcal{Q}_{S_{2}},S_{3} \vdash \mathcal{Q}_{S_{3}}\right).
-$$
-
-\noindent Because of $\operatorname{Pr} (\mathcal{P}  \vdash \mathcal{Q}_{C}) \le \frac{1}{\left(2^{w n}\right)_{q}}$. Therefore,\\
-
-\noindent \textbf{Lemma 7} \emph{Once $S_{1}$ and $S_{4}$ are fixed such that $S_{1} \vdash \mathcal{Q}_{S_{1}}$ and $S_{4} \vdash \mathcal{Q}_{S_{4}}$, we have}
-
-\begin{equation}
-\begin{aligned}
-\frac{\operatorname{Pr}_{r e}(\tau, k)}{\operatorname{Pr}_{i d}(\tau, k)} &\geq \frac{\sum_{S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{4} \vdash \mathcal{Q}_{S_{4}}: \left(S_{1}, S_{4}\right)good } \mathrm{p}\left(S_{1}, S_{4}\right) \cdot \mathrm{p}\left(\tau, S_{1}, S_{4}\right)}{\operatorname{Pr}(S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{4} \vdash \mathcal{Q}_{S_{4}}) \cdot \frac{1}{\left(2^{w n}\right)_{q}}}\\
-&\geq \left(1-\operatorname{Pr}\left[\operatorname{Bad}\left(S_{1},S_{4}\right) | S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{4} \vdash \mathcal{Q}_{S_{4}}\right]\right) \cdot
-\frac{\mathrm{p}\left(\tau, S_{1}, S_{4}\right)}{\frac{1}{\left(2^{w n}\right)_{q}}}.
-\end{aligned}
-\end{equation}
-
-\noindent \emph{Proof:} For any attainable transcript $\tau_{inner}=\left(\mathcal{Q}_{C}^{*}\left(S_{1},S_{4}\right), \mathcal{Q}_{S_{inner}}, \mathcal{Q}_{S_{inner}}^{\prime}, \mathbf{k}\right)$, let
-
-$$
-\begin{aligned}
-&\mathrm{p}_{1}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)=\operatorname{Pr}\left[\widetilde{\mathcal{P}} \stackrel{s}{\leftarrow} \widetilde{\operatorname{Perm}}(\mathcal{T}, w n)^{\ell}, \mathcal{S} \stackrel{s}{\leftarrow} \operatorname{Perm}(n)^{r}: \tilde{\mathcal{P}} \vdash \mathcal{Q}_{C} | \mathcal{S} \vdash \mathcal{Q}_{S}\right],\\
-&\mathrm{p}_{2}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)=\operatorname{Pr}\left[k_{1}, \ldots, k_{\ell} \leftarrow \mathcal{K}^{r+1}, \mathcal{S} \stackrel{s}{\leftarrow} \operatorname{Perm}(n)^{r}:\left(\mathrm{SP}_{k_{j}}[\mathcal{S}]\right)_{j} \vdash \mathcal{Q}_{C} | \mathcal{S} \vdash \mathcal{Q}_{S}\right].
-\end{aligned}
-$$
-We...    
-
-
-
-
-
+We are now ready for the second step of the reasoning. Let
+$\calS^*=(S_1,S_2,S_3,S_4)$, and define     {\small
+	$$\textsf{p}(\tau,S_1,S_4)=\Pr[\calS^*\xleftarrow{\$}\mathsf{Perm}(n)^4:\spn_{\bfk}^T[\calS^*]\vdash\mathcal{Q}_C^*(S_1,S_4)
+	\mid S_i\vdash\mathcal{Q}_{S_i},i=1,2,3,4].$$
+}%
+This captures the probability that the inner two SPN rounds ``extend'' the tuples in $\mathcal{Q}_C^*(S_1,S_4)$. The probability
+$\mathsf{p}_{2}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)$ can be related to it.
 
 \begin{lemma}
-	\label{lemma:innter-ratio-4-rounds}
+	\label{lemma:reduce-to-two-rounds}
 	
-	Pick a pair of functions $(S_{1}, S_{4})$, peeling off the outer two round and it holds
+	It holds
 	\begin{align}
-	\frac{\mathrm{p}\left(\tau, S_{1}, S_{4}\right)}{\left(2^{w n}\right)_{q}} \geq &1-\frac{q^2}{N^w}- \frac{4 w^2 q(p+wq)^2}{N}\\
-	&- \frac{8 w^2 q(p+w q)(p+w q +3 q)+4 w^2 q(p+3 wq)^2}{N^2}.
-	\label{eq:bound-innter-ratio-4-rounds}
+	\frac{\mathsf{p}_{2}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)}{\mathsf{p}_{1}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)}
+	\geq  &  (N^w)_q{\mathsf{p}(\tau,S_1,S_4)}  - \operatorname{Pr}_{S_1,S_4}[(S_1,S_4) \in \emph{$\Pi_{bad}$}\mid (S_{1}, S_{4})\in\Pi].
+	\label{eq:function-dependent-bound-on-ratio}
+	\end{align}
+%	Then we have
+%	\begin{align*}
+%	\frac{{\Pr}_{re}(\tau,\kvector)}{{\Pr}_{id}(\tau,\kvector)}
+%	\geq 1 & -\Pr[\textsf{Bad}(\mathbf{F}_1,\mathbf{F}_6)  \mid
+%	\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}]  \\
+%	&  - \mathbb{E}_{\mathbf{F}_1,\mathbf{F}_6}[\epsilon(\mathbf{F}_1,\mathbf{F}_6,k)\mid
+%	\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}].
+%	\end{align*}
+%	
+%	
+%	
+%	
+%	Assume that there exists a function
+%	$\epsilon:\mathsf{Perm}(n)^2\times\mathcal{K}^5\rightarrow[0,\infty)$ such that for any good $(S_1,S_4)$, it holds
+%	\begin{align}
+%	
+%	\frac{\mathsf{p}_{2}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)}{\mathsf{p}_{1}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)}
+%	\geq 1 - xxx.
+%	
+%	{\mathsf{p}(\tau,S_1,S_4)}\bigg/{\prod_{i=0}^{q-1}\left(\frac{1}{N^2-i}\right)}\geq1-\epsilon(\mathbf{F}_1,\mathbf{F}_6,k).
+%	\label{ieq:function-dependent-bound-on-ratio}
+%	\end{align}
+%	Then we have
+%	\begin{align*}
+%	\frac{{\Pr}_{re}(\tau,\kvector)}{{\Pr}_{id}(\tau,\kvector)}
+%	\geq 1 & -\Pr[\textsf{Bad}(\mathbf{F}_1,\mathbf{F}_6)  \mid
+%	\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}]  \\
+%	&  - \mathbb{E}_{\mathbf{F}_1,\mathbf{F}_6}[\epsilon(\mathbf{F}_1,\mathbf{F}_6,k)\mid
+%	\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}].
+%	\end{align*}
+\end{lemma}
+\begin{proof}
+	Define
+	$\mathsf{p}(S_1,S_4)\xlongequal{\text{def}}\Pr[(S_1^*,S_4^*)\xleftarrow{\$}\mathsf{Perm}(n)^2:(S_1^*,S_4^*)=(S_1,S_4)]$ for convenience. Then, clearly, once $S_1$ and $S_4$ are fixed
+	such that $S_1\vdash\mathcal{Q}_{S_1}$ and
+	$S_4\vdash\mathcal{Q}_{S_4}$, the event
+	$\spn_{\bfk}^T\vdash\mathcal{Q}_C$ is
+	equivalent to
+	$\spn_{\bfk}^T\vdash\mathcal{Q}_C^*(\mathbf{F}_1,\mathbf{F}_6)$.
+	Hence
+	\begin{align*}
+	{{\Pr}_{re}(\tau,\kvector)}
+	&  \geq\sum_{\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}
+		:(\mathbf{F}_1,\mathbf{F}_6)\text{ good}} \textsf{p}(\mathbf{F}_1,\mathbf{F}_6) \cdot
+	\frac{\textsf{p}(\tau,\mathbf{F}_1,\mathbf{F}_6)}{|\mathcal{K}|\cdot N^{4q_f}}  .
+	\end{align*}
+	Therefore,
+	\begin{align*}
+	\frac{{{\Pr}_{re}(\tau,\kvector)}}{{{\Pr}_{id}(\tau,\kvector)}}
+	&  \geq \frac{\sum_{\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}
+			:(\mathbf{F}_1,\mathbf{F}_6)\text{ good}} \textsf{p}(\mathbf{F}_1,\mathbf{F}_6) \cdot
+		\textsf{p}(\tau,\mathbf{F}_1,\mathbf{F}_6)}{   \Pr[\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}]
+		\cdot \prod_{i=0}^{q_e-1}\frac{1}{N^2-i}   }     \\
+	&  \geq   \frac{\sum_{\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}
+			:(\mathbf{F}_1,\mathbf{F}_6)\text{ good}} \textsf{p}(\mathbf{F}_1,\mathbf{F}_6)  (1-\epsilon(\mathbf{F}_1,\mathbf{F}_6,k))}{\Pr[\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}]} \text{ } (\text{by }(\ref{ieq:function-dependent-bound-on-ratio}))      \\
+	&  \geq 	 1-\Pr[\textsf{Bad}(\mathbf{F}_1,\mathbf{F}_6)\mid
+	\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}]      \\
+	& \textcolor{white}{\geq11} -\underbrace{  \frac{\sum_{\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}} \textsf{p}(\mathbf{F}_1,\mathbf{F}_6) \epsilon(\mathbf{F}_1,\mathbf{F}_6,k)}{\Pr[\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}]}.}_{\leq\sum_{\mathbf{F}_1,\mathbf{F}_6}\textsf{p}(\mathbf{F}_1,\mathbf{F}_6\mid\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6})\epsilon(\mathbf{F}_1,\mathbf{F}_6,k)= \mathbb{E}_{\mathbf{F}_1,\mathbf{F}_6}[\epsilon(\mathbf{F}_1,\mathbf{F}_6,k)\mid
+		\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}]} 
+	\end{align*}
+	as claimed.         \qed
+\end{proof}
+
+
+
+
+We appeal to~\cite{C:CDKLST18} to have a concrete bound on Eq. (\ref{eq:function-dependent-bound-on-ratio}).
+
+\begin{lemma}
+	\label{lemma:bound-middle-two-rounds}
+	
+	Assume $p+wq\leq N/2$, then
+	\begin{align}
+	(N^w)_q{\mathsf{p}(\tau,S_1,S_4)} \geq 1-\frac{q^2}{N^w}-\frac{q(2wp+6w^2q)^2}{N^2}.
+	\label{eq:bound-on-epsilon-middle}
 	\end{align}
 \end{lemma}
+\begin{proof}
+It can be checked that, the transcript $\mathcal{Q}_C^*(S_1,S_4)=(\mathcal{Q}_C,\mathcal{Q}_{S_2},\mathcal{Q}_{S_3})$ satisfies exactly the conditions defining a good transcript as per~\cite[page 740]{C:CDKLST18}. Moreover,
+the ratio ${\mathsf{p}(\tau,S_1,S_4)}/(1/(N^w)_q)$ is exactly the ratio of the probabilities to get $\tau$ in the real and in the ideal world once a good pair $(S_1,S_4)$ is fixed. The result thus immediately follows from~\cite[Lemma 9]{C:CDKLST18}.       \qed
+\end{proof}
 
 
-\noindent \emph{Proof:}  For any extended transcript $\tau_{inner}^{\prime}=\left(\mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right), \mathcal{Q}_{S_{inner}}, \mathcal{Q}_{S_{inner}}^{\prime}, \mathbf{k}\right)$, let us denote
+
+
+%
+%We define $\mathrm{p}\left(S_{1}, S_{4}\right) = \operatorname{Pr}\left[\left(S_{1}^{*}, S_{4}^{*}\right)
+%\stackrel{\mathrm{S}}{\leftarrow}(\mathcal{S}(n))^{2}: \left(S_{1}^{*}, S_{4}^{*}\right)=\left(S_{1}, S_{4}\right)\right]$ for convenience. Next we need to consider  $\frac{\operatorname{Pr}_{r e}(\tau, k)}{\operatorname{Pr}_{i d}(\tau, k)}$. Clearly, once $S_{1}$ and $S_{4}$ are fixed such that $S_{1} \vdash \mathcal{Q}_{S_{1}}$ and $S_{4} \vdash \mathcal{Q}_{S_{4}}$, the event
+%$\mathrm{SP}_{k}[\mathcal{S}] \vdash \mathcal{Q}_{C}$ is equivalent to $\mathrm{SP}_{k}^{S^{*}} \vdash \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$. Hence,
+%
+%$$
+%\operatorname{Pr}_{r e}(\tau, k) \geq \sum_{S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{4} \vdash \mathcal{Q}_{S_{4}}:\left(S_{1}, S_{4}\right) good }
+%\mathrm{p}\left(S_{1}, S_{4}\right) \cdot \mathrm{p}\left(\tau, S_{1}, S_{4}\right) \cdot \mathrm{p}\left(S_{2} \vdash \mathcal{Q}_{S_{2}},S_{3} \vdash \mathcal{Q}_{S_{3}}\right).
+%$$
+%
+%\noindent Because of $\operatorname{Pr} (\mathcal{P}  \vdash \mathcal{Q}_{C}) \le \frac{1}{\left(2^{w n}\right)_{q}}$. Therefore,\\
+%
+%\noindent \textbf{Lemma 7} \emph{Once $S_{1}$ and $S_{4}$ are fixed such that $S_{1} \vdash \mathcal{Q}_{S_{1}}$ and $S_{4} \vdash \mathcal{Q}_{S_{4}}$, we have}
+%
+%\begin{equation}
+%\begin{aligned}
+%\frac{\operatorname{Pr}_{r e}(\tau, k)}{\operatorname{Pr}_{i d}(\tau, k)} &\geq \frac{\sum_{S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{4} \vdash \mathcal{Q}_{S_{4}}: \left(S_{1}, S_{4}\right)good } \mathrm{p}\left(S_{1}, S_{4}\right) \cdot \mathrm{p}\left(\tau, S_{1}, S_{4}\right)}{\operatorname{Pr}(S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{4} \vdash \mathcal{Q}_{S_{4}}) \cdot \frac{1}{\left(2^{w n}\right)_{q}}}\\
+%&\geq \left(1-\operatorname{Pr}\left[\operatorname{Bad}\left(S_{1},S_{4}\right) | S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{4} \vdash \mathcal{Q}_{S_{4}}\right]\right) \cdot
+%\frac{\mathrm{p}\left(\tau, S_{1}, S_{4}\right)}{\frac{1}{\left(2^{w n}\right)_{q}}}.
+%\end{aligned}
+%\end{equation}
+%
+%\noindent \emph{Proof:} For any attainable transcript $\tau_{inner}=\left(\mathcal{Q}_{C}^{*}\left(S_{1},S_{4}\right), \mathcal{Q}_{S_{inner}}, \mathcal{Q}_{S_{inner}}^{\prime}, \mathbf{k}\right)$, let
+%
+%$$
+%\begin{aligned}
+%&\mathrm{p}_{1}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)=\operatorname{Pr}\left[\widetilde{\mathcal{P}} \stackrel{s}{\leftarrow} \widetilde{\operatorname{Perm}}(\mathcal{T}, w n)^{\ell}, \mathcal{S} \stackrel{s}{\leftarrow} \operatorname{Perm}(n)^{r}: \tilde{\mathcal{P}} \vdash \mathcal{Q}_{C} | \mathcal{S} \vdash \mathcal{Q}_{S}\right],\\
+%&\mathrm{p}_{2}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)=\operatorname{Pr}\left[k_{1}, \ldots, k_{\ell} \leftarrow \mathcal{K}^{r+1}, \mathcal{S} \stackrel{s}{\leftarrow} \operatorname{Perm}(n)^{r}:\left(\mathrm{SP}_{k_{j}}[\mathcal{S}]\right)_{j} \vdash \mathcal{Q}_{C} | \mathcal{S} \vdash \mathcal{Q}_{S}\right].
+%\end{aligned}
+%$$
+%We...    
+%
+
+
+
+For any extended transcript $\tau_{inner}^{\prime}=\left(\mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right), \mathcal{Q}_{S_{inner}}, \mathcal{Q}_{S_{inner}}^{\prime}, \mathbf{k}\right)$, let us denote
 
 $$
 \begin{aligned}
@@ -677,13 +753,9 @@ The previous proof is conditioned on $S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{4} \v
 \end{equation}
 
 
-From the Lemma 9 of ~\cite{cogliati2018wide}, we have
 
-$$
-\left(2^{w n}\right)_{q} \mathrm{p}\left(\tau^{\prime}\right) \geq 1-\frac{q^{2}}{2^{w n}}-\frac{q\left(2 w p+6 w^{2} q\right)^{2}}{2^{2 n}}.
-$$
 
-\noindent then combine all of (9), (10), we can obtain
+Combining all of (9), (10), we can obtain
 $$
 \begin{aligned}
 \frac{\mathrm{p}\left(\tau, S_{1}, S_{4}\right)}{\left(2^{w n}\right)_{q}} &\geq (1-\frac{q^{2}}{2^{w n}}-\frac{q\left(2 w p+6 w^{2} q\right)^{2}}{2^{2 n}})\\
