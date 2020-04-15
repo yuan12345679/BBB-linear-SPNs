@@ -72,7 +72,7 @@ Denote the domains and ranges of $\mathcal{Q}_{S_{1}}^{(0)}, \mathcal{Q}_{S_{2}}
 This type of lemma is usually proved by defining a large enough set of ``good'' keys, and then, for each choice of a good key, lower bounding the probability of observing this transcript. A key is usually said to be good if the adversary cannot use the transcript to follow the path of computation of the encryption/decryption of a query up to a contradiction. To this end, we follow~\cite[Sect. 4.2]{C:CDKLST18} and define an extension of the transcript in order to gather enough information to allow simple definition of bad keys/transcripts. Then, instead of summing over the choice of the key, we will define an extension of the transcript, that will provide the necessary information, and then sum over every possible good extension.
 
 
-We will first define what we mean by an extension of the transcript $\tau$. Then we will extension the outer two rounds and the inner two rounds transcripts respectively. Next, we will define bad extensions and explain the link between good extended transcripts and the ratio $\frac{p_2}{p_1}$. Finally, we will show that the number of bad extended transcripts is small enough in Lemma 6, and then show that the probability to obtain any good extension in the real world is sufficiently close to the probability to obtain $\tau$ the ideal world in Lemma 7. We stress that extended transcripts are completely virtual and are not disclosed to the adversary. They are just an artificial intermediate step to lower bound the probability to observe transcript $\tau$ in the real world.
+We will first define what we mean by an extension of the transcript $\tau$. Finally, we will show that the number of bad extended transcripts is small enough in Lemma 6, and then show that the probability to obtain any good extension in the real world is sufficiently close to the probability to obtain $\tau$ the ideal world in Lemma 7. We stress that extended transcripts are completely virtual and are not disclosed to the adversary. They are just an artificial intermediate step to lower bound the probability to observe transcript $\tau$ in the real world.
 
 
 We will extend the transcript $\tau$ of the attack via a certain randomized process. We begin with choosing a pair of keys $\left(k_{0}, k_{4}\right) \in \mathcal{K}^{2}$ uniformly at random. Once these keys have been chosen, some construction queries will become involved in collisions. A colliding query is defined as a construction query $(x, y) \in \mathcal{Q}_{C}$ such that one of the following conditions holds:
@@ -94,7 +94,7 @@ We are now going to build a new set $\mathcal{Q}_{S_{outer}}^{\prime}$ of S-box 
 
 
 
-\subsection{Bad Transcript for 4-rounds SPN and Probability}
+\subsection{Bad Transcript Extensions and Probability}
 \label{sec:bad-tau-4-rounds}
 
 The first step is to define the set of bad transcripts. Let $\tau = (\mathcal{Q}_C, \mathcal{Q}_{S})$ be an attainable transcript, with $|\mathcal{Q}_C| = q$ and $|\mathcal{Q}_{S_i}| = p$ for $i = 1, \ldots, 4$. Let
@@ -115,22 +115,23 @@ $$
 \end{aligned}
 $$
 %
-be the domains and ranges of $\mathcal{Q}_{S_{1}}^{(1)}$ and $\mathcal{Q}_{S_{4}}^{(1)}$, respectively. We define two quantities characterizing an extended transcript $\tau^{\prime}$, namely
-%
-$$
-\begin{aligned}
-&\alpha_{1} \stackrel{\text { def }}{=} |\left\{(x, y) \in \mathcal{Q}_{C}: \left(x \oplus k_{0}\right)[i] \in U_{1} \text { for some } i \in\{1, \ldots, w\}\right\} |\\
-&\alpha_{4} \stackrel{\text { def }}{=} |\left\{(x, y) \in \mathcal{Q}_{C}: \left(y \oplus k_{4}\right)[i] \in V_{4} \text { for some } i \in\{1, \ldots, w\}\right\} |
-\end{aligned}
-$$
-%
-In words, $\alpha_1$ (resp. $\alpha_4$) is the number of queries $(x, y) \in \mathcal{Q}_{C}$ which collide with a query $\left(u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(1)}$ (resp. which collide with a query $\left(u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}^{(1)}$) in the extended transcript. This corresponds to the number of queries $(x, y) \in \mathcal{Q}_{C}$ which collide with either an original query $\left(u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(0)}$ (resp. which collide with a query $\left(u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}^{(0)}$) or with a query $\left(x^{\prime}, y^{\prime}\right) \in \mathcal{Q}_{C}$ at an input of $S_1$ (resp. at the output of $S_4$ ), once the choice of $\left(k_{0}, k_{4}\right)$  has been made. We will also denote
-%
-$$
-\beta_{i}=\left|\mathcal{Q}_{S_{i}}^{(1)}\right|-\left|\mathcal{Q}_{S_{i}}^{(0)}\right|=\left|\mathcal{Q}_{S_{i}}^{(1)}\right|-p.
-$$
-%
-for $i=1, 4$ the number of additional queries included in the extended transcript.
+be the domains and ranges of $\mathcal{Q}_{S_{1}}^{(1)}$ and $\mathcal{Q}_{S_{4}}^{(1)}$, respectively.
+
+%We define two quantities characterizing an extended transcript $\tau^{\prime}$, namely
+%$$
+%\begin{aligned}
+%&\alpha_{1} \stackrel{\text { def }}{=} |\left\{(x, y) \in \mathcal{Q}_{C}: \left(x \oplus k_{0}\right)[i] \in U_{1} \text { for some } i \in\{1, \ldots, w\}\right\} |\\
+%&\alpha_{4} \stackrel{\text { def }}{=} |\left\{(x, y) \in \mathcal{Q}_{C}: \left(y \oplus k_{4}\right)[i] \in V_{4} \text { for some } i \in\{1, \ldots, w\}\right\} |
+%\end{aligned}
+%$$
+%%
+%In words, $\alpha_1$ (resp. $\alpha_4$) is the number of queries $(x, y) \in \mathcal{Q}_{C}$ which collide with a query $\left(u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(1)}$ (resp. which collide with a query $\left(u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}^{(1)}$) in the extended transcript. This corresponds to the number of queries $(x, y) \in \mathcal{Q}_{C}$ which collide with either an original query $\left(u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(0)}$ (resp. which collide with a query $\left(u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}^{(0)}$) or with a query $\left(x^{\prime}, y^{\prime}\right) \in \mathcal{Q}_{C}$ at an input of $S_1$ (resp. at the output of $S_4$ ), once the choice of $\left(k_{0}, k_{4}\right)$  has been made. We will also denote
+%%
+%$$
+%\beta_{i}=\left|\mathcal{Q}_{S_{i}}^{(1)}\right|-\left|\mathcal{Q}_{S_{i}}^{(0)}\right|=\left|\mathcal{Q}_{S_{i}}^{(1)}\right|-p.
+%$$
+%%
+%for $i=1, 4$ the number of additional queries included in the extended transcript.
 
 
 
