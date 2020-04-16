@@ -1,47 +1,51 @@
 
-
 \section{SPRP Security of 4-Round SPNs}
 \label{section:security of 4-round SPNs}
 
-We now explore conditions under which 4-round, linear SPNs {\it with no tweak} are secure as SPRPs. Recall from Sect. \ref{sec:prelim-tspn} that,
-
-
-
-Concretely, let $\calC3$ be the 4-round SPN using any linear transformations $T_1,T_2$. I.e.,
+In this section, we prove beyond-birthday-bound SPRP security for 4-round linear SPNs. Concretely, let $\spn_{\bfk}[\mathcal{S}]$ be the 4-round SPN using any linear transformations $T$. I.e.,
 %
-$$\calC3_{\kvector}^\calS(x):=k_4\xor\overline{S_4}(k_3\xor T_3(\overline{S_3}(k_2\xor T_2(\overline{S_2}(k_1\xor T_1(\overline{S_1}(k_0\xor x))))))).$$
+\begin{align}
+\spn_{\bfk}^T[\mathcal{S}](x):=k_4\xor\overline{S_4}(k_3\xor T(\overline{S_3}(k_2\xor T(\overline{S_2}(k_1\xor T(\overline{S_1}(k_0\xor x))))))).
+\label{eq:defn-4-round-spn}
+\end{align}
 %
-where $T_{1}, T_{2}, T_{3} \in \mathbb{F}^{w \times w}$ are invertible linear transformations. We prove that a 4-round, linear SPN is secure so long as (i) $T_1$, $T_2$ and $T_{2}^{-1}$, $T_{3}^{-1}$ contain no zero entries(Miles and Viola ~\cite{miles2015substitution} show that matrices with maximal branch number ~\cite{daemen1995cipher} satisfy this property), and (ii) round keys $\{k_i\}(i=0, 1, 2, 3, 4)$ are (individually) uniform.
+We show that $\spn^T$ is an SPRP as long as: (i) the linear layer $T$ contains no zero entries (Miles and Viola~\cite{miles2015substitution} show that matrices with maximal branch number~\cite{daemen1995cipher} satisfy this property), and (ii) the round keys $\{k_i\}(i=0, 1, 2, 3, 4)$ are uniform and independent.
 
 
 \begin{theorem}
-\label{theorem:5-round-pub-pspn}
-	
-Assume $w>1$, Let $\mathcal{C}$ be a 4-round, linear SPN with round permutations as in subsection 2.1 showed and with distribution $\mathcal{K}$ over keys $k_{0}, k_{1}, k_{2}, k_{3}, k_{4}$. If round keys $\{k_i\}(i=0, 1, 2, 3, 4)$ are (individually) uniform and $T_1$ and $T_{3}^{-1}$ contain no zero entries, then for any integers $\mathit{p}$ and $\mathit{q}$ such that $p+wq \leq \frac{2^n}{2}$, one has
+\label{theorem:4-round-spn}
+
+Assume $w\geq2$, and $p+wq\leq N/2$. Let $\spn_{\bfk}[\mathcal{S}]$ be a 4-round, linear SPN as defined by Eq. (\ref{eq:defn-4-round-spn}). If round keys $\bfk=(k_0,k_1,k_2,k_3,k_4)$ are uniform and independent, and $T$ contains no zero entries, then
+%
 \begin{align}
-\operatorname{Adv}_{\mathcal{C}}\left(p, q\right) &\leq \frac{q^2}{2^{n w}} + \frac{8 w^2 q(p+wq)^2+w^2 q}{2^n}\\
+\operatorname{Adv}_{\spn^T}^{\mathrm{su}}(p, q) &\leq \frac{q^2}{2^{n w}} + \frac{8 w^2 q(p+wq)^2+w^2 q}{2^n}\\
 &+ \frac{16 w^2 q(p+w q)(p+w q +3 q)+4 w^2 q(p+3 wq)^2+ w^2q(p+w q)(3p+w q)}{2^{2 n}}.
 \label{eq:bound-4-rounds}
-%\begin{aligned}
-%\operatorname{Adv}_{\mathrm{SP}^{T}}^{su}(p, q) & \leq w^{2} q\left(\delta^{\prime} p+\delta w q\right)\left(3 \delta^{\prime} p+3 \delta w q+2 \delta^{\prime} w q\right)+\frac{q^{2}}{2 w n}+\frac{q\left(2 w p+6 w^{2} q\right)^{2}}{2^{2 n}}. \\
-%\operatorname{Adv}_{\mathrm{SP}^{T}}^{mu}(p, q) & \leq w^{2} q\left(\delta^{\prime} p+\left(\delta+\delta^{\prime}\right) w q\right)\left(3 \delta^{\prime} p+3 \delta w q+5 \delta^{\prime} w q\right) \\
-%&+\frac{q^{2}}{2^{w n}}+\frac{q\left(2 w p+8 w^{2} q\right)^{2}}{2^{2 n}}.
-%\end{aligned}
 \end{align}
 \end{theorem}
+The proof of Theorem \ref{eq:bound-4-rounds} relies on the following lemma and on Lemma \ref{lemma:h-coeff} and Lemma \ref{lemma:point-wise}.
 
 
-\noindent \textbf{Outline of Proof of Theorem 1}. Throughout the proof, we will write a 4-round SP construction as $\operatorname{SP}_{k}[\mathcal{S}](x)$, where $\mathcal{S}=(S_1, S_2, S_3, S_4)$  is a pair of four public random permutations of $\{0,1\}^{n}$, and $k = (k_{0}, k_{1}, k_{2}, k_{3}, k_{4}) \in \mathcal{K}^{5}$ is the key, $x \in \{0,1\}^{w n}$ is the plaintext, and, for i = 1, 2, 3, 4,
+\begin{lemma}
+	\label{lemma:proximity-4-round}
+	
+	Assume $p+wq\leq N/2$. Let $\dis$ be a distinguisher in the single-user setting that makes $p$ primitive queries to each of $S_1$ and $S_2$ and makes $q$ construction queries. Then for any attainable
+	transcript $\tau=(\mathcal{Q}_C,\mathcal{Q}_S)$, one has
+	\begin{align}
+	\frac{\mathsf{p}_{2}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)}{\mathsf{p}_{1}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)}
+	\geq 1 - xxx.
+	\label{eq:bound-proximity-4-round}
+	\end{align}
+\end{lemma}
 
-$$
-\begin{array}{c}
-{S_{i}^{\|}:\{0,1\}^{w n} \rightarrow\{0,1\}^{w n}} \\
-{x=x_{1}\left\|x_{2}\right\| \ldots\left\|x_{w} \longmapsto S_{i}\left(x_{1}\right)\right\| S_{i}\left(x_{2}\right)\|\ldots\| S_{i}\left(x_{w}\right)}.
-\end{array}
-$$
 
-We also fix a distinguisher $\mathcal{D}$ as described in the statement and fix an attainable transcript $\tau =\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}\right)$ obtained $\mathcal{D}$. Let
 
+
+\subsection{Outline of the Proof}
+\label{sec:proof-sketch-4-rounds}
+
+Throughout the proof, we fix a distinguisher $\mathcal{D}$ as described in the statement and fix an attainable transcript $\tau =\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}\right)$ obtained $\mathcal{D}$. Let
+%
 $$
 \begin{aligned}
 &\mathcal{Q}_{S_{1}}^{(0)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(1, u, v) \in \mathcal{Q}_{S} \right\},\\
@@ -50,337 +54,421 @@ $$
 &\mathcal{Q}_{S_{4}}^{(0)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(4, u, v) \in \mathcal{Q}_{S} \right\}
 \end{aligned}
 $$
-
-\noindent and let
-
-$$
-\begin{aligned}
+%
+and let       {\small
+%
+\begin{align*}
 &U_{1}^{(0)}=\left\{u_{1} \in\{0,1\}^{n}:\left(1, u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(0)}\right\}, \quad V_{1}^{(0)}=\left\{v_{1} \in\{0,1\}^{n}:\left(1, u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(0)}\right\},\\
 &U_{2}^{(0)}=\left\{u_{2} \in\{0,1\}^{n}:\left(2, u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}^{(0)}\right\}, \quad V_{2}^{(0)}=\left\{v_{2} \in\{0,1\}^{n}:\left(2, u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}^{(0)}\right\},\\
 &U_{3}^{(0)}=\left\{u_{3} \in\{0,1\}^{n}:\left(3, u_{3}, v_{3}\right) \in \mathcal{Q}_{S_{3}}^{(0)}\right\}, \quad V_{3}^{(0)}=\left\{v_{3} \in\{0,1\}^{n}:\left(3, u_{3}, v_{3}\right) \in \mathcal{Q}_{S_{3}}^{(0)}\right\},\\
 &U_{4}^{(0)}=\left\{u_{4} \in\{0,1\}^{n}:\left(4, u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}^{(0)}\right\}, \quad V_{4}^{(0)}=\left\{v_{4} \in\{0,1\}^{n}:\left(4, u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}^{(0)}\right\}.
-\end{aligned}
-$$
+\end{align*}
+}%
+%
+Denote the domains and ranges of $\mathcal{Q}_{S_{1}}^{(0)}, \mathcal{Q}_{S_{2}}^{(0)}, \mathcal{Q}_{S_{3}}^{(0)}, \mathcal{Q}_{S_{4}}^{(0)}$, respectively.
 
-\noindent denote the domains and ranges of $\mathcal{Q}_{S_{1}}^{(0)}, \mathcal{Q}_{S_{2}}^{(0)}, \mathcal{Q}_{S_{3}}^{(0)}, \mathcal{Q}_{S_{4}}^{(0)}$, respectively.\\
 
-This type of lemma is usually proved by defining a large enough set of ``good'' keys, and then, for each choice of a good key, lower bounding the probability of observing this transcript, again by lower bounding the number of possible “intermediate” values. A key is usually said to be good if the adversary cannot use the transcript to follow the path of computation of the encryption/decryption of a query up to a contradiction. However, since the S-boxes are used several times in each round, there will not be enough information in the transcript to allow such a naive definition. Therefore, instead of summing over the choice of the key, we will define an extension of the transcript, that will provide the necessary information, and then sum over every possible good extension.\\
 
-We will first define what we mean by an extension of the transcript $\tau$. Then we will extension the outer two rounds and the inner two rounds transcripts respectively. Next, we will define bad extensions and explain the link between good extended transcripts and the ratio $\frac{p_2}{p_1}$. Finally, we will show that the number of bad extended transcripts is small enough in Lemma 6, and then show that the probability to obtain any good extension in the real world is sufficiently close to the probability to obtain $\tau$ the ideal world in Lemma 7. We stress that extended transcripts are completely virtual and are not disclosed to the adversary. They are just an artificial intermediate step to lower bound the probability to observe transcript $\tau$ in the real world.\\
+This type of lemma is usually proved by defining a large enough set of ``good'' keys, and then, for each choice of a good key, lower bounding the probability of observing this transcript. A key is usually said to be good if the adversary cannot use the transcript to follow the path of computation of the encryption/decryption of a query up to a contradiction. To this end, we follow~\cite[Sect. 4.2]{C:CDKLST18} and define an extension of the transcript in order to gather enough information to allow simple definition of bad keys/transcripts. Then, instead of summing over the choice of the key, we will define an extension of the transcript, that will provide the necessary information, and then sum over every possible good extension.
 
-\noindent \textsc{EXTENSION OF A TRANSCRIPT(OUTER TWO ROUNDS)}. We will extend the transcript $\tau$ of the attack via a certain randomized process. We begin with choosing a pair of keys $\left(k_{0}, k_{4}\right) \in \mathcal{K}^{2}$ uniformly at random. Once these keys have been chosen, some construction queries will become involved in collisions. A colliding query is defined as a construction query $(x, y) \in \mathcal{Q}_{C}$ such that one of the following conditions holds:
 
+We will first define what we mean by an extension of the transcript $\tau$. Finally, we will show that the number of bad extended transcripts is small enough in Lemma 6, and then show that the probability to obtain any good extension in the real world is sufficiently close to the probability to obtain $\tau$ the ideal world in Lemma 7. We stress that extended transcripts are completely virtual and are not disclosed to the adversary. They are just an artificial intermediate step to lower bound the probability to observe transcript $\tau$ in the real world.
+
+
+We will extend the transcript $\tau$ of the attack with certain additional randomness. In detail:
 \begin{itemize}
-  \item[1.]
-  there exist an S-box query $(1, u, v) \in \mathcal{Q}_{S}$ and an integer $i \in\{1, \ldots, w\}$ such that $\left(x \oplus k_{0}\right)[i]=u$.
-  \item[2.]
-  there exist an S-box query $(4, u, v) \in \mathcal{Q}_{S}$ and an integer $i \in\{1, \ldots, w\}$ such that $\left(y \oplus k_{4}\right)[i]=v$.
-  \item[3.]
-  there exist a construction query $\left(x^{\prime}, y^{\prime}\right) \in \mathcal{Q}_{C}$ and an integer $i,j \in\{1, \ldots, w\}$ such that $(x, y, i) \neq\left(x^{\prime}, y^{\prime}, j\right)$ and $\left(x \oplus k_{0}\right)[i] = \left(x' \oplus k_{0}\right)[j]$.
-  \item[4.]
-  there exist a construction query $\left(x^{\prime}, y^{\prime}\right) \in \mathcal{Q}_{C}$ and an integer $i,j \in\{1, \ldots, w\}$ such that $(x, y, i) \neq\left(x^{\prime}, y^{\prime}, j\right)$ and $i \in\{1, \ldots, w\}$ such that $\left(y \oplus k_{4}\right)[i] = \left(y' \oplus k_{4}\right)[j]$.
+	\item At the end of the interaction between \dis and the real world $(\mathcal{S},\spn_{\bfk}^T[\mathcal{S}])$, we append $\tau$ with the keys $\bfk=(k_0,k_1,k_2,k_3,k_4)$ and the two random permutations $S_1,S_4$ in use;
+	\item At the end of the interaction between \dis and the ideal world $(\mathcal{S},\widetilde{P})$, we append $\tau$ with randomly sampled keys $\bfk=(k_0,k_1,k_2,k_3,k_4)$ and the two random permutations $S_1,S_4$ in use.
 \end{itemize}
+Note that, in either case, it is equivalent to sampling two new random permutations $S_1,S_4$ such that $S_1\vdash\mathcal{Q}_{S_{1}}$ and $S_4\vdash\mathcal{Q}_{S_4}$ and appending them to $\tau$. With the above, for any $(x,y)\in\mathcal{Q}_C$ we define
+%
+$$a=T\big(\overline{S_1}\left(x \oplus k_{0}\right)\big),\ \ \  b=T^{-1}\big(\overline{S_{4}^{-1}}\left(y \oplus k_{4}\right)\big).$$
+%
+This extends the list $\mathcal{Q}_C$ into a list as follows:
+%
+$$\mathcal{Q}_C'=\big((x_1,a_1,b_1,y_1),\ldots,(x_q,a_q,b_q,y_q)\big).$$
+%
+With this new list, a colliding query is defined as a construction query $(x,y,a,b)\in\mathcal{Q}_C'$ as follows:
+%
+\begin{itemize}
+	\item[1.]
+	there exist an S-box query $(2, u, v) \in \mathcal{Q}_{S}$ and an integer $i \in\{1, \ldots, w\}$ such that $\left(a \oplus k_1\right)[i]=u$.
+	\item[2.]
+	there exist an S-box query $(3, u, v) \in \mathcal{Q}_{S}$ and an integer $i \in\{1, \ldots, w\}$ such that $\left(b \oplus T^{-1}(k_3)\right)[i]=v$.
+	\item[3.] there exist a construction query $\left(a^{\prime}, b^{\prime}\right) \in \mathcal{Q}_{C}$ and an integer $i,j \in\{1, \ldots, w\}$ such that $(a, b, i) \neq\left(a^{\prime}, b^{\prime}, j\right)$ and $\left(a \oplus k_1\right)[i] = \left(a' \oplus k_1\right)[j]$.
+	\item[4.] there exist a construction query $\left(a^{\prime}, b^{\prime}\right) \in \mathcal{Q}_{C}$ and an integer $i,j \in\{1, \ldots, w\}$ such that $(a, b, i) \neq\left(a^{\prime}, b^{\prime}, j\right)$ and $i \in\{1, \ldots, w\}$ such that $\left(b \oplus T^{-1}(k_3)\right)[i] = \left(b' \oplus T^{-1}(k_3)\right)[j]$.
+\end{itemize}
+%
+%
+Recall that the domains and ranges of $\mathcal{Q}_{S_{2}}^{(0)}$ and $\mathcal{Q}_{S_{3}}^{(0)}$ are denoted by $U_{2}^{(0)},V_{2}^{(0)},U_{3}^{(0)}$, and $V_{3}^{(0)}$ respectively. Now we further introduce a new set $\mathcal{Q}_{S}'$ of S-box evaluations to complete the transcript extension. In detail, for each colliding query $(x,a,b,y)\in\mathcal{Q}_C'$, we will add tuples $\left(2, (a \oplus k_1)[i], v^{\prime}\right)_{1 \leq i \leq w}$ (if $(a, b)$ collides at the input of $S_2$) or $\left(3, u^{\prime}, (b \oplus T^{-1}(k_3))[i]\right)_{1 \leq i \leq w}$ (if $(a, b)$ collides at the output of $S_3$) to $\mathcal{Q}_{S}'$ by lazy sampling $v^{\prime}=S_2(\left(a \oplus k_1\right)[i])$ or $u^{\prime}=S_3^{-1}(\left(b \oplus k_3\right)[i])$, as long as it has not been determined by any existing query in $\mathcal{Q}_S$.
 
-We are now going to build a new set $\mathcal{Q}_{S_{outer}}^{\prime}$ of S-box evaluations that will play the role of an extension of $\mathcal{Q}_{S}$. For each colliding query $(x, y) \in \mathcal{Q}_{C}$, we will add tuples $\left(1, \left(x \oplus k_{0}\right)[i], v^{\prime}\right)_{1 \leq i \leq w}$ (if ($\mathit{x}$, $\mathit{y}$) collides at the input of $S_1$) or $\left(4, u^{\prime}, \left(y \oplus k_{4}\right)[i]\right)_{1 \leq i \leq w}$ (if ($\mathit{x}$, $\mathit{y}$) collides at the output of $S_4$) by lazy sampling $v^{\prime}=S_{1}(\left(x \oplus k_{0}\right)[i])$ or $u^{\prime}=S_{4}^{-1}(\left(y \oplus k_{4}\right)[i])$, as long as it has not been determined by any existing query in $\mathcal{Q}_{S}$. Then we choose the key $k_1, k_2, k_3$ uniformly at random. An extended transcript of $\tau$ will be defined as a tuple $\tau^{\prime}=\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}, \mathcal{Q}_{S_{outer}}^{\prime}, \mathbf{k}\right)$ where $\mathbf{k}=\left(k_{0}, k_{1}, k_{2},k_{3},k_{4}\right)$. For each collision between a construction query and a primitive query, or between two construction queries, the extended transcript will contain enough information to compute a complete round of the evaluation of the SPN. This will be useful to lower bound the probability to get the transcript $\tau$ in the real world.
+
+An extended transcript of $\tau$ includes all the above additional information, i.e.,
+%
+$$\tau'=(\mathcal{Q}_{C}',\mathcal{Q}_{S},\mathcal{Q}_{S}',S_1,S_4,\bfk).$$
+%
+For each collision between a construction query and a primitive query, or between two construction queries, the extended transcript will contain enough information to compute a complete round of the evaluation of the SPN. This will be useful to lower bound the probability to get the transcript $\tau$ in the real world.
 
 
-\subsection{Bad Transcript for 4-rounds SPN and Probability}
 
-\noindent The first step is to define the set of bad transcripts. Let $\tau = (\mathcal{Q}_C, \mathcal{Q}_{S}, \mathbf{k})$ be an attainable transcript, with $|\mathcal{Q}_C| = q$ and $|\mathcal{Q}_{S_i}| = p$ for $i = 1, \cdots, 4$. Let
 
+
+\subsection{Bad Transcript Extensions and Probability}
+\label{sec:bad-tau-4-rounds}
+
+The first step is to define the set of bad transcripts. Let $\tau'=(\mathcal{Q}_{C}',\mathcal{Q}_{S},\mathcal{Q}_{S}',S_1,S_4,\bfk)$ be an attainable extended transcript, with $|\mathcal{Q}_C| = q$ and $|\mathcal{Q}_{S_i}| = p$ for $i = 1, 2,3, 4$. Let
+%
 $$
 \begin{aligned}
 &\mathcal{Q}_{S_{1}}^{(1)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(1, u, v) \in \mathcal{Q}_{S} \cup \mathcal{Q}_{S_{outer}}^{\prime}\right\}\\
-&\mathcal{Q}_{S_{4}}^{(1)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(4, u, v) \in \mathcal{Q}_{S} \cup \mathcal{Q}_{S_{outer}}^{\prime}\right\}\\
+&\mathcal{Q}_{S_2}^{(1)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(2, u, v) \in \mathcal{Q}_{S} \cup \mathcal{Q}_{S_{inner}}^{\prime}\right\}\\
+&\mathcal{Q}_{S_3}^{(1)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(3, u, v) \in \mathcal{Q}_{S} \cup \mathcal{Q}_{S_{inner}}^{\prime}\right\}\\
+&\mathcal{Q}_{S_{4}}^{(1)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(4, u, v) \in \mathcal{Q}_{S} \cup \mathcal{Q}_{S_{outer}}^{\prime}\right\}
 \end{aligned}
 $$
-
-\noindent In words, $\mathcal{Q}_{S_{i}}^{(1)}$ summarizes each constraint that is forced on $S_{i}$ by $\mathcal{Q}_{S}$ and $\mathcal{Q}_{S_{outer}}^{\prime}$. Let 
-
+%
+In words, $\mathcal{Q}_{S_{i}}^{(1)}$ summarizes each constraint that is forced on $S_{i}$ by $\mathcal{Q}_{S}$ and $\mathcal{Q}_{S}^{\prime}$. Let 
+%
 $$
 \begin{aligned}
 &U_{1}=\left\{u_{1} \in\{0,1\}^{n}:\left(1, u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(1)}\right\}, \quad V_{1}=\left\{v_{1} \in\{0,1\}^{n}:\left(1, u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(1)}\right\},\\
-&U_{4}=\left\{u_{4} \in\{0,1\}^{n}:\left(4, u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}^{(1)}\right\}, \quad V_{4}=\left\{v_{4} \in\{0,1\}^{n}:\left(4, u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}^{(1)}\right\}\\
+&U_2=\left\{u_2 \in\{0,1\}^{n}:\left(2, u_2, v_2\right) \in \mathcal{Q}_{S_2}^{(1)}\right\}, \quad V_2=\left\{v_2 \in\{0,1\}^{n}:\left(2, u_2, v_2\right) \in \mathcal{Q}_{S_2}^{(1)}\right\},\\
+&U_3=\left\{u_3 \in\{0,1\}^{n}:\left(3, u_3, v_3\right) \in \mathcal{Q}_{S_3}^{(1)}\right\}, \quad V_3=\left\{v_3 \in\{0,1\}^{n}:\left(3, u_3, v_3\right) \in \mathcal{Q}_{S_3}^{(1)}\right\}\\
+&U_{4}=\left\{u_{4} \in\{0,1\}^{n}:\left(4, u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}^{(1)}\right\}, \quad V_{4}=\left\{v_{4} \in\{0,1\}^{n}:\left(4, u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}^{(1)}\right\}
 \end{aligned}
 $$
+%
+be the domains and ranges of $\mathcal{Q}_{S_{1}}^{(1)},\ldots,\mathcal{Q}_{S_{4}}^{(1)}$, respectively.
 
-\noindent be the domains and ranges of $\mathcal{Q}_{S_{1}}^{(1)}$ and $\mathcal{Q}_{S_{4}}^{(1)}$, respectively. We define two quantities characterizing an extended transcript $\tau^{\prime}$, namely
 
-$$
-\begin{aligned}
-&\alpha_{1} \stackrel{\text { def }}{=} |\left\{(x, y) \in \mathcal{Q}_{C}: \left(x \oplus k_{0}\right)[i] \in U_{1} \text { for some } i \in\{1, \ldots, w\}\right\} |\\
-&\alpha_{4} \stackrel{\text { def }}{=} |\left\{(x, y) \in \mathcal{Q}_{C}: \left(y \oplus k_{4}\right)[i] \in V_{4} \text { for some } i \in\{1, \ldots, w\}\right\} |
-\end{aligned}
-$$
 
-In words, $\alpha_1$ (resp. $\alpha_4$) is the number of queries $(x, y) \in \mathcal{Q}_{C}$ which collide with a query $\left(u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(1)}$ (resp. which collide with a query $\left(u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}^{(1)}$) in the extended transcript. This corresponds to the number of queries $(x, y) \in \mathcal{Q}_{C}$ which collide with either an original query $\left(u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(0)}$ (resp. which collide with a query $\left(u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}^{(0)}$) or with a query $\left(x^{\prime}, y^{\prime}\right) \in \mathcal{Q}_{C}$ at an input of $S_1$ (resp. at the output of $S_4$ ), once the choice of $\left(k_{0}, k_{4}\right)$  has been made. We will also denote
 
-$$
-\beta_{i}=\left|\mathcal{Q}_{S_{i}}^{(1)}\right|-\left|\mathcal{Q}_{S_{i}}^{(0)}\right|=\left|\mathcal{Q}_{S_{i}}^{(1)}\right|-p.
-$$
+\begin{definition}
+\label{defn:bad-tau-4-rounds}
 
-for $i=1, 4$ the number of additional queries included in the extended transcript.\\
-
-\noindent \textbf{Definition 2} \emph{ We say an extended transcript $\tau^{\prime}$ is bad if at least one of the following conditions is fulfilled:}
-
-\begin{itemize}
-  \item[\bone]
-  there exists $(x, y) \in \mathcal{Q}_{C}, \left(u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(1)}, \left(u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}^{(1)}$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(x \oplus k_{0}\right)[i]=u_1$ and $\left(y \oplus k_{4}\right)[j]=v_4$.
-  \item[\btwo]
-  there exists $(x,y) \in \mathcal{Q}_{C}, \left(u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(1)}, \left(u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(x \oplus k_{0}\right)[i]=u_1$ and $\left(T_{1}\left(S_{1}\left(x \oplus k_{0}\right) \oplus k_{1}\right)\right)[j]=u_2$.
-  \item[\bthree]
-  there exists $(x,y) \in \mathcal{Q}_{C}, \left(u_{3}, v_{3}\right) \in \mathcal{Q}_{S_{3}}, \left(u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}^{(1)}$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(y \oplus k_{4}\right)[j]=v_4$ and $\left(\left(T_{3}^{-1}\left(S_{4}^{-1}\left(y \oplus k_{4}\right)\right)\right) \oplus k_{3}\right)[i]=v_3$.
-  \item[\bfour] 
-  	there exists $(x,y) \in \mathcal{Q}_{C}$ and distinct indices $i, j \in \{1, \ldots, w\}$ such that $(x\xor k_0)[i]=(x\xor k_0)[j]$, or $(y\xor k_4)[i]=(y\xor k_4)[j]$.
+We say an extended transcript $\tau^{\prime}$ is bad if at least one of the following conditions is fulfilled. The conditions are classified into two categories depending on the relevant randomness. In detail, regarding $k_0,k_1,k_3,k_4$:
+\begin{itemize}[leftmargin=10mm]
+	\item[\bone]
+	there exists $(x, y) \in \mathcal{Q}_{C}, u_1 \in U_1, v_4 \in V_4$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(x \oplus k_{0}\right)[i]=u_1$ and $\left(y \oplus k_{4}\right)[j]=v_4$.
+	\item[\btwo]
+	there exists $(x,y) \in \mathcal{Q}_{C}, u_1 \in U_1, u_2\in U_2^{(0)}$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(x \oplus k_{0}\right)[i]=u_1$ and $\left(T_{1}\left(\overline{S_1}\left(x \oplus k_{0}\right) \oplus k_{1}\right)\right)[j]=u_2$.
+	\item[\bthree]
+	there exists $(x,y) \in \mathcal{Q}_{C}, v_{3}\in V_3^{(0)}, v_{4}\in V_4$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(y \oplus k_{4}\right)[j]=v_4$ and $\left(T_{3}^{-1}\left(\overline{S_4^{-1}}\left(y \oplus k_{4}\right)\right)\xor T_{3}^{-1}(k_3)\right) [i]=v_3$.
+	\item[\bfour]
+	there exists $(x,y) \in \mathcal{Q}_{C}$ and distinct indices $i, j \in \{1, \ldots, w\}$ such that $(x\xor k_0)[i]=(x\xor k_0)[j]$, or $(y\xor k_4)[i]=(y\xor k_4)[j]$.
 \end{itemize}
+%
+%
+Regarding $k_2,S_1,S_4$, and $\mathcal{Q}_S'$:
+%
+%
+\begin{itemize}[leftmargin=10mm]
+	\item[\cone]
+	there exist $(a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $i, j \in\{1, \ldots, w\}$, $u_{2} \in U_{2}$ and $v_{3} \in V_{3}$ such that $(a \oplus k_1)[i] = u_2$ and $(b\xor T_{3}^{-1}(k_3))[j] = v_3$.
+	\item[\ctwo]
+	there exist $(a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $i, j \in\{1, \ldots, w\}$, $u_{2} \in U_{2}$ and $u_{3} \in U_{3}$ such that $(a \oplus k_1)[i] = u_2$ and $(T_{2}(\overline{S_2}(a \oplus k_1))\xor k_2)[j] = u_3$.
+	\item[\cthree]
+	there exist $(a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $i, j \in\{1, \ldots, w\}$, $v_{2} \in V_{2}$ and $v_{3} \in V_{3}$ such that $(b\xor T_{3}^{-1}(k_3))[j] = v_3$ and $\left(T_{2}^{-1}(b\xor T_{3}^{-1}(k_3)) \oplus T_{2}^{-1}(k_2)\right)[j] = v_2$.
+	\item[\cfour]
+	there exist $(a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, $u_{2},u_{2}' \in U_{2}^{(0)}$ such that
+	$$(a \oplus k_1)[i] = u_2,\text{ and }
+	(a \oplus k_1)[i'] = u_2'.$$
+	\item[\cfive] \textcolor{red}{there exist distinct $(a, b),(a',b') \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, $u_{2} \in U_{2}$ such that}
+	$$\left(T_1\left(a \oplus k_{1}\right)\right)[i] = u_2,\text{ and }
+	\left(T_1\left(a \oplus k_{1}\right)\right)[i'] = \left(T_1\left(a' \oplus k_{1}\right)\right)[i'].$$
+	\item[\csix]
+	there exist $(a, b), (a^{\prime}, b^{\prime}) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $i, i^{\prime},j, j^{\prime} \in\{1, \ldots, w\}$, with $(a,b, j) \neq \left(a^{\prime}, b',j^{\prime}\right)$, $u_{2}, u_{2}^{\prime} \in U_{2}$ such that $(a \oplus k_1)[i] = u_2, (a' \oplus k_1)[i'] = u_2'$, and
+	%
+	$$\big(T_2(\overline{S_2}(a\xor k_1))\xor k_2\big)[j]=\big(T_2(\overline{S_2}(a'\xor k_1))\xor k_2\big)[j'].
+	$$
+	%
+	\item[\cseven]
+	there exist $(a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, $v_{3},v_{3}' \in V_{3}$ such that
+	$$\left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)[i] = v_3,\text{ and }
+	\left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)[i'] = v_3'.$$
+	\item[\ceight]
+	\textcolor{red}{there exist distinct $(a, b),(a',b') \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, $v_{3} \in V_{3}$ such that}
+	$$\left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)[i] = v_3,\text{ and }
+	\left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)[i] =\left(T_{3}^{-1}\left(b'\right) \oplus k_{3}\right)[i'].$$
+	\item[\cnine]
+	there exist $(a, b), (a^{\prime}, b^{\prime}) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $i, i^{\prime}, j, j^{\prime} \in\{1, \ldots, w\}$, with $(a,b, j) \neq \left(a',b^{\prime}, j^{\prime}\right)$, $v_{3},v_{3}^{\prime} \in V_{3}$ such that $\big(b \oplus T^{-1}(k_3)\big)[i] = v_3, \big(b' \oplus T^{-1}(k_3)\big)[i'] = v_3'$, and
+	%
+	$$\big(T^{-1}(\overline{S_3^{-1}}(b \oplus T^{-1}(k_3))\xor k_2)\big)[j]=\big(T^{-1}(\overline{S_3^{-1}}(b' \oplus T^{-1}(k_3))\xor k_2)\big)[j'].
+	$$
+\end{itemize}
+Any extended transcript that is not bad will be called good. Given an original transcript $\tau$, we denote $\Theta_{good}(\tau)$ (resp. $\Theta_{bad}(\tau)$) the set of good (resp. bad) extended transcripts of $\tau$ and $\Theta^{'}(\tau)$ the set of all extended transcripts of $\tau$.
+\end{definition}
 
-\noindent \emph{Any extended transcript that is not bad will be called good. Given an original transcript $\tau$, we denote $\Theta_{good}(\tau)$ (resp. $\Theta_{bad}(\tau)$) the set of good (resp. bad) extended transcripts of $\tau$ and $\Theta^{'}(\tau)$ the set of all extended transcripts of $\tau$.}\\
 
-We start by upper bounding the probability of getting bad transcripts in the ideal world.\\
 
-\noindent \textbf{Lemma 6} \emph{One has}
 
-\begin{equation}
-\operatorname{Pr}[\tau^{\prime} \in \Theta_{bad}(\tau)] \leq \frac{w^2 q (p+w q) (3 p +w q)}{N^{2}} + \frac{w^{2} q}{N}.
-\end{equation}
-\\
-\noindent \emph{Proof:} We fix any extended transcript, denoted $\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}, \mathcal{Q}_{S_{outer}}^{\prime}\right)$. For any fixed construction query $(x, y) \in \mathcal{Q}_{C}$, now we upper bound the probabilities of the bad extended transcript.\\
 
-\noindent Consider \bone first: Since we have at most $w^{2} q \left(p+w q\right)^{2}$ choices for $(x, y) \in \mathcal{Q}_{C}, \left(u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(1)}, \left(u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}^{(1)}$ and index $i, j \in \{1, \ldots, w\}$ and since the random choice of $k_{0}$ and $k_{4}$ are independent, one has
+We start by upper bounding the probability of getting bad transcripts in the ideal world.
 
+\begin{lemma}
+	\label{lemma:bad-tau-4-rounds}
+	
+	Assuming $p+wq\leq N/2$, then it holds
+	\begin{align}
+	\operatorname{Pr}[\tau^{\prime} \in \Theta_{bad}(\tau)] \leq \frac{3w^{2} q \left(p+w q\right)^{2}}{N^{2}} + \frac{w^{2} q}{N} + \frac{9w^2 q (p+w q)^{2}}{N^2}+ \frac{16w^3q^2p}{N^2}.
+	\label{eq:bound-bad-tau-4-rounds}
+	\end{align}
+\end{lemma}
+\begin{proof}
+We upper bound the probabilities of the conditions in turn. Consider \bone first. For each fixed choice of $(x, y) \in \mathcal{Q}_{C}, \left(u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(1)}, \left(u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}^{(1)}$ and indices $i, j \in \{1, \ldots, w\}$, since $k_{0}$ and $k_{4}$ are uniform and independent, the probability to have $(x \oplus k_{0})[i]=u_1$ and $(y \oplus k_{4})[j]=v_4$ is $1/N^2$. Since we have at most $w^{2} q \left(p+w q\right)^{2}$ such choices, we have
+%
 $$
 \operatorname{Pr}\left[\bone\right] \leq \frac{w^{2} q \left(p+w q\right)^{2}}{N^{2}}.
 $$
+%
 
-Similarly, since $k_{0}$ and $k_{1}$ are random and independent, and we have at most $w^{2} q p \left(p+w q\right)$ for $(x, y) \in \mathcal{Q}_{C}, \left(u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(1)}, \left(u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}$ and index $i, j \in \{1, \ldots, w\}$, we have $\operatorname{Pr}\left[\btwo\right] \leq \frac{w^{2} q p \left(p+w q\right)}{N^{2}}$; by symmetry, $\operatorname{Pr}\left[\bthree\right] \leq \frac{w^{2} q p \left(p+w q\right)}{N^{2}}$. \\
+Similarly, since $k_{0}$ and $k_{1}$ are uniform and independent, and we have at most $w^{2} q p \left(p+w q\right)$ for $(x, y) \in \mathcal{Q}_{C}, \left(u_{1}, v_{1}\right) \in \mathcal{Q}_{S_{1}}^{(1)}, \left(u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}$ and indices $i, j \in \{1, \ldots, w\}$, we have $\operatorname{Pr}\left[\btwo\right] \leq \frac{w^{2} q p \left(p+w q\right)}{N^{2}}\leq\frac{w^{2} q \left(p+w q\right)^{2}}{N^{2}}$; since $k_3$ and $k_4$ are uniform and independent, we have $\operatorname{Pr}\left[\bthree\right] \leq \frac{w^{2} q \left(p+w q\right)^{2}}{N^{2}}$ by symmetry.
 
-\noindent Then consider \bfour. We assume that $w \neq 2$, because of $w = 1$ does not belong to the primary problem of the SP-networks. Since the random choice of $k_{0}$ and $k_{4}$ are independent, then we have $\operatorname{Pr}\left[\bfour\right] \leq \frac{w^{2} q}{N}$. The sum yields (4).
 
-\subsection{Analysis for Good Transcript}
+Finally, for \bfour, since $k_{0}$ and $k_{4}$ are uniform, for each choice of $(x,y) \in \mathcal{Q}_{C}$ and $i, j \in \{1, \ldots, w\}$, the probability to have $(x\xor k_0)[i]=(x\xor k_0)[j]$ or $(y\xor k_4)[i]=(y\xor k_4)[j]$ is $2/N$. Since the number of such choices is $q{w\choose 2}\leq w^2q/2$, we have $\operatorname{Pr}\left[\bfour\right] \leq \frac{w^{2} q}{N}$.
 
-\noindent Fix a good transcript and a good round-key vector $\mathnormal{k}$, we are to derive a lower bound for the probability  $\operatorname{Pr}\left[\mathcal{S} \stackrel{\mathbf{s}}{\leftarrow}(\mathcal{S}(n))^{4}: \mathrm{SP}_{k}[\mathcal{S}] \vdash \mathcal{Q}_{C} | \mathcal{S} \vdash \mathcal{Q}_{S}\right]$. It consists of two steps. In the first step, we will lower bound the probability that a pair of functions $(S_{1}, S_{4})$  satisfies certain ``bad'' conditions that will be defined. With the values given by a ``good'' pair of functions $(S_{1}, S_{4})$, a transcript of the distinguisher on 4 rounds can be transformed into a special transcript on 2 rounds; in this sense, we ``peel off'' the outer two rounds. Then in the second step, assuming $(S_{1}, S_{4})$ is good, we analyze the induced 2-round transcript to yield the final bounds. In the following, each step would take a subsection. As mentioned in the Introduction, this two-step approach is motivated by Cogliati et al.
-~\cite{cogliati2015tweaking} and ~\cite{cogliati2015beyond}.\\
 
-\noindent
-\textsc{PEELING OFF THE OUTER TWO ROUNDS}. Pick a pair of S-box $(S_1, S_4)$ such that $S_{1} \vdash \mathcal{Q}_{S_{1}}^{(0)}$ and $S_{4} \vdash \mathcal{Q}_{S_{4}}^{(0)}$, and for each $ (x, y) \in \mathcal{Q}_{C}$ we set $a=S_{1}\left(x \oplus k_{0}\right)$, $b=S_{4}^{-1}\left(y \oplus k_{4}\right)$. In this way we obtain $\mathnormal{q}$ tuples of the form $(a,b)$; for convenience we denote the set of such induced tuples by $\mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$. Similarly, we also extended the inner two rounds:\\
-We begin with choosing a pair of keys $\left(k_{1}, k_{3}\right) \in \mathcal{K}^{2}$ uniformly at random. Once these keys have been chosen, some construction queries will become involved in collisions. A colliding query is defined as a construction query $(a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$ is similar to a colliding query is defined as a construction query $(x, y) \in \mathcal{Q}_{C}$, there we will not describe it in detail.\\
 
-Then we build a new set $\mathcal{Q}_{S_{inner}}^{\prime}$ of S-box evaluations that will play the role of an extension of $\mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$. For each colliding query $(a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, we will add tuples $\left(2, T_1\left(a \oplus k_{1}\right)[i], v^{\prime}\right)_{1 \leq i \leq w}$(if $(a, b)$ collides at the input of $S_2$) or $\left(3, u^{\prime}, T_{3}^{-1}\left(b\right) \oplus k_{3}[i]\right)_{1 \leq i \leq w}$ (if $(a, b)$ collides at the output of $S_3$) by lazy sampling, as long as it has not been determined by any existing query in $\mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $v^{\prime}=S_{2}(\left(T_1\left(a \oplus k_{1}\right)\right))[i])$ or $u^{\prime}=S_{3}^{-1}(\left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)[i])$. Then we choose the key $k_2$ uniformly at random. An extended transcript of $\tau_{inner}$ will be defined as a tuple $\tau_{inner}^{\prime}=\left(\mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right), \mathcal{Q}_{S_{inner}}, \mathcal{Q}_{S_{inner}}^{\prime}, \mathbf{k}\right)$ where $\mathbf{k}=\left(k_{1}, k_{2}, k_{3}\right)$. For each collision between a construction query and a primitive query, or between two construction queries, the extended transcript will contain enough information to compute a complete round of the evaluation of the SPN. This will be useful to lower bound the probability to get the transcript $\tau_{inner}$ in the real world.\\
 
-Then for $Y \in \mathcal{T}_{1}$, define
 
-\begin{equation}
-\begin{aligned}
-\mathrm{p}\left(\tau, S_{1}, S_{4}\right)&=\operatorname{Pr}\left[S^{*} \stackrel{\mathrm{s}}{\leftarrow}(\mathcal{S}(n))^{2}:
-\mathrm{SP}_{k}^{S^{*}} \vdash \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right) | S_{i} \vdash \mathcal{Q}_{S_{i}}, i=1,2,3,4\right] \\
-&=\operatorname{Pr}\left[S^{*} \stackrel{\mathrm{s}}{\leftarrow}(\mathcal{S}(n))^{2}: \mathrm{SP}_{k}^{S^{*}} \vdash \mathcal{Q}_{C}^{*}\left(S_{1},
-S_{4}\right) | S_{2} \vdash \mathcal{Q}_{S_{2}}, S_{3} \vdash \mathcal{Q}_{S_{3}}\right] \\
-& \cdot \operatorname{Pr}\left[S_{2} \vdash \mathcal{Q}_{S_{2}}, S_{3} \vdash \mathcal{Q}_{S_{3}}| S_{i} \vdash \mathcal{Q}_{S_{i}}, i=1,2,3,4\right]\\
-&=\operatorname{Pr}\left[S^{*} \stackrel{\mathrm{s}}{\leftarrow}(\mathcal{S}(n))^{2}: \mathrm{SP}_{k}^{S^{*}} \vdash \mathcal{Q}_{C}^{*}\left(S_{1},
-S_{4}\right) | S_{2} \vdash \mathcal{Q}_{S_{2}}, S_{3} \vdash \mathcal{Q}_{S_{3}}\right].
-\end{aligned}
-\end{equation}
-
-We define $\mathrm{p}\left(S_{1}, S_{4}\right) = \operatorname{Pr}\left[\left(S_{1}^{*}, S_{4}^{*}\right)
-\stackrel{\mathrm{S}}{\leftarrow}(\mathcal{S}(n))^{2}: \left(S_{1}^{*}, S_{4}^{*}\right)=\left(S_{1}, S_{4}\right)\right]$ for convenience. Next we need to consider  $\frac{\operatorname{Pr}_{r e}(\tau, k)}{\operatorname{Pr}_{i d}(\tau, k)}$. Clearly, once $S_{1}$ and $S_{4}$ are fixed such that $S_{1} \vdash \mathcal{Q}_{S_{1}}$ and $S_{4} \vdash \mathcal{Q}_{S_{4}}$, the event
-$\mathrm{SP}_{k}[\mathcal{S}] \vdash \mathcal{Q}_{C}$ is equivalent to $\mathrm{SP}_{k}^{S^{*}} \vdash \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$. Hence,
-
+\smallskip
+\noindent \textsc{\cone}. Consider the probability that a construction query $(x,y)$ fulfills \cone. By $(T_1(\overline{S_1}(x\xor k_0))\xor k_1)[i]\in U_2$, it has to be $(x\xor k_0)[i_0]\notin U_1$ for any $i_0\in\{1,\ldots,w\}$, as otherwise it contradicts $\neg\btwo$. Thus conditioned on $S_{1} \vdash \mathcal{Q}_{S_{1}}$, the value of $S_1((x \oplus k_0)[i_0])$ remains uniform in $\{0, 1\}^{n} \backslash V_1^{(1)}$ for any fixed $i_0$. Because every entry in the $i_{0}$th column of $T_{1}$ is nonzero, the probability to have $(T_1(\overline{S_1}(x\xor k_0))\xor k_1)[i]=u_2$ is at most $1/(N-p-wq)$. Similarly, the probability of $(b\xor T_{3}^{-1}(k_3))[j] = v_3$ is at most $1/(N-p-wq)$. Since we have at most $q(p+wq)^2w^2$ choices for $(x,y)$ (or $(a, b)$), $i, j \in\{1, \ldots, w\}$, $u_{2} \in U_{2}$ and $v_{3} \in V_{3}$, we have
+%
+%
 $$
-\operatorname{Pr}_{r e}(\tau, k) \geq \sum_{S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{4} \vdash \mathcal{Q}_{S_{4}}:\left(S_{1}, S_{4}\right) good }
-\mathrm{p}\left(S_{1}, S_{4}\right) \cdot \mathrm{p}\left(\tau, S_{1}, S_{4}\right) \cdot \mathrm{p}\left(S_{2} \vdash \mathcal{Q}_{S_{2}},S_{3} \vdash \mathcal{Q}_{S_{3}}\right).
+\operatorname{Pr}\left[\cone\right] \leq \frac{w^{2} q (p+w q)^{2}}{(N-p-wq)^{2}}.
 $$
 
-\noindent Because of $\operatorname{Pr} (\mathcal{P}  \vdash \mathcal{Q}_{C}) \le \frac{1}{\left(2^{w n}\right)_{q}}$. Therefore,\\
 
-\noindent \textbf{Lemma 7} \emph{Once $S_{1}$ and $S_{4}$ are fixed such that $S_{1} \vdash \mathcal{Q}_{S_{1}}$ and $S_{4} \vdash \mathcal{Q}_{S_{4}}$, we have}
 
-\begin{equation}
-\begin{aligned}
-\frac{\operatorname{Pr}_{r e}(\tau, k)}{\operatorname{Pr}_{i d}(\tau, k)} &\geq \frac{\sum_{S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{4} \vdash \mathcal{Q}_{S_{4}}: \left(S_{1}, S_{4}\right)good } \mathrm{p}\left(S_{1}, S_{4}\right) \cdot \mathrm{p}\left(\tau, S_{1}, S_{4}\right)}{\operatorname{Pr}(S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{4} \vdash \mathcal{Q}_{S_{4}}) \cdot \frac{1}{\left(2^{w n}\right)_{q}}}\\
-&\geq \left(1-\operatorname{Pr}\left[\operatorname{Bad}\left(S_{1},S_{4}\right) | S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{4} \vdash \mathcal{Q}_{S_{4}}\right]\right) \cdot
-\frac{\mathrm{p}\left(\tau, S_{1}, S_{4}\right)}{\frac{1}{\left(2^{w n}\right)_{q}}}.
-\end{aligned}
-\end{equation}
-
-\noindent \emph{Proof:} For any attainable transcript $\tau_{inner}=\left(\mathcal{Q}_{C}^{*}\left(S_{1},S_{4}\right), \mathcal{Q}_{S_{inner}}, \mathcal{Q}_{S_{inner}}^{\prime}, \mathbf{k}\right)$, let
-
+\smallskip
+\noindent \textsc{\ctwo and \cthree}. Consider the probability that a construction query $(x,y)$ fulfills \ctwo. Following the analysis of \cone, the probability to have $(T_1(\overline{S_1}(x\xor k_0))\xor k_1)[i]=u_2$ is at most $1/(N-p-wq)$. On the other hand, since $k_{2}$ is uniform and independent from the queries and from $k_{0}$, $k_{1}$, the probability to have $(T_{2}(\overline{S_2}(a \oplus k_1))\xor k_2)[j] = u_3$ is $1/N$. Since we have at most $q(p+wq)^2w^2$ choices for $(x,y)$ (or $(a, b)$), $i, j \in\{1, \ldots, w\}$, $u_{2} \in U_{2}$ and $u_{3} \in U_{3}$, we have
+%
+%
 $$
-\begin{aligned}
-&\mathrm{p}_{1}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)=\operatorname{Pr}\left[\widetilde{\mathcal{P}} \stackrel{s}{\leftarrow} \widetilde{\operatorname{Perm}}(\mathcal{T}, w n)^{\ell}, \mathcal{S} \stackrel{s}{\leftarrow} \operatorname{Perm}(n)^{r}: \tilde{\mathcal{P}} \vdash \mathcal{Q}_{C} | \mathcal{S} \vdash \mathcal{Q}_{S}\right],\\
-&\mathrm{p}_{2}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)=\operatorname{Pr}\left[k_{1}, \ldots, k_{\ell} \leftarrow \mathcal{K}^{r+1}, \mathcal{S} \stackrel{s}{\leftarrow} \operatorname{Perm}(n)^{r}:\left(\mathrm{SP}_{k_{j}}[\mathcal{S}]\right)_{j} \vdash \mathcal{Q}_{C} | \mathcal{S} \vdash \mathcal{Q}_{S}\right].
-\end{aligned}
+\operatorname{Pr}\left[\ctwo\right] \leq \frac{w^{2} q (p+w q)^{2}}{N  (N-p-wq)}.
+$$
+%
+Similarly,
+%
+$$
+\operatorname{Pr}\left[\cthree\right] \leq \frac{w^{2} q (p+w q)^{2}}{N  (N-p-wq)}.
 $$
 
-$$
-\begin{aligned}
-&\mathcal{Q}_{S_{2}}^{(1)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(2, u, v) \in \mathcal{Q}_{S} \cup \mathcal{Q}_{S_{inner}}^{\prime}\right\},\\
-&\mathcal{Q}_{S_{3}}^{(1)}=\left\{(u, v) \in\{0,1\}^{n} \times\{0,1\}^{n}:(3, u, v) \in \mathcal{Q}_{S} \cup \mathcal{Q}_{S_{inner}}^{\prime}\right\}.\\
-\end{aligned}
-$$
 
-$$
-\begin{aligned}
-&U_{2}=\left\{u_{2} \in\{0,1\}^{n}:\left(2, u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}^{(1)}\right\}, \quad V_{2}=\left\{v_{2} \in\{0,1\}^{n}:\left(2, u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}^{(1)}\right\},\\
-&U_{3}=\left\{u_{3} \in\{0,1\}^{n}:\left(3, u_{3}, v_{3}\right) \in \mathcal{Q}_{S_{3}}^{(1)}\right\}, \quad V_{3}=\left\{v_{3} \in\{0,1\}^{n}:\left(3, u_{3}, v_{3}\right) \in \mathcal{Q}_{S_{3}}^{(1)}\right\}.
-\end{aligned}
-$$
 
-We will also denote
 
+\smallskip
+\noindent \textsc{\cfour and \cseven}. For any of the $qw^2p^2/2$ choices of $(a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, and $u_{2},u_{2}' \in U_{2}^{(0)}$, the probability to have $(a \oplus k_1)[i] = u_2$ and $(a \oplus k_1)[i'] = u_2'$ is $1/N^2$, since $k_1$ is uniform and independent of $S_1$. By these, we have
+%
 $$
-\beta_{i}=\left|\mathcal{Q}_{S_{i}}^{(1)}\right|-\left|\mathcal{Q}_{S_{i}}^{(0)}\right|=\left|\mathcal{Q}_{S_{i}}^{(1)}\right|-p.
+\operatorname{Pr}\left[\cfour\right] \leq \frac{w^2qp^2}{2N^2}.
+$$
+Similarly, using the uniformness of $k_3$, we have
+%
+$$
+\operatorname{Pr}\left[\cseven\right] \leq \frac{w^2qp^2}{2N^2}.
 $$
 
-for $i=2, 3$ the number of additional queries included in the extended transcript.\\
 
-\noindent \textbf{Definition 3} \emph{Then we define a predicate $\operatorname{Bad}\left(S_{1},S_{4}\right)$ on the pair $(S_1, S_4)$, which holds if the corresponding induced set $\mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$ fulfills at least one of the following nine ``collision'' conditions:}
 
-\begin{itemize}
-  \item[\cone]
-  there exist $(a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $i, j \in\{1, \ldots, w\}$, $u_{2} \in U_{2}$ and $v_{3} \in V_{3}$ such that $\left(T_1\left(a \oplus k_{1}\right)\right)[i] = u_2$ and $\left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)[i] = v_3$.
-  \item[\ctwo]
-  there exist $(a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $i, j \in\{1, \ldots, w\}$, $u_{2} \in U_{2}$ and $u_{3} \in U_{3}$ such that $\left(T_1\left(a \oplus k_{1}\right)\right)[i] = u_2$ and $\left(T_{2}\left(S_{2}\left(T_1\left(a \oplus k_{1}\right)\right) \oplus k_{2}\right)\right)[j] = u_3$.
-  \item[\cthree]
-  there exist $(a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $i, j \in\{1, \ldots, w\}$, $v_{2} \in V_{2}$ and $v_{3} \in V_{3}$ such that $\left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)[i] = v_3$ and $\left(T_{2}^{-1}\left(S_{3}^{-1}\left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)\right) \oplus k_{2}\right)[j] = v_2$.
-  \item[\cfour]
-  there exist $(a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, $u_{2},u_{2}' \in U_{2}$ such that
-  $$\left(T_1\left(a \oplus k_{1}\right)\right)[i] = u_2,\text{ and }
-  \left(T_1\left(a \oplus k_{1}\right)\right)[i'] = u_2'.$$
-  \item[\cfive]
-  there exist distinct $(a, b),(a',b') \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, $u_{2} \in U_{2}$ such that
-  $$\left(T_1\left(a \oplus k_{1}\right)\right)[i] = u_2,\text{ and }
- \left(T_1\left(a \oplus k_{1}\right)\right)[i'] = \left(T_1\left(a' \oplus k_{1}\right)\right)[i'].$$
-  \item[\csix]
-  there exist $(a, b), (a^{\prime}, b^{\prime}) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $i, i^{\prime},j, j^{\prime} \in\{1, \ldots, w\}$, with$(a, j) \neq \left(a^{\prime}, j^{\prime}\right)$, $u_{2}, u_{2}^{\prime} \in U_{2}$ such that $\left(T_1\left(a \oplus k_{1}\right)\right)[i] = u_2, \left(T_1\left(a' \oplus k_{1}\right)\right)[i'] = u_2^{\prime}$ and
-$$
- \left(T_{2}\left(S_{2}\left(T_1\left(a \oplus k_{1}\right)\right) \oplus k_{2}\right)\right)[j] = \left(T_{2}\left(S_{2}\left(T_1\left(a' \oplus k_{1}\right)\right) \oplus k_{2}\right)\right)[j'].
-$$
- \item[\cseven]
-  there exist $(a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, $v_{3},v_{3}' \in V_{3}$ such that
-  $$\left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)[i] = v_3,\text{ and }
-  \left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)[i'] = v_3'.$$
-  \item[\ceight]
-  there exist distinct $(a, b),(a',b') \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, $v_{3} \in V_{3}$ such that
-  $$\left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)[i] = v_3,\text{ and }
- \left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)[i] =\left(T_{3}^{-1}\left(b'\right) \oplus k_{3}\right)[i'].$$
-  \item[\cnine]
-  there exist $(a, b), (a^{\prime}, b^{\prime}) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $i, i^{\prime}, j, j^{\prime} \in\{1, \ldots, w\}$, with$(b, j) \neq \left(b^{\prime}, j^{\prime}\right)$, $v_{3},v_{3}^{\prime} \in V_{3}$ such that $\left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)[i] = v_3, \left(T_{3}^{-1}\left(b'\right) \oplus k_{3}\right)[i'] = v_3'$ and
-$$
-  \left(T_{2}^{-1}\left(S_{3}^{-1}\left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)\right) \oplus k_{2}\right)[j]= \left(T_{2}^{-1}\left(S_{3}^{-1}\left(T_{3}^{-1}\left(b'\right) \oplus k_{3}\right)\right) \oplus k_{2}\right)[j'].
-$$
-\end{itemize}
 
-\noindent \emph{Otherwise we say that $(S_{1}, S_{4})$ is good, we denote $\Pi_{good}$, resp. $\Pi_{bad}$ the set of good, resp. bad pairs of permutations $(S_{1}, S_{4})$ such that $S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{4} \vdash \mathcal{Q}_{S_{4}}$.}\\ 
+%
+%\smallskip
+%\noindent\textsc{\cfive and \ceight}. Consider any of the $qw^2p^2/2$ choices of $(a, b),(a',b') \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, and $u_{2} \in U_{2}$.
+%
+%
+%By $\neq\btwo$, to have $\left(T_1\left(a \oplus k_{1}\right)\right)[i] = u_2$, it has to be that $(x\xor k_0)[i_0]\notin U_1$ for any $i_0$.
+%
+%
+%There exists $i_0$ such that $(x\xor k_0)[i_0]\neq(x'\xor k_0)[i_0]$.
 
-In all the following, we denote \emph{$\Pi$} the set of pairs of permutations $(S_{1}, S_{4})$ such that $S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{4} \vdash \mathcal{Q}_{S_{4}}$. The first step towards studying good transcripts will be to upper bound the probabilities of the nine conditions.\\ 
 
-\noindent \textbf{Lemma 8} \emph{ For any extended $S_{1} \vdash \mathcal{Q}_{S_{1}},S_{4} \vdash \mathcal{Q}_{S_{4}}$, we have}
 
-\begin{equation}
-\begin{aligned}
-\operatorname{Pr}[(S_1,S_4) \in \emph{$\Pi_{bad}$}] \leq  &\frac{2 w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)} +\frac{2 w^{2} q (p+w q)(p+w q+2 q)}{N \cdot (N-p)}\\
-& + \frac{w^{2} q (p+w q)(p+w q+2 q)}{(N-p)^2} + \frac{2 w^{2} q (p+w q)^{2}}{(N-p)}.
-\end{aligned}
-\end{equation}
 
-\noindent \emph{Proof:} We upper bound the probabilities of the nine conditions in turn. We denote $\Theta_i$ the set of attainable transcripts satisfying condition \ci.\\
 
-\noindent \textsc{Condition \cone}. If there exist $(a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $(u_{2}, v_{2}) \in \mathcal{Q}_{S_{2}}^{(1)}, (u_{3}, v_{3}) \in \mathcal{Q}_{S_{3}}^{(1)}$ such that $\left(T_1\left(a \oplus k_{1}\right)\right)[i] = u_2$ and $\left(T_{3}^{-1}\left(b\right) \oplus k_{3}\right)[i] = v_3$, $i, j \in\{1, \ldots, w\}$ then for $(x, y) \in \mathcal{Q}_{C}$, satisfy that $\left(T_{1}\left(S_{1}\left(x \oplus k_{0}\right) \oplus k_{1}\right)\right)[i]=u_2$ and $\left(T_{3}^{-1}\left(S_{4}^{-1}\left(y \oplus k_{4}\right)\right) \oplus k_{3}\right)[j]=v_3$, it can not be $\left(x \oplus k_{0}\right)[i] \in \mathcal{Q}_{S_{1}}^{(1)}$, otherwise would satisfy \btwo. Similarly, $\left(y \oplus k_{4}\right)[j] \in \mathcal{Q}_{S_{4}}^{(1)}$. Thus conditioned on $S_{1} \vdash \mathcal{Q}_{S_{1}}$ and $S_{4} \vdash \mathcal{Q}_{S_{4}}$, the two values $\left(S_{1}\left(x \oplus k_{0}\right)\right)[i]$ and $\left(S_{4}^{-1}\left(y \oplus k_{4}\right)\right)[j]$  remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{4}})$. Because every entry in the $i_{0}$th column of $T_{1}$ and $T_{4}$ is nonzero, thus for each $(a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $(u_{2}, v_{2}) \in \mathcal{Q}_{S_{2}}^{(1)}$, $(u_{3}, v_{3}) \in \mathcal{Q}_{S_{3}}^{(1)}$, the probability that both $\left(T_{1}\left(S_{1}\left(x \oplus k_{0}\right) \oplus k_{1}\right)\right)[i]=u_2$ and $\left(T_{3}^{-1}\left(S_{4}^{-1}\left(y \oplus k_{4}\right)\right) \oplus k_{3}\right)[j]=v_3$ hold is at most $\frac{1}{(N-p)^{2}}$. Since we have at most $w^{2} q (p+w q)^{2}$ such tuples, so
 
-$$
-\operatorname{Pr}\left[\tau_{inner} \in \Theta_{1}\right] \leq \frac{w^{2} q (p+w q)^{2}}{(N-p)^{2}}.
-$$
 
-\noindent \textsc{Condition \ctwo and Condition \cthree}. If there exist $(a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $(u_{2},v_{2}) \in \mathcal{Q}_{S_{2}}^{(1)}, (u_{3}, v_{3}) \in \mathcal{Q}_{S_{3}}^{(1)}$, $i, j \in\{1, \ldots, w\}$ such that 
-$$\left(T_1\left(a \oplus k_{1}\right)\right)[i] = u_2,  \quad \left(T_{2}\left(S_{2}\left(T_1\left(a \oplus k_{1}\right)\right) \oplus k_{2}\right)\right)[j] = u_3$$
- \noindent then $\left(T_{1}\left(S_{1}\left(x \oplus k_{0}\right) \oplus k_{1}\right)\right)[i]=u_2$ and $\left(T_{2}\left(S_{2}\left(T_{1}\left(S_{1}\left(x \oplus k_{0}\right) \oplus k_{1}\right)\right) \oplus k_{2}\right)\right)[j]=u_{3}$ for $(x, y) \in \mathcal{Q}_{C}$, it can not be $\left(x \oplus k_{0}\right)[i] \in \mathcal{Q}_{S_{1}}^{(1)}$, otherwise would satisfy \btwo. Thus conditioned on $S_{1} \vdash \mathcal{Q}_{S_{1}}$ and $S_{4} \vdash \mathcal{Q}_{S_{4}}$, the value $\left(S_{1}\left(x \oplus k_{0}\right)\right)[i]$ remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{4}})$. Because every entry in the $i_{0}$th column of $T_{1}$ is nonzero, the probability that there exist $(x, y) \in \mathcal{Q}_{C}$, $(u_{2}, v_{2}) \in \mathcal{Q}_{S_{2}}^{(1)}$, $i \in\{1, \ldots, w\}$ such that $\left(T_{1}\left(S_{1}\left(x \oplus k_{0}\right) \oplus k_{1}\right)\right)[i]=u_2$ is upper bounded by $\frac{w q (p+w q)}{N-p}$ . And Since the random choice of $k_{2}$ is independent from the queries transcript and from the choice of $k_{0}$, $k_{1}$, thus the probability, over the random choice of $k_{2}$ that there exist $(u_{3}, v_{3}) \in \mathcal{Q}_{S_{3}}^{(1)}$, $j \in\{1, \ldots, w\}$ such that $\left(T_{2}\left(S_{2}\left(T_{1}\left(S_{1}\left(x \oplus k_{0}\right) \oplus k_{1}\right)\right) \oplus k_{2}\right)\right)[j]=u_{3}$, conditioned on $\left(T_{1}\left(S_{1}\left(x \oplus k_{0}\right) \oplus k_{1}\right)\right)[i]=u_2$ is upper bounded by $\frac{w (p+w q)}{N}$. Thus, by summing over every construction query, one has
 
-$$
-\operatorname{Pr}\left[\tau_{inner} \in \Theta_{2}\right] \leq \frac{w^{2} q (p+w q)^{2}}{N \cdot (N-p)}.
-$$
 
-\noindent Similarly, one has
 
-$$
-\operatorname{Pr}\left[\tau_{inner} \in \Theta_{3}\right] \leq \frac{w^{2} q (p+w q)^{2}}{N \cdot (N-p)}.
-$$
+%$$\left(T_1\left(a \oplus k_{1}\right)\right)[i] = u_2,\text{ and }
+%\left(T_1\left(a \oplus k_{1}\right)\right)[i'] = \left(T_1\left(a' \oplus k_{1}\right)\right)[i'].$$
 
-\noindent \textsc{Conditions \cfour}. Similar to the previous has mentioned, it can not be $\left(x \oplus k_{0}\right)[i] \in \mathcal{Q}_{S_{1}}^{(1)}$, otherwise would satisfy \btwo. Thus conditioned on $S_{1} \vdash \mathcal{Q}_{S_{1}}$ and $S_{4} \vdash \mathcal{Q}_{S_{4}}$, the value $\left(S_{1}\left(x \oplus k_{0}\right)\right)[i]$ remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{4}})$. Then take advantage of \bfour, it can not be $(x\xor k_0)[i]=(x\xor k_0)[j]$, or $(y\xor k_4)[i]=(y\xor k_4)[j]$. That is $\left(a \oplus k_{1}\right)[i] \neq \left(a \oplus k_{1}\right)[i']$ must be established. So, one has
 
-$$
-\operatorname{Pr}\left[\tau_{inner} \in \Theta_{4}\right] \leq \frac{w^{2} q (p+w q)^{2}}{N-p}.
-$$
 
-\noindent \textsc{Conditions \cfive}. We have the value $\left(S_{1}\left(x \oplus k_{0}\right)\right)[i]$ remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{4}})$.  Because of the fact that there exists $i$ with $x[i]\neq x'[i]$, that is there exist $i$ with $\left(a \oplus k_{1}\right)[i'] \neq \left(a' \oplus k_{1}\right)[i']$. So,
+We have the value $\left(S_{1}\left(x \oplus k_{0}\right)\right)[i]$ remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{4}})$.  Because of the fact that there exists $i$ with $x[i]\neq x'[i]$, that is there exist $i$ with $\left(a \oplus k_{1}\right)[i'] \neq \left(a' \oplus k_{1}\right)[i']$. So,
 
 $$
 \operatorname{Pr}\left[\tau_{inner} \in \Theta_{5}\right] \leq \frac{w^{2} q^{2} (p+w q)}{(N-p)^2}.
 $$
 
-\noindent The proof of \cseven and \ceight is similar to the above-mentioned.\\
 
-\noindent \textsc{Conditions \csix and \cnine}. Because of the value $\left(S_{1}\left(x \oplus k_{0}\right)\right)[i]$ remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{4}})$. We divide \csix into two subevents: the first concerning with $j\neq j'$, while the second concerning with $j=j'$.
 
-For the first case, to make 
-$$
- \left(T_{2}\left(S_{2}\left(T_1\left(a \oplus k_{1}\right)\right) \oplus k_{2}\right)\right)[j] = \left(T_{2}\left(S_{2}\left(T_1\left(a' \oplus k_{1}\right)\right) \oplus k_{2}\right)\right)[j'].
-$$
-\noindent achieved, we just leverage the fact that $k_2[j]$ and $k_2[j']$ are uniform and independent, so the collision holds with probability $\frac{1}{N}$. Because of $a$remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{4}})$, let $(a', b')$ be the unique query such that the collision happened. Then the probability that $\left(T_1\left(a \oplus k_{1}\right)\right)[i] = u_2, \left(T_1\left(a' \oplus k_{1}\right)\right)[i'] = u_2^{\prime}$ is at most $\frac{1}{N-p}$, because we have at most $w^2 q^2(p+ w q)$ such tuples, one has
 
-$$
-\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)}.
-$$
 
-For the case of $j=j'$ with distinct $(a,b),(a',b')$, that is there is only one index has different value of input and output. Because of the value $\left(S_{1}\left(x' \oplus k_{0}\right)\right)[i]$ also remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{4}})$ conditioned on the fact that the value $\left(S_{1}\left(x \oplus k_{0}\right)\right)[i]$ is uniform. Then we leverage the randomness due to lazy sampling $S_2(T_1(a\xor k_1))$. Conditioned on $\cfour$, for $i''\neq i$, the value $T_1(a \oplus k_1)[i'']$ ``does not collide with'' pairs in $\mathcal{Q}_{S_{2}}^{(1)}$, and will be assigned a random outputs during the lazy sampling process. Simultaneously conditioned on $\cfive$, for distinct $i'' \neq i$, if $(T_1\left(a \oplus k_{1}\right))[i] = u_2$, it holds $(T_1(a\xor k_1))[i'']\neq(T_1(a'\xor k_1))[i'']$. Since $T_2$ contain no zero entries, so the value $\left(T_{2}\left(S_{2}\left(T_1\left(a \oplus k_{1}\right)\right) \oplus k_{2}\right)\right)[i'']$ could not be disturbed by the value of $\left(T_{2}\left(S_{2}\left(T_1\left(a' \oplus k_{1}\right)\right) \oplus k_{2}\right)\right)[i'']$ and thus uniform in at least
-$\frac{1}{N - p- wq}$. One has,
+\smallskip
+\noindent\textsc{Conditions \csix and \cnine}. Consider \csix first. For any choice of $(a, b), (a^{\prime}, b^{\prime}) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $i, i^{\prime},j, j^{\prime} \in\{1, \ldots, w\}$, with $(a, j) \neq \left(a^{\prime}, j^{\prime}\right)$, $u_{2}, u_{2}^{\prime} \in U_{2}$, denote by $\coll(a,a',i,i',j,j',u_2,u_2')$ the event that
+%
+%
+$$(a \oplus k_1)[i] = u_2\bigwedge(a' \oplus k_1)[i'] = u_2'\bigwedge\big(T_2(\overline{S_2}(a\xor k_1))\xor k_2\big)[j]=\big(T_2(\overline{S_2}(a'\xor k_1))\xor k_2\big)[j'].
 $$
-\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)}.
-$$
-\noindent So, combine these two subevents, one has
-$$
-\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)} + \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N- p)}.
-$$
-\noindent Similarly, one has
-$$
-\operatorname{Pr}\left[\tau_{inner} \in \Theta_{9}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)} + \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)}.
-$$
-The result follows by an union bound over all conditions.\\
+%
+%
+With this, we derive the probability via the following calculations.
+%
+%
+\begin{align*}
+\Pr[\csix]  
+=   &  \underbrace{\sum_{(a,b),(a',b')}\sum_{i,i'}\sum_{(u_2,v_2),(u_2',v_2')}\sum_{j\neq j'}\Pr[\coll(a,a',i,i',j,j',u_2,u_2')]}_{A_1}    \\
+&  + \underbrace{\sum_{(a,b)\neq(a',b')}\sum_{i,i'}\sum_{(u_2,v_2)}\sum_{j}\Pr[\coll(a,a',i,i',j,j',u_2,u_2')]}_{A_2}      \\
+&  +  \underbrace{\sum_{(a,b)\neq(a',b')}\sum_{i\neq i'}\sum_{(u_2,v_2)\neq(u_2',v_2')}\sum_{j}\Pr[\coll(a,a',i,i',j,j',u_2,u_2')]}_{A_3}       \\
+&  + \underbrace{\sum_{(a,b)\neq(a',b')}\sum_{i}\sum_{(u_2,v_2)\neq(u_2',v_2')}\sum_{j}\Pr[\coll(a,a',i,i',j,j',u_2,u_2')]}_{A_4}   .
+\end{align*}
 
-\noindent Then we have
+
+
+Regarding the term $A_1$, i.e., $j\neq j'$, we have
+%
+$$\Pr\bigg[\Big(\big(T_2(\overline{S_2}(a\xor k_1))\xor k_2\big)\xor k_3\Big)[j]=\Big(\big(T_2(\overline{S_2}(a'\xor k_1))\xor k_2\big)\xor k_3\Big)[j']\bigg]=\frac{1}{N}$$
+simply by that $k_2[j]$ and $k_2[j']$ are uniform and independent. Moreover, as argued before, the probability to have $(T_1(\overline{S_1}(x\xor k_0))\xor k_1)[i]=u_2$ is at most $1/(N-p-wq)$. By this,
+%
+$$\Pr\big[A_1\big]\leq\frac{w^3q^2p^2}{N(N-p-wq)^2}\leq\frac{w^3q^2p}{N(N-p-wq)}.$$
+
+
+
+Regarding the term $A_2$, since the number of choices for $(a, b), (a^{\prime}, b^{\prime}) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, $i, i^{\prime},j, j^{\prime} \in\{1, \ldots, w\}$, with $(a, j) \neq \left(a^{\prime}, j^{\prime}\right)$, $u_{2}=u_{2}^{\prime} \in U_{2}$ is at most $w^4q^2p$, we have
+%
+$$\Pr\big[A_2\big]\leq\frac{w^4q^2p}{N(N-p-wq)}.$$
+
+
+
+
+
+
+
+
+Regarding the term $A_3$, since $(a\xor k_1)[i]\in U_2^{(0)}$, it holds $(a\xor k_1)[i']\notin U_2^{(0)}$ by $\neg\cfour$. Therefore, a random output $v_2^*$ will be sampled during the extension process, so that $((a\xor k_1)[i'],v_2^*)\in\mathcal{Q}_{S_2}^{(1)}$. Conditioned on the values in $V_2^{(0)}$ (which includes $v_2'$), $v_2^*$ is uniform in {\it at least} $N-p-wq$ possibilities. This means the probability to have $T(\overline{S_2}(a\xor k_1))[j]=T(\overline{S_2}(a'\xor k_1))[j]$ is at most $1/(N-p-wq)$, as every entry in the $i'$th column of $T$ is nonzero. Moreover, as argued before, the probability to have $(T_1(\overline{S_1}(x\xor k_0))\xor k_1)[i]=u_2$ is at most $1/(N-p-wq)$. By this,
+%
+$$\Pr\big[A_3\big]\leq\frac{w^3q^2p^2}{N(N-p-wq)^2}\leq\frac{w^3q^2p}{N(N-p-wq)}.$$
+
+
+
+
+Finally, consider the term $A_4$. Assume that $\overline{S_2}(a\xor k_1)=\bfv_1\|v_1\|\bfv_2$ and
+$\overline{S_2}(a\xor k_1)=\bfv_1'\|v_1'\|\bfv_2'$ after the extension process.
+
+Then the equality $T(\overline{S_2}(a\xor k_1))[j]=T(\overline{S_2}(a'\xor k_1))[j]$ implies
+%
+%
+\begin{align}
+\bft_1^*\cdot\bfv_1\xor t^*\xor v_1\xor\bft_2^*\cdot\bfv_2=\bft_1^*\cdot\bfv_1'\xor t^*\xor v_1'\xor\bft_2^*\cdot\bfv_2'.
+\label{eq:interm-eq-c5}
+\end{align}
+%
+%
+for two vectors $\bft_1^*,\bft_2^*$ and $t^*\in\{0,1\}^n$. Now:
+\begin{itemize}
+	\item If $\bfv_1=\bfv_1'$ and $\bfv_2=\bfv_2'$, then Eq. (\ref{eq:interm-eq-c5}) collapses to $t^*\xor v_1=t^*\xor v_1'$ which is not possible;
+	\item Else, Eq. (\ref{eq:interm-eq-c5}) holds with probability at most $1/(N-p-wq)$.
+\end{itemize}
+Moreover, as argued before, the probability to have $(T_1(\overline{S_1}(x\xor k_0))\xor k_1)[i]=u_2$ is at most $1/(N-p-wq)$. By this,
+%
+$$\Pr\big[A_4\big]\leq\frac{w^3q^2p^2}{N(N-p-wq)^2}\leq\frac{w^3q^2p}{N(N-p-wq)}.$$
+%
+%
+
+Summing over the above, we reach
+%
+$$\Pr[\cfive]\leq\frac{4w^3q^2p}{N(N-p-wq)}.$$
+%
+
+The analysis of \cseven is similar by symmetry, resulting in
+%
+%
+$$\Pr[\cseven]\leq\frac{4w^3q^2p}{N(N-p-wq)}.$$
+%
+
+
+
+\arrangespace
+
+
+Summing over the above yields
+%
+\begin{align*}
+&  \operatorname{Pr}_{S_1,S_4}[(S_1,S_4) \in \emph{$\Pi_{bad}$}\mid (S_{1}, S_{4})\in\Pi]  \leq \sum_{i=1}^7\Pr[\ci]       \\
+\leq  & \frac{w^2 q (p+w q)^{2}}{(N-p-wq)^{2}}+
+\frac{2w^2 q (p+w q)^{2}}{N  (N-p-wq)}+
+\frac{w^2qp^2}{N^2}+
+\frac{8w^3q^2p}{N(N-p-wq)}      \\
+\leq  & \frac{9w^2 q (p+w q)^{2}}{N^2}+ \frac{16w^3q^2p}{N^2} .
+\end{align*}
+%
+as claimed.        \qed
+\end{proof}
+
+
+
+
+
+
+
+
+
+%\paragraph{\textsc{The inner two rounds.}}
+
+
+\subsection{Analyzing Good Transcript Extensions}
+\label{sec:good-tau-4-rounds}
+
+We are now ready for the second step of the reasoning. Define
+%
+$$\calC_{\bfk}^T[\calS](a):=   \overline{S_3}(T(\overline{S_2}(a\xor k_1))\xor k_2)\xor T^{-1}(k_3).$$
+%
+For any attainable transcript $\tau$, the ideal world probability is easy to calculate:
+%
+%
+\begin{align*}
+\mathsf{p}_{1}(\tau)=&\operatorname{Pr}\left[\widetilde{P} \stackrel{\$}{\leftarrow} \widetilde{{\mathsf{Perm}}}(\mathcal{T}, w n), \mathcal{S} \stackrel{\$}{\leftarrow} \mathsf{Perm}(n)^{r}: \widetilde{P} \vdash \mathcal{Q}_{C} \bigwedge \mathcal{S} \vdash \mathcal{Q}_{S}\right]		\\
+\leq&\frac{1}{(N^w)_q}\cdot\bigg(\frac{1}{(N)_p}\bigg)^4.
+\end{align*}
+
+
+
+To reach the real world probability $\mathsf{p}_2(\tau)$, for any transcript $\tau'=(\mathcal{Q}_{C}',\mathcal{Q}_{S},\mathcal{Q}_{S}',S_1^*,S_4^*,\bfk)$ extended from $\tau$, denote            {\small
+%
+%
+\begin{align}
+\mathsf{p}_{\mathrm{re}}(\tau') = & \operatorname{Pr}\Big[\left(\mathbf{k}',\mathcal{S}\right) \stackrel{\$}{\leftarrow} (\{0,1\}^{wn})^4 \times \mathsf{Perm}(n)^4:
+\Big((S_1=S_1^*)\wedge (S_4=S_4^*)\wedge		\notag 	\\
+&\codeindent\codeindent\codeindent\codeindent\codeindent\codeindent\codeindent\codeindent\codeindent (S_2\vdash\mathcal{Q}_{S_2}^{(1)})\wedge (S_3\vdash\mathcal{Q}_{S_3}^{(1)})\wedge (\calC_{\bfk}^T[\calS] \vdash \mathcal{Q}_C')\wedge(\bfk'=\bfk)\Big)\Big]\\
+\mathsf{p}_{\mathrm{mid}}(\tau') = & \operatorname{Pr}\Big[\mathcal{S} \stackrel{\$}{\leftarrow}\mathsf{Perm}(n)^4:(\calC_{\bfk}^T[\calS] \vdash \mathcal{Q}_C')\Big|
+%
+(S_1=S_1^*)\wedge (S_4=S_4^*)\wedge	 	\notag 	\\
+&\codeindent\codeindent\codeindent\codeindent\codeindent\codeindent\codeindent\codeindent\codeindent (S_2\vdash\mathcal{Q}_{S_2}^{(1)})\wedge (S_3\vdash\mathcal{Q}_{S_3}^{(1)})\Big].
+\end{align}
+}%
+%
+%
+With these, we have
+%
+%
+\begin{align*}
+\mathsf{p}_2(\tau)=&\operatorname{Pr}\left[\bfk \stackrel{\$}{\leftarrow} (\{0,1\}^{wn})^5, \mathcal{S} \stackrel{\$}{\leftarrow} \mathsf{Perm}(n)^{r}:\spn_{\bfk}^{T}[\mathcal{S}] \vdash \mathcal{Q}_{C} \bigwedge \mathcal{S} \vdash \mathcal{Q}_{S}\right]		\\
+\geq & {\sum}_{xx}
+%
+%
+\frac{1}{(N^w)_q}\cdot\bigg(\frac{1}{(N)_p}\bigg)^4.
+\end{align*}
+
+
+
+
+
+
 $$
 \begin{aligned}
-1&-\operatorname{Pr}\left[\operatorname{Bad}\left(S_{1},S_{4}\right) | S_{1} \vdash \mathcal{Q}_{S_{1}},S_{4} \vdash \mathcal{Q}_{S_{4}}\right] \geq 1 - \frac{2 w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)}\\
-& -\frac{2 w^{2} q (p+w q)(p+w q+2 q)}{N \cdot (N-p)} - \frac{w^{2} q (p+w q)(p+w q+2 q)}{(N-p)^2} - \frac{2 w^{2} q (p+w q)^{2}}{(N-p)}.
-\end{aligned}
-$$
-
-We are now ready for the second step of the reasoning.\\
-
-\noindent \textbf{Lemma 9} \emph{Pick a pair of functions $(S_{1}, S_{4})$, peeling off the outer two round and it holds}
-
-\begin{equation}
-\begin{aligned}
-\frac{\mathrm{p}\left(\tau, S_{1}, S_{4}\right)}{\left(2^{w n}\right)_{q}} \geq &1-\frac{q^2}{N^w}- \frac{4 w^2 q(p+wq)^2}{N}\\
-&- \frac{8 w^2 q(p+w q)(p+w q +3 q)+4 w^2 q(p+3 wq)^2}{N^2}.
-\end{aligned}
-\end{equation}
-
-\noindent \emph{Proof:}  For any extended transcript $\tau_{inner}^{\prime}=\left(\mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right), \mathcal{Q}_{S_{inner}}, \mathcal{Q}_{S_{inner}}^{\prime}, \mathbf{k}\right)$, let us denote
-
-$$
-\begin{aligned}
-&\operatorname{p} =  \operatorname{Pr}\left[\left(\mathbf{k}, \mathcal{S}\right) \stackrel{s}{\leftarrow} \mathcal{K}^{3} \times \operatorname{Perm}(n)^{2}:
-\left(\mathcal{S} \vdash \mathcal{Q}_{S_{inner}} \cup \mathcal{Q}_{S_{inner}}^{\prime}\right) \wedge \left(\operatorname{SP}_{\mathbf{k}}[\mathcal{S}] \vdash \mathcal{Q}_{C}^{*}\left(S_{1},S_{4}\right)\right) \wedge\mathbf{k}\right]\\
-&\operatorname{p}\left(\tau_{inner}^{\prime}\right) =\operatorname{Pr}\left[\mathcal{S} \stackrel{\mathbf{s}}{\leftarrow} \operatorname{Perm}(n)^{2}: \operatorname{SP}_{\mathbf{k}}[\mathcal{S}] \vdash \mathcal{Q}_{C}^{*}\left(S_{1},S_{4}\right) |\left(S_{2} \vdash \mathcal{Q}_{S_{2}}^{(1)}\right) \wedge\left(S_{3} \vdash \mathcal{Q}_{S_{3}}^{(1)}\right)\right].
-\end{aligned}
-$$
-
-we will write $(r)_{s} = \frac{r!}{(r-s)!}$. Note that one has
-
-$$
-\begin{aligned}
-&\operatorname{Pr}\left[(\mathcal{P}, \mathcal{S}) \stackrel{s}{\leftarrow} \mathcal{\operatorname{Perm}}(w n) \times \operatorname{Perm}(n)^{2}:\left(\mathcal{S} \vdash \mathcal{Q}_{S_{inner}}\right) \wedge\left(\operatorname{P} \vdash \mathcal{Q}_{C}^{*}\left(S_{1},S_{4}\right)\right)\right] \\
-&\leq  \frac{1}{\left(2^{w n}\right)_{q}\left(2^{n}\right)_{p}\left(2^{n}\right)_{p}}. \\
 &\operatorname{Pr}\left[(\mathbf{k}^{\prime}, \mathcal{S}) \stackrel{s}{\leftarrow} \mathcal{K}^{3} \times \operatorname{Perm}(n)^{2}:\left(\mathcal{S} \vdash \mathcal{Q}_{S_{inner}}\right) \wedge\left(\operatorname{SP}_{\mathbf{k}}[\mathcal{S}] \vdash \mathcal{Q}_{C}^{*}\left(S_{1},S_{4}\right)\right)\right] \\
 & \geq \sum_{\tau_{inner}^{\prime} \in \Theta_{\mathrm{Good}}(\tau_{inner})} \operatorname{p}\\
 &\geq \sum_{\tau_{inner}^{\prime} \in \Theta_{\mathrm{Good}}(\tau_{inner})} \frac{1}{|\mathcal{K}|^{3}\left(2^{n}\right)_{p+\beta_{2}}\left(2^{n}\right)_{p+\beta_{3}}} \mathrm{p}\left(\tau_{inner}^{\prime}\right).
@@ -414,15 +502,16 @@ $$
 \end{aligned}
 $$
 
-Note that the weighted sum $\sum_{\tau_{inner}^{\prime} \in \Theta_{\text {good }}(\tau_{inner})} \frac{1}{|\mathcal{K}|^{3}\left(2^{n}-p\right)_{\beta_{2}}\left(2^{n}-p\right)_{\beta_{3}}}$ corresponds exactly to the probability that a random inner extended transcript is good when it is sampled as follows:
+
+The weighted sum $\sum_{\tau_{inner}^{\prime} \in \Theta_{\text {good }}(\tau_{inner})} \frac{1}{|\mathcal{K}|^{3}\left(2^{n}-p\right)_{\beta_{2}}\left(2^{n}-p\right)_{\beta_{3}}}$ corresponds exactly to the probability that a random inner extended transcript is good when it is sampled as follows:
 
 \begin{itemize}
-  \item[1.]
-  choose keys $k_{1}, k_{3} \in \mathcal{K}$  uniformly and independently at random;
-  \item[2.]
-  choose the partial extension of the S-box queries based on the new collisions $\mathcal{Q}_{S_{inner}}^{\prime}$ uniformly at random (meaning that each possible $\mathnormal{u}$ or $\mathnormal{v}$ is chosen uniformly at random in the set of its authorized values);
-  \item[3.]
-  finally choose $k_{2} \in \mathcal{K}$ uniformly at random, independently from everything else.
+	\item[1.]
+	choose keys $k_{1}, k_{3} \in \mathcal{K}$  uniformly and independently at random;
+	\item[2.]
+	choose the partial extension of the S-box queries based on the new collisions $\mathcal{Q}_{S_{inner}}^{\prime}$ uniformly at random (meaning that each possible $\mathnormal{u}$ or $\mathnormal{v}$ is chosen uniformly at random in the set of its authorized values);
+	\item[3.]
+	finally choose $k_{2} \in \mathcal{K}$ uniformly at random, independently from everything else.
 \end{itemize}
 
 Thus, the exact probability of observing the inner extended transcript $\tau_{inner}^{\prime}$ is
@@ -449,6 +538,159 @@ One finally gets
 \end{aligned}
 \end{equation}
 
+
+
+
+
+
+
+
+Let
+$\calS^*=(S_1,S_2,S_3,S_4)$, and define     {\small
+	$$\textsf{p}(\tau,S_1,S_4)=\Pr[\calS^*\xleftarrow{\$}\mathsf{Perm}(n)^4:\spn_{\bfk}^T[\calS^*]\vdash\mathcal{Q}_C^*(S_1,S_4)
+	\mid S_i\vdash\mathcal{Q}_{S_i},i=1,2,3,4].$$
+}%
+This captures the probability that the inner two SPN rounds ``extend'' the tuples in $\mathcal{Q}_C^*(S_1,S_4)$. The probability
+$\mathsf{p}_{2}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)$ can be related to it.
+
+\begin{lemma}
+	\label{lemma:reduce-to-two-rounds}
+	
+	It holds
+	\begin{align}
+	\frac{\mathsf{p}_{2}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)}{\mathsf{p}_{1}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)}
+	\geq  &  (N^w)_q{\mathsf{p}(\tau,S_1,S_4)}  - \operatorname{Pr}_{S_1,S_4}[(S_1,S_4) \in \emph{$\Pi_{bad}$}\mid (S_{1}, S_{4})\in\Pi].
+	\label{eq:function-dependent-bound-on-ratio}
+	\end{align}
+%	Then we have
+%	\begin{align*}
+%	\frac{{\Pr}_{re}(\tau,\kvector)}{{\Pr}_{id}(\tau,\kvector)}
+%	\geq 1 & -\Pr[\textsf{Bad}(\mathbf{F}_1,\mathbf{F}_6)  \mid
+%	\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}]  \\
+%	&  - \mathbb{E}_{\mathbf{F}_1,\mathbf{F}_6}[\epsilon(\mathbf{F}_1,\mathbf{F}_6,k)\mid
+%	\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}].
+%	\end{align*}
+%	
+%	
+%	
+%	
+%	Assume that there exists a function
+%	$\epsilon:\mathsf{Perm}(n)^2\times\mathcal{K}^5\rightarrow[0,\infty)$ such that for any good $(S_1,S_4)$, it holds
+%	\begin{align}
+%	
+%	\frac{\mathsf{p}_{2}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)}{\mathsf{p}_{1}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)}
+%	\geq 1 - xxx.
+%	
+%	{\mathsf{p}(\tau,S_1,S_4)}\bigg/{\prod_{i=0}^{q-1}\left(\frac{1}{N^2-i}\right)}\geq1-\epsilon(\mathbf{F}_1,\mathbf{F}_6,k).
+%	\label{ieq:function-dependent-bound-on-ratio}
+%	\end{align}
+%	Then we have
+%	\begin{align*}
+%	\frac{{\Pr}_{re}(\tau,\kvector)}{{\Pr}_{id}(\tau,\kvector)}
+%	\geq 1 & -\Pr[\textsf{Bad}(\mathbf{F}_1,\mathbf{F}_6)  \mid
+%	\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}]  \\
+%	&  - \mathbb{E}_{\mathbf{F}_1,\mathbf{F}_6}[\epsilon(\mathbf{F}_1,\mathbf{F}_6,k)\mid
+%	\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}].
+%	\end{align*}
+\end{lemma}
+\begin{proof}
+	Define
+	$\mathsf{p}(S_1,S_4)\xlongequal{\text{def}}\Pr[(S_1^*,S_4^*)\xleftarrow{\$}\mathsf{Perm}(n)^2:(S_1^*,S_4^*)=(S_1,S_4)]$ for convenience. Then, clearly, once $S_1$ and $S_4$ are fixed
+	such that $S_1\vdash\mathcal{Q}_{S_1}$ and
+	$S_4\vdash\mathcal{Q}_{S_4}$, the event
+	$\spn_{\bfk}^T\vdash\mathcal{Q}_C$ is
+	equivalent to
+	$\spn_{\bfk}^T\vdash\mathcal{Q}_C^*(\mathbf{F}_1,\mathbf{F}_6)$.
+	Hence
+	\begin{align*}
+	{{\Pr}_{re}(\tau,\kvector)}
+	&  \geq\sum_{\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}
+		:(\mathbf{F}_1,\mathbf{F}_6)\text{ good}} \textsf{p}(\mathbf{F}_1,\mathbf{F}_6) \cdot
+	\frac{\textsf{p}(\tau,\mathbf{F}_1,\mathbf{F}_6)}{|\mathcal{K}|\cdot N^{4q_f}}  .
+	\end{align*}
+	Therefore,
+	\begin{align*}
+	\frac{{{\Pr}_{re}(\tau,\kvector)}}{{{\Pr}_{id}(\tau,\kvector)}}
+	&  \geq \frac{\sum_{\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}
+			:(\mathbf{F}_1,\mathbf{F}_6)\text{ good}} \textsf{p}(\mathbf{F}_1,\mathbf{F}_6) \cdot
+		\textsf{p}(\tau,\mathbf{F}_1,\mathbf{F}_6)}{   \Pr[\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}]
+		\cdot \prod_{i=0}^{q_e-1}\frac{1}{N^2-i}   }     \\
+	&  \geq   \frac{\sum_{\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}
+			:(\mathbf{F}_1,\mathbf{F}_6)\text{ good}} \textsf{p}(\mathbf{F}_1,\mathbf{F}_6)  (1-\epsilon(\mathbf{F}_1,\mathbf{F}_6,k))}{\Pr[\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}]} \text{ } (\text{by }(\ref{ieq:function-dependent-bound-on-ratio}))      \\
+	&  \geq 	 1-\Pr[\textsf{Bad}(\mathbf{F}_1,\mathbf{F}_6)\mid
+	\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}]      \\
+	& \textcolor{white}{\geq11} -\underbrace{  \frac{\sum_{\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}} \textsf{p}(\mathbf{F}_1,\mathbf{F}_6) \epsilon(\mathbf{F}_1,\mathbf{F}_6,k)}{\Pr[\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}]}.}_{\leq\sum_{\mathbf{F}_1,\mathbf{F}_6}\textsf{p}(\mathbf{F}_1,\mathbf{F}_6\mid\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6})\epsilon(\mathbf{F}_1,\mathbf{F}_6,k)= \mathbb{E}_{\mathbf{F}_1,\mathbf{F}_6}[\epsilon(\mathbf{F}_1,\mathbf{F}_6,k)\mid
+		\mathbf{F}_1\vdash\mathcal{Q}_{F_1},\mathbf{F}_6\vdash\mathcal{Q}_{F_6}]} 
+	\end{align*}
+	as claimed.         \qed
+\end{proof}
+
+
+
+
+We appeal to~\cite{C:CDKLST18} to have a concrete bound on Eq. (\ref{eq:function-dependent-bound-on-ratio}).
+
+\begin{lemma}
+	\label{lemma:bound-middle-two-rounds}
+	
+	Assume $p+wq\leq N/2$, then
+	\begin{align}
+	(N^w)_q{\mathsf{p}(\tau,S_1,S_4)} \geq 1-\frac{q^2}{N^w}-\frac{q(2wp+6w^2q)^2}{N^2}.
+	\label{eq:bound-on-epsilon-middle}
+	\end{align}
+\end{lemma}
+\begin{proof}
+It can be checked that, the transcript $\mathcal{Q}_C^*(S_1,S_4)=(\mathcal{Q}_C,\mathcal{Q}_{S_2},\mathcal{Q}_{S_3})$ satisfies exactly the conditions defining a good transcript as per~\cite[page 740]{C:CDKLST18}. Moreover,
+the ratio ${\mathsf{p}(\tau,S_1,S_4)}/(1/(N^w)_q)$ is exactly the ratio of the probabilities to get $\tau$ in the real and in the ideal world once a good pair $(S_1,S_4)$ is fixed. The result thus immediately follows from~\cite[Lemma 9]{C:CDKLST18}.       \qed
+\end{proof}
+
+
+
+
+%
+%We define $\mathrm{p}\left(S_{1}, S_{4}\right) = \operatorname{Pr}\left[\left(S_{1}^{*}, S_{4}^{*}\right)
+%\stackrel{\mathrm{S}}{\leftarrow}(\mathcal{S}(n))^{2}: \left(S_{1}^{*}, S_{4}^{*}\right)=\left(S_{1}, S_{4}\right)\right]$ for convenience. Next we need to consider  $\frac{\operatorname{Pr}_{r e}(\tau, k)}{\operatorname{Pr}_{i d}(\tau, k)}$. Clearly, once $S_{1}$ and $S_{4}$ are fixed such that $S_{1} \vdash \mathcal{Q}_{S_{1}}$ and $S_{4} \vdash \mathcal{Q}_{S_{4}}$, the event
+%$\mathrm{SP}_{k}[\mathcal{S}] \vdash \mathcal{Q}_{C}$ is equivalent to $\mathrm{SP}_{k}^{S^{*}} \vdash \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$. Hence,
+%
+%$$
+%\operatorname{Pr}_{r e}(\tau, k) \geq \sum_{S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{4} \vdash \mathcal{Q}_{S_{4}}:\left(S_{1}, S_{4}\right) good }
+%\mathrm{p}\left(S_{1}, S_{4}\right) \cdot \mathrm{p}\left(\tau, S_{1}, S_{4}\right) \cdot \mathrm{p}\left(S_{2} \vdash \mathcal{Q}_{S_{2}},S_{3} \vdash \mathcal{Q}_{S_{3}}\right).
+%$$
+%
+%\noindent Because of $\operatorname{Pr} (\mathcal{P}  \vdash \mathcal{Q}_{C}) \le \frac{1}{\left(2^{w n}\right)_{q}}$. Therefore,\\
+%
+%\noindent \textbf{Lemma 7} \emph{Once $S_{1}$ and $S_{4}$ are fixed such that $S_{1} \vdash \mathcal{Q}_{S_{1}}$ and $S_{4} \vdash \mathcal{Q}_{S_{4}}$, we have}
+%
+%\begin{equation}
+%\begin{aligned}
+%\frac{\operatorname{Pr}_{r e}(\tau, k)}{\operatorname{Pr}_{i d}(\tau, k)} &\geq \frac{\sum_{S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{4} \vdash \mathcal{Q}_{S_{4}}: \left(S_{1}, S_{4}\right)good } \mathrm{p}\left(S_{1}, S_{4}\right) \cdot \mathrm{p}\left(\tau, S_{1}, S_{4}\right)}{\operatorname{Pr}(S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{4} \vdash \mathcal{Q}_{S_{4}}) \cdot \frac{1}{\left(2^{w n}\right)_{q}}}\\
+%&\geq \left(1-\operatorname{Pr}\left[\operatorname{Bad}\left(S_{1},S_{4}\right) | S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{4} \vdash \mathcal{Q}_{S_{4}}\right]\right) \cdot
+%\frac{\mathrm{p}\left(\tau, S_{1}, S_{4}\right)}{\frac{1}{\left(2^{w n}\right)_{q}}}.
+%\end{aligned}
+%\end{equation}
+%
+%\noindent \emph{Proof:} For any attainable transcript $\tau_{inner}=\left(\mathcal{Q}_{C}^{*}\left(S_{1},S_{4}\right), \mathcal{Q}_{S_{inner}}, \mathcal{Q}_{S_{inner}}^{\prime}, \mathbf{k}\right)$, let
+%
+%$$
+%\begin{aligned}
+%&\mathrm{p}_{1}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)=\operatorname{Pr}\left[\widetilde{\mathcal{P}} \stackrel{s}{\leftarrow} \widetilde{\operatorname{Perm}}(\mathcal{T}, w n)^{\ell}, \mathcal{S} \stackrel{s}{\leftarrow} \operatorname{Perm}(n)^{r}: \tilde{\mathcal{P}} \vdash \mathcal{Q}_{C} | \mathcal{S} \vdash \mathcal{Q}_{S}\right],\\
+%&\mathrm{p}_{2}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)=\operatorname{Pr}\left[k_{1}, \ldots, k_{\ell} \leftarrow \mathcal{K}^{r+1}, \mathcal{S} \stackrel{s}{\leftarrow} \operatorname{Perm}(n)^{r}:\left(\mathrm{SP}_{k_{j}}[\mathcal{S}]\right)_{j} \vdash \mathcal{Q}_{C} | \mathcal{S} \vdash \mathcal{Q}_{S}\right].
+%\end{aligned}
+%$$
+%We...    
+%
+
+
+
+
+
+
+
+
+
+
+
+
 The previous proof is conditioned on $S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{4} \vdash \mathcal{Q}_{S_{4}}$, but $\operatorname{Pr}\left[ \tau_{inner}^{\prime} \in \Theta_{\text {good }}(\tau_{inner})\right]$, we need to consider $S_{1} \vdash \mathcal{Q}_{S_{1}}^{(1)}, S_{4} \vdash \mathcal{Q}_{S_{4}}^{(1)}$. That is the probability $\left(T_{1}\left(S_{1}\left(x \oplus k_{0}\right) \oplus k_{1}\right)\right)[i]=u_2$ or $\left(T_{3}^{-1}\left(S_{4}^{-1}\left(y \oplus k_{4}\right)\right) \oplus k_{3}\right)[j]=v_3$ hold is at most $\frac{1}{(N-p-w q)}$, so
 
 \begin{equation}
@@ -459,13 +701,9 @@ The previous proof is conditioned on $S_{1} \vdash \mathcal{Q}_{S_{1}}, S_{4} \v
 \end{equation}
 
 
-From the Lemma 9 of ~\cite{cogliati2018wide}, we have
 
-$$
-\left(2^{w n}\right)_{q} \mathrm{p}\left(\tau^{\prime}\right) \geq 1-\frac{q^{2}}{2^{w n}}-\frac{q\left(2 w p+6 w^{2} q\right)^{2}}{2^{2 n}}.
-$$
 
-\noindent then combine all of (9), (10), we can obtain
+Combining all of (9), (10), we can obtain
 $$
 \begin{aligned}
 \frac{\mathrm{p}\left(\tau, S_{1}, S_{4}\right)}{\left(2^{w n}\right)_{q}} &\geq (1-\frac{q^{2}}{2^{w n}}-\frac{q\left(2 w p+6 w^{2} q\right)^{2}}{2^{2 n}})\\
