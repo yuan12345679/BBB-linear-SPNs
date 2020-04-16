@@ -3,14 +3,8 @@
 \section{Preliminaries}
 \label{sec:preliminary}
 
-For an integer $m\geq1$, the set of all permutations on $\{0, 1\}^m$ will be denoted $\textsf{Perm}(m)$. A tweakable permutation with tweak space
-$\mathcal{T}$ and message space $\mathcal{X}$ is a mapping $\widehat{P}:\mathcal{T}\times\mathcal{X}\rightarrow\mathcal{X}$ such that, for any tweak
-$t\in\mathcal{T}$,
-%
-$$x\mapsto\widehat{P}(t,x)$$
-%
-is a permutation of $\mathcal{X}$. The set of all tweakable permutations with tweak space
-$\mathcal{T}$ and message space $\{0, 1\}^m$ will be denoted $\widehat{\textsf{Perm}}(\mathcal{T},m)$.
+Throughout this work, we fix positive integers $w$ and $n$, and let $N=2^n$. An element $x$ in $\{0,1\}^{wn}$ can be viewed as a concatenation of $w$ blocks of length $n$. The $i$th block of this representation will be denoted $x[i]$ for $i=1,\ldots,w$, so we have $x=x[1]\|x[2]\|\ldots\|x[w]$. For any integer $r$ such that $r\geq s$, we will write $(r)_s = r!/(r-s)!$, and define $(r)_0:=1$ for completeness.
+
 
 
 
@@ -21,16 +15,24 @@ $\mathcal{T}$ and message space $\{0, 1\}^m$ will be denoted $\widehat{\textsf{P
 %\medskip
 \noindent{\bf Tweakable Blockciphers.}
 %
-A keyed tweakable permutation with key space $\mathcal{K}$, tweak space $\mathcal{T}$ and message
+%
+For an integer $m\geq1$, the set of all permutations on $\{0, 1\}^m$ will be denoted $\textsf{Perm}(m)$. A tweakable permutation with tweak space
+$\mathcal{T}$ and message space $\mathcal{X}$ is a mapping $\widetilde{P}:\mathcal{T}\times\mathcal{X}\rightarrow\mathcal{X}$ such that, for any tweak
+$t\in\mathcal{T}$,
+%
+$$x\mapsto\widetilde{P}(t,x)$$
+%
+is a permutation of $\mathcal{X}$. The set of all tweakable permutations with tweak space
+$\mathcal{T}$ and message space $\{0, 1\}^m$ will be denoted $\widetilde{\textsf{Perm}}(\mathcal{T},m)$.
+
+
+A tweakable blockcipher, or a keyed tweakable permutation, with key space $\mathcal{K}$, tweak space $\mathcal{T}$ and message
 space $\mathcal{X}$ is a mapping $T:\mathcal{K}\times\mathcal{T}\times\mathcal{X}\rightarrow\mathcal{X}$ such that, for any key $k\in\mathcal{K}$,
 %
 $$(t,x)\mapsto T(k,t,x).$$
 %
 is a tweakable permutation with tweak space $\mathcal{T}$ and message space $\mathcal{X}$.
-%We
-%will sometimes write $T(k, t, x)$ as Tk(t, x) or Tk,t(x). For an integer s  1,
-%let t = (t1, . . . , ts) 2 T s, and let x = (x1, . . . , xs) 2 (X)s. We will write
-%(T(k, ti, xi))1is as Tk(t, x) or Tk,t(x).
+
 
 
 
@@ -38,7 +40,7 @@ is a tweakable permutation with tweak space $\mathcal{T}$ and message space $\ma
 %\medskip
 \noindent{\bf(Tweakable) Linear Substitution-Permutation Networks.}
 %
-A \emph{substitution-permutation network} (SPN) defines a keyed permutation via repeated invocation of two transformations: blockwise computation of a public, cryptographic permutation called an ``S-box,'' and application of a keyed, non-cryptographic permutation. In this paper we will only introduce a model of linear SPNs. Formally, fix integers $n,r\geq1$. Let $\calK$ and $\calT$ be two
+A \emph{substitution-permutation network} (SPN) defines a keyed permutation via repeated invocation of two transformations: blockwise computation of a public, cryptographic permutation called an ``S-box,'' and application of a keyed, non-cryptographic permutation. In this paper we will only introduce a model of linear SPNs. Formally, let $\calK$ and $\calT$ be two
 sets, and let $\bff= (f_0,...,f_r)$ be a $(r+1)$-tuple of functions from $\calK\times\calT$ to $\{0, 1\}^n$.
 
 %The $r$-round tweakable Even-Mansour construction TEM[n, r, f] specifies, from an r-tuple P = (P1, . . . , Pr)
@@ -50,7 +52,7 @@ sets, and let $\bff= (f_0,...,f_r)$ be a $(r+1)$-tuple of functions from $\calK\
 
 
 
-Formally, an r-round SPN taking inputs of length $w n$ where $w \in \mathcal{N}$ is the width of the network, is defined by $\mathnormal{r}+1$ keyed permutations $\left\{\pi_{i}: K_{i} \times\{0,1\}^{w n} \rightarrow\{0,1\}^{w n}\right\}_{i=0}^{r}$, a distribution $\mathcal{K}$ over $\mathcal{K}_{0} \times \dots \times \mathcal{K}_{r}$, and a permutation $\mathcal{S}:\{0,1\}^{n} \rightarrow \{0,1\}^{n}$. Given round keys $(k_{0},\dots, k_{r}) \in \mathcal{K}_{0} \times \dots \times \mathcal{K}_{r}$ and an input $x \in \{0,1\}^{w n}$, the output of the SPN is computed as follows
+Formally, an $r$-round SPN taking inputs of length $w n$ is defined by $r+1$ round keys $tk_0,tk_1,\ldots,tk_r\in\{0,1\}^{wn}$, $r$ permutations $S_1,\ldots,S_r:\{0,1\}^{n} \rightarrow \{0,1\}^{n}$, and $\mathnormal{r}-1$ invertible linear permutations $T_1,\ldots,T_{r-1}\in\mathbb{F}^{w\times w}$. Given an input $x \in \{0,1\}^{w n}$, the output of the SPN is computed as follows:
 
 \begin{itemize}
   \item[--]
@@ -67,8 +69,7 @@ Formally, an r-round SPN taking inputs of length $w n$ where $w \in \mathcal{N}$
   The output is $x_{r+1}$.
 \end{itemize}
 
-Note that this model matches the structure of popular SPN ciphers such as the AES, Serpent, and the ISO/IEC lightweight standard PRESENT. Also note that our model follows~\cite[Sect. 4.2]{C:CDKLST18} and uses different $S$-boxes in different rounds. We remark that some other~\cite[Sect. 3]{C:CDKLST18} assumed the same $S$-box in every round. Finally, we refer to~\cite[Sect. 2.1]{EPRINT:DKSTZ17} for a more general model of SPNs and its connection to the above model.
-
+Note that this model matches the structure of popular SPN ciphers such as the AES, Serpent, the ISO/IEC lightweight standard PRESENT, and the popular tweakable blockciphers Skinny. Also note that our model follows~\cite[Sect. 4.2]{C:CDKLST18} and uses different S-boxes in different rounds. We remark that some other~\cite[Sect. 3]{C:CDKLST18} assumed the same S-box in every round. Finally, we refer to~\cite[Sect. 2.1]{EPRINT:DKSTZ17} for a more general model of SPNs and its connection to the above model.
 
 
 We will mostly be interested in the case where
@@ -173,16 +174,16 @@ Fix a transcript $\tau = (\mathcal{Q}_C,\mathcal{Q}_S)$, a key $\bfk \in \mathca
 $\spn_{\bfk}^T[\mathcal{S}](t_{j,i}, x_{j,i}) = y_{j,i}$ (resp. $\widetilde{P}(t_{j,i}, x_{j,i}) = y_{j,i}$) for every $i = 1, . . . , q_j$, then we will write $\spn_{\bfk}^T[\mathcal{S}]\vdash\mathcal{Q}_{C_j}$ (resp. $\widetilde{P}\vdash\mathcal{Q}_{C_j}$).
 
 
-Let $\bfk_1, \ldots ,\bfk_{\ell} \in \mathcal{K}^{r+1}$ and $\widetilde{\mathcal{P}} = (\widetilde{P}_1, \ldots ,\widetilde{P}_\ell) \in \widetilde{\operatorname{Perm}}(\mathcal{T},wn)^l$, if $\spn_{\bfk_j}^T[\mathcal{S}]\vdash\mathcal{Q}_{C_j}$ (resp. $\widetilde{P}_j\vdash\mathcal{Q}_{C_j}$) for every $j = 1, \ldots ,\ell$, then we will write $(\spn_{\bfk_j}^{T}[\mathcal{S}])_{j = 1, \ldots ,\ell} \vdash \mathcal{Q}_C$ (resp. $\widetilde{P}\vdash\mathcal{Q}_{C}$).
+Let $\bfk_1, \ldots ,\bfk_{\ell} \in \mathcal{K}^{\ell+1}$ and $\widetilde{\mathcal{P}} = (\widetilde{P}_1, \ldots ,\widetilde{P}_\ell) \in \widetilde{\mathsf{Perm}}(\mathcal{T},wn)^\ell$, if $\spn_{\bfk_j}^T[\mathcal{S}]\vdash\mathcal{Q}_{C_j}$ (resp. $\widetilde{P}_j\vdash\mathcal{Q}_{C_j}$) for every $j = 1, \ldots ,\ell$, then we will write $(\spn_{\bfk_j}^{T}[\mathcal{S}])_{j = 1, \ldots ,\ell} \vdash \mathcal{Q}_C$ (resp. $\widetilde{P}\vdash\mathcal{Q}_{C}$).
 
 
-If there exist $\widetilde{\mathcal{P}} \in \widetilde{\mathsf{Perm}}(\mathcal{T},w n)^\ell$ and $\mathcal{S} \in \mathsf{Perm}(\emph{n})^w$ that outputs $\tau$ at the end of the interaction with $\mathcal{D}$, then we will call the transcript $\tau$ attainable. So for any attainable transcript $\tau= (\mathcal{Q}_C,\mathcal{Q}_S)$, there exist $\widetilde{\mathcal{P}} \in \widetilde{\mathsf{Perm}}(\mathcal{T},w n)^\ell$ and $\mathcal{S} \in \mathsf{Perm}(\emph{n})^w$ such that $\widetilde{\mathcal{P}}\vdash\mathcal{Q}_C$ and $\mathcal{S}\vdash\mathcal{Q}_S$. For an attainable transcript $\tau = (\mathcal{Q}_C,\mathcal{Q}_S)$, let
+If there exist $\widetilde{\mathcal{P}} \in \widetilde{\mathsf{Perm}}(\mathcal{T},w n)^\ell$ and $\mathcal{S} \in \mathsf{Perm}(\emph{n})^r$ that outputs $\tau$ at the end of the interaction with $\mathcal{D}$, then we will call the transcript $\tau$ attainable. So for any attainable transcript $\tau= (\mathcal{Q}_C,\mathcal{Q}_S)$, there exist $\widetilde{\mathcal{P}} \in \widetilde{\mathsf{Perm}}(\mathcal{T},w n)^\ell$ and $\mathcal{S} \in \mathsf{Perm}(n)^r$ such that $\widetilde{\mathcal{P}}\vdash\mathcal{Q}_C$ and $\mathcal{S}\vdash\mathcal{Q}_S$. For an attainable transcript $\tau = (\mathcal{Q}_C,\mathcal{Q}_S)$, let
 %
 %
 $$
 \begin{aligned}
-&\mathsf{p}_{1}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)=\operatorname{Pr}\left[\widetilde{\mathcal{P}} \stackrel{\$}{\leftarrow} \widetilde{{\mathsf{Perm}}}(\mathcal{T}, w n)^{\ell}, \mathcal{S} \stackrel{\$}{\leftarrow} \mathsf{Perm}(n)^{r}: \widetilde{\mathcal{P}} \vdash \mathcal{Q}_{C} \Big| \mathcal{S} \vdash \mathcal{Q}_{S}\right],\\
-&\mathsf{p}_{2}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right)=\operatorname{Pr}\left[\bfk_{1}, \ldots, \bfk_{\ell} \stackrel{\$}{\leftarrow} \mathcal{K}^{r+1}, \mathcal{S} \stackrel{\$}{\leftarrow} \mathsf{Perm}(n)^{r}:(\spn_{\bfk_{j}}^{T}[\mathcal{S}])_{j} \vdash \mathcal{Q}_{C} \Big| \mathcal{S} \vdash \mathcal{Q}_{S}\right].
+&\mathsf{p}_{1}(\tau)=\operatorname{Pr}\left[\widetilde{\mathcal{P}} \stackrel{\$}{\leftarrow} \widetilde{{\mathsf{Perm}}}(\mathcal{T}, w n)^{\ell}, \mathcal{S} \stackrel{\$}{\leftarrow} \mathsf{Perm}(n)^{r}: \widetilde{\mathcal{P}} \vdash \mathcal{Q}_{C} \bigwedge \mathcal{S} \vdash \mathcal{Q}_{S}\right],\\
+&\mathsf{p}_{2}(\tau)=\operatorname{Pr}\left[\bfk_{1}, \ldots, \bfk_{\ell} \stackrel{\$}{\leftarrow} \mathcal{K}^{r+1}, \mathcal{S} \stackrel{\$}{\leftarrow} \mathsf{Perm}(n)^{r}:(\spn_{\bfk_{j}}^{T}[\mathcal{S}])_{j} \vdash \mathcal{Q}_{C} \bigwedge \mathcal{S} \vdash \mathcal{Q}_{S}\right].
 \end{aligned}
 $$
 %
@@ -195,7 +196,7 @@ With these definitions, the core lemma of the H-coefficients technique (without 
 	
 	Let $\varepsilon \geq 0$. Suppose that for any attainable transcript $\tau = (\mathcal{Q}_C,\mathcal{Q}_S)$,
 	\begin{align}
-	\mathsf{p}_{2}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right) \geq (1 - \varepsilon) \mathsf{p}_{1}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right).
+	\mathsf{p}_{2}(\tau) \geq (1 - \varepsilon) \mathsf{p}_{1}(\tau).
 	\label{eq:h-ratio}
 	\end{align}
 	Then one has
