@@ -1,14 +1,12 @@
-\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{Preliminaries}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{Substitution-Permutation Networks}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Linear SPNs}{section.2}% 4
-\BOOKMARK [2][-]{subsection.2.3}{Tweakable linear Substitution-Permutation Networks}{section.2}% 5
-\BOOKMARK [2][-]{subsection.2.4}{The H-coefficient Technique}{section.2}% 6
-\BOOKMARK [2][-]{subsection.2.5}{Indistinguishability in the Multi-user Setting}{section.2}% 7
-\BOOKMARK [1][-]{section.3}{related works}{}% 8
-\BOOKMARK [1][-]{section.4}{security of 4-round SPNs}{}% 9
-\BOOKMARK [2][-]{subsection.4.1}{Bad Transcript for 4-rounds SPN and Probability}{section.4}% 10
-\BOOKMARK [2][-]{subsection.4.2}{Analysis for Good Transcript}{section.4}% 11
-\BOOKMARK [1][-]{section.5}{beyond birthday bound for tweakable linear SPNs}{}% 12
-\BOOKMARK [2][-]{subsection.5.1}{Bad Transcript for 6-rounds tweakable linear SPN and Probability}{section.5}% 13
-\BOOKMARK [2][-]{subsection.5.2}{Analysis for Good Transcript}{section.5}% 14
+\BOOKMARK [0][]{chapter.1}{Beyond-Birthday-Bound Security forLinear Substitution-Permutation Networks}{}% 1
+\BOOKMARK [1][]{section.1.1}{1 Introduction}{chapter.1}% 2
+\BOOKMARK [2][]{subsection.1.1.1}{1.1 Our Results}{section.1.1}% 3
+\BOOKMARK [2][]{subsection.1.1.2}{1.2 Related Work}{section.1.1}% 4
+\BOOKMARK [1][]{section.1.2}{2 Preliminaries}{chapter.1}% 5
+\BOOKMARK [1][]{section.1.3}{3 SPRP Security of 4-Round SPNs}{chapter.1}% 6
+\BOOKMARK [2][]{subsection.1.3.1}{3.1 Outline of the Proof}{section.1.3}% 7
+\BOOKMARK [2][]{subsection.1.3.2}{3.2 Bad Transcript Extensions and Probability}{section.1.3}% 8
+\BOOKMARK [2][]{subsection.1.3.3}{3.3 Analyzing Good Transcript Extensions}{section.1.3}% 9
+\BOOKMARK [1][]{section.1.4}{4 TSPRP Security of 6-Round Tweakable Linear SPNs}{chapter.1}% 10
+\BOOKMARK [2][]{subsection.1.4.1}{4.1 Bad Transcript for 6-rounds tweakable linear SPN}{section.1.4}% 11
+\BOOKMARK [2][]{subsection.1.4.2}{4.2 Analysis for Good Transcript}{section.1.4}% 12
