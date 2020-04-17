@@ -242,6 +242,69 @@ Since $k_{0}$ and $k_{4}$ are uniform, for each $(x,a,b, y) \in \mathcal{Q}_{C}'
 
 
 \smallskip
+
+For the remaining, define event
+%
+$$\coll_2(x,a,b,y)\Leftrightarrow\text{there exist }i\in\{1,\ldots,w\}
+\text{ and }
+u_2\in U_2
+\text{ such that }
+(a\xor k_1)[i]=u_2.$$
+%
+This event can be broken down into the following two subevents:
+%
+\begin{itemize}
+	\item $\coll_{21}(x,a,b,y)$: there exist $i\in\{1,\ldots,w\}$, $(u_2,v_1)\in\mathcal{Q}_{S_2}^{(0)}$ such that $(a\xor k_1)[i]=u_2$;
+	\item $\coll_{22}(x,a,b,y)$: there exist $(x',a',b',y')\in\mathcal{Q}_C'$, $i,i'\in\{1,\ldots,w\}$ such that $(a,b,i)\neq(a',b',i')$ and $(a\xor k_1)[i]=(a'\xor k_1)[i']$.
+\end{itemize}
+%
+Consider the subevent $\coll_{21}(x,a,b,y)$ first. To have $(a\xor k_1)[i]=u_2$, it has to be $(x\xor k_0)[i_0]\notin U_1^{(0)}$ for any $i_0\in\{1,\ldots,w\}$, as otherwise it contradicts $\neg\btwo$. Thus conditioned on $S_{1} \vdash \mathcal{Q}_{S_{1}}$, the value of $S_1((x \oplus k_0)[i_0])$ remains uniform in $\{0, 1\}^{n} \backslash V_1^{(1)}$ for any fixed $i_0$. Because every entry in the $i_{0}$th column of $T$ is nonzero, we have
+%
+$$\Pr\big[\coll_{21}(x,a,b,y)\big]=\Pr\big[\exists i,u_2:(T(\overline{S_1}(x\xor k_0))\xor k_1)[i]=u_2\big]\leq\frac{wp}{N-p-wq}.$$
+%
+
+
+For the subevent $\coll_{22}(x,a,b,y)$, note that        {\small
+%
+\begin{align}
+\Pr\big[\coll_{22}(x,a,b,y)\big]        
+= &  \underbrace{\sum_{(x',a',b',y')\in\mathcal{Q}_C'}\sum_{i\neq i'\in\{1,\ldots,w\}}\Pr\big[(a\xor k_1)[i]=(a'\xor k_1)[i']\big]}_{\leq w^2q/2N}      
+\label{eq:coll22-bound-1}       \\
+ & +  \sum_{(x',a',b',y')\in\mathcal{Q}_C',x'\neq x}\sum_{i\in\{1,\ldots,w\}}\Pr\big[a[i]=a'[i]\big] ,
+\label{eq:coll22-bound-2}
+\end{align}
+}%
+%
+where (\ref{eq:coll22-bound-1}) follows from that $k_1[i]$ and $k_1[i']$ are uniform and independent. For the term (\ref{eq:coll22-bound-2}),
+\begin{itemize}
+	\item0
+	\item0
+	\item0
+	\item0
+	\item0
+\end{itemize}
+
+
+
+
+Similarly, define
+%
+$$\coll_3(x,a,b,y)\Leftrightarrow\text{there exist }i\in\{1,\ldots,w\}
+\text{ and }
+v_3\in V_3
+\text{ such that }
+(b\xor T^{-1}(k_3))[i]=v_3.$$
+%
+Then it holds
+%
+
+%
+by symmetry. With these, we are able to analyze the remaining conditions.
+
+
+
+
+\smallskip
 \noindent \textsc{\cone}. Consider the probability that a construction query $(x,a,b,y)\in\mathcal{Q}_C'$ fulfills \cone. If $(a\xor k_1)[i]\in U_2$, then it has to be $(x\xor k_0)[i_0]\notin U_1^{(0)}$ for any $i_0\in\{1,\ldots,w\}$, as otherwise it contradicts $\neg\btwo$. Thus conditioned on $S_{1} \vdash \mathcal{Q}_{S_{1}}$, the value of $S_1((x \oplus k_0)[i_0])$ remains uniform in $\{0, 1\}^{n} \backslash V_1^{(1)}$ for any fixed $i_0$. Because every entry in the $i_{0}$th column of $T$ is nonzero, the probability to have $(a\xor k_1)[i]=(T(\overline{S_1}(x\xor k_0))\xor k_1)[i]=u_2$ is at most $1/(N-p-wq)$. Similarly, the probability of $(b\xor T^{-1}(k_3))[j] = v_3$ is at most $1/(N-p-wq)$. Since we have at most $q(p+wq)^2w^2$ choices for $(x,a,b,y)$, $i, j \in\{1, \ldots, w\}$, $u_{2} \in U_{2}$ and $v_{3} \in V_{3}$, we have
 %
 %
@@ -521,7 +584,8 @@ and further
 %
 \begin{align}
 \frac{\mathsf{p}_{2}(\tau)}{\mathsf{p}_{1}(\tau)}   \geq  \Pr\big[ \tau' \in \Theta_{\text {good }}(\tau)\big]\cdot
-  \min_{\tau' \in \Theta_{\mathrm{good}}(\tau)}\big((N^w)_q\cdot\mathsf{p}_{\mathrm{mid}}(\tau')\big).   \notag
+  \min_{\tau' \in \Theta_{\mathrm{good}}(\tau)}\big((N^w)_q\cdot\mathsf{p}_{\mathrm{mid}}(\tau')\big). 
+\label{eq:ratio-divide-4-rounds}
 \end{align}
 %
 %
@@ -535,7 +599,7 @@ The term $\mathsf{p}_{\mathrm{mid}}(\tau')$ captures the probability that $\calC
 	Assume $p+wq\leq N/2$, then
 	\begin{align}
 	(N^w)_q\cdot\mathsf{p}_{\mathrm{mid}}(\tau') \geq 1-\frac{q^2}{N^w}-\frac{q(2wp+6w^2q)^2}{N^2}.
-	\label{eq:bound-on-epsilon-middle}
+	\label{eq:bound-on-epsilon-mid}
 	\end{align}
 \end{lemma}
 \begin{proof}
@@ -556,31 +620,11 @@ the ratio $\mathsf{p}_{\mathrm{mid}}(\tau')/(1/(N^w)_q)$ is exactly the ratio of
 
 
 
-Combining all of (9), (10), we can obtain
-$$
-\begin{aligned}
-\frac{\mathrm{p}\left(\tau, S_{1}, S_{4}\right)}{\left(2^{w n}\right)_{q}} &\geq (1-\frac{q^{2}}{2^{w n}}-\frac{q\left(2 w p+6 w^{2} q\right)^{2}}{2^{2 n}})\\
-&\cdot (1- \frac{2 w^{2} q (p+w q)^{2}}{(N-p-w q)} -\frac{2 w^{2} q (p+w q)(p+w q+2 q)}{N \cdot (N-p-w q)}\\
-&- \frac{w^{2} q (p+w q)(p+w q+2 q)}{(N-p-w q)^2} - \frac{2 w^{2} q^{2} (p+w q)}{(N- p- wq)^2})\\
-&\geq 1- \frac{2 w^{2} q (p+w q)^{2}}{(N-p-w q)} -\frac{2 w^{2} q (p+w q)(p+w q+2 q)}{N \cdot (N-p-w q)}\\
-&- \frac{w^{2} q (p+w q)(p+w q+2 q)}{(N-p-w q)^2} - \frac{2 w^{2} q^{2} (p+w q)}{(N- p- wq)^2}\\
-& -\frac{q^{2}}{2^{w n}}-\frac{q\left(2 w p+6 w^{2} q\right)^{2}}{2^{2 n}}\\
-&\geq 1- \frac{4 w^2 q(p+wq)^2}{N} - \frac{8 w^2 q(p+w q)(p+w q +2 q)}{N^2}\\
-&- \frac{8 w^2 q^2(p+w q)}{N^2} - \frac{q^{2}}{2^{w n}}-\frac{q\left(2 w p+6 w^{2} q\right)^{2}}{2^{2 n}}\\
-&= 1 - \frac{q^2}{N^w} - \frac{4 w^2 q(p+wq)^2}{N}\\
-&- \frac{8 w^2 q(p+w q)(p+w q +3 q)+4 w^2 q(p+3 wq)^2}{N^2}.
-\end{aligned}
-$$
-
-\noindent then combine (7), (8), we can obtain
-
-$$
-\begin{aligned}
-\operatorname{Adv}_{\mathcal{C}}\left(p, q\right) &\leq \frac{q^2}{2^{n w}} + \frac{8 w^2 q(p+wq)^2+w^2 q}{2^n}\\
-&+ \frac{16 w^2 q(p+w q)(p+w q +3 q)+4 w^2 q(p+3 wq)^2+ w^2q(p+w q)(3p+w q)}{2^{2 n}}.
-\end{aligned}
-$$
-
-
-
-
+Gathering Eqs. (\ref{eq:bound-bad-tau-4-rounds}), (\ref{eq:ratio-divide-4-rounds}), and (\ref{eq:bound-on-epsilon-mid}), we obtain
+%
+\begin{align*}
+\frac{\mathsf{p}_{2}(\tau)}{\mathsf{p}_{1}(\tau)}   \geq   & \bigg(1-\frac{3w^{2} q \left(p+w q\right)^{2}}{N^{2}} - \frac{w^{2} q}{N} - \frac{9w^2 q (p+w q)^{2}}{N^2}- \frac{16w^3q^2p}{N^2}\bigg)\cdot\bigg(1-\frac{q^2}{N^w}-\frac{q(2wp+6w^2q)^2}{N^2}\bigg)     \notag      \\
+\geq  &  1-\frac{3w^{2} q \left(p+w q\right)^{2}}{N^{2}} - \frac{w^{2} q}{N} - \frac{9w^2 q (p+w q)^{2}}{N^2}- \frac{16w^3q^2p}{N^2}-\frac{q^2}{N^w}-\frac{q(2wp+6w^2q)^2}{N^2}     \notag   
+\end{align*}
+%
+as claimed in Eq. (\ref{eq:bound-proximity-4-round}).
