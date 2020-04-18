@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.22)  17 APR 2020 09:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.22)  17 APR 2020 11:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1043,9 +1043,6 @@ Package rerunfilecheck Info: File `BB-linear-SPN.out' has not changed.
 
 
 LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 134.
  ) 
