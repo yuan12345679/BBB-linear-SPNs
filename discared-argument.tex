@@ -1,0 +1,61 @@
+
+\smallskip
+
+For the remaining, define event
+%
+$$\coll_2(x,a,b,y)\Leftrightarrow\text{there exist }i\in\{1,\ldots,w\}
+\text{ and }
+u_2\in U_2
+\text{ such that }
+(a\xor k_1)[i]=u_2.$$
+%
+This event can be broken down into the following two subevents:
+%
+\begin{itemize}
+	\item $\coll_{21}(x,a,b,y)$: there exist $i\in\{1,\ldots,w\}$, $(u_2,v_1)\in\mathcal{Q}_{S_2}^{(0)}$ such that $(a\xor k_1)[i]=u_2$;
+	\item $\coll_{22}(x,a,b,y)$: there exist $(x',a',b',y')\in\mathcal{Q}_C'$, $i,i'\in\{1,\ldots,w\}$ such that $(a,b,i)\neq(a',b',i')$ and $(a\xor k_1)[i]=(a'\xor k_1)[i']$.
+\end{itemize}
+%
+Consider the subevent $\coll_{21}(x,a,b,y)$ first. To have $(a\xor k_1)[i]=u_2$, it has to be $(x\xor k_0)[i_0]\notin U_1^{(0)}$ for any $i_0\in\{1,\ldots,w\}$, as otherwise it contradicts $\neg\btwo$. Thus conditioned on $S_{1} \vdash \mathcal{Q}_{S_{1}}$, the value of $S_1((x \oplus k_0)[i_0])$ remains uniform in $\{0, 1\}^{n} \backslash V_1^{(1)}$ for any fixed $i_0$. Because every entry in the $i_{0}$th column of $T$ is nonzero, we have
+%
+$$\Pr\big[\coll_{21}(x,a,b,y)\big]=\Pr\big[\exists i,u_2:(T(\overline{S_1}(x\xor k_0))\xor k_1)[i]=u_2\big]\leq\frac{wp}{N-p-wq}.$$
+%
+
+
+For the subevent $\coll_{22}(x,a,b,y)$, note that        {\small
+%
+\begin{align}
+\Pr\big[\coll_{22}(x,a,b,y)\big]        
+= &  \underbrace{\sum_{(x',a',b',y')\in\mathcal{Q}_C'}\sum_{i\neq i'\in\{1,\ldots,w\}}\Pr\big[(a\xor k_1)[i]=(a'\xor k_1)[i']\big]}_{\leq w^2q/2N}      
+\label{eq:coll22-bound-1}       \\
+ & +  \sum_{(x',a',b',y')\in\mathcal{Q}_C',x'\neq x}\sum_{i\in\{1,\ldots,w\}}\Pr\big[a[i]=a'[i]\big] ,
+\label{eq:coll22-bound-2}
+\end{align}
+}%
+%
+where (\ref{eq:coll22-bound-1}) follows from that $k_1[i]$ and $k_1[i']$ are uniform and independent. For the term (\ref{eq:coll22-bound-2}),
+\begin{itemize}
+	\item0
+	\item0
+	\item0
+	\item0
+	\item0
+\end{itemize}
+
+
+
+
+Similarly, define
+%
+$$\coll_3(x,a,b,y)\Leftrightarrow\text{there exist }i\in\{1,\ldots,w\}
+\text{ and }
+v_3\in V_3
+\text{ such that }
+(b\xor T^{-1}(k_3))[i]=v_3.$$
+%
+Then it holds
+%
+
+%
+by symmetry. With these, we are able to analyze the remaining conditions.
+
