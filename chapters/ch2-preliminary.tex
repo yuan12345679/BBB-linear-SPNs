@@ -214,45 +214,40 @@ The lower bound (\ref{eq:h-ratio}) is called \emph{$\epsilon$-point-wise proximi
 	
 	Let $\varepsilon : \mathbb{N} \times \mathbb{N} \rightarrow \mathbb{R}^{\geq 0}$ be a function such that
 	\begin{itemize}
-		\item[1.]
-		$\varepsilon (x, y) + \varepsilon (x, z) \leq \varepsilon (x, y + z)$ for every $x, y, z \in \mathbb{N}$,
-		\item[2.]
-		$\varepsilon (\cdot, z)$ and $\varepsilon (z, \cdot)$ are non-decreasing functions on $\mathbb{N}$ for every $z \in \mathbb{N}$.
+		\item[1.] $\varepsilon (x, y) + \varepsilon (x, z) \leq \varepsilon (x, y + z)$ for every $x, y, z \in \mathbb{N}$,
+		\item[2.] $\varepsilon (\cdot, z)$ and $\varepsilon (z, \cdot)$ are non-decreasing functions on $\mathbb{N}$ for every $z \in \mathbb{N}$.
 	\end{itemize}
-	Suppose that for any distinguisher $\mathcal{D}$ in the single-user setting that makes p primitive queries to each of the underlying S-boxes and makes q construction queries, and for any attainable transcript $\tau = (\mathcal{Q}_C, \mathcal{Q}_S)$ obtained by $\mathcal{D}$, one has
+	Suppose that for any distinguisher $\mathcal{D}$ in the single-user setting that makes p primitive queries to each of the underlying S-boxes and makes q construction queries, and for any attainable transcript $\tau$ obtained by $\mathcal{D}$, one has
 	%
 	$$
-	\mathsf{p}_{2}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right) \geq (1 - \varepsilon(p,q)) \mathsf{p}_{1}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right).
+	\mathsf{p}_{2}\left(\tau\right) \geq (1 - \varepsilon(p,q)) \mathsf{p}_{1}\left(\tau\right).
 	$$
 	%
-	Then for any distinguisher $\mathcal{D}$ in the multi-user setting that makes $\mathnormal{p}$ primitive queries to each of the underlying S-boxes and makes total $\mathnormal{q}$ construction queries, and for any attainable transcript $\tau = (\mathcal{Q}_C, \mathcal{Q}_S)$ obtained by $\mathcal{D}$, one has
+	Then for any distinguisher $\mathcal{D}$ in the multi-user setting that makes $\mathnormal{p}$ primitive queries to each of the underlying S-boxes and makes total $\mathnormal{q}$ construction queries, and for any attainable transcript $\tau$ obtained by $\mathcal{D}$, one has
 	%
 	$$
-	\mathsf{p}_{2}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right) \geq (1 - \varepsilon(p + wq,q)) \mathsf{p}_{1}\left(\mathcal{Q}_{C} | \mathcal{Q}_{S}\right).
+	\mathsf{p}_{2}\left(\tau\right) \geq (1 - \varepsilon(p + wq,q)) \mathsf{p}_{1}\left(\tau\right).
 	$$
 \end{lemma}
 
 
 
-
-
-
-
-For any extended transcript $\tau^{\prime} = (\mathcal{Q}_C, \mathcal{Q}_S, \mathcal{Q}_S^{\prime},k)$, where $\mathcal{Q}_{S}^{(1)} = \mathcal{Q}_S \cup \mathcal{Q}_S^{\prime}$, denote
-
-$$
-\mathrm{p}\left(\tau^{\prime}\right)=\operatorname{Pr}\left[\mathcal{S} \stackrel{\mathrm{s}}{\leftarrow} \operatorname{Perm}(n)^{2}: \mathrm{\operatorname{SP}}^{T}_{k}[\mathcal{S}] \vdash \mathcal{Q}_{C} |\left(S_{1} \vdash \mathcal{Q}_{S_{1}}^{(1)}\right) \wedge\left(S_{2} \vdash \mathcal{Q}_{S_{2}}^{(1)}\right)\right].
-$$
-
-Then we will get the following lemma:
-
-\begin{lemma}
-\label{lemma:ratio-2-rounds}
-
-For any good extended transcript $\tau^{\prime}$, one has
-$$
-\left(2^{w n}\right)_{q} \mathrm{p}\left(\tau^{\prime}\right) \geq 1-\frac{q^{2}}{2^{w n}}-\frac{q\left(2 w p+6 w^{2} q\right)^{2}}{2^{2 n}}.
-$$
-\end{lemma}
-
+%
+%For any extended transcript $\tau^{\prime} = (\mathcal{Q}_C, \mathcal{Q}_S, \mathcal{Q}_S^{\prime},k)$, where $\mathcal{Q}_{S}^{(1)} = \mathcal{Q}_S \cup \mathcal{Q}_S^{\prime}$, denote
+%
+%$$
+%\mathrm{p}\left(\tau^{\prime}\right)=\operatorname{Pr}\left[\mathcal{S} \stackrel{\mathrm{s}}{\leftarrow} \operatorname{Perm}(n)^{2}: \mathrm{\operatorname{SP}}^{T}_{k}[\mathcal{S}] \vdash \mathcal{Q}_{C} |\left(S_{1} \vdash \mathcal{Q}_{S_{1}}^{(1)}\right) \wedge\left(S_{2} \vdash \mathcal{Q}_{S_{2}}^{(1)}\right)\right].
+%$$
+%
+%Then we will get the following lemma:
+%
+%\begin{lemma}
+%\label{lemma:ratio-2-rounds}
+%
+%For any good extended transcript $\tau^{\prime}$, one has
+%$$
+%\left(2^{w n}\right)_{q} \mathrm{p}\left(\tau^{\prime}\right) \geq 1-\frac{q^{2}}{2^{w n}}-\frac{q\left(2 w p+6 w^{2} q\right)^{2}}{2^{2 n}}.
+%$$
+%\end{lemma}
+%
 
