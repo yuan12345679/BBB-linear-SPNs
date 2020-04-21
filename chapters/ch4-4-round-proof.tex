@@ -9,7 +9,9 @@ In this section, we prove beyond-birthday-bound SPRP security for 4-round linear
 \label{eq:defn-4-round-spn}
 \end{align}
 %
-We show that $\spn^T$ is an SPRP as long as: (i) the linear layer $T$ contains no zero entries (Miles and Viola~\cite{miles2015substitution} show that matrices with maximal branch number~\cite{daemen1995cipher} satisfy this property), and (ii) the round keys $k_0,k_1,k_2,k_3,k_4$ are uniform and independent.
+We show that $\spn^T$ is an SPRP as long as: (i) the linear layer $T$ contains no zero entries,
+% (Miles and Viola~\cite{miles2015substitution} show that matrices with maximal branch number~\cite{daemen1995cipher} satisfy this property), 
+and (ii) the round keys $k_0,k_1,k_2,k_3,k_4$ are uniform and independent.
 
 
 \begin{theorem}
@@ -18,12 +20,14 @@ We show that $\spn^T$ is an SPRP as long as: (i) the linear layer $T$ contains n
 Assume $w\geq2$, and $p+wq\leq N/2$. Let $\spn_{\bfk}[\mathcal{S}]$ be a 4-round, linear SPN as defined by Eq. (\ref{eq:defn-4-round-spn}). If round keys $\bfk=(k_0,k_1,k_2,k_3,k_4)$ are uniform and independent, and $T$ contains no zero entries, then
 %
 \begin{align}
-\operatorname{Adv}_{\spn^T}^{\mathrm{su}}(p, q) &\leq \frac{q^2}{2^{n w}} + \frac{8 w^2 q(p+wq)^2+w^2 q}{2^n}\\
-&+ \frac{16 w^2 q(p+w q)(p+w q +3 q)+4 w^2 q(p+3 wq)^2+ w^2q(p+w q)(3p+w q)}{2^{2 n}}.
-\label{eq:bound-4-rounds}
+\operatorname{Adv}_{\spn^T}^{\mathrm{su}}(p, q) &\leq \frac{q^2}{2^{n w}} + \frac{8 w^2 q(p+wq)^2+w^2 q}{2^n}   .  
+\notag   \\
+\operatorname{Adv}_{\spn^T}^{\mathrm{mu}}(p, q) &\leq \frac{q^2}{2^{n w}} + \frac{8 w^2 q(p+wq)^2+w^2 q}{2^n}    \notag   \\
+&+ \frac{16 w^2 q(p+w q)(p+w q +3 q)+4 w^2 q(p+3 wq)^2}{2^{2 n}}.
+\notag
 \end{align}
 \end{theorem}
-The proof of Theorem \ref{eq:bound-4-rounds} relies on the following lemma and on Lemmas \ref{lemma:h-coeff} and \ref{lemma:point-wise}.
+The proof of Theorem \ref{theorem:4-round-spn} relies on the following lemma and on Lemmas \ref{lemma:h-coeff} and \ref{lemma:point-wise}.
 
 
 \begin{lemma}
@@ -303,8 +307,8 @@ $\overline{S_1}(x'\xor k_0)=\bfv_1'\|v_1'\|\bfv_2'$, where $v_1,v_1'\in V_1^{(0)
 %
 for two vectors $\bft_1^*,\bft_2^*$ and $t^*\in\{0,1\}^n$. Now:
 \begin{itemize}
-	\item If $\bfv_1=\bfv_1'$ and $\bfv_2=\bfv_2'$, then Eq. (\ref{eq:interm-eq-b2}) collapses to $t^*\cdot v_1=t^*\cdot v_1'$ which is not possible since $t^*\neq 0$ and $v_1\neq v_1'$;
-	\item Else, Eq. (\ref{eq:interm-eq-b2}) holds with probability at most $1/(N-p-wq)$.
+	\item If $x[i_0]=x'[i_0]$ for any $i_0\neq i$, then $\bfv_1=\bfv_1'$ and $\bfv_2=\bfv_2'$, and Eq. (\ref{eq:interm-eq-b2}) collapses to $t^*\cdot v_1=t^*\cdot v_1'$ which is not possible since $t^*\neq 0$ and $v_1\neq v_1'$;
+	\item Else, there exists $i_0\neq i$ such that $(x\xor k_0)[i_0]\neq(x'\xor k_0)[i_0]$. By this and $\neg\bone$, conditioned on $S_1\vdash\mathcal{Q}_{S_{1}}^{(0)}$, the value of $S_1(x\xor k_0)$ remains uniform in at least $N-p-wq$ possibilities, which means Eq. (\ref{eq:interm-eq-b2}) holds with probability at most $1/(N-p-wq)$.
 \end{itemize}
 Therefore, in this case, it still holds $\pcoll_{11}(x,x',i,i,j,j)\leq1/(N-p-wq)$, which means $A_3\leq{q\choose2}w^2p/N(N-p-wq)\leq w^2q^2p/2N(N-p-wq)$.
 
@@ -461,15 +465,15 @@ Finally, consider $\pcoll_{22}(a,a',i,i,j,j)$. Assume that $\overline{S_2}(a\xor
 $\overline{S_2}(a'\xor k_1)=\bfv_3'\|v_2'\|\bfv_4'$, where $v_2,v_2'\in V_2^{(0)}$. Then the equality $T(\overline{S_2}(a\xor k_1))[j]=T(\overline{S_2}(a'\xor k_1))[j]$ implies
 %
 \begin{align}
-\bft_3^*\cdot\bfv_3\xor t^*\cdot v_2\xor\bft_4^*\cdot\bfv_4=\bft_3^*\cdot\bfv_3'\xor t^*\cdot v_2'\xor\bft_4^*\cdot\bfv_4'.
+\bft_3^*\cdot\bfv_3\xor t^{**}\cdot v_2\xor\bft_4^*\cdot\bfv_4=\bft_3^*\cdot\bfv_3'\xor t^{**}\cdot v_2'\xor\bft_4^*\cdot\bfv_4'.
 \label{eq:interm-eq-b11}
 \end{align}
 %
 %
-for two vectors $\bft_3^*,\bft_4^*$ and $t^*\in\{0,1\}^n$. Now:
+for two vectors $\bft_3^*,\bft_4^*$ and $t^{**}\in\{0,1\}^n$. Now:
 \begin{itemize}
-	\item If $\bfv_3=\bfv_3'$ and $\bfv_4=\bfv_4'$, then Eq. (\ref{eq:interm-eq-b11}) collapses to $t^*\cdot v_2=t^*\cdot v_2'$ which is not possible since $t^*\neq 0$ and $v_1\neq v_1'$;
-	\item Else, Eq. (\ref{eq:interm-eq-b11}) holds with probability at most $1/(N-p-wq)$.
+	\item If $a[i_0]=a'[i_0]$ for any $i_0\neq i$, then $\bfv_3=\bfv_3'$ and $\bfv_4=\bfv_4'$, and Eq. (\ref{eq:interm-eq-b11}) collapses to $t^{**}\cdot v_2=t^{**}\cdot v_2'$ which is not possible since $t^{**}\neq 0$ and $v_2\neq v_2'$;
+	\item Else, there exists $i_0\neq i$ such that $(a\xor k_1)[i_0]\neq(a'\xor k_1)[i_0]$. By this and $\neg\beight$, conditioned on $S_2\vdash\mathcal{Q}_{S_2}^{(0)}$, {\bf the value of $S_2(x\xor k_0)$ remains uniform in at least $N-p-wq$ possibilities}, which means Eq. (\ref{eq:interm-eq-b11}) holds with probability at most $1/(N-p-wq)$.
 \end{itemize}
 Therefore, in this case, it still holds $\pcoll_{22}(x,x',i,i,j,j)\leq1/(N-p-wq)$, which means $A_3\leq{q\choose2}w^2p/N(N-p-wq)\leq w^2q^2p/2N(N-p-wq)$.
 
@@ -539,10 +543,10 @@ To reach the real world probability $\mathsf{p}_2(\tau)$, for any transcript ext
 \begin{align}
 \mathsf{p}_{\mathrm{re}}(\tau') = & \operatorname{Pr}\Big[\left(\mathbf{k}',\mathcal{S}\right) \stackrel{\$}{\leftarrow} \big(\{0,1\}^{wn}\big)^5 \times \mathsf{Perm}(n)^4:
 \Big(\big(S_1=S_1^*\big)\wedge\big(S_4=S_4^*\big)\wedge		\notag 	\\
-&\codeindent\codeindent\codeindent\codeindent\codeindent\codeindent\codeindent\codeindent\big(S_2\vdash\mathcal{Q}_{S_2}^{(1)}\big)\wedge\big(S_3\vdash\mathcal{Q}_{S_3}^{(1)}\big)\wedge\big(\calC_{\bfk'}^T[\calS] \vdash \mathcal{Q}_C'\big)\wedge\big(\bfk'=\bfk\big)\Big)\Big]\\
+&\codeindent\codeindent\codeindent\codeindent\codeindent\codeindent\codeindent\codeindent\big(S_2\vdash\mathcal{Q}_{S_2}^{(1)}\big)\wedge\big(S_3\vdash\mathcal{Q}_{S_3}^{(1)}\big)\wedge\big(\calC_{\bfk'}^T[\calS] \vdash \mathcal{Q}_C'\big)\wedge\big(\bfk'=\bfk\big)\Big)\Big]	 	\notag 	\\
 \mathsf{p}_{\mathrm{mid}}(\tau') = & \operatorname{Pr}\Big[\mathcal{S} \stackrel{\$}{\leftarrow}\mathsf{Perm}(n)^4:(\calC_{\bfk}^T[\calS] \vdash \mathcal{Q}_C')~\Big|~
 (S_1=S_1^*)\wedge (S_4=S_4^*)\wedge	 	\notag 	\\
-&\codeindent\codeindent\codeindent\codeindent\codeindent\codeindent\codeindent\codeindent (S_2\vdash\mathcal{Q}_{S_2}^{(1)})\wedge (S_3\vdash\mathcal{Q}_{S_3}^{(1)})\Big].
+&\codeindent\codeindent\codeindent\codeindent\codeindent\codeindent\codeindent\codeindent (S_2\vdash\mathcal{Q}_{S_2}^{(1)})\wedge (S_3\vdash\mathcal{Q}_{S_3}^{(1)})\Big].	 	\notag 	
 %\label{eq:defn-p-mid}
 \end{align}
 }%
