@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.22)  18 APR 2020 09:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.22)  20 APR 2020 08:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -766,13 +766,35 @@ Overfull \hbox (1.44934pt too wide) detected at line 137
  []
 
 [10]
+Overfull \hbox (1.30473pt too wide) in paragraph at lines 224--228
+[]\OT1/cmr/m/n/10 . For each of the $\OML/cmm/m/it/10 w[]qp[]$ \OT1/cmr/m/n/10 
+choices of $(\OML/cmm/m/it/10 x; a; b; y\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2 Q[
+]\OML/cmm/m/it/10 ; [] \OMS/cmsy/m/n/10 2 Q[]\OML/cmm/m/it/10 ; [] \OMS/cmsy/m/
+n/10 2
+ []
+
+
+Overfull \hbox (2.01176pt too wide) in paragraph at lines 243--244
+[]\OT1/cmr/m/n/10 (B-32) there ex-ists $(\OML/cmm/m/it/10 x; a; b; y\OT1/cmr/m/
+n/10 )\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]; a[]; b[]; y[]\O
+T1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2 Q[]$\OT1/cmr/m/n/10 , $(\OML/cmm/m/it/10 u[]
+; v[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2 Q[]$\OT1/cmr/m/n/10 , and $\OML/cmm/m
+/it/10 i; j; j[] \OMS/cmsy/m/n/10 2
+ []
+
+[11]
+Overfull \hbox (44.17082pt too wide) detected at line 276
+[]
+ []
+
+[12]
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 238.
+(amsmath)                 on input line 346.
 
 
-Overfull \hbox (2.70184pt too wide) in paragraph at lines 237--239
+Overfull \hbox (2.70184pt too wide) in paragraph at lines 345--347
 []\OT1/cmr/m/n/10 . Since $\OML/cmm/m/it/10 k[]$ \OT1/cmr/m/n/10 and $\OML/cmm/
 m/it/10 k[]$ \OT1/cmr/m/n/10 are uni-form, for each $(\OML/cmm/m/it/10 x; a; b;
  y\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2 Q[]$ \OT1/cmr/m/n/10 and $\OML/cmm/m/it/
@@ -780,28 +802,8 @@ m/it/10 k[]$ \OT1/cmr/m/n/10 are uni-form, for each $(\OML/cmm/m/it/10 x; a; b;
 /m/n/10 g$\OT1/cmr/m/n/10 ,
  []
 
-
-Overfull \hbox (10.25406pt too wide) detected at line 252
-[][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x; a; b; y\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n
-/10 , []\OML/cmm/m/it/10 i \OMS/cmsy/m/n/10 2 f\OT1/cmr/m/n/10 1\OML/cmm/m/it/1
-0 ; [] ; w\OMS/cmsy/m/n/10 g[]\OML/cmm/m/it/10 u[] \OMS/cmsy/m/n/10 2 \OML/cmm/
-m/it/10 U[][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 a \OMS/cmsy/m/n/10 ^^H \OML/cmm/
-m/it/10 k[]\OT1/cmr/m/n/10 )[\OML/cmm/m/it/10 i\OT1/cmr/m/n/10 ] = \OML/cmm/m/i
-t/10 u[]:
- []
-
-[11]
-Overfull \hbox (32.25728pt too wide) detected at line 296
-[][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x; a; b; y\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n
-/10 , []\OML/cmm/m/it/10 i \OMS/cmsy/m/n/10 2 f\OT1/cmr/m/n/10 1\OML/cmm/m/it/1
-0 ; [] ; w\OMS/cmsy/m/n/10 g[]\OML/cmm/m/it/10 v[] \OMS/cmsy/m/n/10 2 \OML/cmm/
-m/it/10 V[][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 b \OMS/cmsy/m/n/10 ^^H \OML/cmm/
-m/it/10 T[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 k[]\OT1/cmr/m/n/10 ))[\OML/cmm/m/i
-t/10 i\OT1/cmr/m/n/10 ] = \OML/cmm/m/it/10 v[]:
- []
-
-[12]
-Overfull \hbox (62.05656pt too wide) in paragraph at lines 382--385
+[13]
+Overfull \hbox (62.05656pt too wide) in paragraph at lines 429--432
 \OT1/cmr/m/sc/10 Conditions [] and []\OT1/cmr/m/n/10 . Con-sider [] first. For 
 any choice of $(\OML/cmm/m/it/10 x; a; b; y\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; 
 \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]; a[]; b[]; y[]\OT1/cmr/m/n/10 ) \OMS/cmsy
@@ -809,7 +811,7 @@ any choice of $(\OML/cmm/m/it/10 x; a; b; y\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ;
  []
 
 
-Overfull \hbox (68.49913pt too wide) in paragraph at lines 382--385
+Overfull \hbox (68.49913pt too wide) in paragraph at lines 429--432
 \OMS/cmsy/m/n/10 Q[]$\OT1/cmr/m/n/10 , $\OML/cmm/m/it/10 i; i[]; j; j[] \OMS/cm
 sy/m/n/10 2 f\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ; [] ; w\OMS/cmsy/m/n/10 g$\OT1/
 cmr/m/n/10 , with $(\OML/cmm/m/it/10 x; j\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 6\O
@@ -819,7 +821,7 @@ t/10 U[]$\OT1/cmr/m/n/10 , de-note by $[](\OML/cmm/m/it/10 x; x[]; i; i[]; j; j
  []
 
 
-Overfull \hbox (19.67833pt too wide) detected at line 386
+Overfull \hbox (19.67833pt too wide) detected at line 433
 \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 a \OMS/cmsy/m/n/10 ^^H \OML/cmm/m/it/10 k[]\O
 T1/cmr/m/n/10 )[\OML/cmm/m/it/10 i\OT1/cmr/m/n/10 ] = \OML/cmm/m/it/10 u[] []\O
 T1/cmr/m/n/10 (\OML/cmm/m/it/10 a[] \OMS/cmsy/m/n/10 ^^H \OML/cmm/m/it/10 k[]\O
@@ -832,12 +834,8 @@ T1/cmr/m/n/10 )[\OML/cmm/m/it/10 i[]\OT1/cmr/m/n/10 ] = \OML/cmm/m/it/10 u[] []
 /10 j[]\OT1/cmr/m/n/10 ]\OML/cmm/m/it/10 :
  []
 
-
-Underfull \vbox (badness 5403) has occurred while \output is active []
-
- [13]
 [14] [15]
-Overfull \hbox (45.86244pt too wide) in paragraph at lines 517--520
+Overfull \hbox (45.86244pt too wide) in paragraph at lines 564--567
 []\OT1/cmr/m/n/10 To reach the real world prob-a-bil-ity $\OT1/cmss/m/n/10 p[]\
 OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^\\OT1/cmr/m/n/10 )$, for any tran-script $\O
 ML/cmm/m/it/10 ^^\[] \OT1/cmr/m/n/10 = (\OMS/cmsy/m/n/10 Q[]\OML/cmm/m/it/10 ; 
@@ -846,27 +844,27 @@ ML/cmm/m/it/10 ^^\[] \OT1/cmr/m/n/10 = (\OMS/cmsy/m/n/10 Q[]\OML/cmm/m/it/10 ;
  []
 
 
-Overfull \hbox (0.24461pt too wide) detected at line 543
+Overfull \hbox (0.24461pt too wide) detected at line 590
 []
  []
 
 
-Overfull \hbox (42.77977pt too wide) detected at line 556
+Overfull \hbox (42.77977pt too wide) detected at line 603
 []
  []
 
 [16]
 
-LaTeX Warning: Citation `C:CDKLST18' on page 17 undefined on input line 594.
+LaTeX Warning: Citation `C:CDKLST18' on page 17 undefined on input line 641.
 
 
-LaTeX Warning: Citation `C:CDKLST18' on page 17 undefined on input line 606.
+LaTeX Warning: Citation `C:CDKLST18' on page 17 undefined on input line 653.
 
 
-LaTeX Warning: Citation `C:CDKLST18' on page 17 undefined on input line 607.
+LaTeX Warning: Citation `C:CDKLST18' on page 17 undefined on input line 654.
 
 
-Overfull \hbox (88.93993pt too wide) detected at line 628
+Overfull \hbox (88.93993pt too wide) detected at line 675
 []
  []
 
@@ -880,12 +878,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 50--51
 
  []
 
-
+[18]
 Underfull \hbox (badness 10000) in paragraph at lines 66--67
 
  []
 
-[18]
+
 Overfull \hbox (13.50014pt too wide) detected at line 84
 [][]
  []
@@ -911,7 +909,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 134--135
 
  []
 
-
+[20]
 Overfull \hbox (13.50014pt too wide) detected at line 155
 [][]
  []
@@ -921,7 +919,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 157--158
 
  []
 
-[20]
+
 Underfull \hbox (badness 10000) in paragraph at lines 184--185
 
  []
@@ -931,7 +929,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 195--196
 
  []
 
-
+[21]
 Overfull \hbox (21.27089pt too wide) in paragraph at lines 197--199
 \OT1/cmr/m/n/10 each $(\OML/cmm/m/it/10 t; a; b\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/
 10 2 Q[] []$ \OT1/cmr/m/n/10 we set $\OML/cmm/m/it/10 c \OT1/cmr/m/n/10 = \OML/
@@ -949,7 +947,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 200--201
 
  []
 
-[21]
+
 Overfull \hbox (20.68199pt too wide) in paragraph at lines 218--219
 \OT1/cmr/m/n/10 that $[] [\OML/cmm/m/it/10 i\OT1/cmr/m/n/10 ] = \OML/cmm/m/it/1
 0 v[]$ \OT1/cmr/m/n/10 and $[] [\OML/cmm/m/it/10 j\OT1/cmr/m/n/10 ] =
@@ -988,7 +986,7 @@ Overfull \hbox (15.45827pt too wide) detected at line 231
 j[]\OT1/cmr/m/n/10 ]\OML/cmm/m/it/10 :
  []
 
-
+[22]
 Overfull \hbox (4.43085pt too wide) in paragraph at lines 241--242
 []\OT1/cmr/m/n/10 there ex-ist dis-tinct $(\OML/cmm/m/it/10 t; c; d\OT1/cmr/m/n
 /10 )\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]; c[]; d[]\OT1/cmr
@@ -997,7 +995,7 @@ Overfull \hbox (4.43085pt too wide) in paragraph at lines 241--242
 sy/m/n/10 g$\OT1/cmr/m/n/10 ,
  []
 
-[22]
+
 Overfull \hbox (15.29956pt too wide) in paragraph at lines 249--250
 []\OT1/cmr/m/n/10 there ex-ist $(\OML/cmm/m/it/10 t; c; d\OT1/cmr/m/n/10 )\OML/
 cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]; c[]; d[]\OT1/cmr/m/n/10 ) 
@@ -1019,7 +1017,7 @@ lue $\OML/cmm/m/it/10 S[] [] \OT1/cmr/m/n/10 [\OML/cmm/m/it/10 i\OT1/cmr/m/n/10
  ]$
  []
 
-[23]) (./BB-linear-SPN.bbl
+[23]) (./BB-linear-SPN.bbl [24]
 Underfull \hbox (badness 1540) in paragraph at lines 49--54
 []\OT1/cmr/m/n/9 Jacques Patarin.  The ``co-ef-fi-cients H'' tech-nique (in-vit
 ed talk).  In
@@ -1027,7 +1025,7 @@ ed talk).  In
 
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 134.
- [24]
+ [25]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 134.
  (./BB-linear-SPN.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 134.
@@ -1037,10 +1035,10 @@ Package rerunfilecheck Info: File `BB-linear-SPN.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 134.
  ) 
 Here is how much of TeX's memory you used:
- 10137 strings out of 492616
- 144405 string characters out of 6129481
- 295547 words of memory out of 5000000
- 13730 multiletter control sequences out of 15000+600000
+ 10142 strings out of 492616
+ 144427 string characters out of 6129481
+ 296477 words of memory out of 5000000
+ 13735 multiletter control sequences out of 15000+600000
  19103 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  31i,20n,30p,1509b,534s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1077,10 +1075,10 @@ xmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2019/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2019/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2019/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on BB-linear-SPN.pdf (24 pages, 462544 bytes).
+Output written on BB-linear-SPN.pdf (25 pages, 463439 bytes).
 PDF statistics:
- 380 PDF objects out of 1000 (max. 8388607)
- 315 compressed objects within 4 object streams
+ 384 PDF objects out of 1000 (max. 8388607)
+ 318 compressed objects within 4 object streams
  82 named destinations out of 1000 (max. 500000)
  97 words of extra memory for PDF output out of 10000 (max. 10000000)
 
