@@ -157,10 +157,10 @@ We say an extended transcript $\tau^{\prime}$ is bad if at least one of the foll
 	\begin{itemize}
 		\item $(x\xor k_0)[i]=(x'\xor k_0)[i']=(x''\xor k_0)[i'']$, or
 		\item $(a\xor k_1)[i]=(a'\xor k_1)[i']=(a''\xor k_1)[i'']$, or
-		\item $(b\xor k_3)[i]=(b'\xor k_3)[i']=(b''\xor k_3)[i'']$, or
+		\item $(b\xor T^{-1}(k_3))[i]=(b'\xor T^{-1}(k_3))[i']=(b''\xor T^{-1}(k_3))[i'']$, or
 		\item $(y\xor k_4)[i]=(y'\xor k_4)[i']=(y''\xor k_4)[i'']$.
 	\end{itemize}
-	\item[\btwo] there exist $(x,a,b,y) \in \mathcal{Q}_{C}'$ and distinct $i, i' \in \{1, \ldots, w\}$ such that:
+	\item[\btwo] there exist $(x,a,b,y) \in \mathcal{Q}_{C}'$ and distinct indices $i, i' \in \{1, \ldots, w\}$ such that:
 	\begin{itemize}
 		\item $(x\xor k_0)[i]\in U_1^{(0)}$ and $(x\xor k_0)[i']\in U_1^{(0)}$, or
 		\item $(a \oplus k_1)[i]\in U_{2}^{(0)}$ and $(a \oplus k_1)[i']\in U_{2}^{(0)}$, or
@@ -168,10 +168,10 @@ We say an extended transcript $\tau^{\prime}$ is bad if at least one of the foll
 		$\left(b'\xor T^{-1}\left(k_3\right)\right)[i']\in V_3^{(0)}$, or
 		\item $(y\xor k_4)[i]\in V_4^{(0)}$ and $(y\xor k_4)[i']\in V_4^{(0)}$.
 	\end{itemize}
-	\item[\bthree] there exist $(x,a,b,y) \in \mathcal{Q}_{C}', u_1 \in U_1^{(0)}, v_4 \in V_4^{(0)}$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(x \oplus k_{0}\right)[i]=u_1$ and $\left(y \oplus k_{4}\right)[j]=v_4$.
-	\item[\bfour] there exist $(x,a,b,y) \in \mathcal{Q}_{C}', u_1 \in U_1^{(0)}, u_2\in U_2^{(1)}$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(x \oplus k_{0}\right)[i]=u_1$ and $\left(a\oplus k_{1}\right)[j]=u_2$.
+	\item[\bthree] there exist $(x,a,b,y) \in \mathcal{Q}_{C}', u_1 \in U_1^{(0)}, v_4 \in V_4^{(0)}$, and $i, j \in \{1, \ldots, w\}$ such that $\left(x \oplus k_{0}\right)[i]=u_1$ and $\left(y \oplus k_{4}\right)[j]=v_4$.
+	\item[\bfour] there exist $(x,a,b,y) \in \mathcal{Q}_{C}', u_1 \in U_1^{(0)}, u_2\in U_2^{(1)}$, and $i, j \in \{1, \ldots, w\}$ such that $\left(x \oplus k_{0}\right)[i]=u_1$ and $\left(a\oplus k_{1}\right)[j]=u_2$.
 %	there exist $(x,a,b,y) \in \mathcal{Q}_{C}', u_1 \in U_1^{(0)}, u_2\in U_2^{(0)}$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(x \oplus k_{0}\right)[i]=u_1$ and $\left(T\left(\overline{S_1}\left(x \oplus k_{0}\right) \oplus k_{1}\right)\right)[j]=u_2$.
-	\item[\bfive] there exist $(x,a,b,y) \in \mathcal{Q}_{C}', v_{3}\in V_3^{(1)}, v_{4}\in V_4^{(0)}$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(y \oplus k_{4}\right)[j]=v_4$ and $\left(b\xor T^{-1}(k_3)\right) [i]=v_3$.
+	\item[\bfive] there exist $(x,a,b,y) \in \mathcal{Q}_{C}', v_{3}\in V_3^{(1)}, v_{4}\in V_4^{(0)}$, and $i, j \in \{1, \ldots, w\}$ such that $\left(y \oplus k_{4}\right)[j]=v_4$ and $\left(b\xor T^{-1}(k_3)\right) [i]=v_3$.
 %	there exist $(x,a,b,y) \in \mathcal{Q}_{C}', v_{3}\in V_3^{(0)}, v_{4}\in V_4^{(0)}$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(y \oplus k_{4}\right)[j]=v_4$ and $\left(T^{-1}\left(\overline{S_4^{-1}}\left(y \oplus k_{4}\right)\right)\xor T^{-1}(k_3)\right) [i]=v_3$.
 %
 %
@@ -187,13 +187,11 @@ Regarding $k_2,S_1,S_4$, and $\mathcal{Q}_S'$:
 %	there exist $(x,a,b,y) \in \mathcal{Q}_{C}'$ and $i, j \in\{1, \ldots, w\}$ such that $(a \oplus k_1)[i]\in U_{2}^{(1)}$ and $(b\xor T^{-1}(k_3))[j]\in V_{3}^{(1)}$.
 %	\item[\beight]
 %	there exist $(x,a,b,y) \in \mathcal{Q}_{C}'$ and $i, j \in\{1, \ldots, w\}$ such that $(a \oplus k_1)[i]\in U_{2}^{(1)}$ and $(T(\overline{S_2}(a \oplus k_1))\xor k_2)[j]\in U_{3}^{(1)}$.
-	\item[\bsix]
-	there exist $(x,a,b,y) \in \mathcal{Q}_{C}'$ and $i, j \in\{1, \ldots, w\}$ such that $(b\xor T^{-1}(k_3))[j]\in V_{2}^{(1)}$ and $\left(T^{-1}(b\xor T^{-1}(k_3)) \oplus T^{-1}(k_2)\right)[j]\in V_{3}^{(1)}$.
-	\item[\bseven]
-	there exist $(x,a,b,y) \in \mathcal{Q}_{C}'$, $i, j\in\{1, \ldots, w\}$ such that:
+	\item[\bsix] there exist $(x,a,b,y) \in \mathcal{Q}_{C}'$ and $i, j \in\{1, \ldots, w\}$ such that $(a\xor k_1)[i]\in U_2^{(1)}$ and $(b\xor T^{-1}(k_3))[j]\in V_3^{(1)}$.
+	\item[\bseven] there exist $(x,a,b,y) \in \mathcal{Q}_{C}'$, $i, j\in\{1, \ldots, w\}$ such that:
 	\begin{itemize}
 		\item $(a \oplus k_1)[i]\in U_{2}^{(1)}$ and $(T(\overline{S_2}(a \oplus k_1))\xor k_2)[j]\in U_{3}^{(1)}$, or
-		\item $(T^{-1}(\overline{S_3^{-1}}(b\xor T^{-1}(k_3))\xor k_2))[i]\in U_2^{(1)}$ and $(b\xor T^{-1}(k_3))[j]\in V_{3}^{(1)}$.
+		\item $(T^{-1}(\overline{S_3^{-1}}(b\xor T^{-1}(k_3))\xor k_2))[i]\in V_2^{(1)}$ and $(b\xor T^{-1}(k_3))[j]\in V_{3}^{(1)}$.
 	\end{itemize}
 %	\item[\cfive] \textcolor{red}{there exist distinct $(a, b),(a',b') \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{4}\right)$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$, $u_{2} \in U_{2}$ such that}
 %	$$\left(T\left(a \oplus k_{1}\right)\right)[i] = u_2,\text{ and }
@@ -241,33 +239,43 @@ We will rely on the following lemma, which characterizes the properties of linea
 	\end{align*}
 	Then it holds
 	\begin{align}
-	{\Pr}_{S_t}\Big[T\big(\overline{S_t}(z\xor k)\big)[j]=\delta ~\Big|~\forall\ell\in\{1,\ldots,w\}:(z\xor k)[\ell]\notin U_t^{(0)}\Big]\leq\frac{1}{N},        \notag   \\
+	{\Pr}_{S_t}\Big[\big(T\big(\overline{S_t}(z\xor k_{t-1})\big)\xor k_t\big)[j]=\delta ~\Big|~\forall\ell\in\{1,\ldots,w\}:(z\xor k)[\ell]\notin U_t^{(0)}\Big]\leq\frac{1}{N},        \notag   \\
+	{\Pr}_{S_t}\Big[\big(T^{-1}\big(\overline{S_t}(z\xor k_t)\big)\xor k_{t-1}\big)[j]=\delta ~\Big|~\forall\ell\in\{1,\ldots,w\}:(z\xor k)[\ell]\notin V_t^{(0)}\Big]\leq\frac{1}{N},        \notag   \\
 	\pcoll_{1}^+(t,z,z',j)\leq\frac{1}{N-p-wq}, \hugeindent \pcoll_{2}^+(t,z',i,i',j)\leq\frac{1}{N-p-wq},    \notag    \\
 	\pcoll_{1}^-(t,z,z',j)\leq\frac{1}{N-p-wq}, \hugeindent \pcoll_{2}^-(t,z,z',i,i',j)\leq\frac{1}{N-p-wq}.    \notag
 %	\label{eq:bound-coll-1-round}
 	\end{align}
 \end{lemma}
 \begin{proof}
-Consider the probability to have $T\big(\overline{S_t}(z\xor k)\big)[j]$ equal a constant $\delta$ first. By $\neg\bone$, the exists at most 1 index $i_1$ such that $(x\xor k_0)[i_1]=(x\xor k_0)[1]$. By these, we write
-%
-\begin{align*}
-& (T(\overline{S_1}(x\xor k_0)))[i]       \\
-= &
-\Big(t_{i,1}\cdot S_1\big((x\xor k_0)[1]\big)
-\xor
-t_{i,i_0}\cdot S_1\big((x\xor k_0)[i_0]\big)\Big)
-\xor
-\bigoplus_{2\leq\ell\leq w,\ell\neq i_1}t_{i,\ell}\cdot S_1\big((x\xor k_0)[\ell]\big)     \\
-= &
-\Big(\big(t_{i,1}\xor t_{i,i_0}\big)\cdot S_1\big((x\xor k_0)[1]\big)\Big)
-\xor
-\bigoplus_{2\leq\ell\leq w,\ell\neq i_1}t_{i,\ell}\cdot S_1\big((x\xor k_0)[\ell]\big)    .
-\end{align*}
-%
-Conditioned on $S_1\vdash\mathcal{Q}_{S_1}^{(0)}$ and on the $w-2$ values $\big\{S_1((x\xor k_0)[i'])\}_{2\leq i'\leq w,i'\neq i_1}$, \textbf{the value of $S_1((x \oplus k_0)[0])$ remains uniform in at least $N-p-wq$ values. Moreover, the coefficient $t_{i,1}\xor t_{i,i_0}$ is non-zero as per our assumption. Therefore,} the probability to have $(a\xor k_1)[i]=(T(\overline{S_1}(x\xor k_0)))[i]\xor k_1[i]$ equal some constant $\delta$ is at most $1/(N-p-wq)$.
+First, since $k_t[j]$ is uniform and independent of $k_{t-1}$ and $S_t$, it immediately holds
+$${\Pr}_{S_t}\Big[\big(T\big(\overline{S_t}(z\xor k_{t-1})\big)\xor k_t\big)[j]=\delta ~\Big|~\forall\ell\in\{1,\ldots,w\}:(z\xor k)[\ell]\notin U_t^{(0)}\Big]=\frac{1}{N}.$$
+Similarly,
+$${\Pr}_{S_t}\Big[\big(T^{-1}\big(\overline{S_t}(z\xor k_t)\big)\xor k_{t-1}\big)[j]=\delta ~\Big|~\forall\ell\in\{1,\ldots,w\}:(z\xor k)[\ell]\notin V_t^{(0)}\Big]=\frac{1}{N}.$$
 
 
-Similarly, the probability of $(b\xor T^{-1}(k_3))[j]\in U_2^{(1)}$ is at most $1/(N-p-wq)$.
+
+%Consider the probability to have $T\big(\overline{S_t}(z\xor k)\big)[j]$ equal a constant $\delta$ first. By $\neg\bone$, the exists at most 1 index $i_1$ such that $(x\xor k_0)[i_1]=(x\xor k_0)[1]$. By these, we write
+%%
+%\begin{align*}
+%& (T(\overline{S_1}(x\xor k_0)))[i]       \\
+%= &
+%\Big(t_{i,1}\cdot S_1\big((x\xor k_0)[1]\big)
+%\xor
+%t_{i,i_0}\cdot S_1\big((x\xor k_0)[i_0]\big)\Big)
+%\xor
+%\bigoplus_{2\leq\ell\leq w,\ell\neq i_1}t_{i,\ell}\cdot S_1\big((x\xor k_0)[\ell]\big)     \\
+%= &
+%\Big(\big(t_{i,1}\xor t_{i,i_0}\big)\cdot S_1\big((x\xor k_0)[1]\big)\Big)
+%\xor
+%\bigoplus_{2\leq\ell\leq w,\ell\neq i_1}t_{i,\ell}\cdot S_1\big((x\xor k_0)[\ell]\big)    .
+%\end{align*}
+%%
+%
+%
+%Conditioned on $S_1\vdash\mathcal{Q}_{S_1}^{(0)}$ and on the $w-2$ values $\big\{S_1((x\xor k_0)[i'])\}_{2\leq i'\leq w,i'\neq i_1}$, \textbf{the value of $S_1((x \oplus k_0)[0])$ remains uniform in at least $N-p-wq$ values. Moreover, the coefficient $t_{i,1}\xor t_{i,i_0}$ is non-zero as per our assumption. Therefore,} the probability to have $(a\xor k_1)[i]=(T(\overline{S_1}(x\xor k_0)))[i]\xor k_1[i]$ equal some constant $\delta$ is at most $1/(N-p-wq)$.
+%
+%
+%Similarly, the probability of $(b\xor T^{-1}(k_3))[j]\in U_2^{(1)}$ is at most $1/(N-p-wq)$.
 	
 	
 	
@@ -678,7 +686,28 @@ Similarly, ${\Pr}\big[\bfour\mid\neg\bone\big] \leq \frac{w^{2} q \left(p+w q\ri
 
 \arrangespace
 
-\noindent \textsc{\bsix}. For any construction query $(x,a,b,y)\in\mathcal{Q}_C'$, to have $(a\xor k_1)[i]\in U_2^{(1)}$, it has to be $(x\xor k_0)[i_0]\notin U_1^{(0)}$ for any $i_0\in\{1,\ldots,w\}$, as otherwise it contradicts $\neg\bfour$. Therefore,
+\noindent \textsc{\bsix}. \textbf{For any construction query $(x,a,b,y)\in\mathcal{Q}_C'$, to have $(a\xor k_1)[i]\in U_2^{(1)}$, it has to be $(x\xor k_0)[i_0]\notin U_1^{(0)}$ for any $i_0\in\{1,\ldots,w\}$, as otherwise it contradicts $\neg\bfour$.}
+
+
+For any $(x,a,b,y)\in\mathcal{Q}_C'$ and any $i,j$, it holds
+%
+\begin{align}
+{\Pr}\big[(a\xor k_1)[j]\in U_2^{(1)}\big] \leq  &  \sum_{u_2\in U_2^{(0)}}  \underbrace{{\Pr}\big[\big(T(\overline{S_1}(x\xor k_0))\xor k_1\big)[i]=u_2\big]}_{=1/N\ (\text{Lemma }\ref{lemma:coll-prob})}       \notag        \\
+& +
+\sum_{(x',a',b',y')\in\mathcal{Q}_C'}\sum_{i'\neq i} \underbrace{{\Pr}\big[(a\xor k_1)[i]=(a'\xor k_1)[i']\big]}_{=1/N}        \label{eq:334}         \\
+& +
+\sum_{(x',a',b',y')\in\mathcal{Q}_C'} \underbrace{{\Pr}\big[(a\xor k_1)[i]=(a'\xor k_1)[i]\big]}_{\leq1/(N-p-wq)\ (\text{Lemma }\ref{lemma:coll-prob})}         \notag      \\
+\leq  &  \frac{p}{N}+\frac{wq}{N}+\frac{q}{N-p-wq} \leq \frac{2(p+wq)}{N}.
+\notag
+\end{align}
+where (\ref{eq:334}) follows from the fact that $k_1[j]$ and $k_1[j']$ are uniform and independent. Similarly, ${\Pr}\big[(b\xor T^{-1}(k_3))[j]\in V_3^{(1)}\big]\leq(p+wq)/N+q/(N-p-wq)$. Since we have at most $w^2q$ choices for $(x,a,b,y)$ and $i, j \in\{1, \ldots, w\}$, we have
+%
+$$
+{\Pr}\big[\bsix\mid\neg\bthree\wedge\neg\bfour\big] \leq
+w^2q\cdot\Big(\frac{2(p+wq)}{N}\Big)^2\leq \frac{4w^2q(p+wq)^2}{N}.
+$$
+
+
 %
 %\begin{align*}
 %\Pr[\bseven] \leq  &  \Pr[(a\xor k_1)[i]\in U_2^{(1)}]
@@ -692,45 +721,45 @@ Similarly, ${\Pr}\big[\bfour\mid\neg\bone\big] \leq \frac{w^{2} q \left(p+w q\ri
 %
 %
 %For (B-43), we have $\pcoll_{1}^+(t,z,z',j)\leq1/(N-p-wq)$ by Lemma \ref{lemma:coll-prob}. Thus
-
-\textbf{By $\neg\bone$, the exists at most 1 index $i_1$ such that $(x\xor k_0)[i_1]=(x\xor k_0)[1]$. By these, we write}
 %
-\begin{align*}
-& (T(\overline{S_1}(x\xor k_0)))[i]       \\
-= &
-\Big(t_{i,1}\cdot S_1\big((x\xor k_0)[1]\big)
-\xor
-t_{i,i_0}\cdot S_1\big((x\xor k_0)[i_0]\big)\Big)
-\xor
-\bigoplus_{2\leq\ell\leq w,\ell\neq i_1}t_{i,\ell}\cdot S_1\big((x\xor k_0)[\ell]\big)     \\
-= &
-\Big(\big(t_{i,1}\xor t_{i,i_0}\big)\cdot S_1\big((x\xor k_0)[1]\big)\Big)
-\xor
-\bigoplus_{2\leq\ell\leq w,\ell\neq i_1}t_{i,\ell}\cdot S_1\big((x\xor k_0)[\ell]\big)    .
-\end{align*}
-%
-Conditioned on $S_1\vdash\mathcal{Q}_{S_1}^{(0)}$ and on the $w-2$ values $\big\{S_1((x\xor k_0)[i'])\}_{2\leq i'\leq w,i'\neq i_1}$, \textbf{the value of $S_1((x \oplus k_0)[0])$ remains uniform in at least $N-p-wq$ values. Moreover, the coefficient $t_{i,1}\xor t_{i,i_0}$ is non-zero as per our assumption. Therefore,} the probability to have $(a\xor k_1)[i]=(T(\overline{S_1}(x\xor k_0)))[i]\xor k_1[i]$ equal some value in $U_2^{(1)}$ is at most $(p+wq)/(N-p-wq)$. Similarly, the probability of $(b\xor T^{-1}(k_3))[j]\in U_2^{(1)}$ is at most $(p+wq)/(N-p-wq)$. Since we have at most $qw^2$ choices for $(x,a,b,y)$ and $i, j \in\{1, \ldots, w\}$, we have
-%
-$$
-{\Pr}\big[\cone\mid\neg\bthree\wedge\neg\bfour\big] \leq \frac{w^{2} q (p+w q)^{2}}{(N-p-wq)^{2}}.
-$$
+%\textbf{By $\neg\bone$, the exists at most 1 index $i_1$ such that $(x\xor k_0)[i_1]=(x\xor k_0)[1]$. By these, we write}
+%%
+%\begin{align*}
+%& (T(\overline{S_1}(x\xor k_0)))[i]       \\
+%= &
+%\Big(t_{i,1}\cdot S_1\big((x\xor k_0)[1]\big)
+%\xor
+%t_{i,i_0}\cdot S_1\big((x\xor k_0)[i_0]\big)\Big)
+%\xor
+%\bigoplus_{2\leq\ell\leq w,\ell\neq i_1}t_{i,\ell}\cdot S_1\big((x\xor k_0)[\ell]\big)     \\
+%= &
+%\Big(\big(t_{i,1}\xor t_{i,i_0}\big)\cdot S_1\big((x\xor k_0)[1]\big)\Big)
+%\xor
+%\bigoplus_{2\leq\ell\leq w,\ell\neq i_1}t_{i,\ell}\cdot S_1\big((x\xor k_0)[\ell]\big)    .
+%\end{align*}
+%%
+%Conditioned on $S_1\vdash\mathcal{Q}_{S_1}^{(0)}$ and on the $w-2$ values $\big\{S_1((x\xor k_0)[i'])\}_{2\leq i'\leq w,i'\neq i_1}$, \textbf{the value of $S_1((x \oplus k_0)[0])$ remains uniform in at least $N-p-wq$ values. Moreover, the coefficient $t_{i,1}\xor t_{i,i_0}$ is non-zero as per our assumption. Therefore,} the probability to have $(a\xor k_1)[i]=(T(\overline{S_1}(x\xor k_0)))[i]\xor k_1[i]$ equal some value in $U_2^{(1)}$ is at most $(p+wq)/(N-p-wq)$. Similarly, the probability of $(b\xor T^{-1}(k_3))[j]\in U_2^{(1)}$ is at most $(p+wq)/(N-p-wq)$. Since we have at most $qw^2$ choices for $(x,a,b,y)$ and $i, j \in\{1, \ldots, w\}$, we have
+%%
+%$$
+%{\Pr}\big[\cone\mid\neg\bthree\wedge\neg\bfour\big] \leq \frac{w^{2} q (p+w q)^{2}}{(N-p-wq)^{2}}.
+%$$
 
 
 
 %\arrangespace
 
-\noindent \textsc{\bseven}. Following the analysis of \cone, for any $(x,a,b,y)\in\mathcal{Q}_C'$, the probability to have $(a\xor k_1)[i]\in U_{2}^{(1)}$ is at most $(p+wq)/(N-p-wq)$. On the other hand, since $k_{2}$ is uniform and independent from the queries and from $k_{0}$, $k_{1}$, the probability to have $(T(\overline{S_2}(a \oplus k_1))\xor k_2)[j]\in U_{3}^{(1)}$ is $1/N$. Since we have at most $qw^2$ choices for $(x,a,b,y)$ and $i, j \in\{1, \ldots, w\}$, we have
+\noindent \textsc{\bseven}. Following the analysis of \bsix, for any $(x,a,b,y)\in\mathcal{Q}_C'$ and $i$, the probability to have $(a\xor k_1)[i]\in U_{2}^{(1)}$ is at most $2(p+wq)/N$. On the other hand, since $k_{2}$ is uniform and independent from the queries and from $k_{0}$, $k_{1}$, the probability to have $(T(\overline{S_2}(a \oplus k_1))\xor k_2)[j]\in U_{3}^{(1)}$ is $(p+wq)/N$. Similarly by symmetry, the probability to have both $(T^{-1}(\overline{S_3^{-1}}(b\xor T^{-1}(k_3))\xor k_2))[i]\in V_2^{(1)}$ and $(b\xor T^{-1}(k_3))[j]\in V_{3}^{(1)}$ is at most $2(p+wq)^2/N^2$. Since we have at most $w^2q$ choices for $(x,a,b,y)$ and $i, j \in\{1, \ldots, w\}$, we have
 %
 %
 $$
-{\Pr}\big[\ctwo\mid\neg\bthree\big] \leq \frac{w^{2} q (p+w q)^{2}}{N  (N-p-wq)}.
+{\Pr}\big[\bseven\mid\neg\bthree\big] \leq \frac{4w^{2} q (p+wq)^2}{N^2}.
 $$
 %
-Similarly,
-%
-$$
-{\Pr}\big[\cthree\mid\neg\bfour\big] \leq \frac{w^{2} q (p+w q)^{2}}{N  (N-p-wq)}.
-$$
+%Similarly,
+%%
+%$$
+%{\Pr}\big[\cthree\mid\neg\bfour\big] \leq \frac{w^{2} q (p+w q)^{2}}{N  (N-p-wq)}.
+%$$
 
 
 
