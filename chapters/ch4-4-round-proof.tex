@@ -227,9 +227,9 @@ We will rely on the following lemma, which characterizes the properties of linea
 	
 	Define
 	\begin{align*}
-	&\pcoll_{1}^+(t,z,z',j,j')  :={\Pr}_{S_t}\Big[T\big(\overline{S_t}(z\xor k)\big)[j]=T\big(\overline{S_t}(z'\xor k)\big)[j']       \\
+	&\pcoll_{1}^+(t,z,z',j,j')  :={\Pr}\Big[\big(T\big(\overline{S_t}(z\xor k_{t-1})\big)\xor k_t\big)[j]=\big(T\big(\overline{S_t}(z'\xor k_{t-1})\big)\xor k_t\big)[j']       \\
 	&~\Big|~(z\xor k)[i]\notin U_t^{(0)}\Big],         \\
-	&\pcoll_{2}^+(t,z,z',i,i',j,j')      :={\Pr}_{S_t}\Big[T\big(\overline{S_t}(z\xor k)\big)[j]=T\big(\overline{S_t}(z'\xor k)\big)[j']   \\
+	&\pcoll_{2}^+(t,z,z',i,i',j,j')      :={\Pr}_{S_t}\Big[\big(T\big(\overline{S_t}(z\xor k_{t-1})\big)\xor k_t\big)[j]=\big(T\big(\overline{S_t}(z'\xor k_{t-1})\big)\xor k_t\big)[j']   \\
 	&~\Big|~(z\xor k)[i]\notin U_t^{(0)}\wedge(z\xor k)[i]\notin U_t^{(0)}\Big],         \\
 	&\pcoll_{1}^-(t,z,z',j,j')     :={\Pr}_{S_t}\Big[T\big(\overline{S_t^{-1}}(z\xor k)\big)[j]=T\big(\overline{S_t^{-1}}(z'\xor k)\big)[j']    \\
 	&~\Big|~(z\xor k)[i]\notin V_t^{(0)}\Big],         \\
@@ -283,13 +283,13 @@ $${\Pr}_{S_t}\Big[\big(T^{-1}\big(\overline{S_t}(z\xor k_t)\big)\xor k_{t-1}\big
 
 	
 Then, consider $\pcoll_{1}^+(t,z,z',j,j')$. When $j\neq j'$, the probability to have
-$\big(T\big(\overline{S_t}(z\xor k)\big)\xor k\big)[j]=\big(T\big(\overline{S_t}(z'\xor k)\big)\xor k\big)[j']$ is $1/N\leq 1/(N-p-wq)$, since $k[j]$ and $k[j']$ are uniform and independent. In the remaining we focus on the case of $j=j'$, which means $T\big(\overline{S_t}(z\xor k)\big)[j]=T\big(\overline{S_t}(z'\xor k)\big)[j]$. Note that $z\neq z'$ implies there exists $i_0$ such that $(z\xor k)[i_0]\neq(z'\xor k)[i_0]$. By the assumption, $(z'\xor k)[i_0]\notin U_1^{(0)}$. By construction, we have
+$\big(T\big(\overline{S_t}(z\xor k_{t-1})\big)\xor k_t\big)[j]=\big(T\big(\overline{S_t}(z'\xor k_{t-1})\big)\xor k_t\big)[j']$ is $1/N\leq 1/(N-p-wq)$, since $k_t[j]$ and $k_t[j']$ are uniform and independent. In the remaining we focus on the case of $j=j'$, which means $T\big(\overline{S_t}(z\xor k_{t-1})\big)[j]=T\big(\overline{S_t}(z'\xor k_{t-1})\big)[j]$. Note that $z\neq z'$ implies there exists $i_0$ such that $(z\xor k_{t-1})[i_0]\neq(z'\xor k_{t-1})[i_0]$. By the assumption, $(z\xor k_{t-1})[i_0]\notin U_1^{(0)}$. By construction, we have
 %
 \begin{align*}
-&  T(\overline{S_1}(z\xor k_0))[j]\xor T(\overline{S_1}(z'\xor k_0))[j]       \\
+&  T(\overline{S_t}(z\xor k_{t-1}))[j]\xor T(\overline{S_t}(z'\xor k_{t-1}))[j]       \\
 = &
-\Big(\bigoplus_{1\leq\ell\leq w}t_{j,\ell}\cdot S_1\big((z\xor k_0)[\ell]\big)\Big)\xor
-\Big(\bigoplus_{1\leq\ell\leq w}t_{j,\ell}\cdot S_1\big((z'\xor k_0)[\ell]\big)\Big)   .
+\Big(\bigoplus_{1\leq\ell\leq w}t_{j,\ell}\cdot S_t\big((z\xor k_{t-1})[\ell]\big)\Big)\xor
+\Big(\bigoplus_{1\leq\ell\leq w}t_{j,\ell}\cdot S_t\big((z'\xor k_{t-1})[\ell]\big)\Big)   .
 \end{align*}
 %
 Below we distinguish 3 cases:
@@ -300,85 +300,119 @@ Below we distinguish 3 cases:
 
 \reducespace
 
-\subsubsection{Case 1: $(x'\xor k_0)[i_0]$ is ``unique'',}
+\subsubsection{Case 1: $(z\xor k_{t-1})[i_0]$ is ``unique'',}
 
-i.e., $(x'\xor k_0)[i_0]\neq(x\xor k_0)[\ell]$ for any $\ell\in\{1,\ldots,w\}$, and $(x'\xor k_0)[i_0]\neq(x'\xor k_0)[\ell]$ for any $\ell\neq i_0$. Then, conditioned on $S_1\vdash\mathcal{Q}_{S_1}^{(0)}$ and on the $w-1$ values $\{S_1((x\xor k_0)[\ell])\}_{1\leq \ell\leq w}\cup\{S_1((x'\xor k_0)[\ell])\}_{1\leq \ell\leq w,\ell\neq i_0}$, the value of $S_1((x'\xor k_0)[i_0])$ remains uniform in {\it at least} $N-p-wq$ possibilities. Moreover, the coefficient $t_{j,i_0}$ is non-zero as per our assumption. Therefore, in this case we have
+i.e., $(z\xor k_{t-1})[i_0]\neq(z'\xor k_{t-1})[\ell]$ for all $\ell\in\{1,\ldots,w\}$, and $(z\xor k_{t-1})[i_0]\neq(z\xor k_{t-1})[\ell]$ for any $\ell\neq i_0$. Then, conditioned on $S_t\vdash\mathcal{Q}_{S_t}^{(0)}$ and on the $2w-1$ values $\{S_t((z\xor k_{t-1})[\ell])\}_{1\leq \ell\leq w,\ell\neq i_0}\cup\{S_t((z'\xor k_{t-1})[\ell])\}_{1\leq \ell\leq w}$, the value of $S_t\big((z\xor k_{t-1})[i_0]\big)$ remains uniform in {\it at least} $N-p-wq$ possibilities. Moreover, the coefficient $t_{j,i_0}$ is non-zero as per our assumption. Therefore, in this case we have
 %
 \begin{align}
-{\Pr}\big[T(\overline{S_1}(x\xor k_0))[j]\xor T(\overline{S_1}(x'\xor k_0))[j']=0\big]\leq\frac{1}{N-p-wq}.
+{\Pr}\big[T(\overline{S_t}(z\xor k_{t-1}))[j]\xor T(\overline{S_t}(z'\xor k_{t-1}))[j]=0\big]\leq\frac{1}{N-p-wq}.
 \label{eq:bound-eq-B33}
 \end{align}
 %
 
 
-
-
+\reducespace
 
 \reducespace
 
-\subsubsection{Case 2: $(x'\xor k_0)[i_0]=(x'\xor k_0)[i_1]$ for some $i_1\neq i_0$.}
+\reducespace
 
-Then by $\neg\bone$, $(x'\xor k_0)[i_0]\neq(x\xor k_0)[\ell]$ and $(x'\xor k_0)[i_0]\neq(x'\xor k_0)[\ell]$ for any $\ell\neq i_0,i_1$. We further distinguish two subcases:
+\subsubsection{Case 2: $(z\xor k_{t-1})[i_0]=(z\xor k_{t-1})[i_1]$ for some $i_1\neq i_0$.}
+
+Then by $\neg\bone$, $(z\xor k_{t-1})[i_0]\neq(z\xor k_{t-1})[\ell]$ and $(z\xor k_{t-1})[i_0]\neq(z'\xor k_{t-1})[\ell]$ for any $\ell\neq i_0,i_1$. We further distinguish two subcases:
 \begin{itemize}
-	\item Subcase 2.1: $(x\xor k_0)[i_1]=(x'\xor k_0)[i_1]$. Then, with the two terms $t_{j,i_1}\cdot S_1(x\xor k_0)[i_1]$ and $t_{j,i_1}\cdot S_1(x'\xor k_0)[i_1]$ canceled, it can be seen
+	\item Subcase 2.1: $(z\xor k_{t-1})[i_1]=(z'\xor k_{t-1})[i_1]$. Then, with the two terms $t_{j,i_1}\cdot S_t\big((z\xor k_{t-1})[i_1]\big)$ and $t_{j,i_1}\cdot S_t\big((z'\xor k_{t-1})[i_1]\big)$ canceled, it can be seen
 	%
 	\begin{align*}
-	&  T(\overline{S_1}(x\xor k_0))[j]\xor T(\overline{S_1}(x'\xor k_0))[j]       \\
+	&  T(\overline{S_t}(z\xor k_{t-1}))[j]\xor T(\overline{S_t}(z'\xor k_{t-1}))[j]       \\
 	= &
-	\Big(\bigoplus_{1\leq\ell\leq w,\ell\neq i_1}t_{j,\ell}\cdot S_1(x\xor k_0)[\ell]\Big)\xor
-	\Big(\bigoplus_{1\leq\ell\leq w,\ell\neq i_1}t_{j,\ell}\cdot S_1(x'\xor k_0)[\ell]\Big)   .
+	\Big(\bigoplus_{1\leq\ell\leq w,\ell\neq i_1}t_{j,\ell}\cdot S_t\big((z'\xor k_{t-1})[\ell]\big)\Big)\xor
+	\Big(\bigoplus_{1\leq\ell\leq w,\ell\neq i_1}t_{j,\ell}\cdot S_t\big((z'\xor k_{t-1})[\ell]\big)\Big)   .
 	\end{align*}
 	%
-	Conditioned on $S_1\vdash\mathcal{Q}_{S_1}^{(0)}$ and on the $w-3$ values $\{S_1((x\xor k_0)[\ell])\}_{1\leq \ell\leq w,\ell\neq i_1}\cup\{S_1((x'\xor k_0)[\ell])\}_{1\leq \ell\leq w,\ell\neq i_0,\ell\neq i_1}$, the value of $S_1((x'\xor k_0)[i_0])$ remains uniform in {\it at least} $N-p-wq$ possibilities. Therefore, in this case Eq. (\ref{eq:bound-eq-B33}) still holds.
-	\item Subcase 2.2: $(x'\xor k_0)[i_1]\neq(x'\xor k_0)[i_1]$. Then we write
+	Conditioned on $S_t\vdash\mathcal{Q}_{S_t}^{(0)}$ and on the $2w-3$ values $\{S_t((z'\xor k_{t-1})[\ell])\}_{1\leq \ell\leq w,\ell\neq i_1}\cup\{S_t((z\xor k_{t-1})[\ell])\}_{1\leq \ell\leq w,\ell\neq i_0,\ell\neq i_1}$, the value of $S_t((z\xor k_{t-1})[i_0])$ remains uniform in {\it at least} $N-p-wq$ possibilities. Therefore, in this case Eq. (\ref{eq:bound-eq-B33}) still holds.
+	\item Subcase 2.2: $(z\xor k_{t-1})[i_1]\neq(z'\xor k_{t-1})[i_1]$. Then we write
 	%
 	\begin{align*}
-	&  T(\overline{S_1}(x\xor k_0))[j]\xor T(\overline{S_1}(x'\xor k_0))[j]       \\
-	= &
-	\Big(t_{j,i_0}\cdot S_1\big((x'\xor k_0)[i_0]\big)
-	\xor
-	t_{j,i_1}\cdot S_1\big((x'\xor k_0)[i_1]\big)\Big)
-	\\
+	&  T(\overline{S_t}(z\xor k_{t-1}))[j]\xor T(\overline{S_t}(z\xor k_{t-1}))[j]       \\
+	= &   \underbrace{\Big(t_{j,i_0}\cdot S_t\big((z\xor k_{t-1})[i_0]\big)
+		\xor
+		t_{j,i_1}\cdot S_t\big((z\xor k_{t-1})[i_1]\big)\Big)}_{\big(t_{j,i_0}\xor t_{j,i_1}\big)\cdot S_t\big((z\xor k_{t-1})[i_0]\big)}   	\\
 	&\hugeindent\xor
-	\Big(\bigoplus_{1\leq\ell\leq w}t_{j,\ell}\cdot S_1(x\xor k_0)[\ell]\Big)    \xor
-	\Big(\bigoplus_{1\leq\ell\leq w,\ell\neq i_0,\ell\neq i_1}t_{j,\ell}\cdot S_1(x'\xor k_0)[\ell]\Big)        \\
-	= &
-	\Big(\big(t_{j,i_0}\xor t_{j,i_1}\big)\cdot S_1\big((x'\xor k_0)[i_0]\big)\Big)
-	\xor\Big(\bigoplus_{1\leq\ell\leq w,\ell\neq i_0,\ell\neq i_1}t_{j,\ell}\cdot S_1(x'\xor k_0)[\ell]\Big)    .
+	\Big(\bigoplus_{1\leq\ell\leq w}t_{j,\ell}\cdot S_t\big((z'\xor k_{t-1})[\ell]\big)\Big)    \xor
+	\Big(\bigoplus_{\ell\neq i_0,\ell\neq i_1}t_{j,\ell}\cdot S_t\big((z\xor k_{t-1})[\ell]\Big).
 	\end{align*}
 	%
-	Conditioned on $S_1\vdash\mathcal{Q}_{S_1}^{(0)}$ and on the $w-2$ values $\{S_1((x\xor k_0)[\ell])\}_{1\leq \ell\leq w}\cup\{S_1((x'\xor k_0)[\ell])\}_{1\leq \ell\leq w,\ell\neq i_0,\ell\neq i_1}$, $S_1((x'\xor k_0)[i_0])$ remains uniform in at least $N-p-wq$ possibilities. Moreover, the coefficient $\big(t_{j,i_0}\xor t_{j,i_1}$ is non-zero as per our assumption. Therefore, Eq. (\ref{eq:bound-eq-B33}) remains.
+	Conditioned on $S_t\vdash\mathcal{Q}_{S_t}^{(0)}$ and on the $2w-2$ values $\{S_t((z'\xor k_{t-1})[\ell])\}_{1\leq \ell\leq w}\cup\{S_t((x\xor k_{t-1})[\ell])\}_{1\leq \ell\leq w,\ell\neq i_0,\ell\neq i_1}$, $S_t((z\xor k_{t-1})[i_0])$ remains uniform in at least $N-p-wq$ possibilities. Moreover, the coefficient $t_{j,i_0}\xor t_{j,i_1}$ is non-zero as per our assumption. Therefore, Eq. (\ref{eq:bound-eq-B33}) remains.
 \end{itemize}
 
 
 
 
-
+\reducespace
 
 \reducespace
 
-\subsubsection{Case 3:}
+\subsubsection{Case 3: $(z\xor k_{t-1})[i_0]=(z'\xor k_{t-1})[i_1]$ for some $i_1\neq i_0$.}
 
-this case is similar to Case 2 by symmetry.
-
-
-
-\arrangespace
-
-
-By the above, in any case, the probability to have $T(\overline{S_1}(x\xor k_0))[j]=T(\overline{S_1}(x'\xor k_0))[j']$ is at most $1/(N-p-wq)$.
-
+the subcase and discussion are similar to Case 2.
 
 
 
 \arrangespace
 
 
-The analysis of $\pcoll_{2}^+(t,z,z',i,i',j)$
+By the above, in any case, the probability to have $T(\overline{S_t}(z\xor k_{t-1}))[j]=T(\overline{S_t}(z\xor k_{t-1}))[j]$ is at most $1/(N-p-wq)$, which establishes $\pcoll_{1}^+(t,z,z',j)\leq1/(N-p-wq)$. Similarly by symmetry, $\pcoll_{1}^-(t,z,z',j)\leq1/(N-p-wq)$.
 
 
 
-First, consider $\pcoll_{2}^+(t,z,z',i,i',j)$ with $i\neq i'$. Since $z\neq z'$, there exists $i_0$ such that $(z\xor k_0)[i_0]\neq(z'\xor k_0)[i_0]$. Then either $i\neq i_0$ or $i'\neq i_0$. Wlog assume $i\neq i_0$. Note that this means $(x'\xor k_0)[i]\neq(x\xor k_0)[i_0]$, as otherwise both $(x'\xor k_0)[i]$ and $(x\xor k_0)[i_0]$ fall in $U_1^{(0)}$ and it contradicts $\neg\btwo$. The remaining discussion resembles the previous one for $\pcoll_{1}^+(t,z,z',j)$, which consists of 3 cases shown in Appendix XXX. In all, the uniformness of the value $S_1((x\xor k_0)[i_0])$ is sufficient to ensure that ${\Pr}[T(\overline{S_1}(x\xor k_0))[j]\xor T(\overline{S_1}(x'\xor k_0))[j]]\leq\frac{1}{N-p-wq}$.
+
+\arrangespace
+
+
+The analysis of $\pcoll_{2}^+(t,z',i,i',j,j')$ bears some resemblance. In particular, we focus on the case of $j=j'$, as otherwise the uniformness of $k_t[j]$ and $k_t[j']$ is sufficient for $\pcoll_{2}^+(t,z',i,i',j,j')=1/N$.
+
+
+First, consider $\pcoll_{2}^+(t,z',i,i',j,j')$ with $i\neq i'$. Since $z\neq z'$, there exists $i_0$ such that $(z\xor k_{t-1})[i_0]\neq(z'\xor k_{t-1})[i_0]$. Then either $i\neq i_0$ or $i'\neq i_0$. Wlog assume $i\neq i_0$. Note that this means $(z\xor k_{t-1})[i]\neq(z'\xor k_{t-1})[i_0]$, as otherwise both $(z\xor k_{t-1})[i]$ and $(z\xor k_{t-1})[i_0]$ fall in $U_1^{(0)}$ and it contradicts $\neg\btwo$. We then distinguish three cases as the analysis of $\pcoll_{1}^+(t,z,z',j)$. In detail,
+%
+\begin{itemize}
+	\item Case 1: $(z\xor k_{t-1})[i_0]\neq(z'\xor k_{t-1})[\ell]$ for all $\ell\in\{1,\ldots,w\}$, and $(z\xor k_{t-1})[i_0]\neq(z\xor k_{t-1})[\ell]$ for any $\ell\neq i_0$. Then the analysis is similar to Case 1 in the analysis of $\pcoll_{1}^+(t,z,z',j)$.
+	\item Case 2: $(z\xor k_{t-1})[i_0]=(z\xor k_{t-1})[i_1]$ for some $i_1\neq i_0$.
+	
+	Then, if $(z\xor k_{t-1})[i_1]=(z'\xor k_{t-1})[i_1]$, then 
+	
+	We further distinguish two subcases:
+	\begin{itemize}
+		\item Subcase 2.1: $(z\xor k_{t-1})[i_1]=(z'\xor k_{t-1})[i_1]$. Then, with the two terms $t_{j,i_1}\cdot S_t\big((z\xor k_{t-1})[i_1]\big)$ and $t_{j,i_1}\cdot S_t\big((z'\xor k_{t-1})[i_1]\big)$ canceled, it can be seen
+		%
+		\begin{align*}
+		&  T(\overline{S_t}(z\xor k_{t-1}))[j]\xor T(\overline{S_t}(z'\xor k_{t-1}))[j]       \\
+		= &
+		\Big(\bigoplus_{1\leq\ell\leq w,\ell\neq i_1}t_{j,\ell}\cdot S_t\big((z'\xor k_{t-1})[\ell]\big)\Big)\xor
+		\Big(\bigoplus_{1\leq\ell\leq w,\ell\neq i_1}t_{j,\ell}\cdot S_t\big((z'\xor k_{t-1})[\ell]\big)\Big)   .
+		\end{align*}
+		%
+		Conditioned on $S_t\vdash\mathcal{Q}_{S_t}^{(0)}$ and on the $2w-3$ values $\{S_t((z'\xor k_{t-1})[\ell])\}_{1\leq \ell\leq w,\ell\neq i_1}\cup\{S_t((z\xor k_{t-1})[\ell])\}_{1\leq \ell\leq w,\ell\neq i_0,\ell\neq i_1}$, the value of $S_t((z\xor k_{t-1})[i_0])$ remains uniform in {\it at least} $N-p-wq$ possibilities. Therefore, in this case Eq. (\ref{eq:bound-eq-B33}) still holds.
+		\item Subcase 2.2: $(z\xor k_{t-1})[i_1]\neq(z'\xor k_{t-1})[i_1]$. Then we write
+		%
+		\begin{align*}
+		&  T(\overline{S_t}(z\xor k_{t-1}))[j]\xor T(\overline{S_t}(z\xor k_{t-1}))[j]       \\
+		= &   \underbrace{\Big(t_{j,i_0}\cdot S_t\big((z\xor k_{t-1})[i_0]\big)
+			\xor
+			t_{j,i_1}\cdot S_t\big((z\xor k_{t-1})[i_1]\big)\Big)}_{\big(t_{j,i_0}\xor t_{j,i_1}\big)\cdot S_t\big((z\xor k_{t-1})[i_0]\big)}   	\\
+		&\hugeindent\xor
+		\Big(\bigoplus_{1\leq\ell\leq w}t_{j,\ell}\cdot S_t\big((z'\xor k_{t-1})[\ell]\big)\Big)    \xor
+		\Big(\bigoplus_{\ell\neq i_0,\ell\neq i_1}t_{j,\ell}\cdot S_t\big((z\xor k_{t-1})[\ell]\Big).
+		\end{align*}
+		%
+		Conditioned on $S_t\vdash\mathcal{Q}_{S_t}^{(0)}$ and on the $2w-2$ values $\{S_t((z'\xor k_{t-1})[\ell])\}_{1\leq \ell\leq w}\cup\{S_t((x\xor k_{t-1})[\ell])\}_{1\leq \ell\leq w,\ell\neq i_0,\ell\neq i_1}$, $S_t((z\xor k_{t-1})[i_0])$ remains uniform in at least $N-p-wq$ possibilities. Moreover, the coefficient $t_{j,i_0}\xor t_{j,i_1}$ is non-zero as per our assumption. Therefore, Eq. (\ref{eq:bound-eq-B33}) remains.
+%
+	\item Case 3: $(z\xor k_{t-1})[i_0]=(z'\xor k_{t-1})[i_1]$ for some $i_1\neq i_0$. This subcase is similar to Case 2.
+\end{itemize}
+%
+%The remaining discussion resembles the previous one for $\pcoll_{1}^+(t,z,z',j)$, which consists of 3 cases shown in Appendix XXX.
+In all, the uniformness of $S_t((z\xor k_{t-1})[i_0])$ is sufficient to ensure ${\Pr}\big[T(\overline{S_t}(z\xor k_{t-1}))[j]=T(\overline{S_t}(z\xor k_{t-1}))[j]\big]\leq1/(N-p-wq)$.
+
 
 
 
@@ -414,7 +448,7 @@ Now:
 	\item If $x[\ell]=x'[\ell]$ for any $\ell\neq i$, then $v_1\neq v_1'$ by $z\neq z'$. In this case, Eq. (\ref{eq:interm-eq-b2}) collapses to $t_{j,i}\cdot v_1=t_{j,i}\cdot v_1'$ which is not possible since $t_{j,i}\neq 0$ and $v_1\neq v_1'$;
 	\item Else, there exists $i_0\neq i$ such that $(x\xor k_0)[i_0]\neq(x'\xor k_0)[i_0]$. This means $(x'\xor k_0)[i]\neq(x\xor k_0)[i_0]$ by $\neg\btwo$. \textbf{The remaining discussion resembles that for (B-43) before (which consists of 3 cases), the uniformness of the value $S_1((x\xor k_0)[i_0])$ is sufficient to ensure that Eq. (\ref{eq:interm-eq-b2}) holds with probability at most $1/(N-p-wq)$}.
 \end{itemize}
-Therefore, in this case, it still holds $\pcoll_2^+(t,z,z',i,i,j)\leq1/(N-p-wq)$.         \qed
+Therefore, in this case, it still holds $\pcoll_2^+(t,z,z',i,i,j)\leq1/(N-p-wq)$. Similarly by symmetry, $\pcoll_{2}^-(t,z,z',i,i',j)\leq1/(N-p-wq)$.         \qed
 \end{proof}
 
 
