@@ -168,12 +168,12 @@ We say an extended transcript $\tau^{\prime}$ is bad if at least one of the foll
 		$\left(b'\xor T^{-1}\left(k_3\right)\right)[i']\in V_3^{(0)}$, or
 		\item $(y\xor k_4)[i]\in V_4^{(0)}$ and $(y\xor k_4)[i']\in V_4^{(0)}$.
 	\end{itemize}
-	\item[\bthree] there exist $(x,a,b,y) \in \mathcal{Q}_{C}', u_1 \in U_1^{(0)}, v_4 \in V_4^{(0)}$, and $i, j \in \{1, \ldots, w\}$ such that $\left(x \oplus k_{0}\right)[i]=u_1$ and $\left(y \oplus k_{4}\right)[j]=v_4$.
-	\item[\bfour] there exist $(x,a,b,y) \in \mathcal{Q}_{C}', u_1 \in U_1^{(0)}, u_2\in U_2^{(1)}$, and $i, j \in \{1, \ldots, w\}$ such that $\left(x \oplus k_{0}\right)[i]=u_1$ and $\left(a\oplus k_{1}\right)[j]=u_2$.
-%	there exist $(x,a,b,y) \in \mathcal{Q}_{C}', u_1 \in U_1^{(0)}, u_2\in U_2^{(0)}$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(x \oplus k_{0}\right)[i]=u_1$ and $\left(T\left(\overline{S_1}\left(x \oplus k_{0}\right) \oplus k_{1}\right)\right)[j]=u_2$.
-	\item[\bfive] there exist $(x,a,b,y) \in \mathcal{Q}_{C}', v_{3}\in V_3^{(1)}, v_{4}\in V_4^{(0)}$, and $i, j \in \{1, \ldots, w\}$ such that $\left(y \oplus k_{4}\right)[j]=v_4$ and $\left(b\xor T^{-1}(k_3)\right) [i]=v_3$.
-%	there exist $(x,a,b,y) \in \mathcal{Q}_{C}', v_{3}\in V_3^{(0)}, v_{4}\in V_4^{(0)}$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(y \oplus k_{4}\right)[j]=v_4$ and $\left(T^{-1}\left(\overline{S_4^{-1}}\left(y \oplus k_{4}\right)\right)\xor T^{-1}(k_3)\right) [i]=v_3$.
-%
+	\item[\bthree] there exist $(x,a,b,y) \in \mathcal{Q}_{C}'$ and $i, j \in \{1, \ldots, w\}$ such that:
+	\begin{itemize}
+		\item $\left(x \oplus k_{0}\right)[i]\in U_1^{(0)}$ and $\left(y \oplus k_{4}\right)[j]\in V_4^{(0)}$, or
+		\item $\left(x \oplus k_{0}\right)[i]\in U_1^{(0)}$ and $\left(a\oplus k_{1}\right)[j]\in U_2^{(1)}$, or
+		\item $\left(y \oplus k_{4}\right)[j]\in V_4^{(0)}$ and $\left(b\xor T^{-1}(k_3)\right) [i]\in V_3^{(1)}$.
+	\end{itemize}
 %
 %	\item[\bsix] \textbf{there exist $(x,a,b,y) \in \mathcal{Q}_{C}'$ and distinct indices $i, i' \in \{1, \ldots, w\}$ such that $(x\xor k_0)[i]=(x\xor k_0)[i']$, or $(y\xor k_4)[i]=(y\xor k_4)[i']$.}
 \end{itemize}
@@ -187,9 +187,10 @@ Regarding $k_2,S_1,S_4$, and $\mathcal{Q}_S'$:
 %	there exist $(x,a,b,y) \in \mathcal{Q}_{C}'$ and $i, j \in\{1, \ldots, w\}$ such that $(a \oplus k_1)[i]\in U_{2}^{(1)}$ and $(b\xor T^{-1}(k_3))[j]\in V_{3}^{(1)}$.
 %	\item[\beight]
 %	there exist $(x,a,b,y) \in \mathcal{Q}_{C}'$ and $i, j \in\{1, \ldots, w\}$ such that $(a \oplus k_1)[i]\in U_{2}^{(1)}$ and $(T(\overline{S_2}(a \oplus k_1))\xor k_2)[j]\in U_{3}^{(1)}$.
-	\item[\bsix] there exist $(x,a,b,y) \in \mathcal{Q}_{C}'$ and $i, j \in\{1, \ldots, w\}$ such that $(a\xor k_1)[i]\in U_2^{(1)}$ and $(b\xor T^{-1}(k_3))[j]\in V_3^{(1)}$.
-	\item[\bseven] there exist $(x,a,b,y) \in \mathcal{Q}_{C}'$, $i, j\in\{1, \ldots, w\}$ such that:
+%	\item[\bsix] there exist $(x,a,b,y) \in \mathcal{Q}_{C}'$ and $i, j \in\{1, \ldots, w\}$ such that $(a\xor k_1)[i]\in U_2^{(1)}$ and $(b\xor T^{-1}(k_3))[j]\in V_3^{(1)}$.
+	\item[\bseven] there exist $(x,a,b,y) \in \mathcal{Q}_{C}'$ and $i, j\in\{1, \ldots, w\}$ such that:
 	\begin{itemize}
+		\item $(a\xor k_1)[i]\in U_2^{(1)}$ and $(b\xor T^{-1}(k_3))[j]\in V_3^{(1)}$, or
 		\item $(a \oplus k_1)[i]\in U_{2}^{(1)}$ and $(T(\overline{S_2}(a \oplus k_1))\xor k_2)[j]\in U_{3}^{(1)}$, or
 		\item $(T^{-1}(\overline{S_3^{-1}}(b\xor T^{-1}(k_3))\xor k_2))[i]\in V_2^{(1)}$ and $(b\xor T^{-1}(k_3))[j]\in V_{3}^{(1)}$.
 	\end{itemize}
