@@ -313,7 +313,49 @@ be the domains and ranges of $\mathcal{Q}_{S_3}^{(1)}$ and $\mathcal{Q}_{S_4}^{(
 	\end{align}
 \end{lemma}
 \begin{proof}
-The analyses of the conditions just follow Lemma \ref{lemma:bad-tau-4-rounds} and thus we omit. The crux lies in the conditions \cfive and \csix......
+The analyses of the conditions just follow Lemma \ref{lemma:bad-tau-4-rounds} and thus we omit. The crux lies in the conditions \cfour, \cfive, and \csix.
+
+
+
+
+\arrangespace
+
+\noindent \textsc{\cfour}. We consider the probability to have $(c\xor k_2\xor t)[j]\in U_2^{(1)}$. Note that this consists of two subevents:
+\begin{itemize}
+	\item $(c\xor k_2\xor t)[j]\in U_2^{(1)}$, and
+	\item there exists $(t',x',y',j')\neq(t,x,y,j)$ such that $(c\xor k_2\xor t)[j]\neq(c'\xor k_2\xor t')[j']$.
+\end{itemize}
+For the 1st subevent, conditioned on $\neg\cthree$, ... thus its probability is at most $1/(N-p-wq)$.
+
+
+For the 2nd subevent, when $j\neq j'$, it immediately holds ${\Pr}\big[(c\xor k_2\xor t)[j]\neq(c'\xor k_2\xor t')[j']\big]=1/N$. Below we focus on the case of $j=j'$ meaning that $(t',x',y')\neq(t,x,y)$.
+
+
+
+
+\textbf{For any construction query $(x,a,b,y)\in\mathcal{Q}_C'$, to have $(a\xor k_1)[i]\in U_2^{(1)}$, it has to be $(x\xor k_0)[i_0]\notin U_1^{(0)}$ for any $i_0\in\{1,\ldots,w\}$, as otherwise it contradicts $\neg\bfour$.}
+
+
+For any $(x,a,b,y)\in\mathcal{Q}_C'$ and any $i,j$, it holds
+%
+\begin{align}
+{\Pr}\big[(a\xor k_1)[j]\in U_2^{(1)}\big] \leq  &  \sum_{u_2\in U_2^{(0)}}  \underbrace{{\Pr}\big[\big(T(\overline{S_1}(x\xor k_0))\xor k_1\big)[i]=u_2\big]}_{=1/N\ (\text{Lemma }\ref{lemma:coll-prob})}       \notag        \\
+%& +
+%\sum_{(x',a',b',y')\in\mathcal{Q}_C'}\sum_{i'\neq i} \underbrace{{\Pr}\big[(a\xor k_1)[i]=(a'\xor k_1)[i']\big]}_{=1/N}        \label{eq:334}         \\
+& +
+\sum_{(x',a',b',y')\in\mathcal{Q}_C'}\sum_{i',i} \underbrace{{\Pr}\big[(a\xor k_1)[i]=(a'\xor k_1)[i']\big]}_{\leq1/(N-p-wq)\ (\text{Lemma }\ref{lemma:coll-prob})}         \notag      \\
+\leq  &  \frac{p}{N}+\frac{w^2q}{N-p-wq} \leq \frac{p+2w^2q}{N}.
+\notag
+\end{align}
+%where (\ref{eq:334}) follows from the fact that $k_1[j]$ and $k_1[j']$ are uniform and independent.
+Similarly, ${\Pr}\big[(b\xor T^{-1}(k_3))[j]\in V_3^{(1)}\big]\leq(p+2w^2q)/N$. Since we have at most $w^2q$ choices for $(x,a,b,y)$ and $i, j \in\{1, \ldots, w\}$, we have
+%
+$$
+{\Pr}\big[\bsix\mid\neg\bthree\wedge\neg\bfour\big] \leq
+w^2q\cdot\Big(\frac{2(p+wq)}{N}\Big)^2\leq \frac{4w^2q(p+wq)^2}{N}.
+$$
+
+
 %
 \begin{itemize}
 	\item 0
