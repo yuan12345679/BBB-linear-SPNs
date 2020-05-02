@@ -313,7 +313,125 @@ be the domains and ranges of $\mathcal{Q}_{S_3}^{(1)}$ and $\mathcal{Q}_{S_4}^{(
 	\end{align}
 \end{lemma}
 \begin{proof}
-The proof simply follows that of Lemma \ref{lemma:bad-tau-6-rounds} and thus we omit.            \qed
+The analyses of the conditions just follow Lemma \ref{lemma:bad-tau-4-rounds} and thus we omit. The crux lies in the conditions \cfive and \csix......
+%
+\begin{itemize}
+	\item 0
+	\item 0
+	\item 0
+	\item 0
+	\item 0
+\end{itemize}
+	%
+	\begin{align*}
+	\Pr[\beight] 
+	=   &  \sum_{(x,a,b,y),(x',a',b',y')\in\mathcal{Q}_{C}'}\sum_{i,i',j,j'}\bigg(\underbrace{{\Pr}\big[(a\xor k_1)[i]\in U_2^{(1)}\big]}_{\leq(p+wq)/(N-p-wq)}     \\
+	& \midindent\times
+	\underbrace{{\Pr}\big[(a'\xor k_1)[i]\in U_2^{(1)}|(a\xor k_1)[i]\in U_2^{(1)}\big]}_{\leq1}\times\underbrace{\pcoll_{2}^+(2,a,a',i,i',j,j')}_{\leq1/(N-p-wq)}   \bigg)      \\
+	\leq  &  {wq\choose 2}\cdot w^2\cdot\frac{p+wq}{N-p-wq}\cdot\frac{1}{N-p-wq}\leq
+	\frac{w^4q^2(p+wq)}{2(N-p-wq)^2}.
+	\end{align*}
+	%
+	
+	Similarly by symmetry,
+	%
+	\begin{align*}
+	\Pr[\bnine] 
+	\leq
+	\frac{w^4q^2(p+wq)}{2(N-p-wq)^2}.
+	\end{align*}
+	%
+	%
+	%The argument slightly resembles that of \bfour. In detail, \beight consists of two subevents as follows:
+	%
+	%\begin{itemize}[leftmargin=15mm]
+	%	\item[(B-11.1)] there exist $(x,a,b,y),(x',a',b',y') \in \mathcal{Q}_{C}'$ and $i, i^{\prime},j\neq j^{\prime} \in\{1, \ldots, w\}$, $(a,b, j) \neq \left(a^{\prime}, b',j^{\prime}\right)$, such that $(a \oplus k_1)[i]\in U_{2}^{(1)}, (a' \oplus k_1)[i']\in U_{2}^{(1)}$, and $\big(T(\overline{S_2}(a\xor k_1))\xor k_2\big)[j]=\big(T(\overline{S_2}(a'\xor k_1))\xor k_2\big)[j']$.
+	%	\item[(B-11.2)] there exist $(x,a,b,y),(x',a',b',y') \in \mathcal{Q}_{C}'$ and $i, i^{\prime},j \in\{1, \ldots, w\}$, $(a,b) \neq \left(a^{\prime}, b'\right)$, such that $(a \oplus k_1)[i]\in U_{2}^{(1)}, (a' \oplus k_1)[i']\in U_{2}^{(1)}$, and $\big(T(\overline{S_2}(a\xor k_1))\big)[j]=\big(T(\overline{S_2}(a'\xor k_1))\big)[j]$.
+	%\end{itemize}
+	
+	
+	%
+	%For the case of $j\neq j'$, we have $\Pr\big[(T(\overline{S_2}(a\xor k_1))\xor k_2)[j]=(T(\overline{S_2}(a'\xor k_1))\xor k_2)[j']\big]=1/N$ by that $k_2[j]$ and $k_2[j']$ are uniform and independent. Therefore, $\Pr[\text{[(B-11.1)}]\leq{w\choose2}w^2q^2p/N^2\leq w^4q^2p/2N^2$.
+	%
+	%
+	%
+	%For (B-11.2), we have
+	%define $\pcoll_{22}(a,a',i,i',j)$ as the conditional probability $\Pr\big[\big(T(\overline{S_2}(a\xor k_1))\big)[j]=\big(T(\overline{S_2}(a'\xor k_1))\big)[j]|   
+	%(a' \oplus k_1)[i']\in U_2^{(1)}\wedge(a \oplus k_1)[i]\in U_2^{(1)}\big]$. Then we derive the probability as follows.       
+	%
+	%\begin{align*}
+	%\Pr[\text{(B-11.2)}] 
+	%=   &  \sum_{(x,a,b,y),(x',a',b',y')\in\mathcal{Q}_{C}'}\sum_{i,i',j}\bigg(\underbrace{{\Pr}\big[(a\xor k_1)[i]\in U_2^{(1)}\big]}_{\leq(p+wq)/(N-p-wq)}     \\
+	%& \midindent\times
+	%\underbrace{{\Pr}\big[(a'\xor k_1)[i]\in U_2^{(1)}|(a\xor k_1)[i]\in U_2^{(1)}\big]}_{\leq1}\times\underbrace{\pcoll_{2}^+(2,a,a',i,i',j)}_{\leq1/(N-p-wq)}   \bigg)      \\
+	%\leq  &  {q\choose 2}\cdot w^3\cdot\frac{p+wq}{N-p-wq}\cdot\frac{1}{N-p-wq}\leq
+	%\frac{w^3q^2(p+wq)}{2(N-p-wq)^2}.
+	%%\underbrace{\sum_{(x,a,b,y),(x',a',b',y')\in\mathcal{Q}_{C}'}\sum_{i\neq i'}\sum_{j}\pcoll_{22}(a,a',i,i',j)}_{B_2}      \\ 
+	%%
+	%%
+	%%\leq  &  \frac{p+wq}{N-p-wq}\cdot\bigg(
+	%%\underbrace{\sum_{(x,a,b,y),(x',a',b',y')\in\mathcal{Q}_{C}'}\sum_{i\neq i'}\sum_{j}\pcoll_{22}(a,a',i,i',j)}_{B_2}      \\ 
+	%%& \midindent\midindent\midindent\hugeindent   +  \underbrace{\sum_{(x,a,b,y),(x',a',b',y')\in\mathcal{Q}_{C}'}\sum_{i}\sum_{j}\pcoll_{22}(a,a',i,i,j)}_{B_3}\bigg)     .
+	%\end{align*}
+	%
+	%
+	
+	%First, consider $\pcoll_{22}(a,a',i,i',j)$ with $i\neq i'$. Since $a\neq a'$, there exists $i_0$ such that $(a\xor k_1)[i_0]\neq(a'\xor k_1)[i_0]$. Then either $i\neq i_0$ or $i'\neq i_0$. Wlog assume $i\neq i_0$. Note that this means $(a'\xor k_1)[i]\neq(a\xor k_1)[i_0]$, as otherwise both $(a'\xor k_1)[i]$ and $(a\xor k_1)[i_0]$ fall in $U_2^{(0)}$ and it contradicts $\neg\btwo$. \textbf{The remaining discussion resembles that for (B-43) before (which consists of 3 cases), the uniformness of the value $S_2((a\xor k_1)[i_0])$ is sufficient to ensure that ${\Pr}[T(\overline{S_2}(a\xor k_1))[j]\xor T(\overline{S_2}(a'\xor k_1))[j]]\leq\frac{1}{N-p-wq}$}, which means $B_2\leq w^3q^2p/2N(N-p-wq)$.
+	%
+	%
+	%
+	%Then, consider $\pcoll_{22}(a,a',i,i,j)$. Assume that $S_2((a\xor k_1)[i])=u_2$ and $S_2((a'\xor k_1)[i])=u_2'$ for $(u_2,v_2),(u_2',v_2')\in\mathcal{Q}_{S_2}^{(0)}$. Then it holds      {\small
+	%	%
+	%	\begin{align}
+	%	&  T(\overline{S_2}(a\xor k_1))[j]\xor T(\overline{S_2}(a'\xor k_1))[j]       \notag   \\
+	%	= &
+	%	(t_{j,i}\cdot v_2)
+	%	\xor
+	%	(t_{j,i}\cdot v_2')
+	%	\xor
+	%	\Big(\bigoplus_{1\leq\ell\leq w,\ell\neq i}t_{j,\ell}\cdot
+	%	\big(S_2((a\xor k_1)[\ell])\xor S_2((a'\xor k_1)[\ell])\big)\Big)    .
+	%	\label{eq:interm-eq-b11}
+	%	\end{align}
+	%}%
+	%%
+	%Now:
+	%\begin{itemize}
+	%	\item If $a[\ell]=a'[\ell]$ for any $\ell\neq i$, then Eq. (\ref{eq:interm-eq-b11}) collapses to $t_{j,i}\cdot v_2=t_{j,i}\cdot v_2'$ which is not possible since $t_{j,i}\neq 0$ \textbf{and $v_2\neq v_2'$};
+	%	\item Else, there exists $i_0\neq i$ such that $(a\xor k_1)[i_0]\neq(a'\xor k_1)[i_0]$. This means $(a'\xor k_1)[i]\neq(a\xor k_1)[i_0]$ by $\neg\btwo$. \textbf{The remaining discussion resembles that for (B-43) before (which consists of 3 cases), the uniformness of the value $S_2((a\xor k_1)[i_0])$ is sufficient to ensure that Eq. (\ref{eq:interm-eq-b11}) holds with probability at most $1/(N-p-wq)$}.
+	%\end{itemize}
+	%%
+	%Therefore, in this case, it still holds $\pcoll_{22}(x,x',i,i,j)\leq1/(N-p-wq)$, which means $A_3\leq{q\choose2}w^2p/N(N-p-wq)\leq w^2q^2p/2N(N-p-wq)$.
+	
+	
+	%
+	%Summing over the above, we reach
+	%%
+	%$$\Pr[\cfive]\leq\frac{4w^3q^2p}{N(N-p-wq)}.$$
+	%%
+	%
+	%The analysis of \cseven is similar by symmetry, resulting in
+	%%
+	%%
+	%$$\Pr[\cseven]\leq\frac{4w^3q^2p}{N(N-p-wq)}.$$
+	%%
+	
+	
+	\arrangespace
+	
+	
+	Summing over the above yields
+	%
+	\begin{align*}
+	&  \Pr\big[ \tau' \in \Theta_{\text {good }}(\tau)\big]  \leq \sum_{i=1}^{9}\Pr[\bi]       \\
+	\leq  & \frac{w^2 q (p+w q)^{2}}{(N-p-wq)^{2}}+
+	\frac{2w^2 q (p+w q)^{2}}{N  (N-p-wq)}+
+	\frac{w^2qp^2}{N^2}+
+	\frac{8w^3q^2p}{N(N-p-wq)}      \\
+	\leq  & \frac{9w^2 q (p+w q)^{2}}{N^2}+ \frac{16w^3q^2p}{N^2} .
+	\end{align*}
+	%
+	as claimed.        \qed
 \end{proof}
 
 
@@ -338,32 +456,32 @@ The proof simply follows that of Lemma \ref{lemma:bad-tau-6-rounds} and thus we 
 %
 %\noindent be the domains and ranges of $\mathcal{Q}_{S_{1}}^{(1)}$, $\mathcal{Q}_{S_{6}}^{(1)}$ respectively. After define the extended transcript $\tau''$ is bad, \\
 
-\begin{itemize}
-  \item[\feai]
-  there exists $(t, a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right), \left(u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}^{(1)}, \left(u_{5}, v_{5}\right) \in \mathcal{Q}_{S_{5}}^{(1)}$, and index $i, j \in \{1, \ldots, w\}$ such that $(T_1\left(a \oplus k_{1} \oplus t\right))[i]=u_2$ and $(T_5^{-1}\left(b\right) \oplus k_{5} \oplus t)[j]=v_5$.
-  \item[\feaii]
-  there exists $(t, a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right), \left(u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}^{(1)}, \left(u_{3}, v_{3}\right) \in \mathcal{Q}_{S_{3}}$, and index $i, j \in \{1, \ldots, w\}$ such that $(T_1\left(a \oplus k_{1} \oplus t\right))[i]=u_2$ and 
-  $$
-  \left(T_{2}\left(S_{2}\left(T_1(a \oplus k_{1} \oplus t)\right) \oplus k_{2} \oplus t\right)\right)[j]=u_3.
-  $$
-  \item[\feaiii]
-  there exists $(t, a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right), \left(u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}, \left(u_{5}, v_{5}\right) \in \mathcal{Q}_{S_{5}}^{(1)}$, and index $i, j \in \{1, \ldots, w\}$ such that $(T_5^{-1}\left(b\right) \oplus k_{5} \oplus t)[j]=v_5$ and 
-  $$
-  \left(T_{4}^{-1}\left(S_{5}^{-1}\left(T_5^{-1}(b) \oplus k_{5} \oplus t\right)\right) \oplus k_{4} \oplus t\right)[i]=v_4.
-  $$
-  \item[\feaiv]
-  there exists $(t, x, y) \in \mathcal{Q}_{C}$ and distinct indices $i, j \in \{1, \ldots, w\}$ such that 
-  $$(T_1\left(a \oplus k_{1} \oplus t\right))[i]=(T_1\left(a \oplus k_{1} \oplus t\right))[j], \text{ or }$$
-  $$(T_5^{-1}\left(b\right) \oplus k_{5} \oplus t)[i]=(T_5^{-1}\left(b\right) \oplus k_{5} \oplus t)[j].$$
-\end{itemize}
+%\begin{itemize}
+%  \item[\feai]
+%  there exists $(t, a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right), \left(u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}^{(1)}, \left(u_{5}, v_{5}\right) \in \mathcal{Q}_{S_{5}}^{(1)}$, and index $i, j \in \{1, \ldots, w\}$ such that $(T_1\left(a \oplus k_{1} \oplus t\right))[i]=u_2$ and $(T_5^{-1}\left(b\right) \oplus k_{5} \oplus t)[j]=v_5$.
+%  \item[\feaii]
+%  there exists $(t, a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right), \left(u_{2}, v_{2}\right) \in \mathcal{Q}_{S_{2}}^{(1)}, \left(u_{3}, v_{3}\right) \in \mathcal{Q}_{S_{3}}$, and index $i, j \in \{1, \ldots, w\}$ such that $(T_1\left(a \oplus k_{1} \oplus t\right))[i]=u_2$ and 
+%  $$
+%  \left(T_{2}\left(S_{2}\left(T_1(a \oplus k_{1} \oplus t)\right) \oplus k_{2} \oplus t\right)\right)[j]=u_3.
+%  $$
+%  \item[\feaiii]
+%  there exists $(t, a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right), \left(u_{4}, v_{4}\right) \in \mathcal{Q}_{S_{4}}, \left(u_{5}, v_{5}\right) \in \mathcal{Q}_{S_{5}}^{(1)}$, and index $i, j \in \{1, \ldots, w\}$ such that $(T_5^{-1}\left(b\right) \oplus k_{5} \oplus t)[j]=v_5$ and 
+%  $$
+%  \left(T_{4}^{-1}\left(S_{5}^{-1}\left(T_5^{-1}(b) \oplus k_{5} \oplus t\right)\right) \oplus k_{4} \oplus t\right)[i]=v_4.
+%  $$
+%  \item[\feaiv]
+%  there exists $(t, x, y) \in \mathcal{Q}_{C}$ and distinct indices $i, j \in \{1, \ldots, w\}$ such that 
+%  $$(T_1\left(a \oplus k_{1} \oplus t\right))[i]=(T_1\left(a \oplus k_{1} \oplus t\right))[j], \text{ or }$$
+%  $$(T_5^{-1}\left(b\right) \oplus k_{5} \oplus t)[i]=(T_5^{-1}\left(b\right) \oplus k_{5} \oplus t)[j].$$
+%\end{itemize}
 
-\noindent \textbf{Lemma 11} \emph{One has}
-
-\begin{equation}
-\operatorname{Pr}[\tau'' \in \Theta_{bad}(\tau)] \leq \frac{w^2 q (p+w q) (3 p +w q)}{N^{2}} + \frac{w^{2} q}{N}.
-\end{equation}
-
-\noindent The proof is similar to Lemma 10.\\
+%\noindent \textbf{Lemma 11} \emph{One has}
+%
+%\begin{equation}
+%\operatorname{Pr}[\tau'' \in \Theta_{bad}(\tau)] \leq \frac{w^2 q (p+w q) (3 p +w q)}{N^{2}} + \frac{w^{2} q}{N}.
+%\end{equation}
+%
+%\noindent The proof is similar to Lemma 10.\\
 
 Let $\tau_{1} = \tau' \cup \tau''$. Then combine (11), (12), we can get
 
