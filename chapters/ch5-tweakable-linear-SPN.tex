@@ -188,41 +188,41 @@ be the domains and ranges of $\mathcal{Q}_{S_3}^{(1)}$ and $\mathcal{Q}_{S_4}^{(
 
 
 
-\newpage
-
-
 
 \begin{definition}
 	\label{defn:bad-tau-6-rounds}
 	
 	We say an extended transcript $\tau^{\prime}$ is bad if at least one of the following conditions is fulfilled. The conditions are classified into two categories depending on the relevant randomness. In detail, regarding $k_0,k_1,k_2,k_4,k_5,k_6$:
 	\begin{itemize}[leftmargin=10mm]
-		\item[\cone] there exist (not necessarily distinct) $(t,x,a,c,d,b,y),(t',x',a',c',d',b',y'),(t'',x'',a'',b'',y'')\in \mathcal{Q}_{C}'$ and three distinct indices $i, i', i'' \in \{1, \ldots, w\}$ such that:
+		\item[\cone] there exist (not necessarily distinct) $(t,x,a,c,d,b,y),(t',x',a',c',d',b',y'),(t'',x'',a'',b'',y'')\in \mathcal{Q}_{C}'$ and distinct $i, i', i'' \in \{1, \ldots, w\}$ such that any of the following holds:
 		\begin{itemize}
-			\item $(x\xor t\xor k_0)[i]=(x'\xor t'\xor k_0)[i']=(x''\xor t''\xor k_0)[i'']$, or
-			\item $(a\xor t\xor k_1)[i]=(a'\xor t'\xor k_1)[i']=(a''\xor t''\xor k_1)[i'']$, or
-			\item or
-			\item or
-			\item $(b\xor t\xor T^{-1}(k_3))[i]=(b'\xor t'\xor T^{-1}(k_3))[i']=(b''\xor t''\xor T^{-1}(k_3))[i'']$, or
-			\item $(y\xor t\xor k_4)[i]=(y'\xor t'\xor k_4)[i']=(y''\xor t''\xor k_4)[i'']$.
+			\item $(x\xor t\xor k_0)[i]=(x'\xor t'\xor k_0)[i']=(x''\xor t''\xor k_0)[i'']$;
+			\item $(a\xor t\xor k_1)[i]=(a'\xor t'\xor k_1)[i']=(a''\xor t''\xor k_1)[i'']$;
+			\item $(c\xor t\xor k_2)[i]=(c'\xor t'\xor k_2)[i']=(c''\xor t''\xor k_2)[i'']$;
+			\item $(d\xor t\xor T^{-1}(k_4))[i]=(c'\xor t'\xor T^{-1}(k_4))[i']=(c''\xor t''\xor T^{-1}(k_4))[i'']$;
+			\item $(b\xor t\xor T^{-1}(k_5))[i]=(b'\xor t'\xor T^{-1}(k_5))[i']=(b''\xor t''\xor T^{-1}(k_5))[i'']$;
+			\item $(y\xor t\xor k_6)[i]=(y'\xor t'\xor k_6)[i']=(y''\xor t''\xor k_6)[i'']$.
 		\end{itemize}
 		\item[\ctwo] there exist $(t,x,a,b,y) \in \mathcal{Q}_{C}'$ and distinct indices $i, i' \in \{1, \ldots, w\}$ such that:
 		\begin{itemize}
 			\item $(x\xor t\xor k_0)[i]\in U_1^{(0)}$ and $(x\xor t\xor k_0)[i']\in U_1^{(0)}$, or
 			\item $(a\xor t \oplus k_1)[i]\in U_{2}^{(0)}$ and $(a\xor t \oplus k_1)[i']\in U_{2}^{(0)}$, or
-			\item or
-			\item or
-			\item $\left(b\xor T^{-1}\left(k_3\xor t\right)\right)[i]\in V_3^{(0)}$ and
-			$\left(b'\xor T^{-1}\left(k_3\xor t\right)\right)[i']\in V_3^{(0)}$, or
-			\item $(y\xor t\xor k_4)[i]\in V_4^{(0)}$ and $(y\xor t\xor k_4)[i']\in V_4^{(0)}$.
+			\item $(c\xor t \oplus k_2)[i]\in U_{3}^{(1)}$ and $(c\xor t \oplus k_2)[i']\in U_{3}^{(1)}$, or
+			\item $(d\xor t\xor T^{-1}(k_4))[i]\in V_4^{(1)}$ and
+			$(d\xor t\xor T^{-1}(k_4))[i']\in V_4^{(1)}$, or
+			\item $(b\xor t\xor T^{-1}(k_5))[i]\in V_5^{(0)}$ and
+			$(b\xor t\xor T^{-1}(k_5))[i']\in V_5^{(0)}$, or
+			\item $(y\xor t\xor k_6)[i]\in V_6^{(0)}$ and $(y\xor t\xor k_6)[i']\in V_6^{(0)}$.
 		\end{itemize}
 		\item[\cthree] there exist $(t,x,a,b,y) \in \mathcal{Q}_{C}'$ and $i, j \in \{1, \ldots, w\}$ such that:
 		\begin{itemize}
-			\item $\left(t,x \oplus k_{0}\right)[i]\in U_1^{(0)}$ and $\left(y \oplus k_{4}\right)[j]\in V_4^{(0)}$, or
-			\item $\left(x \oplus k_{0}\right)[i]\in U_1^{(0)}$ and $\left(a\oplus k_{1}\right)[j]\in U_2^{(1)}$, or
-			\item $\left(y \oplus k_{4}\right)[j]\in V_4^{(0)}$ and $\left(b\xor T^{-1}(k_3)\right) [i]\in V_3^{(1)}$, or
-			\item or
-			\item or
+			\item $(x\xor t\xor k_0)[i]\in U_1^{(0)}$ and $(y\xor t\xor k_6)[j]\in V_6^{(0)}$, or
+			\item $(x\xor t\xor k_0)[i]\in U_1^{(0)}$ and $(a\xor t \oplus k_1)[j]\in U_{2}^{(0)}$, or
+			\item $(a\xor t \oplus k_1)[i]\in U_{2}^{(0)}$ and $(c\xor t \oplus k_2)[j]\in U_{3}^{(1)}$, or
+			\item $(d\xor t\xor T^{-1}(k_4))[i]\in V_4^{(1)}$ and
+			$(b\xor t\xor T^{-1}(k_5))[j]\in V_5^{(0)}$, or
+			\item $(b\xor t\xor T^{-1}(k_5))[i]\in V_5^{(0)}$ and
+			$(y\xor t\xor k_6)[j]\in V_6^{(0)}$.
 		\end{itemize}
 	\end{itemize}
 	%
@@ -233,59 +233,21 @@ be the domains and ranges of $\mathcal{Q}_{S_3}^{(1)}$ and $\mathcal{Q}_{S_4}^{(
 	\begin{itemize}[leftmargin=10mm]
 		\item[\cfour] there exist $(x,a,b,y) \in \mathcal{Q}_{C}'$ and $i, j \in\{1, \ldots, w\}$ such that:
 		\begin{itemize}
-			\item $(a\xor k_1)[i]\in U_2^{(1)}$ and $(b\xor T^{-1}(k_3))[j]\in V_3^{(1)}$, or
-			\item $(a \oplus k_1)[i]\in U_{2}^{(1)}$ and $(T(\overline{S_2}(a \oplus k_1))\xor k_2)[j]\in U_{3}^{(1)}$, or
-			\item $(T^{-1}(\overline{S_3^{-1}}(b\xor T^{-1}(k_3))\xor k_2))[i]\in V_2^{(1)}$ and $(b\xor T^{-1}(k_3))[j]\in V_{3}^{(1)}$.
+			\item $(c\xor k_2\xor t)[i]\in U_3^{(1)}$ and $(d\xor T^{-1}(k_4\xor t))[j]\in V_4^{(1)}$, or
+			\item $(c\xor k_2\xor t)[i]\in U_3^{(1)}$ and $(T(\overline{S_3}(c\xor k_2\xor t))\xor k_3\xor t)[j]\in U_4^{(1)}$, or
+			\item $(T^{-1}(\overline{S_4^{-1}}(d\xor T^{-1}(k_4\xor t))\xor k_3\xor t))[i]\in V_3^{(1)}$ and $(d\xor T^{-1}(k_4\xor t))[j]\in V_4^{(1)}$.
 		\end{itemize}
-		\item[\cfive] there exist $(x,a,b,y),(x',a',b',y') \in \mathcal{Q}_{C}'$ and $i, i^{\prime},j, j^{\prime} \in\{1, \ldots, w\}$, $(a,b, j) \neq \left(a^{\prime}, b',j^{\prime}\right)$, such that $(a \oplus k_1)[i]\in U_3^{(1)}, (a' \oplus k_1)[i']\in U_3^{(1)}$, and
+		\item[\cfive] there exist $(x,a,b,y),(x',a',b',y') \in \mathcal{Q}_{C}'$ and $i, i^{\prime},j, j^{\prime} \in\{1, \ldots, w\}$, $(a,b, j) \neq \left(a^{\prime}, b',j^{\prime}\right)$, such that $(a \oplus k_2\xor t)[i]\in U_3^{(1)}, (a' \oplus k_2\xor t)[i']\in U_3^{(1)}$, and
 		%
-		$$\big(T(\overline{S_2}(a\xor k_1))\xor k_2\big)[j]=\big(T(\overline{S_2}(a'\xor k_1))\xor k_2\big)[j'].
+		$$\big(T(\overline{S_2}(a\xor k_1\xor t))\xor k_2\xor t\big)[j]=\big(T(\overline{S_2}(a'\xor k_1\xor t))\xor k_2\xor t\big)[j'].
 		$$
-		\item[\csix] there exist $(x,a,b,y),(x',a',b',y') \in \mathcal{Q}_{C}'$ and $i, i^{\prime}, j, j^{\prime} \in\{1, \ldots, w\}$, $(a,b, j) \neq \left(a',b^{\prime}, j^{\prime}\right)$, such that $\big(b \oplus T^{-1}(k_3)\big)[i]\in V_4^{(1)}, \big(b' \oplus T^{-1}(k_3)\big)[i']\in V_4^{(1)}$, and
+		\item[\csix] there exist $(x,a,b,y),(x',a',b',y') \in \mathcal{Q}_{C}'$ and $i, i^{\prime}, j, j^{\prime} \in\{1, \ldots, w\}$, $(a,b, j) \neq \left(a',b^{\prime}, j^{\prime}\right)$, such that $\big(b \oplus T^{-1}(k_3\xor t)\big)[i]\in V_4^{(1)}, \big(b' \oplus T^{-1}(k_3\xor t)\big)[i']\in V_4^{(1)}$, and         {\small
 		%
-		$$\big(T^{-1}(\overline{S_3^{-1}}(b \oplus T^{-1}(k_3))\xor k_2)\big)[j]=\big(T^{-1}(\overline{S_3^{-1}}(b' \oplus T^{-1}(k_3))\xor k_2)\big)[j'].
+		$$\big(T^{-1}(\overline{S_3^{-1}}(b \oplus T^{-1}(k_3\xor t))\xor k_2\xor t)\big)[j]=\big(T^{-1}(\overline{S_3^{-1}}(b' \oplus T^{-1}(k_3\xor t))\xor k_2\xor t)\big)[j'].
 		$$
+	}%
 	\end{itemize}
 	Any extended transcript that is not bad will be called good. Given an original transcript $\tau$, we denote $\Theta_{\mathrm{good}}(\tau)$ (resp. $\Theta_{\mathrm{bad}}(\tau)$) the set of good (resp. bad) extended transcripts of $\tau$ and $\Theta'(\tau)$ the set of all extended transcripts of $\tau$.
-%		
-%		there exists $(x,a,b,y) \in \mathcal{Q}_{C}'$ and distinct $i, i' \in \{1, \ldots, w\}$ such that:
-%		\begin{itemize}
-%			\item $(x\xor k_0)[i]\in U_1^{(0)}$ and $(x\xor k_0)[i']\in U_1^{(0)}$, or
-%			\item $(y\xor k_4)[i]\in V_4^{(0)}$ and $(y\xor k_4)[i']\in V_4^{(0)}$.
-%		\end{itemize}
-%		\item[\btwo] there exists $(x,a,b,y) \in \mathcal{Q}_{C}', u_1 \in U_1^{(0)}, v_4 \in V_4^{(0)}$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(x \oplus k_{0}\right)[i]=u_1$ and $\left(y \oplus k_{4}\right)[j]=v_4$.
-%		\item[\bthree] there exists $(x,a,b,y) \in \mathcal{Q}_{C}', u_1 \in U_1^{(0)}, u_2\in U_2^{(1)}$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(x \oplus k_{0}\right)[i]=u_1$ and $\left(a\oplus k_{1}\right)[j]=u_2$.
-%		\item[\bfour] there exists $(x,a,b,y) \in \mathcal{Q}_{C}', v_{3}\in V_3^{(1)}, v_{4}\in V_4^{(0)}$, and index $i, j \in \{1, \ldots, w\}$ such that $\left(y \oplus k_{4}\right)[j]=v_4$ and $\left(b\xor T^{-1}(k_3)\right) [i]=v_3$.
-%		\item[\bfive] \textcolor{red}{there exists $(x,a,b,y) \in \mathcal{Q}_{C}'$ and distinct indices $i, i' \in \{1, \ldots, w\}$ such that $(x\xor k_0)[i]=(x\xor k_0)[i']$, or $(y\xor k_4)[i]=(y\xor k_4)[i']$.}
-%	\end{itemize}
-	%
-	%
-%	Regarding $k_3,S_1,S_2,S_5,S_6$, and $\mathcal{Q}_S'$:
-	%
-	%
-%	\begin{itemize}[leftmargin=10mm]
-%		\item[\bfive]
-%		there exist $(x,a,b,y) \in \mathcal{Q}_{C}'$ and $i, j \in\{1, \ldots, w\}$ such that $(a \oplus k_1)[i]\in U_{2}^{(1)}$ and $(b\xor T^{-1}(k_3))[j]\in V_{3}^{(1)}$.
-%		\item[\bsix]
-%		there exist $(x,a,b,y) \in \mathcal{Q}_{C}'$ and $i, j \in\{1, \ldots, w\}$ such that $(a \oplus k_1)[i]\in U_{2}^{(1)}$ and $(T(\overline{S_2}(a \oplus k_1))\xor k_2)[j]\in U_{3}^{(1)}$.
-%		\item[\bseven]
-%		there exist $(x,a,b,y) \in \mathcal{Q}_{C}'$ and $i, j \in\{1, \ldots, w\}$ such that $(b\xor T^{-1}(k_3))[j]\in V_{2}^{(1)}$ and $\left(T^{-1}(b\xor T^{-1}(k_3)) \oplus T^{-1}(k_2)\right)[j]\in V_{3}^{(1)}$.
-%		\item[\beight]
-%		there exist $(x,a,b,y) \in \mathcal{Q}_{C}'$, distinct $i, i^{\prime}\in\{1, \ldots, w\}$ such that:
-%		\begin{itemize}
-%			\item $(a \oplus k_1)[i]\in U_{2}^{(0)}$ and $(a \oplus k_1)[i']\in U_{2}^{(0)}$, or
-%			\item $\left(b\xor T^{-1}\left(k_3\right)\right)[i]\in V_3^{(0)}$ and
-%			$\left(b'\xor T^{-1}\left(k_3\right)\right)[i']\in V_3^{(0)}$.
-%		\end{itemize}
-%		\item[\bnine] there exist $(x,a,b,y),(x',a',b',y') \in \mathcal{Q}_{C}'$ and $i, i^{\prime},j, j^{\prime} \in\{1, \ldots, w\}$, $(a,b, j) \neq \left(a^{\prime}, b',j^{\prime}\right)$, such that $(a \oplus k_1)[i]\in U_{2}^{(1)}, (a' \oplus k_1)[i']\in U_{2}^{(1)}$, and
-%		%
-%		$$\big(T(\overline{S_2}(a\xor k_1))\xor k_2\big)[j]=\big(T(\overline{S_2}(a'\xor k_1))\xor k_2\big)[j'].
-%		$$
-%		%
-%		\item[\beleven] there exist $(x,a,b,y),(x',a',b',y') \in \mathcal{Q}_{C}'$ and $i, i^{\prime}, j, j^{\prime} \in\{1, \ldots, w\}$, $(a,b, j) \neq \left(a',b^{\prime}, j^{\prime}\right)$, such that $\big(b \oplus T^{-1}(k_3)\big)[i]\in V_{3}^{(1)}, \big(b' \oplus T^{-1}(k_3)\big)[i']\in V_{3}^{(1)}$, and
-%		%
-%		$$\big(T^{-1}(\overline{S_3^{-1}}(b \oplus T^{-1}(k_3))\xor k_2)\big)[j]=\big(T^{-1}(\overline{S_3^{-1}}(b' \oplus T^{-1}(k_3))\xor k_2)\big)[j'].
-%		$$
 \end{definition}
 
 
@@ -308,7 +270,7 @@ be the domains and ranges of $\mathcal{Q}_{S_3}^{(1)}$ and $\mathcal{Q}_{S_4}^{(
 	
 	One has
 	\begin{align}
-	\operatorname{Pr}[\tau^{\prime} \in \Theta_{bad}(\tau)] \leq \frac{3w^{2} q \left(p+w q\right)^{2}}{N^{2}} + \frac{w^{2} q}{N}.
+	{\Pr}\big[\tau^{\prime} \in \Theta_{bad}(\tau)\big] \leq \frac{3w^{2} q \left(p+w q\right)^{2}}{N^{2}} + \frac{w^{2} q}{N}.
 	\label{eq:bound-bad-tau-6-rounds}
 	\end{align}
 \end{lemma}
@@ -328,8 +290,31 @@ The analyses of the conditions just follow Lemma \ref{lemma:bad-tau-4-rounds} an
 For the 1st subevent, conditioned on $\neg\cthree$, ... thus its probability is at most $1/(N-p-wq)$.
 
 
-For the 2nd subevent, when $j\neq j'$, it immediately holds ${\Pr}\big[(c\xor k_2\xor t)[j]\neq(c'\xor k_2\xor t')[j']\big]=1/N$. Below we focus on the case of $j=j'$ meaning that $(t',x',y')\neq(t,x,y)$.
+For the 2nd subevent, when $j\neq j'$, it immediately holds ${\Pr}\big[(c\xor k_2\xor t)[j]\neq(c'\xor k_2\xor t')[j']\big]=1/N$. Below we focus on the case of $j=j'$ meaning that $(t',x',y')\neq(t,x,y)$. We have to further distinguish {\bf three} cases as follows.
 
+
+\arrangespace
+
+\noindent \textit{\underline{Case 1: $x\xor t\neq x'\xor t'$}}. Then {\bf using the previous idea, it can be show}
+%
+$$\Pr[a\xor t=a'\xor t'|x\xor t\neq x'\xor t']\leq\frac{1}{N-p-wq}.$$
+%
+Similarly, it further holds
+%
+$$\Pr[(c\xor t)[j]\neq(c'\xor t')[j']|a\xor t=a'\xor t']\leq\frac{1}{N-p-wq}.$$
+%
+
+
+\arrangespace
+
+\noindent \textit{\underline{Case 2: $x\xor t=x'\xor t'$}}. Then it necessarily holds $a\xor t\neq a'\xor t'$, and thus
+%
+$$\Pr[(c\xor t)[j]\neq(c'\xor t')[j']|a\xor t=a'\xor t']\leq\frac{1}{N-p-wq}.$$
+%
+
+
+
+\arrangespace
 
 
 
@@ -477,8 +462,8 @@ $$
 \end{proof}
 
 
-
-\textcolor{red}{Similar to the outermost two round, we will extend the inner two round (the two and the five round).  Pick a pair of S-box $(S_1, S_6)$ such that $S_{1} \vdash \mathcal{Q}_{S_{1}}^{(0)}$ and $S_{6} \vdash \mathcal{Q}_{S_{6}}^{(0)}$, and for each $ (t, x, y) \in \mathcal{Q}_{C}$ we set $a=S_{1}\left(x \oplus k_{0} \oplus t\right)$, $b=S_{6}^{-1}\left(y \oplus k_{6} \oplus t\right)$. In this way we obtain $\mathnormal{q}$ tuples of the form $(t, a, b)$; for convenience we denote the set of such induced tuples by $\mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right)$. Then we choose a pair of keys $\left(k_{1}, k_{5}\right) \in \mathcal{K}^{2}$ uniformly at random. Once these keys have been chosen, some construction queries will become involved in collisions. A colliding query is defined as a construction query $(t, a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right)$. After that, we build a new set $\mathcal{Q}_{S_{outer}}^{\prime}$ of S-box evaluations that will play the role of an extension of $\mathcal{Q}_{S}$. Then we choose the key $k_2, k_3, k_4$ uniformly at random. An extended transcript of $\tau$ will be defined as a tuple $\tau''=\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}, \mathcal{Q}_{S_{outer}}^{\prime}, \mathbf{k}\right)$ where $\mathbf{k}=\left(k_{1}, k_{2},k_{3},k_{4}, k_{5}\right)$. We also let...}
+%
+%\textcolor{red}{Similar to the outermost two round, we will extend the inner two round (the two and the five round).  Pick a pair of S-box $(S_1, S_6)$ such that $S_{1} \vdash \mathcal{Q}_{S_{1}}^{(0)}$ and $S_{6} \vdash \mathcal{Q}_{S_{6}}^{(0)}$, and for each $ (t, x, y) \in \mathcal{Q}_{C}$ we set $a=S_{1}\left(x \oplus k_{0} \oplus t\right)$, $b=S_{6}^{-1}\left(y \oplus k_{6} \oplus t\right)$. In this way we obtain $\mathnormal{q}$ tuples of the form $(t, a, b)$; for convenience we denote the set of such induced tuples by $\mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right)$. Then we choose a pair of keys $\left(k_{1}, k_{5}\right) \in \mathcal{K}^{2}$ uniformly at random. Once these keys have been chosen, some construction queries will become involved in collisions. A colliding query is defined as a construction query $(t, a, b) \in \mathcal{Q}_{C}^{*}\left(S_{1}, S_{6}\right)$. After that, we build a new set $\mathcal{Q}_{S_{outer}}^{\prime}$ of S-box evaluations that will play the role of an extension of $\mathcal{Q}_{S}$. Then we choose the key $k_2, k_3, k_4$ uniformly at random. An extended transcript of $\tau$ will be defined as a tuple $\tau''=\left(\mathcal{Q}_{C}, \mathcal{Q}_{S}, \mathcal{Q}_{S_{outer}}^{\prime}, \mathbf{k}\right)$ where $\mathbf{k}=\left(k_{1}, k_{2},k_{3},k_{4}, k_{5}\right)$. We also let...}
 
 %$$
 %\begin{aligned}
@@ -525,61 +510,16 @@ $$
 %
 %\noindent The proof is similar to Lemma 10.\\
 
-Let $\tau_{1} = \tau' \cup \tau''$. Then combine (11), (12), we can get
-
-\begin{equation}
-\operatorname{Pr}[\tau_{1} \in \Theta_{bad}(\tau)] \leq \frac{2w^2 q (p+w q) (3 p +w q)}{N^{2}} + \frac{2w^{2} q}{N}.
-\end{equation}
-
-
-
-
-
-%\subsection{Analysis for Good Transcript}
-
-\arrangespace
-
-\noindent \textbf{Analyzing Good Extensions}.
+%Let $\tau_{1} = \tau' \cup \tau''$. Then combine (11), (12), we can get
 %
-Fix a good transcript and a good round-key vector $\mathnormal{k}$, we are to derive a lower bound for the probability  $\operatorname{Pr}\left[\mathcal{S} \stackrel{\mathbf{s}}{\leftarrow}(\mathcal{S}(n))^{6}: \mathrm{SP}_{k}[\mathcal{S}] \vdash \mathcal{Q}_{C} | \mathcal{S} \vdash \mathcal{Q}_{S}\right]$. We ``peel off'' the outer four rounds. Then assuming $(S_{1}, S_2, S_{5}, S_6)$ is good, we analyze the induced 2-round transcript to yield the final bounds.
+%\begin{equation}
+%\operatorname{Pr}[\tau_{1} \in \Theta_{bad}(\tau)] \leq \frac{2w^2 q (p+w q) (3 p +w q)}{N^{2}} + \frac{2w^{2} q}{N}.
+%\end{equation}
 
 
 
 
-
-
-\noindent \emph{Proof:} We upper bound the probabilities of the nine conditions in turn. We denote $\Theta_i$ the set of attainable transcripts satisfying condition \hi.\\
-
-The proof of \hone to \hfive and \hseven , \height is similar to the Lemma 8, there are no more details. So we just consider \hsix and \hnine here. We first note that, if the condition is satisfied, we have $\left(S_{2}\left(a \oplus k_{1} \oplus t\right)\right)[i]$ remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{2}} \cup \mathcal{Q}_{S_{5}} \cup \mathcal{Q}_{S_{6}})$.  Moreover if $u_3 =u_3'$, that is $c \oplus t=c' \oplus t'$, then after oplus different tweak, the input of the $S_4$ must be different, so the collision would not happen. Hence we must have $u_3 \neq u_3'$. The condition can be divided into two conditions: the first concerning with $j\neq j'$, while the second concerning with $j=j'$.
-
-For the first case, to make 
-$$
-  \left(T_{3}\left(S_{3}\left(T_2\left(c \oplus k_{2} \oplus t\right)\right) \oplus k_{3} \oplus t\right)\right)[j] = \left(T_{3}\left(S_{3}\left(T_2\left(c' \oplus k_{2} \oplus t'\right)\right) \oplus k_{3} \oplus t'\right)\right)[j'].
-$$
-\noindent achieved, we just leverage the fact that $k_3[j]$ and $k_3[j']$ are uniform and independent, so the collision holds with probability $1/N$. Because of $a$remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{2}} \cup \mathcal{Q}_{S_{5}} \cup\mathcal{Q}_{S_{6}})$, let $(a', b')$ be the unique query such that the collision happened. Then the probability that $\left(T_2\left(c \oplus k_{2} \oplus t\right)\right)[i] = u_3, \left(T_2\left(c' \oplus k_{2} \oplus t'\right)\right)[i] = u_3'$ is at most $\frac{1}{N-p}$, because we have at most $w^2 q^2(p+ w q)$ such tuples, one has
-
-$$
-\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)}.
-$$
-
-For the case of $j=j'$ with distinct $(c,d),(c',d')$, that is there is only one index has different value of input and output. Because of the value $S_{2}\left(T_1\left(a' \oplus k_{1} \oplus t\right)\right)[i]$ also remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{2}} \cup \mathcal{Q}_{S_{5}} \cup \mathcal{Q}_{S_{6}})$, then we leverage the randomness due to lazy sampling $S_3(T_2(c\xor k_2\xor t))$. Conditioned on \feaiv, for $i''\neq i$, the value $T_2(c \oplus k_2 \oplus t)[i'']$ ``does not collide with'' pairs in $\mathcal{Q}_{S_{3}}^{(1)}$, and will be assigned a random outputs during the lazy sampling process. Simultaneously conditioned on $\feav$, for distinct $i'' \neq i$, if $(T_2\left(c \oplus k_{2} \oplus t\right))[i] = u_3$, it holds $(T_2(c\xor k_2 \xor t))[i'']\neq (T_2(c'\xor k_2 \xor t'))[i'']$. Since $T_3$ contain no zero entries, so the value $ \left(T_{3}\left(S_{3}\left(T_2\left(c \oplus k_{2} \oplus t\right)\right) \oplus k_{3} \oplus t\right)\right)[i'']$ could not be disturbed by the value of $ \left(T_{3}\left(S_{3}\left(T_2\left(c' \oplus k_{2} \oplus t'\right)\right) \oplus k_{3} \oplus t'\right)\right)[i'']$ and thus uniform in at least $\frac{1}{N - p- wq}$. One has,
-$$
-\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)}.
-$$
-\noindent So, combine these two subevents, one has
-$$
-\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)} + \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N- p)}.
-$$
-
-\noindent Similarly, we have
-
-$$
-\operatorname{Pr}\left[\tau_{inner} \in \Theta_{9}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)} + \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N- p)}.
-$$
-
-\noindent Then combining Lemma 9, we complete the proof of Theorem 2.
-
-
+%\input{old-tex.tex}
 
 
 
