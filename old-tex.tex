@@ -1,0 +1,46 @@
+
+%\subsection{Analysis for Good Transcript}
+
+\arrangespace
+
+\noindent \textbf{Analyzing Good Extensions}.
+%
+Fix a good transcript and a good round-key vector $\mathnormal{k}$, we are to derive a lower bound for the probability  $\operatorname{Pr}\left[\mathcal{S} \stackrel{\mathbf{s}}{\leftarrow}(\mathcal{S}(n))^{6}: \mathrm{SP}_{k}[\mathcal{S}] \vdash \mathcal{Q}_{C} | \mathcal{S} \vdash \mathcal{Q}_{S}\right]$. We ``peel off'' the outer four rounds. Then assuming $(S_{1}, S_2, S_{5}, S_6)$ is good, we analyze the induced 2-round transcript to yield the final bounds.
+
+
+
+
+
+
+\noindent \emph{Proof:} We upper bound the probabilities of the nine conditions in turn. We denote $\Theta_i$ the set of attainable transcripts satisfying condition \hi.\\
+
+The proof of \hone to \hfive and \hseven , \height is similar to the Lemma 8, there are no more details. So we just consider \hsix and \hnine here. We first note that, if the condition is satisfied, we have $\left(S_{2}\left(a \oplus k_{1} \oplus t\right)\right)[i]$ remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{2}} \cup \mathcal{Q}_{S_{5}} \cup \mathcal{Q}_{S_{6}})$.  Moreover if $u_3 =u_3'$, that is $c \oplus t=c' \oplus t'$, then after oplus different tweak, the input of the $S_4$ must be different, so the collision would not happen. Hence we must have $u_3 \neq u_3'$. The condition can be divided into two conditions: the first concerning with $j\neq j'$, while the second concerning with $j=j'$.
+
+For the first case, to make 
+$$
+  \left(T_{3}\left(S_{3}\left(T_2\left(c \oplus k_{2} \oplus t\right)\right) \oplus k_{3} \oplus t\right)\right)[j] = \left(T_{3}\left(S_{3}\left(T_2\left(c' \oplus k_{2} \oplus t'\right)\right) \oplus k_{3} \oplus t'\right)\right)[j'].
+$$
+\noindent achieved, we just leverage the fact that $k_3[j]$ and $k_3[j']$ are uniform and independent, so the collision holds with probability $1/N$. Because of $a$remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{2}} \cup \mathcal{Q}_{S_{5}} \cup\mathcal{Q}_{S_{6}})$, let $(a', b')$ be the unique query such that the collision happened. Then the probability that $\left(T_2\left(c \oplus k_{2} \oplus t\right)\right)[i] = u_3, \left(T_2\left(c' \oplus k_{2} \oplus t'\right)\right)[i] = u_3'$ is at most $\frac{1}{N-p}$, because we have at most $w^2 q^2(p+ w q)$ such tuples, one has
+
+$$
+\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)}.
+$$
+
+For the case of $j=j'$ with distinct $(c,d),(c',d')$, that is there is only one index has different value of input and output. Because of the value $S_{2}\left(T_1\left(a' \oplus k_{1} \oplus t\right)\right)[i]$ also remain uniform in $\{0, 1\}^{n} \verb|\| (\mathcal{Q}_{S_{1}} \cup \mathcal{Q}_{S_{2}} \cup \mathcal{Q}_{S_{5}} \cup \mathcal{Q}_{S_{6}})$, then we leverage the randomness due to lazy sampling $S_3(T_2(c\xor k_2\xor t))$. Conditioned on \feaiv, for $i''\neq i$, the value $T_2(c \oplus k_2 \oplus t)[i'']$ ``does not collide with'' pairs in $\mathcal{Q}_{S_{3}}^{(1)}$, and will be assigned a random outputs during the lazy sampling process. Simultaneously conditioned on $\feav$, for distinct $i'' \neq i$, if $(T_2\left(c \oplus k_{2} \oplus t\right))[i] = u_3$, it holds $(T_2(c\xor k_2 \xor t))[i'']\neq (T_2(c'\xor k_2 \xor t'))[i'']$. Since $T_3$ contain no zero entries, so the value $ \left(T_{3}\left(S_{3}\left(T_2\left(c \oplus k_{2} \oplus t\right)\right) \oplus k_{3} \oplus t\right)\right)[i'']$ could not be disturbed by the value of $ \left(T_{3}\left(S_{3}\left(T_2\left(c' \oplus k_{2} \oplus t'\right)\right) \oplus k_{3} \oplus t'\right)\right)[i'']$ and thus uniform in at least $\frac{1}{N - p- wq}$. One has,
+$$
+\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N-p)}.
+$$
+\noindent So, combine these two subevents, one has
+$$
+\operatorname{Pr}\left[\tau_{inner} \in \Theta_{6}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)} + \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N- p)}.
+$$
+
+\noindent Similarly, we have
+
+$$
+\operatorname{Pr}\left[\tau_{inner} \in \Theta_{9}\right] \leq \frac{w^{2} q^{2} (p+w q)}{N \cdot (N-p)} + \frac{w^{2} q^{2} (p+w q)}{(N- p- wq) \cdot (N- p)}.
+$$
+
+\noindent Then combining Lemma 9, we complete the proof of Theorem 2.
+
+
