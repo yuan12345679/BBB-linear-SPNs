@@ -4,8 +4,9 @@
 
 
 \noindent{\bf Substitution-Permutation Networks.}
-Nowadays block ciphers are mainly
-built around two different generic structures: Feistel networks or substitution-permutation
+Most modern blockciphers are
+
+built via two different generic structures: Feistel networks or substitution-permutation
 networks (SPNs). These two approaches revolve around the extension of a ``complex'' function or permutation on a small domain to a keyed pseudorandom
 permutation on a larger domain by iterating several times simple rounds.
 SPNs start with a set of public permutations on the set of n-bit strings which
@@ -19,7 +20,10 @@ permutation on wn-bit inputs for some integer w by iterating the following steps
 
 
 Many well-known block ciphers including AES, Serpent and PRESENT follow
-this approach. Proving the security of a particular concrete block cipher is
+this approach.
+
+
+Proving the security of a particular concrete block cipher is
 currently beyond our techniques. Thus, the usual approach is to prove that the
 high-level structure is sound in a relevant security model. As for Feistel networks,
 a substantial line of work starting with Luby and Rackoff's seminal work [LR88]
