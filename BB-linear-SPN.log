@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.22)  29 APR 2020 09:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.22)  4 MAY 2020 08:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -672,36 +672,36 @@ LaTeX Info: Redefining \nameref on input line 57.
 \openout3 = `BB-linear-SPN.out'.
 
  (./macros.tex)
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 86.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 87.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 86.
+LaTeX Font Info:    Try loading font information for U+msa on input line 87.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 86.
+LaTeX Font Info:    Try loading font information for U+msb on input line 87.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+ifsym on input line 86.
+LaTeX Font Info:    Try loading font information for U+ifsym on input line 87.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/ifsym/uifsym.fd)
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\\' on input line 86.
+(hyperref)                removing `\\' on input line 87.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 96.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 98.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 96.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 98.
 
-Overfull \hbox (8.62813pt too wide) in paragraph at lines 96--98
+Overfull \hbox (8.62813pt too wide) in paragraph at lines 98--100
 \OT1/cmr/bx/n/10 Keywords:\OT1/cmr/m/n/10 tweakable block-ci-phers \OMS/cmsy/m/
 n/10 ^^A \OT1/cmr/m/n/10 substitution-permutation net-works \OMS/cmsy/m/n/10 ^^
 A \OT1/cmr/m/n/10 beyond-
@@ -734,19 +734,19 @@ Overfull \hbox (1.44934pt too wide) detected at line 69
 LaTeX Warning: Citation `C:CDKLST18' on page 8 undefined on input line 76.
 
 
-Overfull \hbox (1.29234pt too wide) in paragraph at lines 87--92
+Overfull \hbox (1.29234pt too wide) in paragraph at lines 87--96
 \OT1/cmr/m/n/10 With this new list, a col-lid-ing query is de-fined as a con-st
 ruc-tion query $(\OML/cmm/m/it/10 x; y; a; b\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 
 2
  []
 
 [8]
-Overfull \hbox (1.44934pt too wide) detected at line 141
+Overfull \hbox (1.44934pt too wide) detected at line 143
 [][]
  []
 
-[9]
-Overfull \hbox (10.97438pt too wide) in paragraph at lines 154--156
+
+Overfull \hbox (10.97438pt too wide) in paragraph at lines 156--158
 []\OT1/cmr/m/it/10 there ex-ist (not nec-es-sar-ily dis-tinct) $\OT1/cmr/m/n/10
  (\OML/cmm/m/it/10 x; a; b; y\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; \OT1/cmr/m/n/1
 0 (\OML/cmm/m/it/10 x[]; a[]; b[]; y[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; \OT1/
@@ -754,45 +754,8 @@ cmr/m/n/10 (\OML/cmm/m/it/10 x[]; a[]; b[]; y[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/
 10 2
  []
 
-
-Overfull \hbox (5.66768pt too wide) in paragraph at lines 164--165
-[]\OT1/cmr/m/it/10 there ex-ist $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x; a; b; y\O
-T1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2 Q[]\OML/cmm/m/it/10 ; u[] \OMS/cmsy/m/n/10 2
- \OML/cmm/m/it/10 U[]; v[] \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 V[]$\OT1/cmr/m/i
-t/10 , and in-dex $\OML/cmm/m/it/10 i; j \OMS/cmsy/m/n/10 2 f\OT1/cmr/m/n/10 1\
-OML/cmm/m/it/10 ; [] ; w\OMS/cmsy/m/n/10 g$
- []
-
-
-Overfull \hbox (6.4075pt too wide) in paragraph at lines 165--167
-[]\OT1/cmr/m/it/10 there ex-ist $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x; a; b; y\O
-T1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2 Q[]\OML/cmm/m/it/10 ; u[] \OMS/cmsy/m/n/10 2
- \OML/cmm/m/it/10 U[]; u[] \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 U[]$\OT1/cmr/m/i
-t/10 , and in-dex $\OML/cmm/m/it/10 i; j \OMS/cmsy/m/n/10 2 f\OT1/cmr/m/n/10 1\
-OML/cmm/m/it/10 ; [] ; w\OMS/cmsy/m/n/10 g$
- []
-
-
-Overfull \hbox (4.92786pt too wide) in paragraph at lines 167--169
-[]\OT1/cmr/m/it/10 there ex-ist $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x; a; b; y\O
-T1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2 Q[]\OML/cmm/m/it/10 ; v[] \OMS/cmsy/m/n/10 2
- \OML/cmm/m/it/10 V[]; v[] \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 V[]$\OT1/cmr/m/i
-t/10 , and in-dex $\OML/cmm/m/it/10 i; j \OMS/cmsy/m/n/10 2 f\OT1/cmr/m/n/10 1\
-OML/cmm/m/it/10 ; [] ; w\OMS/cmsy/m/n/10 g$
- []
-
-
-Overfull \hbox (5.35992pt too wide) in paragraph at lines 182--183
-[]\OT1/cmr/m/it/10 there ex-ist $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x; a; b; y\O
-T1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2 Q[]$ \OT1/cmr/m/it/10 and $\OML/cmm/m/it/10 
-i; j \OMS/cmsy/m/n/10 2 f\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ; [] ; w\OMS/cmsy/m/
-n/10 g$ \OT1/cmr/m/it/10 such that $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 b \OMS/cm
-sy/m/n/10 ^^H \OML/cmm/m/it/10 T[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 k[]\OT1/cmr
-/m/n/10 ))[\OML/cmm/m/it/10 j\OT1/cmr/m/n/10 ] \OMS/cmsy/m/n/10 2
- []
-
-
-Overfull \hbox (13.20818pt too wide) in paragraph at lines 193--195
+[9]
+Overfull \hbox (13.20818pt too wide) in paragraph at lines 200--202
 []\OT1/cmr/m/it/10 there ex-ist $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x; a; b; y\O
 T1/cmr/m/n/10 )\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]; a[]; b
 []; y[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2 Q[]$ \OT1/cmr/m/it/10 and $\OML/cmm
@@ -802,23 +765,52 @@ T1/cmr/m/n/10 )\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]; a[]; b
  []
 
 
-Overfull \hbox (13.20818pt too wide) in paragraph at lines 205--207
+Overfull \hbox (13.20818pt too wide) in paragraph at lines 212--214
 []\OT1/cmr/m/it/10 there ex-ist $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x; a; b; y\O
 T1/cmr/m/n/10 )\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]; a[]; b
 []; y[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2 Q[]$ \OT1/cmr/m/it/10 and $\OML/cmm
 /m/it/10 i; i[]; j; j[] \OMS/cmsy/m/n/10 2 f\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ;
  [] ; w\OMS/cmsy/m/n/10 g$\OT1/cmr/m/it/10 , $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10
  a; b; j\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 6\OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (31.71344pt too wide) detected at line 240
+[]
  []
 
 [10]
+Overfull \hbox (5.53131pt too wide) detected at line 248
+[]
+ []
+
+[11]
+Overfull \hbox (3.48802pt too wide) detected at line 332
+[]
+ []
+
+
+Overfull \hbox (15.10583pt too wide) in paragraph at lines 332--335
+\OT1/cmr/m/n/10 Conditioned on $\OML/cmm/m/it/10 S[] \OMS/cmsy/m/n/10 ` Q[]$ \O
+T1/cmr/m/n/10 and on the $2\OML/cmm/m/it/10 w \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n
+/10 3$ val-ues $\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 S[]\OT1/cmr/m/n/10 ((\OML/cm
+m/m/it/10 z[] \OMS/cmsy/m/n/10 ^^H \OML/cmm/m/it/10 k[]\OT1/cmr/m/n/10 )[\OML/c
+mm/m/it/10 `\OT1/cmr/m/n/10 ])\OMS/cmsy/m/n/10 g[] [
+ []
+
+
+Overfull \hbox (3.47272pt too wide) detected at line 345
+[]
+ []
+
+[12] [13]
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 236.
+(amsmath)                 on input line 452.
 
 
-Overfull \hbox (3.30473pt too wide) in paragraph at lines 247--251
+Overfull \hbox (3.30473pt too wide) in paragraph at lines 476--480
 []\OT1/cmr/m/n/10 . For each of the $\OML/cmm/m/it/10 w[]q$ \OT1/cmr/m/n/10 cho
 ices of $(\OML/cmm/m/it/10 x; a; b; y\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2 Q[]$ 
 \OT1/cmr/m/n/10 and in-dices $\OML/cmm/m/it/10 i; j \OMS/cmsy/m/n/10 2 f\OT1/cm
@@ -826,257 +818,167 @@ r/m/n/10 1\OML/cmm/m/it/10 ; [] ; w\OMS/cmsy/m/n/10 g$\OT1/cmr/m/n/10 ,
  []
 
 
-Overfull \hbox (6.129pt too wide) detected at line 285
+Overfull \hbox (4.98097pt too wide) detected at line 594
 []
  []
 
-[11] [12]
-Overfull \hbox (6.129pt too wide) detected at line 412
-[]
- []
-
-[13]
-Overfull \hbox (15.92941pt too wide) detected at line 493
-[]
- []
-
-[14] [15]
-Overfull \hbox (0.24461pt too wide) detected at line 605
-[]
+[14]
+Overfull \hbox (27.37149pt too wide) detected at line 647
+[][][] \OMS/cmsy/m/n/10 j :[][] ^^T [] \OT1/cmr/m/n/10 + [] + [] \OMS/cmsy/m/n/
+10 ^^T [] \OT1/cmr/m/n/10 + []\OML/cmm/m/it/10 :
  []
 
 
-Overfull \hbox (42.77977pt too wide) detected at line 618
+Overfull \hbox (26.73488pt too wide) detected at line 827
 []
  []
 
-
-LaTeX Warning: Citation `C:CDKLST18' on page 16 undefined on input line 657.
+[15]
+Overfull \hbox (0.24461pt too wide) detected at line 984
+[]
+ []
 
 [16]
-
-LaTeX Warning: Citation `C:CDKLST18' on page 17 undefined on input line 669.
-
-
-LaTeX Warning: Citation `C:CDKLST18' on page 17 undefined on input line 670.
-
-
-Overfull \hbox (88.93993pt too wide) detected at line 691
+Overfull \hbox (42.77977pt too wide) detected at line 997
 []
  []
 
-) (./chapters/ch5-tweakable-linear-SPN.tex
-Overfull \hbox (30.28168pt too wide) detected at line 25
-[]
- []
+
+LaTeX Warning: Citation `C:CDKLST18' on page 17 undefined on input line 1036.
+
+
+LaTeX Warning: Citation `C:CDKLST18' on page 17 undefined on input line 1048.
+
+
+LaTeX Warning: Citation `C:CDKLST18' on page 17 undefined on input line 1049.
 
 [17]
-Underfull \hbox (badness 10000) in paragraph at lines 70--71
-
+Overfull \hbox (88.93993pt too wide) detected at line 1070
+[]
  []
 
-[18]
-Overfull \hbox (13.50014pt too wide) detected at line 88
-[][]
- []
-
-
-Overfull \hbox (27.37982pt too wide) in paragraph at lines 128--129
-\OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ; [] ; w\OMS/cmsy/m/n/10 g$
- \OT1/cmr/m/it/10 such that $[] \OT1/cmr/m/n/10 [\OML/cmm/m/it/10 i\OT1/cmr/m/n
-/10 ] = \OML/cmm/m/it/10 u[]$ \OT1/cmr/m/it/10 and $[] \OT1/cmr/m/n/10 [\OML/cm
-m/m/it/10 j\OT1/cmr/m/n/10 ] =
- []
-
-
-Overfull \hbox (42.83826pt too wide) in paragraph at lines 129--130
-\OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ; [] ; w\OMS/cmsy/m/n/10 g$
- \OT1/cmr/m/it/10 such that $[] \OT1/cmr/m/n/10 [\OML/cmm/m/it/10 j\OT1/cmr/m/n
-/10 ] = \OML/cmm/m/it/10 v[]$ \OT1/cmr/m/it/10 and $[] \OT1/cmr/m/n/10 [\OML/cm
-m/m/it/10 i\OT1/cmr/m/n/10 ] =
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 200--201
-
+) (./chapters/ch5-tweakable-linear-SPN.tex [18]
+Overfull \hbox (13.19907pt too wide) in paragraph at lines 94--100
+\OT1/cmr/m/n/10 This ex-tends the list $\OMS/cmsy/m/n/10 Q[]$ \OT1/cmr/m/n/10 i
+nto $\OMS/cmsy/m/n/10 Q[] \OT1/cmr/m/n/10 = [](\OML/cmm/m/it/10 x[]; a[]; c[]; 
+d[]; b[]; y[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; [] ; \OT1/cmr/m/n/10 (\OML/cmm
+/m/it/10 x[]; a[]; c[]; d[]; b[]; y[]\OT1/cmr/m/n/10 )[]$.
  []
 
 [19]
-Overfull \hbox (13.50014pt too wide) detected at line 221
+Overfull \hbox (1.44934pt too wide) detected at line 184
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 223--224
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 250--251
-
+Overfull \hbox (85.51125pt too wide) in paragraph at lines 197--199
+[]\OT1/cmr/m/it/10 there ex-ist (not nec-es-sar-ily dis-tinct) $\OT1/cmr/m/n/10
+ (\OML/cmm/m/it/10 t; x; a; c; d; b; y\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; \OT1/
+cmr/m/n/10 (\OML/cmm/m/it/10 t[]; x[]; a[]; c[]; d[]; b[]; y[]\OT1/cmr/m/n/10 )
+\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]; x[]; a[]; b[]; y[]\OT
+1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2
  []
 
 [20]
-Overfull \hbox (68.96375pt too wide) in paragraph at lines 266--269
-\OT1/cmr/m/n/10 tor $\OML/cmm/m/it/10 k$\OT1/cmr/m/n/10 , we are to de-rive a l
-ower bound for the prob-a-bil-ity $[] []$.
+Overfull \hbox (13.20818pt too wide) in paragraph at lines 240--242
+[]\OT1/cmr/m/it/10 there ex-ist $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x; a; b; y\O
+T1/cmr/m/n/10 )\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]; a[]; b
+[]; y[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2 Q[]$ \OT1/cmr/m/it/10 and $\OML/cmm
+/m/it/10 i; i[]; j; j[] \OMS/cmsy/m/n/10 2 f\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ;
+ [] ; w\OMS/cmsy/m/n/10 g$\OT1/cmr/m/it/10 , $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10
+ a; b; j\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 6\OT1/cmr/m/n/10 =
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 266--269
-
- []
-
-
-Overfull \hbox (21.27089pt too wide) in paragraph at lines 270--272
-\OT1/cmr/m/n/10 each $(\OML/cmm/m/it/10 t; a; b\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/
-10 2 Q[] []$ \OT1/cmr/m/n/10 we set $\OML/cmm/m/it/10 c \OT1/cmr/m/n/10 = \OML/
-cmm/m/it/10 S[] []$\OT1/cmr/m/n/10 , $\OML/cmm/m/it/10 d \OT1/cmr/m/n/10 = \OML
-/cmm/m/it/10 S[] []$\OT1/cmr/m/n/10 .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 270--272
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 273--274
-
- []
-
-
-Overfull \hbox (20.68199pt too wide) in paragraph at lines 291--292
-\OT1/cmr/m/n/10 that $[] [\OML/cmm/m/it/10 i\OT1/cmr/m/n/10 ] = \OML/cmm/m/it/1
-0 v[]$ \OT1/cmr/m/n/10 and $[] [\OML/cmm/m/it/10 j\OT1/cmr/m/n/10 ] =
- []
-
-
-Overfull \hbox (2.49568pt too wide) in paragraph at lines 297--298
-[]\OT1/cmr/m/n/10 there ex-ist dis-tinct $(\OML/cmm/m/it/10 t; c; d\OT1/cmr/m/n
-/10 )\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]; c[]; d[]\OT1/cmr
-/m/n/10 ) \OMS/cmsy/m/n/10 2 Q[] []$\OT1/cmr/m/n/10 , dis-tinct $\OML/cmm/m/it/
-10 i; i[] \OMS/cmsy/m/n/10 2 f\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ; [] ; w\OMS/cm
-sy/m/n/10 g$\OT1/cmr/m/n/10 ,
+Overfull \hbox (13.20818pt too wide) in paragraph at lines 244--246
+[]\OT1/cmr/m/it/10 there ex-ist $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x; a; b; y\O
+T1/cmr/m/n/10 )\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]; a[]; b
+[]; y[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2 Q[]$ \OT1/cmr/m/it/10 and $\OML/cmm
+/m/it/10 i; i[]; j; j[] \OMS/cmsy/m/n/10 2 f\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ;
+ [] ; w\OMS/cmsy/m/n/10 g$\OT1/cmr/m/it/10 , $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10
+ a; b; j\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 6\OT1/cmr/m/n/10 =
  []
 
 [21]
-Overfull \hbox (14.42226pt too wide) in paragraph at lines 301--302
-[]\OT1/cmr/m/n/10 there ex-ist $(\OML/cmm/m/it/10 t; c; d\OT1/cmr/m/n/10 )\OML/
-cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]; c[]; d[]\OT1/cmr/m/n/10 ) 
-\OMS/cmsy/m/n/10 2 Q[] []$\OT1/cmr/m/n/10 , $\OML/cmm/m/it/10 i; i[]; j; j[] \O
-MS/cmsy/m/n/10 2 f\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ; [] ; w\OMS/cmsy/m/n/10 g$
-\OT1/cmr/m/n/10 , with$(\OML/cmm/m/it/10 t; c; j\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n
-/10 6\OT1/cmr/m/n/10 =
- []
-
-
-Overfull \hbox (9.95712pt too wide) in paragraph at lines 301--302
-[]$\OT1/cmr/m/n/10 , $\OML/cmm/m/it/10 u[]; u[] \OMS/cmsy/m/n/10 2 \OML/cmm/m/i
-t/10 U[]$ \OT1/cmr/m/n/10 such that $[] [\OML/cmm/m/it/10 i\OT1/cmr/m/n/10 ] = 
-\OML/cmm/m/it/10 u[]; [] \OT1/cmr/m/n/10 [\OML/cmm/m/it/10 i\OT1/cmr/m/n/10 ] =
-
- []
-
-
-Overfull \hbox (15.45827pt too wide) detected at line 304
-[] \OT1/cmr/m/n/10 [\OML/cmm/m/it/10 j\OT1/cmr/m/n/10 ] = [] [\OML/cmm/m/it/10 
-j[]\OT1/cmr/m/n/10 ]\OML/cmm/m/it/10 :
- []
-
-
-Overfull \hbox (4.43085pt too wide) in paragraph at lines 314--315
-[]\OT1/cmr/m/n/10 there ex-ist dis-tinct $(\OML/cmm/m/it/10 t; c; d\OT1/cmr/m/n
-/10 )\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]; c[]; d[]\OT1/cmr
-/m/n/10 ) \OMS/cmsy/m/n/10 2 Q[] []$\OT1/cmr/m/n/10 , dis-tinct $\OML/cmm/m/it/
-10 j; j[] \OMS/cmsy/m/n/10 2 f\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ; [] ; w\OMS/cm
-sy/m/n/10 g$\OT1/cmr/m/n/10 ,
- []
-
-
-Overfull \hbox (15.29956pt too wide) in paragraph at lines 322--323
-[]\OT1/cmr/m/n/10 there ex-ist $(\OML/cmm/m/it/10 t; c; d\OT1/cmr/m/n/10 )\OML/
-cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]; c[]; d[]\OT1/cmr/m/n/10 ) 
-\OMS/cmsy/m/n/10 2 Q[] []$\OT1/cmr/m/n/10 , $\OML/cmm/m/it/10 i; i[]; j; j[] \O
-MS/cmsy/m/n/10 2 f\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ; [] ; w\OMS/cmsy/m/n/10 g$
-\OT1/cmr/m/n/10 , with$(\OML/cmm/m/it/10 t; d; j\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n
-/10 6\OT1/cmr/m/n/10 =
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 334--335
-
+Overfull \hbox (26.73488pt too wide) detected at line 360
+[]
  []
 
 [22]
-Overfull \hbox (5.88676pt too wide) in paragraph at lines 348--349
-\OT1/cmr/m/n/10 has dif-fer-ent value of in-put and out-put. Be-cause of the va
-lue $\OML/cmm/m/it/10 S[] [] \OT1/cmr/m/n/10 [\OML/cmm/m/it/10 i\OT1/cmr/m/n/10
- ]$
+Overfull \hbox (7.12878pt too wide) detected at line 552
+[]
  []
 
-) (./BB-linear-SPN.bbl [23]
+[23]
+Overfull \hbox (88.93993pt too wide) detected at line 585
+[]
+ []
+
+) (./BB-linear-SPN.bbl [24]
 Underfull \hbox (badness 1540) in paragraph at lines 49--54
 []\OT1/cmr/m/n/9 Jacques Patarin.  The ``co-ef-fi-cients H'' tech-nique (in-vit
 ed talk).  In
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 134.
- [24]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 134.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 140.
+ [25]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 140.
  (./BB-linear-SPN.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 134.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 134.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 140.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 140.
 Package rerunfilecheck Info: File `BB-linear-SPN.out' has not changed.
 (rerunfilecheck)             Checksum: 131FF9496E080250E7EE503A7D567B1D;798.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 134.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 140.
  ) 
 Here is how much of TeX's memory you used:
- 10125 strings out of 492616
- 144142 string characters out of 6129481
- 297163 words of memory out of 5000000
- 13730 multiletter control sequences out of 15000+600000
- 19103 words of font info for 73 fonts, out of 8000000 for 9000
+ 10127 strings out of 492616
+ 144166 string characters out of 6129481
+ 301321 words of memory out of 5000000
+ 13731 multiletter control sequences out of 15000+600000
+ 18935 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 31i,20n,30p,1509b,524s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 31i,20n,30p,1492b,616s stack positions out of 5000i,500n,10000p,200000b,80000s
  </Users/gaoyuan/Library/texlive/2019/texmf-var/fonts/pk/ljfour/public/ifsym/
 ifsym10.420pk></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmbx10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmbx6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-bx7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx
-9.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc1
-0.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10
-.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cmextra/cm
-ex7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cmextra
-/cmex9.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mmi10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-mi5.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
-6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.
-pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pf
-b></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></u
-sr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/
-local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/loc
-al/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/
-texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/t
-exlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/tex
-live/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/local/texli
-ve/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
-e/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/
-2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/20
-19/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2019/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2019/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2019/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2019/texmf
--dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2019/texmf-d
-ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on BB-linear-SPN.pdf (24 pages, 459912 bytes).
+m/cmbsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/c
+mextra/cmbsy7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmbx10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmbx6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmbx7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmbx9.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+csc10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+ex10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cmextr
+a/cmex7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cme
+xtra/cmex9.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmi10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmmi5.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+9.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib1
+0.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cmextra/c
+mmib7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5
+.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pf
+b></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><
+/usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></us
+r/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr
+/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/l
+ocal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/loc
+al/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loca
+l/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/
+texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/te
+xlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texl
+ive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texliv
+e/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive
+/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2
+019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/201
+9/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on BB-linear-SPN.pdf (25 pages, 484393 bytes).
 PDF statistics:
- 352 PDF objects out of 1000 (max. 8388607)
- 290 compressed objects within 3 object streams
- 70 named destinations out of 1000 (max. 500000)
+ 385 PDF objects out of 1000 (max. 8388607)
+ 313 compressed objects within 4 object streams
+ 72 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
