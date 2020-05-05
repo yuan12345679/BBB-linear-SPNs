@@ -3,6 +3,64 @@
 \label{section:Introduction}
 
 
+%\noindent\textbf{Background.} Practical iterative blockcipher (BC) designs roughly fall into
+%two classes (with some rare exceptions such as IDEA), namely
+%{\it Feistel ciphers and their generalizations}, and {\it
+%	substitution-permutation networks} (SPNs). In a Feistel cipher,
+%in the $i$-th round, the intermediate state $x=x_L\|x_R$ is
+%updated according to $x_L\|x_R\mapsto x_R\|x_L\oplus
+%G_i(k_i,x_R)$, where $G_i$ is called the $i$-th round function.
+%On the other hand, their counterpart SPNs could be further
+%abstracted as the {\it iterated Even-Mansour} (\iem) {\it
+%	ciphers}, or {\it key-alternating ciphers}, which consist of
+%alternatively applying round-key additions and keyless round
+%permutations, i.e.
+%$\iem_{k_0,k_1,\ldots,k_t}^{P_1,\ldots,P_t}(M)=k_t\xor
+%P_t(\ldots(k_1\xor P_1(k_0\xor M)))$.
+%
+%
+%The traditional security notion for BCs is {\it
+%	pseudorandomness}: for any adversary with reasonable resources
+%(e.g. polynomial complexity), the BC with {\it a random and
+%	secret key} should be indistinguishable from a truly random
+%permutation. Proving such security for concrete BCs such as AES
+%seems out of the reach of current techniques. Yet, by
+%idealizing the underlying round functions, security could be
+%proved. Following this line, both idealized
+%Feistel~\cite{LRSTOC86,KAFFSE2014} and
+%\iem~\cite{EMjoc97,KAprpEC12} have been proposed and analyzed.
+%
+%
+%To obtain a $2n$-bit BC, the \iem model requires $2n$-bit
+%permutations. Whereas following the Feistel approach, several
+%$n$-to-$n$-bit functions suffice. Moreover, these functions
+%need {\it not} to be {\it invertible} (this might be the reason
+%why Feistel ciphers were extremely popular before 1990s). In
+%all, Feistel ciphers could be built upon primitives with
+%smaller domain and less structural properties, which is
+%particularly appealing from a theoretical point of view. From
+%the security point of view, without any additional hardness
+%assumption other than the idealness of round functions,
+%provable security is limited by the domain-size of the round
+%functions~\cite{patarin04}. Therefore, \textsf{IEM} benefits
+%from the use of larger primitives: with $t$ independent
+%$2n$-bit random permutations and $2tn$ key bits, $t$-round \iem
+%is provably secure up to $2^{\frac{2tn}{t+1}}$ adversarial
+%queries~\cite{KAtightboundEC2014} which approaches $2^{2n}$ for
+%large $t$. In contrast, Feistel models can only be secure
+%against at most $2^n$ queries~\cite{patarin04}, which is far
+%less than its domain-size $2^{2n}$. This upper bound is very
+%unsatisfying. This issue is even more severe for models built upon small-domain primitives, such as multi-line generalized Feistel~\cite{GFSCRYPTO10} and SPNs~\cite{MV12SPN,SPNEprint:2017:016}.
+%Despite this
+%limitation as well as the gap between the idealized model and
+%the rather weak round functions in practice, this provable
+%approach supplies insights into the BC structures, excludes
+%generic attacks, and may help refine designs. Due to these,
+%this approach is valuable and has received a lot of attention.
+
+
+
+
 \noindent{\bf Substitution-Permutation Networks.}
 Most modern blockciphers are
 
@@ -107,19 +165,20 @@ implementing a xor-universal hash function might be costly, and linear functions
 %We answer positively, by providing a construction with 2n-bit keys and n-bit tweaks.
 
 In this paper, we ask whether it is possible to achieve security beyond the birthday barrier with linear SPN structures. In detail, we focus on linear SPNs with independent S-boxes and independent round keys, and we will focus on the case where $w\geq2$, since, when $w = 1$, we recover the standard Even-Mansour construction that has already been the focus
-of a long line of work (as briefly reviewed later). For such linear SPNs, we prove the first beyond-birthday-bound (BBB) result on 4 rounds. To tweak such linear SPNs, we consider the simplest approach, i.e., directly xoring a $wn$-bit tweak with each round key, and prove BBB result on 6 rounds. We will elaborate in detail as follows.
-
-
-
-\medskip\noindent{\bf BBB Security for 4-round linear SPNs.}
-
-
-
-\medskip\noindent{\bf Tweaking linear SPNs and BBB Security at 6 rounds.}
+of a long line of work (as briefly reviewed later). For such linear SPNs, we prove the first beyond-birthday-bound (BBB) result on 4 rounds.
 
 
 
 
+
+
+
+
+%
+%To tweak such linear SPNs, we consider the simplest approach, i.e., directly xoring a $wn$-bit tweak with each round key, and prove BBB result on 6 rounds. We will elaborate in detail as follows.
+%
+%\medskip\noindent{\bf BBB Security for 4-round linear SPNs.}
+%
 
 
 
