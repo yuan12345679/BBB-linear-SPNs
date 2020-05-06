@@ -3,45 +3,17 @@
 \section{Preliminaries}
 \label{sec:preliminary}
 
-Throughout this work, we fix positive integers $w$ and $n$, and let $N=2^n$. An element $x$ in $\{0,1\}^{wn}$ can be viewed as a concatenation of $w$ blocks of length $n$. The $i$th block of this representation will be denoted $x[i]$ for $i=1,\ldots,w$, so we have $x=x[1]\|x[2]\|\ldots\|x[w]$. For any integer $r$ such that $r\geq s$, we will write $(r)_s = r!/(r-s)!$, and define $(r)_0:=1$ for completeness.
-
-
-
-
-
-\arrangespace
-
-
-%\medskip
-\noindent{\bf Tweakable Blockciphers.}
-%
-%
-For an integer $m\geq1$, the set of all permutations on $\{0, 1\}^m$ will be denoted $\textsf{Perm}(m)$. A tweakable permutation with tweak space
-$\mathcal{T}$ and message space $\mathcal{X}$ is a mapping $\widetilde{P}:\mathcal{T}\times\mathcal{X}\rightarrow\mathcal{X}$ such that, for any tweak
-$t\in\mathcal{T}$,
-%
-$$x\mapsto\widetilde{P}(t,x)$$
-%
-is a permutation of $\mathcal{X}$. The set of all tweakable permutations with tweak space
-$\mathcal{T}$ and message space $\{0, 1\}^m$ will be denoted $\widetilde{\textsf{Perm}}(\mathcal{T},m)$.
-
-
-A tweakable blockcipher, or a keyed tweakable permutation, with key space $\mathcal{K}$, tweak space $\mathcal{T}$ and message
-space $\mathcal{X}$ is a mapping $T:\mathcal{K}\times\mathcal{T}\times\mathcal{X}\rightarrow\mathcal{X}$ such that, for any key $k\in\mathcal{K}$,
-%
-$$(t,x)\mapsto T(k,t,x).$$
-%
-is a tweakable permutation with tweak space $\mathcal{T}$ and message space $\mathcal{X}$.
+Throughout this work, we fix positive integers $w$ and $n$, and let $N=2^n$. An element $x$ in $\{0,1\}^{wn}$ can be viewed as a concatenation of $w$ blocks of length $n$. The $i$th block of this representation will be denoted $x[i]$ for $i=1,\ldots,w$, so we have $x=x[1]\|x[2]\|\ldots\|x[w]$. For any integer $r$ such that $r\geq s$, we will write $(r)_s = r!/(r-s)!$, and define $(r)_0:=1$ for completeness. For an integer $m\geq1$, the set of all permutations on $\{0, 1\}^m$ will be denoted $\textsf{Perm}(m)$.
 
 
 
 
 \arrangespace
 %\medskip
-\noindent{\bf(Tweakable) Linear Substitution-Permutation Networks.}
+\noindent{\bf Linear Substitution-Permutation Networks.}
 %
-A \emph{substitution-permutation network} (SPN) defines a keyed permutation via repeated invocation of two transformations: blockwise computation of a public, cryptographic permutation called an ``S-box,'' and application of a keyed, non-cryptographic permutation. In this paper we will only introduce a model of linear SPNs. Formally, let $\calK$ and $\calT$ be two
-sets, and let $\bff= (f_0,...,f_r)$ be a $(r+1)$-tuple of functions from $\calK\times\calT$ to $\{0, 1\}^n$.
+A \emph{substitution-permutation network} (SPN) defines a keyed permutation via repeated invocation of two transformations: blockwise computation of a public, cryptographic permutation called an ``S-box,'' and application of a keyed, non-cryptographic permutation. In this paper we will only introduce a model of linear SPNs. Formally, let $\calK$ be a
+set.
 
 %The $r$-round tweakable Even-Mansour construction TEM[n, r, f] specifies, from an r-tuple P = (P1, . . . , Pr)
 %of permutations of {0, 1}n, a tweakable block cipher with key space K, tweak space T , and
@@ -52,7 +24,7 @@ sets, and let $\bff= (f_0,...,f_r)$ be a $(r+1)$-tuple of functions from $\calK\
 
 
 
-Formally, an $r$-round SPN taking inputs of length $w n$ is defined by $r+1$ round keys $tk_0,tk_1,\ldots,tk_r\in\{0,1\}^{wn}$, $r$ permutations $S_1,\ldots,S_r:\{0,1\}^{n} \rightarrow \{0,1\}^{n}$, and $\mathnormal{r}-1$ invertible linear permutations $T_1,\ldots,T_{r-1}\in\mathbb{F}^{w\times w}$. Given an input $x \in \{0,1\}^{w n}$, the output of the SPN is computed as follows:
+Formally, an $r$-round SPN taking inputs of length $w n$ is defined by $r+1$ round keys $k_0,k_1,\ldots,k_r\in\{0,1\}^{wn}$, $r$ permutations $S_1,\ldots,S_r:\{0,1\}^{n} \rightarrow \{0,1\}^{n}$, and $\mathnormal{r}-1$ invertible linear permutations $T_1,\ldots,T_{r-1}\in\mathbb{F}^{w\times w}$. Given an input $x \in \{0,1\}^{w n}$, the output of the SPN is computed as follows:
 
 \begin{itemize}
   \item[--]
@@ -60,11 +32,11 @@ Formally, an $r$-round SPN taking inputs of length $w n$ is defined by $r+1$ rou
   \item[--]
   For $i = 1$ to $r-1$ do:
   \begin{itemize}
-  	\item[1.] $y_{i} := \overline{S_i}(x_{i}\xor tk_{i-1})$, where $\overline{S_i}(x[1]\xor tk_{i-1}[1]\|\ldots\| x[w]\xor tk_{i-1}[w]) \stackrel{\text { def }}{=} S_i(x[1]\xor tk_{i-1}[1])\|\ldots\| S_i(x[w]\xor tk_{i-1}[w])$.
+  	\item[1.] $y_{i} := \overline{S_i}(x_{i}\xor k_{i-1})$, where $\overline{S_i}(x[1]\xor k_{i-1}[1]\|\ldots\| x[w]\xor k_{i-1}[w]) \stackrel{\text { def }}{=} S_i(x[1]\xor k_{i-1}[1])\|\ldots\| S_i(x[w]\xor k_{i-1}[w])$.
     \item[2.] 
     $x_{i + 1} := T_i\cdot y_i$.
   \end{itemize}
-  \item[--] $x_{r+1} := \overline{S_r}(x_r\xor tk_{r-1})\xor tk_r$.
+  \item[--] $x_{r+1} := \overline{S_r}(x_r\xor k_{r-1})\xor k_r$.
   \item[--]
   The output is $x_{r+1}$.
 \end{itemize}
@@ -91,24 +63,24 @@ we say that the construction has linear tweak and key mixing.
 %\medskip
 \noindent{\bf Multi-user Security Definitions.}
 %
-Let $\spn^T[\mathcal{S}]$ be an $r$-round SPN based on a set of S-boxes $\mathcal{S}=(S_1, \ldots  ,S_r)$ and an invertible linear permutation $T$ with key space $\calK$ and tweak space $\calT$. So $\spn^T[\mathcal{S}]$
-becomes a keyed tweakable permutation on $\{0, 1\}^{wn}$ with key space $\calK^{r+1}$ and tweak space \calT.
+Let $\spn^T[\mathcal{S}]$ be an $r$-round linear SPN based on a set of S-boxes $\mathcal{S}=(S_1, \ldots  ,S_r)$ and an invertible linear permutation $T$ with key space $\calK$. So $\spn^T[\mathcal{S}]$
+becomes a keyed tweakable permutation on $\{0, 1\}^{wn}$ with key space $\calK^{r+1}$.
 
 
 In the multi-user setting, let $\ell$ denote the number of users. In the real
 world, $\ell$ secret keys $\bfk_1,\ldots,\bfk_\ell\in\calK^{r+1}$ are chosen independently at random.
 A set of independent S-boxes $\mathcal{S}=(S_1,\ldots,S_r)$ is also randomly chosen from $\textsf{Perm}(n)^r$. A distinguisher \dis is given oracle access to $(\spn_{\bfk_1}^T[\mathcal{S}],\ldots,\spn_{\bfk_\ell}^T[\mathcal{S}])$ as
 well as $\mathcal{S}=(S_1,\ldots,S_r)$. In the ideal world, \dis is given a set of independent
-random tweakable permutations $\widetilde{\calP}=(\widetilde{P}_1,\ldots,\widetilde{P}_{\ell})\in\widetilde{\operatorname{Perm}}(\calT,wn)^\ell$ instead of $(\spn_{\bfk_1}^T[\mathcal{S}],\ldots,\spn_{\bfk_\ell}^T[\mathcal{S}])$. Oracle access to $\mathcal{S}=(S_1,\ldots,S_r)$ is still allowed in this world.
+random tweakable permutations ${\calP}=({P}_1,\ldots,{P}_{\ell})\in{\operatorname{Perm}}(wn)^\ell$ instead of $(\spn_{\bfk_1}^T[\mathcal{S}],\ldots,\spn_{\bfk_\ell}^T[\mathcal{S}])$. Oracle access to $\mathcal{S}=(S_1,\ldots,S_r)$ is still allowed in this world.
 
 
-The adversarial goal is to tell apart the two worlds $(\spn_{\bfk_1}^T[\mathcal{S}],\ldots,\spn_{\bfk_\ell}^T[\mathcal{S}],\mathcal{S})$ and $(\widetilde{P}_1,\ldots,\widetilde{P}_{\ell},\mathcal{S})$ by adaptively making forward and backward queries to each
+The adversarial goal is to tell apart the two worlds $(\spn_{\bfk_1}^T[\mathcal{S}],\ldots,\spn_{\bfk_\ell}^T[\mathcal{S}],\mathcal{S})$ and $({P}_1,\ldots,{P}_{\ell},\mathcal{S})$ by adaptively making forward and backward queries to each
 of the constructions and the S-boxes. Formally, $\dis$'s distinguishing advantage is
 defined by
 %
 $$
 \begin{aligned}
-\operatorname{Adv}_{\spn^T}^{\mathrm{mu}}(\mathcal{D}) &=\operatorname{Pr}\left[\widetilde{P}_1,\ldots,\widetilde{P}_{\ell} \stackrel{\$}{\leftarrow} \widetilde{\mathsf{Perm}}(w n)^\ell, \mathcal{S} \stackrel{\$}{\leftarrow} \mathsf{Perm}(n)^{r}: 1 \leftarrow \mathcal{D}^{\mathcal{S}, \widetilde{P}_{1}, \ldots, \widetilde{P}_{\ell}}\right] \\
+\operatorname{Adv}_{\spn^T}^{\mathrm{mu}}(\mathcal{D}) &=\operatorname{Pr}\left[{P}_1,\ldots,{P}_{\ell} \stackrel{\$}{\leftarrow} {\mathsf{Perm}}(w n)^\ell, \mathcal{S} \stackrel{\$}{\leftarrow} \mathsf{Perm}(n)^{r}: 1 \leftarrow \mathcal{D}^{\mathcal{S}, {P}_{1}, \ldots, {P}_{\ell}}\right] \\
 &-\operatorname{Pr}\left[\mathbf{k}_{1}, \ldots, \mathbf{k}_{\ell} \stackrel{\$}{\leftarrow} \mathcal{K}^{\ell}, \mathcal{S} \stackrel{\$}{\leftarrow} \operatorname{Perm}(n)^{r}: 1 \leftarrow \mathcal{D}^{\mathcal{S}, \spn_{k_{1}}^T[\mathcal{S}], \ldots, \spn_{k_{\ell}}^T[\mathcal{S}]}\right].
 \end{aligned}
 $$
@@ -123,11 +95,6 @@ where the maximum is taken over all adversaries $\mathcal{D}$ making at most $\m
 
 
 
-Note that, if we set $\calT$ to a singleton set, then the classical definition of strong pseudorandom permutations is recovered. This will be the target of Sect. \ref{section:security of 4-round SPNs}.
-
-
-
-
 
 
 \arrangespace
@@ -138,10 +105,10 @@ Note that, if we set $\calT$ to a singleton set, then the classical definition o
 Suppose that a distinguisher $\mathcal{D}$ makes $\mathnormal{p}$ queries to each of the S-boxes, and total $\mathnormal{q}$ queries to the construction oracles. The queries made to the $j$-th construction oracle, denoted $C_j$, are recorded in a query history
 %
 $$
-\mathcal{Q}_{C_j} = (j,t_{j,i},x_{j,i},y_{j,i})_{1 \leq i \leq q_j}
+\mathcal{Q}_{C_j} = (j,x_{j,i},y_{j,i})_{1 \leq i \leq q_j}
 $$
 %
-for $j=1,...,\ell$, where $q$ is the number of queries made to $C_j$ and $(j,t_{j,i},x_{j,i},y_{j,i})$ represents the evaluation obtained by the $i$th query to $C_j$. So according to the instantiation, it implies either $\spn_{\bfk_j}^T[\mathcal{S}](t_{j,i},x_{j,i}) = y_{j,i}$  or $\widetilde{P}_j(t_{j,i},x_{j,i}) = y_{j,i}$. Let
+for $j=1,...,\ell$, where $q$ is the number of queries made to $C_j$ and $(j,x_{j,i},y_{j,i})$ represents the evaluation obtained by the $i$th query to $C_j$. So according to the instantiation, it implies either $\spn_{\bfk_j}^T[\mathcal{S}](x_{j,i}) = y_{j,i}$  or ${P}_j(x_{j,i}) = y_{j,i}$. Let
 %
 $$\mathcal{Q}_{C}=\mathcal{Q}_{C_1}\cup\ldots\cup\mathcal{Q}_{C_\ell}.$$
 %
@@ -170,19 +137,19 @@ information theoretic distinguishers. Therefore we can assume that a distinguish
 
 
 
-Fix a transcript $\tau = (\mathcal{Q}_C,\mathcal{Q}_S)$, a key $\bfk \in \mathcal{K}^{r+1}$, a tweakable permutation $\widetilde{P} \in \widetilde{\mathsf{Perm}}(\mathcal{T}, w n)$,  a set of S-boxes $\mathcal{S}=(S_1, \ldots  ,S_r) \in \mathsf{Perm}(n)^r $ and $j \in \{1, \ldots, \ell \}$: if $S_j(u_{j,i})=v_{j,i}$ for every $i = 1, . . . , p$, then we will write $S_j\vdash\mathcal{Q}_{S_j}$. We will write $\mathcal{S}\vdash\mathcal{Q}_S$ if $S_j\vdash\mathcal{Q}_{S_j}$ for every $j = 1, . . . , r$. Similarly, if
-$\spn_{\bfk}^T[\mathcal{S}](t_{j,i}, x_{j,i}) = y_{j,i}$ (resp. $\widetilde{P}(t_{j,i}, x_{j,i}) = y_{j,i}$) for every $i = 1, . . . , q_j$, then we will write $\spn_{\bfk}^T[\mathcal{S}]\vdash\mathcal{Q}_{C_j}$ (resp. $\widetilde{P}\vdash\mathcal{Q}_{C_j}$).
+Fix a transcript $\tau = (\mathcal{Q}_C,\mathcal{Q}_S)$, a key $\bfk \in \mathcal{K}^{r+1}$, a tweakable permutation ${P} \in {\mathsf{Perm}}(wn)$,  a set of S-boxes $\mathcal{S}=(S_1, \ldots  ,S_r) \in \mathsf{Perm}(n)^r $ and $j \in \{1, \ldots, \ell \}$: if $S_j(u_{j,i})=v_{j,i}$ for every $i = 1, . . . , p$, then we will write $S_j\vdash\mathcal{Q}_{S_j}$. We will write $\mathcal{S}\vdash\mathcal{Q}_S$ if $S_j\vdash\mathcal{Q}_{S_j}$ for every $j = 1, . . . , r$. Similarly, if
+$\spn_{\bfk}^T[\mathcal{S}](t_{j,i}, x_{j,i}) = y_{j,i}$ (resp. ${P}(t_{j,i}, x_{j,i}) = y_{j,i}$) for every $i = 1, . . . , q_j$, then we will write $\spn_{\bfk}^T[\mathcal{S}]\vdash\mathcal{Q}_{C_j}$ (resp. ${P}\vdash\mathcal{Q}_{C_j}$).
 
 
-Let $\bfk_1, \ldots ,\bfk_{\ell} \in \mathcal{K}^{\ell+1}$ and $\widetilde{\mathcal{P}} = (\widetilde{P}_1, \ldots ,\widetilde{P}_\ell) \in \widetilde{\mathsf{Perm}}(\mathcal{T},wn)^\ell$, if $\spn_{\bfk_j}^T[\mathcal{S}]\vdash\mathcal{Q}_{C_j}$ (resp. $\widetilde{P}_j\vdash\mathcal{Q}_{C_j}$) for every $j = 1, \ldots ,\ell$, then we will write $(\spn_{\bfk_j}^{T}[\mathcal{S}])_{j = 1, \ldots ,\ell} \vdash \mathcal{Q}_C$ (resp. $\widetilde{P}\vdash\mathcal{Q}_{C}$).
+Let $\bfk_1, \ldots ,\bfk_{\ell} \in \mathcal{K}^{\ell+1}$ and ${\mathcal{P}} = ({P}_1, \ldots ,{P}_\ell) \in {\mathsf{Perm}}(wn)^\ell$, if $\spn_{\bfk_j}^T[\mathcal{S}]\vdash\mathcal{Q}_{C_j}$ (resp. ${P}_j\vdash\mathcal{Q}_{C_j}$) for every $j = 1, \ldots ,\ell$, then we will write $(\spn_{\bfk_j}^{T}[\mathcal{S}])_{j = 1, \ldots ,\ell} \vdash \mathcal{Q}_C$ (resp. ${P}\vdash\mathcal{Q}_{C}$).
 
 
-If there exist $\widetilde{\mathcal{P}} \in \widetilde{\mathsf{Perm}}(\mathcal{T},w n)^\ell$ and $\mathcal{S} \in \mathsf{Perm}(\emph{n})^r$ that outputs $\tau$ at the end of the interaction with $\mathcal{D}$, then we will call the transcript $\tau$ attainable. So for any attainable transcript $\tau= (\mathcal{Q}_C,\mathcal{Q}_S)$, there exist $\widetilde{\mathcal{P}} \in \widetilde{\mathsf{Perm}}(\mathcal{T},w n)^\ell$ and $\mathcal{S} \in \mathsf{Perm}(n)^r$ such that $\widetilde{\mathcal{P}}\vdash\mathcal{Q}_C$ and $\mathcal{S}\vdash\mathcal{Q}_S$. For an attainable transcript $\tau = (\mathcal{Q}_C,\mathcal{Q}_S)$, let
+If there exist ${\mathcal{P}} \in {\mathsf{Perm}}(wn)^\ell$ and $\mathcal{S} \in \mathsf{Perm}(\emph{n})^r$ that outputs $\tau$ at the end of the interaction with $\mathcal{D}$, then we will call the transcript $\tau$ attainable. So for any attainable transcript $\tau= (\mathcal{Q}_C,\mathcal{Q}_S)$, there exist ${\mathcal{P}} \in {\mathsf{Perm}}(wn)^\ell$ and $\mathcal{S} \in \mathsf{Perm}(n)^r$ such that ${\mathcal{P}}\vdash\mathcal{Q}_C$ and $\mathcal{S}\vdash\mathcal{Q}_S$. For an attainable transcript $\tau = (\mathcal{Q}_C,\mathcal{Q}_S)$, let
 %
 %
 $$
 \begin{aligned}
-&\mathsf{p}_{1}(\tau)=\operatorname{Pr}\left[\widetilde{\mathcal{P}} \stackrel{\$}{\leftarrow} \widetilde{{\mathsf{Perm}}}(\mathcal{T}, w n)^{\ell}, \mathcal{S} \stackrel{\$}{\leftarrow} \mathsf{Perm}(n)^{r}: \widetilde{\mathcal{P}} \vdash \mathcal{Q}_{C} \bigwedge \mathcal{S} \vdash \mathcal{Q}_{S}\right],\\
+&\mathsf{p}_{1}(\tau)=\operatorname{Pr}\left[{\mathcal{P}} \stackrel{\$}{\leftarrow} {{\mathsf{Perm}}}(wn)^{\ell}, \mathcal{S} \stackrel{\$}{\leftarrow} \mathsf{Perm}(n)^{r}: {\mathcal{P}} \vdash \mathcal{Q}_{C} \bigwedge \mathcal{S} \vdash \mathcal{Q}_{S}\right],\\
 &\mathsf{p}_{2}(\tau)=\operatorname{Pr}\left[\bfk_{1}, \ldots, \bfk_{\ell} \stackrel{\$}{\leftarrow} \mathcal{K}^{\ell}, \mathcal{S} \stackrel{\$}{\leftarrow} \mathsf{Perm}(n)^{r}:(\spn_{\bfk_{j}}^{T}[\mathcal{S}])_{j} \vdash \mathcal{Q}_{C} \bigwedge \mathcal{S} \vdash \mathcal{Q}_{S}\right].
 \end{aligned}
 $$
