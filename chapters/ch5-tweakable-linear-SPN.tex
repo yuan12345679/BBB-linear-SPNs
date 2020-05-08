@@ -207,9 +207,9 @@ be the domains and ranges of $\mathcal{Q}_{S_3}^{(1)}$ and $\mathcal{Q}_{S_4}^{(
 		\begin{itemize}
 			\item $(x\xor t\xor k_0)[i]\in U_1^{(0)}$ and $(x\xor t\xor k_0)[i']\in U_1^{(0)}$, or
 			\item $(a\xor t \oplus k_1)[i]\in U_{2}^{(0)}$ and $(a\xor t \oplus k_1)[i']\in U_{2}^{(0)}$, or
-			\item $(c\xor t \oplus k_2)[i]\in U_{3}^{(1)}$ and $(c\xor t \oplus k_2)[i']\in U_{3}^{(1)}$, or
-			\item $(d\xor t\xor T^{-1}(k_4))[i]\in V_4^{(1)}$ and
-			$(d\xor t\xor T^{-1}(k_4))[i']\in V_4^{(1)}$, or
+			\item $(c\xor t \oplus k_2)[i]\in U_{3}^{(0)}$ and $(c\xor t \oplus k_2)[i']\in U_{3}^{(0)}$, or
+			\item $(d\xor t\xor T^{-1}(k_4))[i]\in V_4^{(0)}$ and
+			$(d\xor t\xor T^{-1}(k_4))[i']\in V_4^{(0)}$, or
 			\item $(b\xor t\xor T^{-1}(k_5))[i]\in V_5^{(0)}$ and
 			$(b\xor t\xor T^{-1}(k_5))[i']\in V_5^{(0)}$, or
 			\item $(y\xor t\xor k_6)[i]\in V_6^{(0)}$ and $(y\xor t\xor k_6)[i']\in V_6^{(0)}$.
@@ -218,8 +218,8 @@ be the domains and ranges of $\mathcal{Q}_{S_3}^{(1)}$ and $\mathcal{Q}_{S_4}^{(
 		\begin{itemize}
 			\item $(x\xor t\xor k_0)[i]\in U_1^{(0)}$ and $(y\xor t\xor k_6)[j]\in V_6^{(0)}$, or
 			\item $(x\xor t\xor k_0)[i]\in U_1^{(0)}$ and $(a\xor t \oplus k_1)[j]\in U_{2}^{(0)}$, or
-			\item $(a\xor t \oplus k_1)[i]\in U_{2}^{(0)}$ and $(c\xor t \oplus k_2)[j]\in U_{3}^{(1)}$, or
-			\item $(d\xor t\xor T^{-1}(k_4))[i]\in V_4^{(1)}$ and
+			\item $(a\xor t \oplus k_1)[i]\in U_{2}^{(0)}$ and $(c\xor t \oplus k_2)[j]\in U_{3}^{(0)}$, or
+			\item $(d\xor t\xor T^{-1}(k_4))[i]\in V_4^{(0)}$ and
 			$(b\xor t\xor T^{-1}(k_5))[j]\in V_5^{(0)}$, or
 			\item $(b\xor t\xor T^{-1}(k_5))[i]\in V_5^{(0)}$ and
 			$(y\xor t\xor k_6)[j]\in V_6^{(0)}$.
@@ -287,7 +287,7 @@ The analyses of the conditions just follow Lemma \ref{lemma:bad-tau-4-rounds} an
 	\item $(c\xor k_2\xor t)[j]\in U_2^{(1)}$, and
 	\item there exists $(t',x',y',j')\neq(t,x,y,j)$ such that $(c\xor k_2\xor t)[j]\neq(c'\xor k_2\xor t')[j']$.
 \end{itemize}
-For the 1st subevent, conditioned on $\neg\cthree$, ... thus its probability is at most $1/(N-p-wq)$.
+Since $k_2$ is uniform, the 1st subevent happens with probability $1/N$.
 
 
 For the 2nd subevent, when $j\neq j'$, it immediately holds ${\Pr}\big[(c\xor k_2\xor t)[j]\neq(c'\xor k_2\xor t')[j']\big]=1/N$. Below we focus on the case of $j=j'$ meaning that $(t',x',y')\neq(t,x,y)$. We have to further distinguish {\bf three} cases as follows.
