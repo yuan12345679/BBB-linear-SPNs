@@ -272,7 +272,7 @@ The analyses of the conditions just follow Lemma \ref{lemma:bad-tau-4-rounds} an
 
 \arrangespace
 
-\noindent \textsc{\cfour}. Consider any of the $w^2q$ choices of $(t,x,a,b,y)$ and $i, j$. We define five predicates as follows.
+\noindent \textsc{\cfour}. For any $\vect,i,j$, we define five predicates as follows.
 %
 \begin{itemize}
 	\item $\pred_1(\vect,i)$ is fulfilled, if
@@ -290,18 +290,62 @@ The analyses of the conditions just follow Lemma \ref{lemma:bad-tau-4-rounds} an
 	\item $\free(\vect)$ is fulfilled, if $(a\xor t\xor k_1)[i_0]\notin U_1^{(1)}$ for all $i\in\{1,\ldots,w\}$.
 \end{itemize}
 %
-Since $k_2[i]$ and $k_2[i']$ are uniform and independent, it is easy to see $\Pr[\pred_1(\vect,i)]\leq(p+wq)/N$ and $\Pr[\pred_3(\vect,i)]\leq(p+wq)/N$. Then,           {\small
+Since $k_2[i]$ and $k_2[i']$ are uniform and independent, it is easy to see $\Pr[\pred_1(\vect,i)]\leq(p+wq)/N$ and $\Pr[\pred_3(\vect,i)]\leq(p+wq)/N$.
+
+
+For the remaining, we use
 %
 \begin{align*}
-{\Pr}\big[\pred_2(\vect,i)\big] = & \sum_{\vect'\neq\vect}{\Pr}\big[(c\xor t)[i]=(c'\xor t')[i]\mid\big]             \\
-= & 
-\underbrace{\sum_{\vect'\neq\vect}{\Pr}\big[(c\xor t)[i]=(c'\xor t')[i]\wedge\big(\free(\vect)\vee\free(\vect')\big)\big]}_{B_1}            \\
-& + 
-\underbrace{\sum_{\vect'\neq\vect}{\Pr}\big[(c\xor t)[i]=(c'\xor t')[i]\wedge\big(\neg\free(\vect)\wedge\neg\free(\vect')\big)\big]}_{B_2}.
-\end{align*}
-}%
+&\Pr[\cfour]   \\
+= &\sum_{\vect}\sum_{i,j}{\Pr}\Big[(c\xor k_2\xor t)[i]\in U_3^{(1)}\wedge(d\xor T^{-1}(k_4\xor t))[j]\in V_4^{(1)}\Big]       \\
+= &\sum_{\vect}\sum_{i,j}{\Pr}\Big[\big(\pred_1(\vect,i)\vee\pred_2(\vect,i)\big)\wedge\big(\pred_3(\vect,i)\vee\pred_4(\vect,i)\big)\Big]        \\
+= &\sum_{\vect}\sum_{i,j}\Big({\Pr}\big[\pred_1(\vect,i)\wedge\pred_3(\vect,i)\big]
++{\Pr}\big[\pred_1(\vect,i)\wedge\pred_4(\vect,i)\big]        \\
+&\ \ \  +{\Pr}\big[\pred_2(\vect,i)\wedge\pred_3(\vect,i)\big]
++{\Pr}\big[\pred_2(\vect,i)\wedge\pred_4(\vect,i)\big]\Big)       \\
+\leq &\sum_{\vect}\sum_{i,j}\bigg(\frac{(p+wq)^2}{N^2}+
+\frac{p+wq}{N}\cdot
+{\Pr}\big[\pred_4(\vect,i)\big]      +\frac{p+wq}{N}\cdot
+{\Pr}\big[\pred_2(\vect,i)\big]   \\
+&\ \ \ \ \ \ \ \ \ \ \ \ 
++{\Pr}\big[\pred_2(\vect,i)\wedge\pred_4(\vect,i)\big]\bigg)      \\
+\leq &
 %
-For the probability ${\Pr}\big[(c\xor t)[i]=(c'\xor t')[i]\wedge\big(\free(\vect)\vee\free(\vect')\big)\big]$, we have to further distinguish two cases as follows.
+\frac{w^2q(p+wq)^2}{N^2}+
+\frac{p+wq}{N}\cdot
+\sum_{\vect}\sum_{i,j}\Big(
+{\Pr}\big[\pred_4(\vect,i)\big]     +
+{\Pr}\big[\pred_2(\vect,i)\big]   \Big)   \\
+&\ \ \ \ \ \ \ \ \ \ \ \ 
++
+\sum_{\vect}\sum_{i,j}{\Pr}\big[\pred_2(\vect,i)\wedge\pred_4(\vect,i)\big].
+\end{align*}
+%
+%
+
+For the term $\sum_{\vect}\sum_{i,j}{\Pr}\big[\pred_2(\vect,i)\big]$, we have
+%
+\begin{align*}
+\sum_{\vect}\sum_{i,j}{\Pr}\big[\pred_2(\vect,i)\big]  
+\leq &  \sum_{\vect}\sum_{i,j}
+	{\Pr}\big[\pred_2(\vect,i)\mid\free(\vect)\big]        \\
+%
+&+\underbrace{\sum_{\vect}\sum_{i,j} \underbrace{{\Pr}\big[\pred_2(\vect,i)\mid\neg\free(\vect)\big]}_{\leq 1}
+	\times \underbrace{{\Pr}\big[\neg\free(\vect)\big]}_{\leq wp/N}}_{\leq w^3qp/N} .
+\end{align*}
+%
+For the term $\sum_{\vect}\sum_{i,j}
+{\Pr}\big[\pred_2(\vect,i)\mid\free(\vect)\big]$, we have
+%
+\begin{align*}
+\sum_{\vect}\sum_{i,j}
+{\Pr}\big[\pred_2(\vect,i)\mid\free(\vect)\big] 
+\leq   \sum_{\vect}\sum_{i,j} \sum_{\vect'\neq\vect}
+{\Pr}\big[(c\xor t)[i]=(c'\xor t')[i]\mid\free(\vect)\big]    .
+\end{align*}
+%
+
+Now, for each $\vect'\neq\vect$, we have to further distinguish two cases as follows.
 
 
 \arrangespace
@@ -324,20 +368,68 @@ $$\Pr[(c\xor t)[j]\neq(c'\xor t')[j']|a\xor t=a'\xor t']\leq\frac{1}{N-p-wq}.$$
 %
 
 
-
 \arrangespace
 
 
 
 
-On the other hand,
 %
-\begin{align*}
-&\sum_{\vect'\neq\vect}{\Pr}\big[(c\xor t)[i]=(c'\xor t')[i]\wedge\big(\neg\free(\vect)\wedge\neg\free(\vect')\big)\big]       \\
-\leq&\sum_{\vect'\neq\vect}{\Pr}\big[(c\xor t)[i]=(c'\xor t')[i]\mid\big(\neg\free(\vect)\wedge\neg\free(\vect')\big)\big] \times\Pr[\neg\free(\vect)]       \\
-\leq&\sum_{\vect':(c\xor t)[i]=(c'\xor t')[i]}\frac{p}{N}  \leq  \frac{p}{N}.
-\end{align*}
+%\arrangespace
 %
+%\noindent \textsc{\cfour}. Consider any of the $w^2q$ choices of $(t,x,a,b,y)$ and $i, j$. We define five predicates as follows.
+%%
+%\begin{itemize}
+%	\item $\pred_1(\vect,i)$ is fulfilled, if
+%	\begin{itemize}
+%		\item $(c\xor k_2\xor t)[i]\in U_3^{(0)}$, or
+%		\item there exists $\vect'$ and $i'\neq i$ such that $(c\xor k_2\xor t)[i]=(c'\xor k_2\xor t')[i']$.
+%	\end{itemize}
+%	\item $\pred_2(\vect,i)$ is fulfilled, if there exists $(t',x',a',b',y')\neq(t,x,a,b,y)$ such that $(c\xor t)[i]=(c'\xor t')[i]$.
+%	\item $\pred_3(\vect,i)$ is fulfilled, if
+%	\begin{itemize}
+%		\item $(d\xor T^{-1}(k_4\xor t))[j]\in V_4^{(0)}$, or
+%		\item there exists $\vect'$ and $j'\neq j$ such that $(d\xor T^{-1}(k_4\xor t))[j]=(d'\xor T^{-1}(k_4\xor t'))[j']$.
+%	\end{itemize}
+%	\item $\pred_4(\vect,i)$ is fulfilled, if there exists $(t',x',a',b',y')\neq(t,x,a,b,y)$ such that $(d\xor T^{-1}(t))[j]=(d'\xor T^{-1}(t'))[j]$.
+%	\item $\free(\vect)$ is fulfilled, if $(a\xor t\xor k_1)[i_0]\notin U_1^{(1)}$ for all $i\in\{1,\ldots,w\}$.
+%\end{itemize}
+%%
+%Since $k_2[i]$ and $k_2[i']$ are uniform and independent, it is easy to see $\Pr[\pred_1(\vect,i)]\leq(p+wq)/N$ and $\Pr[\pred_3(\vect,i)]\leq(p+wq)/N$. Then,           {\small
+%%
+%\begin{align*}
+%{\Pr}\big[\pred_2(\vect,i)\big] = & \sum_{\vect'\neq\vect}{\Pr}\big[(c\xor t)[i]=(c'\xor t')[i]\mid\big]             \\
+%= & 
+%\underbrace{\sum_{\vect'\neq\vect}{\Pr}\big[(c\xor t)[i]=(c'\xor t')[i]\wedge\big(\free(\vect)\vee\free(\vect')\big)\big]}_{B_1}            \\
+%& + 
+%\underbrace{\sum_{\vect'\neq\vect}{\Pr}\big[(c\xor t)[i]=(c'\xor t')[i]\wedge\big(\neg\free(\vect)\wedge\neg\free(\vect')\big)\big]}_{B_2}.
+%\end{align*}
+%}%
+%%
+%For the probability ${\Pr}\big[(c\xor t)[i]=(c'\xor t')[i]\wedge\big(\free(\vect)\vee\free(\vect')\big)\big]$, we have to further distinguish two cases as follows.
+%
+%
+%\arrangespace
+%
+%\noindent \textit{\underline{Case 1: $x\xor t\neq x'\xor t'$}}. Then {\bf using the previous idea, it can be show}
+%%
+%$$\Pr[a\xor t=a'\xor t'|x\xor t\neq x'\xor t']\leq\frac{1}{N-p-wq}.$$
+%%
+%Similarly, it further holds
+%%
+%$$\Pr[(c\xor t)[j]\neq(c'\xor t')[j']|a\xor t=a'\xor t']\leq\frac{1}{N-p-wq}.$$
+%%
+%
+%
+%\arrangespace
+%
+%\noindent \textit{\underline{Case 2: $x\xor t=x'\xor t'$}}. Then it necessarily holds $a\xor t\neq a'\xor t'$, and thus
+%%
+%$$\Pr[(c\xor t)[j]\neq(c'\xor t')[j']|a\xor t=a'\xor t']\leq\frac{1}{N-p-wq}.$$
+%%
+
+
+
+
 
 
 Summing over the above, we have
