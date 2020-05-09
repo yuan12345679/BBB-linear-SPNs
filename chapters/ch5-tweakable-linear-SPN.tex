@@ -11,7 +11,7 @@ In this section, we prove beyond-birthday-bound STPRP security for 6-round tweak
 \label{eq:defn-6-round-spn}
 \end{align}
 %
-We show that $\spn^T$ is an STPRP as long as: (i) the linear layer $T$ contains no zero entries, and (ii) the round keys $\{k_i\}(i=0, \ldots , 6)$ are uniform and independent, and (iii) the tweak $t$ is directly xored into each round key.
+We show that $\spn^T$ is an STPRP as long as: (i) the linear layer $T$ is good as per Definition \ref{defn:good-T}, and (ii) the seven round keys $k_0,\ldots,k_6$ are uniform and independent, and (iii) the tweak $t$ is directly xored into each round key.
 
 
 \begin{theorem}
