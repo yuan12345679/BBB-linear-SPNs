@@ -1,0 +1,265 @@
+
+\newpage
+
+
+Regarding \bfour, consider any of the $w^2q$ choices of $(x,a,b,y)$ and $i, j$. Consider the probability to have $(a\xor k_1)[i]\in U_2^{(1)}$ first. Note that this consists of three subevents:
+\begin{itemize}
+	\item(B-41) $(a\xor k_1)[i]\in U_2^{(0)}$;
+	\item(B-42) there exists $(x',a',b',y')\in\mathcal{Q}_{C}'$, and $j'\in\{1,\ldots,w\}$ such that $(x,j)\neq(x',j')$, $(x'\xor k_0)[i']\notin U_1^{(0)}$ for all $i'\in\{1,\ldots,w\}$, while $(a\xor k_1)[j]=(a'\xor k_1)[j']$.
+	\item(B-43) there exists $(x',a',b',y')\in\mathcal{Q}_{C}'$, and $i',j'\in\{1,\ldots,w\}$ such that $(x,j)\neq(x',j')$, while $\left(x' \oplus k_{0}\right)[i']\in U_1^{(0)}$, and $(a\xor k_1)[j]=(a'\xor k_1)[j']$.
+\end{itemize}
+Since $k_1$ is uniform and independent of $S_1$, it holds $\Pr[\text{(B-41)}]\leq p/N$.
+
+
+
+%For (B-42), since $j\neq j'$, $k_1[j]$ and $k_1[j']$ are uniform and independent. This means for any of the at most $q^2w^3/2$ choices of $(x,a,b,y),(x',a',b',y'),i,j\neq j'$, the probability to have $(a\xor k_1)[j]=(a'\xor k_1)[j']$ is $1/N$. Moreover, the probability to have $\left(x \oplus k_{0}\right)[i]\in U_1^{(0)}$ is $p/N$ due to $k_0$. Thus $\Pr[\text{(B-42)}]\leq w^3q^2p/2N^2$.
+
+
+
+%For (B-43), we have
+For (B-42), we have $\pcoll_{1}^+(1,x,x',j,j')\leq1/(N-p-wq)$ by Lemma \ref{lemma:coll-prob}. Thus
+%
+\begin{align*}
+\Pr[\text{(B-42)}] \leq  & \sum_{(x,a,b,y),(x',a',b',y'),j,j'}\pcoll_{1}^+(1,x,x',j,j')\times\Pr[\left(x \oplus k_{0}\right)[i]\in U_1^{(0)}]          \\
+\leq  &  {wq\choose2}\cdot \frac{1}{N-p-wq}\cdot\frac{w}{N} \leq \frac{w^3q^2p}{2N(N-p-wq)} .
+\end{align*}
+
+
+%
+%
+% note that $x\neq x'$ implies there exists $i_0$ such that $(x\xor k_0)[i_0]\neq(x'\xor k_0)[i_0]$. By the assumption, $(x'\xor k_0)[i_0]\notin U_1^{(0)}$. \textbf{This in particular means $(x'\xor k_0)[i_0]\neq(x\xor k_0)[i]$.} By construction, we have
+%%
+%\begin{align*}
+%&  T(\overline{S_1}(x\xor k_0))[j]\xor T(\overline{S_1}(x'\xor k_0))[j]       \\
+%= &
+%\Big(\bigoplus_{1\leq\ell\leq w}t_{j,\ell}\cdot S_1(x\xor k_0)[\ell]\Big)\xor
+%\Big(\bigoplus_{1\leq\ell\leq w}t_{j,\ell}\cdot S_1(x'\xor k_0)[\ell]\Big)   .
+%\end{align*}
+%%
+%Below we distinguish 3 cases:
+%%
+%\begin{itemize}
+%	\item Case 1: $(x'\xor k_0)[i_0]$ is ``unique'', i.e., $(x'\xor k_0)[i_0]\neq(x\xor k_0)[\ell]$ for any $\ell\in\{1,\ldots,w\}$, and $(x'\xor k_0)[i_0]\neq(x'\xor k_0)[\ell]$ for any $\ell\neq i_0$. Then, conditioned on $S_1\vdash\mathcal{Q}_{S_1}^{(0)}$ and on the $w-1$ values $\{S_1((x\xor k_0)[\ell])\}_{1\leq \ell\leq w}\cup\{S_1((x'\xor k_0)[\ell])\}_{1\leq \ell\leq w,\ell\neq i_0}$, the value of $S_1((x'\xor k_0)[i_0])$ remains uniform in {\it at least} $N-p-wq$ possibilities. Moreover, the coefficient $t_{j,i_0}$ is non-zero as per our assumption. Therefore, in this case we have
+%%
+%\begin{align}
+%{\Pr}\big[T(\overline{S_1}(x\xor k_0))[j]\xor T(\overline{S_1}(x'\xor k_0))[j']=0\big]\leq\frac{1}{N-p-wq}.
+%\label{eq:bound-eq-B33}
+%\end{align}
+%%
+%	\item Case 2: $(x'\xor k_0)[i_0]=(x'\xor k_0)[i_1]$ for some $i_1\neq i_0$. Then by $\neg\bone$, $(x'\xor k_0)[i_0]\neq(x\xor k_0)[\ell]$ and $(x'\xor k_0)[i_0]\neq(x'\xor k_0)[\ell]$ for any $\ell\neq i_0,i_1$. We further distinguish two subcases:
+%	\begin{itemize}
+%		\item Subcase 2.1: $(x\xor k_0)[i_1]=(x'\xor k_0)[i_1]$. Then, with the two terms $t_{j,i_1}\cdot S_1(x\xor k_0)[i_1]$ and $t_{j,i_1}\cdot S_1(x'\xor k_0)[i_1]$ canceled, it can be seen
+%%
+%\begin{align*}
+%&  T(\overline{S_1}(x\xor k_0))[j]\xor T(\overline{S_1}(x'\xor k_0))[j]       \\
+%= &
+%\Big(\bigoplus_{1\leq\ell\leq w,\ell\neq i_1}t_{j,\ell}\cdot S_1(x\xor k_0)[\ell]\Big)\xor
+%\Big(\bigoplus_{1\leq\ell\leq w,\ell\neq i_1}t_{j,\ell}\cdot S_1(x'\xor k_0)[\ell]\Big)   .
+%\end{align*}
+%%
+%Conditioned on $S_1\vdash\mathcal{Q}_{S_1}^{(0)}$ and on the $w-3$ values $\{S_1((x\xor k_0)[\ell])\}_{1\leq \ell\leq w,\ell\neq i_1}\cup\{S_1((x'\xor k_0)[\ell])\}_{1\leq \ell\leq w,\ell\neq i_0,\ell\neq i_1}$, the value of $S_1((x'\xor k_0)[i_0])$ remains uniform in {\it at least} $N-p-wq$ possibilities. Therefore, in this case Eq. (\ref{eq:bound-eq-B33}) still holds.
+%		\item Subcase 2.2: $(x'\xor k_0)[i_1]\neq(x'\xor k_0)[i_1]$. Then we write
+%%
+%\begin{align*}
+%&  T(\overline{S_1}(x\xor k_0))[j]\xor T(\overline{S_1}(x'\xor k_0))[j]       \\
+%= &
+%\Big(t_{j,i_0}\cdot S_1\big((x'\xor k_0)[i_0]\big)
+%\xor
+%t_{j,i_1}\cdot S_1\big((x'\xor k_0)[i_1]\big)\Big)
+%\\
+%&\hugeindent\xor
+%\Big(\bigoplus_{1\leq\ell\leq w}t_{j,\ell}\cdot S_1(x\xor k_0)[\ell]\Big)    \xor
+%\Big(\bigoplus_{1\leq\ell\leq w,\ell\neq i_0,\ell\neq i_1}t_{j,\ell}\cdot S_1(x'\xor k_0)[\ell]\Big)        \\
+%= &
+%\Big(\big(t_{j,i_0}\xor t_{j,i_1}\big)\cdot S_1\big((x'\xor k_0)[i_0]\big)\Big)
+%\xor\Big(\bigoplus_{1\leq\ell\leq w,\ell\neq i_0,\ell\neq i_1}t_{j,\ell}\cdot S_1(x'\xor k_0)[\ell]\Big)    .
+%\end{align*}
+%%
+%Conditioned on $S_1\vdash\mathcal{Q}_{S_1}^{(0)}$ and on the $w-2$ values $\{S_1((x\xor k_0)[\ell])\}_{1\leq \ell\leq w}\cup\{S_1((x'\xor k_0)[\ell])\}_{1\leq \ell\leq w,\ell\neq i_0,\ell\neq i_1}$, $S_1((x'\xor k_0)[i_0])$ remains uniform in at least $N-p-wq$ possibilities. Moreover, the coefficient $\big(t_{j,i_0}\xor t_{j,i_1}$ is non-zero as per our assumption. Therefore, Eq. (\ref{eq:bound-eq-B33}) remains.
+%	\end{itemize}
+%	\item Case 3: this case is similar to Case 2 by symmetry.
+%\end{itemize}
+%%
+%By the above, in any case, the probability to have $T(\overline{S_1}(x\xor k_0))[j]=T(\overline{S_1}(x'\xor k_0))[j']$ is at most $1/(N-p-wq)$. Meanwhile, it remains $\Pr[\left(x \oplus k_{0}\right)[i]\in U_1^{(0)}]=p/N$. Therefore, $\Pr[\text{(B-43)}]\leq{q\choose2}w^3p/N(N-p-wq)\leq w^3q^2p/2N(N-p-wq)$.
+
+
+
+
+For (B-43), we have          {\small
+	%
+	%we define $\pcoll_{11}(x,x',i,i',j)$ as the conditional probability $\Pr[(a\xor k_1)[j]=(a'\xor k_1)[j]|   
+	%(x'\xor k_0)[i']\in U_1^{(0)}\wedge(x\xor k_0)[i]\in U_1^{(0)}]$. Then, we derive the probability as follows.        
+	%{\small
+	%
+	\begin{align*}
+	\Pr[\text{(B-43)}]  
+	=   &  \sum_{(x,a,b,y),(x',a',b',y')}\sum_{i,i',j,j'}\bigg(\underbrace{\Pr[(x\xor k_0)[i]\in U_1^{(0)}]}_{\leq p/N}     \\
+	& \midindent\times
+	\underbrace{\Pr[(x'\xor k_0)[i']\in U_1^{(0)}|(x\xor k_0)[i]\in U_1^{(0)}]}_{\leq1}\times\underbrace{\pcoll_2^+(1,x,x',i,i',j,j')}_{\leq1/(N-p-wq)}\bigg)      \\
+	\leq  &   {wq\choose 2}\cdot w^2\cdot\frac{p}{N}\cdot\frac{1}{N-p-wq}\leq
+	\frac{w^4pq^2}{2N(N-p-wq)}.
+	%
+	%\cdot\bigg(
+	%\underbrace{\sum_{(x,a,b,y),(x',a',b',y')\in\mathcal{Q}_{C}'}\sum_{i\neq i'}\sum_{j}\pcoll_2^+(1,x,x',i,i',j)}_{A_1}      \\ 
+	%& \midindent\midindent   +  \underbrace{\sum_{(x,a,b,y),(x',a',b',y')\in\mathcal{Q}_{C}'}\sum_{i}\sum_{j}\pcoll_2^+(1,x,x',i,i,j)}_{A_2}\bigg)     .
+	\end{align*}
+}%
+%
+%When $j\neq j'$, we have $\pcoll_{11}(x,x',i,i',j,j')=1/N$ by that $k_1[j]$ and $k_1[j']$ are uniform and independent. Therefore, $A_1\leq{w\choose2}w^2q^2p/N^2\leq w^4q^2p/2N^2$.
+
+
+
+
+
+%
+%First, consider $\pcoll_2^+(2,a,a',i,i',j)$ with $i\neq i'$. Since $x\neq x'$, there exists $i_0$ such that $(x\xor k_0)[i_0]\neq(x'\xor k_0)[i_0]$. Then either $i\neq i_0$ or $i'\neq i_0$. Wlog assume $i\neq i_0$. Note that this means $(x'\xor k_0)[i]\neq(x\xor k_0)[i_0]$, as otherwise both $(x'\xor k_0)[i]$ and $(x\xor k_0)[i_0]$ fall in $U_1^{(0)}$ and it contradicts $\neg\btwo$. \textbf{The remaining discussion resembles that for (B-43) before (which consists of 3 cases), the uniformness of the value $S_1((x\xor k_0)[i_0])$ is sufficient to ensure that ${\Pr}[T(\overline{S_1}(x\xor k_0))[j]\xor T(\overline{S_1}(x'\xor k_0))[j]]\leq\frac{1}{N-p-wq}$}. This means $A_2\leq w^3q^2p/2N(N-p-wq)$.
+%
+%
+%
+%Then, consider $\pcoll_{11}(x,x',i,i,j)$. Assume that $S_1((x\xor k_0)[i])=u_1$ and $S_1((x'\xor k_0)[i])=u_1'$ for $(u_1,v_1),(u_1',v_1')\in\mathcal{Q}_{S_1}^{(0)}$. Then it holds      {\small
+%%
+%\begin{align}
+%&  T(\overline{S_1}(x\xor k_0))[j]\xor T(\overline{S_1}(x'\xor k_0))[j]       \notag   \\
+%= &
+%(t_{j,i}\cdot v_1)
+%\xor
+%(t_{j,i}\cdot v_1')
+%\xor
+%\Big(\bigoplus_{1\leq\ell\leq w,\ell\neq i}t_{j,\ell}\cdot
+%\big(S_1((x\xor k_0)[\ell])\xor S_1((x'\xor k_0)[\ell])\big)\Big)    .
+%\label{eq:interm-eq-b2}
+%\end{align}
+%}%
+%
+%
+%
+%Assume that $\overline{S_1}(x\xor k_0)=\bfv_1\|v_1\|\bfv_2$ and
+%$\overline{S_1}(x'\xor k_0)=\bfv_1'\|v_1'\|\bfv_2'$, where $v_1,v_1'\in V_1^{(0)}$. Then the equality $T(\overline{S_1}(x\xor k_0))[j]=T(\overline{S_1}(x'\xor k_0))[j]$ implies
+%
+%\begin{align}
+%\bft_1^*\cdot\bfv_1\xor t^*\cdot v_1\xor\bft_2^*\cdot\bfv_2=\bft_1^*\cdot\bfv_1'\xor t^*\cdot v_1'\xor\bft_2^*\cdot\bfv_2'.
+%\label{eq:interm-eq-b2}
+%\end{align}
+%
+%
+%for two vectors $\bft_1^*,\bft_2^*$ and $t^*\in\{0,1\}^n$.
+%Now:
+%\begin{itemize}
+%	\item If $x[\ell]=x'[\ell]$ for any $\ell\neq i$, then Eq. (\ref{eq:interm-eq-b2}) collapses to $t_{j,i}\cdot v_1=t_{j,i}\cdot v_1'$ which is not possible since $t_{j,i}\neq 0$ \textbf{and $v_1\neq v_1'$};
+%	\item Else, there exists $i_0\neq i$ such that $(x\xor k_0)[i_0]\neq(x'\xor k_0)[i_0]$. This means $(x'\xor k_0)[i]\neq(x\xor k_0)[i_0]$ by $\neg\btwo$. \textbf{The remaining discussion resembles that for (B-43) before (which consists of 3 cases), the uniformness of the value $S_1((x\xor k_0)[i_0])$ is sufficient to ensure that Eq. (\ref{eq:interm-eq-b2}) holds with probability at most $1/(N-p-wq)$}.
+%\end{itemize}
+%Therefore, in this case, it still holds $\pcoll_{11}(x,x',i,i,j)\leq1/(N-p-wq)$, which means $A_3\leq{q\choose2}w^2p/N(N-p-wq)\leq w^2q^2p/2N(N-p-wq)$.
+
+
+Summing over the above and using $p+wq\leq N/2$, we reach
+%
+$${\Pr}\big[\bthree\mid\neg\bone\big]\leq
+\frac{w^2qp^2}{N^2}+\frac{w^4pq^2}{2N(N-p-wq)}+
+\frac{w^4pq^2}{2N(N-p-wq)}\leq\frac{w^2qp^2}{N^2}+\frac{2w^4pq^2}{N^2}.$$
+%
+Similarly, ${\Pr}\big[\bfour\mid\neg\bone\big] \leq
+\frac{w^2qp^2+2w^4pq^2}{N^2}$ by symmetry.
+
+
+
+%
+%
+%
+%For \btwo, we have
+%%
+%%
+%\begin{align}
+%\Pr[\btwo] = & \sum_{(x,a,b,y)\in \mathcal{Q}_{C}'}\sum_{i,j}\Big({\Pr}\big[(x\xor k_0)[i]\in U_1^{(0)}\wedge(a\xor k_1)[j]\in U_2^{(0)}\big]
+%\label{eq:btwo-bound1}         \\
+%& \hugeindent\codeindent\codeindent +{\Pr}\big[(x\xor k_0)[i]\in U_1^{(0)}\wedge(a\xor k_1)[j]\in (U_2^{(1)}\backslash U_2^{(0)})\big]\Big)
+%\label{eq:btwo-bound2}    
+%\end{align}
+%
+%The term in (\ref{eq:btwo-bound1}) is easy to analyze: since $k_0$ and $k_1$ are uniform and independent, it holds ${\Pr}\big[(x\xor k_0)[i]\in U_1^{(0)}\wedge(a\xor k_1)[j]\in U_2^{(0)}\big]=1/N^2$. On the other hand, the event $(a\xor k_1)[j]\in (U_2^{(1)}\backslash U_2^{(0)})$ means there exists $(x',a',b',y')\in\mathcal{Q}_{C}'$ and $j'\in\{1,\ldots,w\}$ such that $(a,j)\neq(a',j')$, while $(a\xor k_1)[j]=(a'\xor k_1)[j']$. Therefore,
+%%
+%\begin{align*}
+%& \sum_{(x,a,b,y)\in \mathcal{Q}_{C}'}\sum_{i,j}\Big({\Pr}\big[(x\xor k_0)[i]\in U_1^{(0)}\wedge(a\xor k_1)[j]\in (U_2^{(1)}\backslash U_2^{(0)})\big]\Big)           \\
+%=& \sum_{(x,a,b,y),(x',a',b',y')}\sum_{i,j,j'}\Big(\underbrace{{\Pr}\big[(x\xor k_0)[i]\in U_1^{(0)}\big]}_{=1/N}          \\
+%& \hugeindent\codeindent\codeindent \times
+%{\Pr}\big[(a\xor k_1)[j]\in (U_2^{(1)}\backslash U_2^{(0)})~{\big|}~(x\xor k_0)[i]\in U_1^{(0)}\big]\Big)     
+%\end{align*}
+%
+%
+%
+%
+%In all, we have $\operatorname{Pr}\left[\btwo\right] \leq \frac{w^{2} q p \left(p+w q\right)}{N^{2}}\leq\frac{w^{2} q \left(p+w q\right)^{2}}{N^{2}}$. Similarly, $\operatorname{Pr}\left[\bthree\right] \leq \frac{w^{2} q \left(p+w q\right)^{2}}{N^{2}}$ by symmetry.
+
+
+
+%
+%\arrangespace
+%
+%\noindent \textsc{\bfive}.
+%Since $k_{0}$ and $k_{4}$ are uniform, for each $(x,a,b, y) \in \mathcal{Q}_{C}'$ and $i, i' \in \{1, \ldots, w\}$, the probability to have $(x\xor k_0)[i]=(x\xor k_0)[i']$ or $(y\xor k_4)[i]=(y\xor k_4)[i']$ is $2/N$. Since the number of such choices is $q{w\choose 2}\leq w^2q/2$, we have $\operatorname{Pr}\left[\bfive\right] \leq w^{2} q/N$.
+%
+
+
+%\input{discared-argument.tex}
+
+
+
+\arrangespace
+
+\noindent \textsc{\bfour}. \textbf{For any construction query $(x,a,b,y)\in\mathcal{Q}_C'$, to have $(a\xor k_1)[i]\in U_2^{(1)}$, it has to be $(x\xor k_0)[i_0]\notin U_1^{(0)}$ for any $i_0\in\{1,\ldots,w\}$, as otherwise it contradicts $\neg\bfour$.}
+
+
+For any $(x,a,b,y)\in\mathcal{Q}_C'$ and any $i,j$, it holds
+%
+\begin{align}
+{\Pr}\big[(a\xor k_1)[j]\in U_2^{(1)}\big] \leq  &  \sum_{u_2\in U_2^{(0)}}  \underbrace{{\Pr}\big[\big(T(\overline{S_1}(x\xor k_0))\xor k_1\big)[i]=u_2\big]}_{=1/N\ (\text{Lemma }\ref{lemma:coll-prob})}       \notag        \\
+%& +
+%\sum_{(x',a',b',y')\in\mathcal{Q}_C'}\sum_{i'\neq i} \underbrace{{\Pr}\big[(a\xor k_1)[i]=(a'\xor k_1)[i']\big]}_{=1/N}        \label{eq:334}         \\
+& +
+\sum_{(x',a',b',y')\in\mathcal{Q}_C'}\sum_{i',i} \underbrace{{\Pr}\big[(a\xor k_1)[i]=(a'\xor k_1)[i']\big]}_{\leq1/(N-p-wq)\ (\text{Lemma }\ref{lemma:coll-prob})}         \notag      \\
+\leq  &  \frac{p}{N}+\frac{w^2q}{N-p-wq} \leq \frac{p+2w^2q}{N}.
+\notag
+\end{align}
+%where (\ref{eq:334}) follows from the fact that $k_1[j]$ and $k_1[j']$ are uniform and independent.
+Similarly, ${\Pr}\big[(b\xor T^{-1}(k_3))[j]\in V_3^{(1)}\big]\leq(p+2w^2q)/N$. Since we have at most $w^2q$ choices for $(x,a,b,y)$ and $i, j \in\{1, \ldots, w\}$, we have
+%
+$$
+{\Pr}\big[\bsix\mid\neg\bthree\wedge\neg\bfour\big] \leq
+w^2q\cdot\Big(\frac{2(p+wq)}{N}\Big)^2\leq \frac{4w^2q(p+wq)^2}{N}.
+$$
+
+
+%
+%\begin{align*}
+%\Pr[\bseven] \leq  &  \Pr[(a\xor k_1)[i]\in U_2^{(1)}]
+%
+%
+%
+% \sum_{(x,a,b,y),(x',a',b',y'),j}\pcoll_{1}^+(t,z,z',j)\times\Pr[\left(x \oplus k_{0}\right)[i]\in U_1^{(0)}]          \\
+%\leq  &  {q\choose2}\cdot w\cdot\frac{1}{N-p-wq}\cdot\frac{w}{N} \leq \frac{w^2q^2p}{N(N-p-wq)} .
+%\end{align*}
+%
+%
+%
+%For (B-43), we have $\pcoll_{1}^+(t,z,z',j)\leq1/(N-p-wq)$ by Lemma \ref{lemma:coll-prob}. Thus
+%
+%\textbf{By $\neg\bone$, the exists at most 1 index $i_1$ such that $(x\xor k_0)[i_1]=(x\xor k_0)[1]$. By these, we write}
+%%
+%\begin{align*}
+%& (T(\overline{S_1}(x\xor k_0)))[i]       \\
+%= &
+%\Big(t_{i,1}\cdot S_1\big((x\xor k_0)[1]\big)
+%\xor
+%t_{i,i_0}\cdot S_1\big((x\xor k_0)[i_0]\big)\Big)
+%\xor
+%\bigoplus_{2\leq\ell\leq w,\ell\neq i_1}t_{i,\ell}\cdot S_1\big((x\xor k_0)[\ell]\big)     \\
+%= &
+%\Big(\big(t_{i,1}\xor t_{i,i_0}\big)\cdot S_1\big((x\xor k_0)[1]\big)\Big)
+%\xor
+%\bigoplus_{2\leq\ell\leq w,\ell\neq i_1}t_{i,\ell}\cdot S_1\big((x\xor k_0)[\ell]\big)    .
+%\end{align*}
+%%
+%Conditioned on $S_1\vdash\mathcal{Q}_{S_1}^{(0)}$ and on the $w-2$ values $\big\{S_1((x\xor k_0)[i'])\}_{2\leq i'\leq w,i'\neq i_1}$, \textbf{the value of $S_1((x \oplus k_0)[0])$ remains uniform in at least $N-p-wq$ values. Moreover, the coefficient $t_{i,1}\xor t_{i,i_0}$ is non-zero as per our assumption. Therefore,} the probability to have $(a\xor k_1)[i]=(T(\overline{S_1}(x\xor k_0)))[i]\xor k_1[i]$ equal some value in $U_2^{(1)}$ is at most $(p+wq)/(N-p-wq)$. Similarly, the probability of $(b\xor T^{-1}(k_3))[j]\in U_2^{(1)}$ is at most $(p+wq)/(N-p-wq)$. Since we have at most $qw^2$ choices for $(x,a,b,y)$ and $i, j \in\{1, \ldots, w\}$, we have
+%%
+%$$
+%{\Pr}\big[\cone\mid\neg\bthree\wedge\neg\bfour\big] \leq \frac{w^{2} q (p+w q)^{2}}{(N-p-wq)^{2}}.
+%$$
