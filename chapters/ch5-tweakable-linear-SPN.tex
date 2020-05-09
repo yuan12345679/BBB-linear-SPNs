@@ -280,14 +280,14 @@ The analyses of the conditions just follow Lemma \ref{lemma:bad-tau-4-rounds} an
 		\item $(c\xor k_2\xor t)[i]\in U_3^{(0)}$, or
 		\item there exists $\vect'$ and $i'\neq i$ such that $(c\xor k_2\xor t)[i]=(c'\xor k_2\xor t')[i']$.
 	\end{itemize}
-	\item $\pred_2(\vect,i)$ is fulfilled, if there exists $(t',x',a',b',y')\neq(t,x,a,b,y)$ such that $(c\xor t)[i]=(c'\xor t')[i]$.
+	\item $\pred_2(\vect,i)$ is fulfilled, if there exists $\vect'\neq\vect$ such that $(c\xor t)[i]=(c'\xor t')[i]$.
 	\item $\pred_3(\vect,i)$ is fulfilled, if
 	\begin{itemize}
 		\item $(d\xor T^{-1}(k_4\xor t))[j]\in V_4^{(0)}$, or
 		\item there exists $\vect'$ and $j'\neq j$ such that $(d\xor T^{-1}(k_4\xor t))[j]=(d'\xor T^{-1}(k_4\xor t'))[j']$.
 	\end{itemize}
-	\item $\pred_4(\vect,i)$ is fulfilled, if there exists $(t',x',a',b',y')\neq(t,x,a,b,y)$ such that $(d\xor T^{-1}(t))[j]=(d'\xor T^{-1}(t'))[j]$.
-	\item $\free(\vect)$ is fulfilled, if $(a\xor t\xor k_1)[i_0]\notin U_1^{(1)}$ for all $i\in\{1,\ldots,w\}$.
+	\item $\pred_4(\vect,i)$ is fulfilled, if there exists $\vect'\neq\vect$ such that $(d\xor T^{-1}(t))[j]=(d'\xor T^{-1}(t'))[j]$.
+	\item $\free(\vect)$ is fulfilled, if $(a\xor t\xor k_1)[i_0]\notin U_1^{(0)}$ for all $i\in\{1,\ldots,w\}$.
 \end{itemize}
 %
 Since $k_2[i]$ and $k_2[i']$ are uniform and independent, it is easy to see $\Pr[\pred_1(\vect,i)]\leq(p+wq)/N$ and $\Pr[\pred_3(\vect,i)]\leq(p+wq)/N$.
