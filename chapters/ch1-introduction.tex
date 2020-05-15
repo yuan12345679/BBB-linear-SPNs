@@ -3,97 +3,53 @@
 \label{section:Introduction}
 
 
-\noindent{\bf Substitution-Permutation Networks.}
-Most modern blockciphers are
 
-built via two different generic structures: Feistel networks or substitution-permutation
-networks (SPNs). These two approaches revolve around the extension of a ``complex'' function or permutation on a small domain to a keyed pseudorandom
-permutation on a larger domain by iterating several times simple rounds.
-SPNs start with a set of public permutations on the set of n-bit strings which
-are called S-boxes. These public permutations are then extended to a keyed
-permutation on wn-bit inputs for some integer w by iterating the following steps:
+\section{Introduction}
+\label{section:Introduction}
+
+Modern blockciphers roughly fall into two classes (with some rare exceptions such as IDEA~\cite{EC:LaiMas90} and KATAN~\cite{CHES:DeCDunKne09}), namely {\it Feistel networks and their generalizations}, and {\it substitution-permutation networks} (SPNs). A Feistel round applies a domain-preserving function on half of the data, and then executes XOR and swap operations. This paradigm may be generalized to using compression functions, expansion functions, and smaller functions. Popular examples include many blockcipher standards such as DES~\cite{DESDesign}, GOST~\cite{GOSTDesign}, and Camellia~\cite{ISOIEC-18033-3:2010}. On the other hand, the latter paradigm SPNs start with a set of public permutations on the set of n-bit strings which are called S-boxes. These public permutations are then extended to a keyed permutation on $wn$-bit inputs for some integer $w$ by iterating the following steps:
 \begin{enumerate}
-	\item[1.] break down the state in w n-bit blocks;
-	\item[2.] compute an S-box on each block of the state;
-	\item[3.] apply a keyed permutation layer to the whole wn-bit state (which is also applied to the plaintext before the first round).
+	\item[1.] {\it Substitution step}: break down the $wn$-bit state into $w$ disjoint chunks of $n$ bits, and evaluate an S-box on each chunk;
+	\item[2.] {\it Permutation step}: apply a non-cryptographic, keyed permutation to the whole $wn$-bit state (which is also applied to the plaintext before the first round).
 \end{enumerate}
+Various well-known blockciphers including AES~\cite{AESDesign}, Serpent~\cite{serpentProposal}, and PRESENT~\cite{CHES:BKLPPR07} follow this approach. Both of the two approaches revolve around the extension of a ``complex'' function or permutation on a small domain to a keyed pseudorandom permutation on a larger domain by iterating several times simple rounds. {\bf Philosophically, SPNs expand domains significantly.}
 
 
-Many well-known block ciphers including AES, Serpent and PRESENT follow
-this approach.
 
-
-Proving the security of a particular concrete block cipher is
-currently beyond our techniques. Thus, the usual approach is to prove that the
-high-level structure is sound in a relevant security model. As for Feistel networks,
-a substantial line of work starting with Luby and Rackoff's seminal work [LR88]
-and culminating with Patarin's results [Pat03, Pat04] proves optimal security with
-a sufficient number of rounds. Numerous other articles [Pat10, HR10, HKT11,
-Tes14, CHK+16] study the security of (variants of) Feistel networks in various
-security models. On the other hand, SPNs have comparatively seen very little
-interest which seems rather surprising.
+The traditional security notion for blockciphers is pseudorandomness: for any adversary with reasonable resources, the blockcipher with {\it a random and secret key} should be indistinguishable from a truly random
+permutation. Proving such security for concrete blockciphers such as AES
+seems out of the reach of current techniques. The usual approach is to idealize some underlying primitives and prove that the
+high-level structure is sound in a relevant security model. As for Feistel networks, a substantial line of work starting with Luby and Rackoff's seminal work~\cite{DBLP:journals/siamcomp/LubyR88}
+and culminating with Patarin's results~\cite{C:patarin03} proves optimal security with
+a sufficient number of rounds. Numerous other articles~\cite{C:HoaRog10,JC:CHKPST16} study the security of (variants of) Feistel networks in various
+security models.
 
 
 
 
-
-\medskip\noindent{\bf Tweaking SPNs.}
-Recently, a similar study
-was undertaken for the second large class of block ciphers besides Feistel ciphers, namely
-key-alternating ciphers [DR01], a super-class of Substitution-Permutation Networks (SPNs).
-An r-round key-alternating cipher based on a tuple of public n-bit permutations $(P_1, . . . , P_r)$
-maps a plaintext $x\in\{0,1\}^n$ to the ciphertext defined as
-%
-%
-%
-%
-%
-where the n-bit round keys $k_0, . . . , k_r$ are either independent or derived from a master key k.
-When the $P_i$'s are modeled as public permutation oracles, construction (1) is also referred to
-as the (iterated) Even-Mansour construction, in reference to Even and Mansour who pioneered
-the analysis of this construction in the Random Permutation Model [EM97]. While Even
-and Mansour limited themselves to proving birthday-bound security in the case r = 1, larger
-numbers of rounds were studied in subsequent works [BKL+12, Ste12, LPS12]. The general
-case has been recently (tightly) settled by Chen and Steinberger [CS14], who proved that the
-r-round iterated Even-Mansour cipher with r-wise independent round keys ensures security
-up to roughly $2^{rn}$
-r+1 adversarial queries.
-In order to incorporate a tweak t in the iterated Even-Mansour construction, it is tantalizing
-to generalize (1) by replacing round keys $k_i$ by some function $f_i(\bfk,\bft)$ of the master key $\bfk$ and
-the tweak $\bft$ (see Figure 1). We will refer to such a construction as a Tweakable Even-Mansour
-(TEM) construction. This is exactly the spirit of the TWEAKEY framework introduced by
-Jean et al. [JNP14]. In fact, these authors go one step further and propose to unify the key
-and tweak inputs into what they dub the tweakey. The main topic of this paper being provable
-security (in the traditional model where the key is secret and the tweak is chosen by the
-adversary), we will not make such a bold move here, since we are not aware of any formal
-security model adequately capturing what Jean et al. had in mind.
-
-
-
-The investigation of the theoretical soundness of this design strategy was initiated in three
-recent papers. First, Cogliati and Seurin [CS15], and independently Farshim and Procter [FP15],
-analyzed the simple case of an n-bit key k and an n-bit tweak t simply xored together at each
-round, i.e., $f_i(k,t) = k_t$ for each $i = 0, . . . , r$. They gave attacks up to two rounds, and proved
-birthday-bound security for three rounds. In fact, the security of this construction caps at $2^{n/2}$
-queries independently of the number of rounds. Indeed, it can be written $\widehat{E}(k, t, x) = E(k\xor t, x)$,
-where $E$ is the conventional iterated Even-Mansour cipher with the trivial key-schedule (i.e.,
-the same round key is xored between each round), and by a result of Bellare and Kohno [BK03,
-Corollary 5.7], a tweakable block cipher of this form can never offer more than $\kappa/2$ bits of
-security, where $\kappa$ is the key-length of E (i.e., $\kappa = n$ in the case at hand). Hence, if we want
-beyond-birthday-bound security, we have no choice but to consider more complex functions $f_i$
-(at the bare minimum, these functions, even if linear, should prevent the TBC construction
-from being of the form $E(k\xor t, x)$ for some block cipher E with n-bit keys).
+Researches on the internal structure of SPNs are relatively rare and have just been initiated in the past 5 years. We will elaborate below.
 
 
 
 
-This was undertaken by Cogliati, Lampe, and Seurin [CLS15], who considered nonlinear
-ways of mixing the key and the tweak. More specifically, they studied the case where $f_i(\bfk, t) =
-H_{k_i}(t)$, where the family of functions $(H_k)$ is uniform and almost XOR-universal, and the
-master key is $\bfk = (k_0, . . . , k_r)$. Cogliati et al. showed that one round is secure up to the birthday bound,
-and that two rounds are secure up to roughly $2^{2n/3}$ adversarial queries. They also provided a
-(non-tight) asymptotic security bound improving as the number of rounds grows. However,
-implementing a xor-universal hash function might be costly, and linear functions $f_i$'s would be highly preferable for obvious efficiency reasons.
+\subsection{Linear vs Non-linear Permutation steps}
+
+Modern blockciphers tend to use linear or affine mappings for the {\it Permutation step}~\cite{DBLP:reference/crypt/Biryukov11aa}, which involves a simple key-mixing step followed
+by an invertible linear or affine transformation. More precisely, their permutation steps are {\it linear} or affine with respect to additions on $GF(2^n)$, where $n$ is the size of the S-box. This actually includes all the aforementioned SPN ciphers. A small subset of them using MDS linear transformations allows for effective provable security against certain types of attacks~\cite{IMA:DaeRij01,AC:PSCYL02,FSE:PSLL03,miles2015substitution,EC:SLGRL16}.
+
+
+
+On the other hand, as noticed by Dodis et al.~\cite{EPRINT:DKSSZZ18} (the idea of which might further date back to~\cite{FSE:ChaSar06,C:Halevi07}), the {\it Permutation step} could actually be {\it non-linear}. In detail, Dodis et al. identified a combinatorial property on the permutations that suffices for security in this case, called blockwise universality. Informally, a keyed permutation $\pi_k$ is blockwise universal if, for any distinct inputs $x,x'$ and any constant $c$, the probability (taken over uniform $k$) of each of the following events is low: (1) a block of $\pi(k,x)$ is equal to a block of $\pi(k,x')$, (2) two different blocks of $\pi(k,x)$ are equal, (3) a block of $\pi(k,x)$ is equal to $c$. Using such non-linear permutations, they showed that even one round is already sufficient for the classical birthday-bound, i.e., security up to roughly $2^{2n/3}$ adversarial queries. Later, Cogliati and Lee improved this result by proving beyond-birthday-bound results~\cite{EPRINT:DKSSZZ18}. They showed that two rounds of such non-linear SPNs are secure up to roughly $2^{2n/3}$ adversarial queries. They also provided a (non-tight) asymptotic security bound improving as the number of rounds grows.
+
+
+
+Such models have two shortages. First, ... implementing a blockwise universal permutations might be costly, and linear functions $f_i$'s would be highly preferable for obvious efficiency reasons. More importantly, {\it far from realistic}. In fact, the idea of using non-linear transformations in real blockciphers was only recently investigated by Liu et al.~\cite{DBLP:journals/dcc/LiuRL18}.
+
+
+
+Regarding the classical SPN model with linear permutation layers, Dodis et al. has characterized its SPRP security.
+They exhibited attacks against 2 rounds using only 4 queries, and proved $n/2$ birthday security at 3 rounds.
+
 
 
 
@@ -107,17 +63,142 @@ implementing a xor-universal hash function might be costly, and linear functions
 %We answer positively, by providing a construction with 2n-bit keys and n-bit tweaks.
 
 In this paper, we ask whether it is possible to achieve security beyond the birthday barrier with linear SPN structures. In detail, we focus on linear SPNs with independent S-boxes and independent round keys, and we will focus on the case where $w\geq2$, since, when $w = 1$, we recover the standard Even-Mansour construction that has already been the focus
-of a long line of work (as briefly reviewed later). For such linear SPNs, we prove the first beyond-birthday-bound (BBB) result on 4 rounds. To tweak such linear SPNs, we consider the simplest approach, i.e., directly xoring a $wn$-bit tweak with each round key, and prove BBB result on 6 rounds. We will elaborate in detail as follows.
+of a long line of work (as briefly reviewed later). For such linear SPNs, we prove the first beyond-birthday-bound (BBB) result on 4 rounds.
 
 
 
-\medskip\noindent{\bf BBB Security for 4-round linear SPNs.}
+
+
+We first characterize the security of linear SPNs, where the
+permutation layer is a linear function of the current $wn$-bit round key and the current $wn$-bit state. For this widely used setting we give a
+general against any 2-round linear SPNs with $w\geq2$. Complementing this
+attack, we show that a 3-round linear SPNs are secure, for any $w$, if the keyed linear permutations satisfy some very mild technical requirements. This result critically uses the H-coefficients technique [Pat08,CS14].
 
 
 
-\medskip\noindent{\bf Tweaking linear SPNs and BBB Security at 6 rounds.}
 
 
+\paragraph{Implications for small block size.}
+
+While our results are directly meaningful
+when the length n of public S-boxes in at least security parameter (e.g., for
+building wide tweakable block ciphers), our bounds are too weak for regular SPN-based
+ciphers, such as AES, which use very low values of n for their S-boxes.
+This ``$2^n$ provable barrier'' is inherent using our current modeling, where the
+S-box of size $2^n$ is providing the only source of cryptographic hardness. More
+generally, establishing a sound theory of building block ciphers from small S-boxes is one of the biggest and most important open problems in symmetric-key
+cryptography. We hope that our structural results for reduced-round SPN ciphers will be useful in establishing such theory, despite not crossing the fundamental ``$2^n$ barrier'' mentioned above.
+
+
+
+%
+%To tweak such linear SPNs, we consider the simplest approach, i.e., directly xoring a $wn$-bit tweak with each round key, and prove BBB result on 6 rounds. We will elaborate in detail as follows.
+%
+%\medskip\noindent{\bf BBB Security for 4-round linear SPNs.}
+%
+
+
+
+
+
+
+%
+%
+%
+%\medskip\noindent{\bf Tweaking SPNs.}
+%Recently, a similar study
+%was undertaken for the second large class of block ciphers besides Feistel ciphers, namely
+%key-alternating ciphers [DR01], a super-class of Substitution-Permutation Networks (SPNs).
+%An r-round key-alternating cipher based on a tuple of public n-bit permutations $(P_1, . . . , P_r)$
+%maps a plaintext $x\in\{0,1\}^n$ to the ciphertext defined as
+%%
+%%
+%where the n-bit round keys $k_0, . . . , k_r$ are either independent or derived from a master key k.
+%When the $P_i$'s are modeled as public permutation oracles, construction (1) is also referred to
+%as the (iterated) Even-Mansour construction, in reference to Even and Mansour who pioneered
+%the analysis of this construction in the Random Permutation Model [EM97]. While Even
+%and Mansour limited themselves to proving birthday-bound security in the case r = 1, larger
+%numbers of rounds were studied in subsequent works [BKL+12, Ste12, LPS12]. The general
+%case has been recently (tightly) settled by Chen and Steinberger [CS14], who proved that the
+%r-round iterated Even-Mansour cipher with r-wise independent round keys ensures security
+%up to roughly $2^{rn}$
+%r+1 adversarial queries.
+%In order to incorporate a tweak t in the iterated Even-Mansour construction, it is tantalizing
+%to generalize (1) by replacing round keys $k_i$ by some function $f_i(\bfk,\bft)$ of the master key $\bfk$ and
+%the tweak $\bft$ (see Figure 1). We will refer to such a construction as a Tweakable Even-Mansour
+%(TEM) construction. This is exactly the spirit of the TWEAKEY framework introduced by
+%Jean et al. [JNP14]. In fact, these authors go one step further and propose to unify the key
+%and tweak inputs into what they dub the tweakey. The main topic of this paper being provable
+%security (in the traditional model where the key is secret and the tweak is chosen by the
+%adversary), we will not make such a bold move here, since we are not aware of any formal
+%security model adequately capturing what Jean et al. had in mind.
+%
+%
+%
+%The investigation of the theoretical soundness of this design strategy was initiated in three
+%recent papers. First, Cogliati and Seurin [CS15], and independently Farshim and Procter [FP15],
+%analyzed the simple case of an n-bit key k and an n-bit tweak t simply xored together at each
+%round, i.e., $f_i(k,t) = k_t$ for each $i = 0, . . . , r$. They gave attacks up to two rounds, and proved
+%birthday-bound security for three rounds. In fact, the security of this construction caps at $2^{n/2}$
+%queries independently of the number of rounds. Indeed, it can be written $\widehat{E}(k, t, x) = E(k\xor t, x)$,
+%where $E$ is the conventional iterated Even-Mansour cipher with the trivial key-schedule (i.e.,
+%the same round key is xored between each round), and by a result of Bellare and Kohno [BK03,
+%Corollary 5.7], a tweakable block cipher of this form can never offer more than $\kappa/2$ bits of
+%security, where $\kappa$ is the key-length of E (i.e., $\kappa = n$ in the case at hand). Hence, if we want
+%beyond-birthday-bound security, we have no choice but to consider more complex functions $f_i$
+%(at the bare minimum, these functions, even if linear, should prevent the TBC construction
+%from being of the form $E(k\xor t, x)$ for some block cipher E with n-bit keys).
+%
+%
+%
+%
+%This was undertaken by Cogliati, Lampe, and Seurin [CLS15], who considered nonlinear
+%ways of mixing the key and the tweak. More specifically, they studied the case where $f_i(\bfk, t) =
+%H_{k_i}(t)$, where the family of functions $(H_k)$ is uniform and almost XOR-universal, and the
+%master key is $\bfk = (k_0, . . . , k_r)$. Cogliati et al. showed that one round is secure up to the birthday bound,
+%and that two rounds are secure up to roughly $2^{2n/3}$ adversarial queries. They also provided a
+%(non-tight) asymptotic security bound improving as the number of rounds grows. However,
+%implementing a xor-universal hash function might be costly, and linear functions $f_i$'s would be highly preferable for obvious efficiency reasons.
+%
+%
+%
+%
+%\subsection{Our Results}
+%
+%%In this paper, we ask whether it is possible to come with a tweakable Even-
+%%Mansour construction achieving both:
+%%1. a linear mixing of the tweak and the key to the state;
+%%2. beyond-birthday-bound security.
+%%We answer positively, by providing a construction with 2n-bit keys and n-bit tweaks.
+%
+%In this paper, we ask whether it is possible to achieve security beyond the birthday barrier with linear SPN structures. In detail, we focus on linear SPNs with independent S-boxes and independent round keys, and we will focus on the case where $w\geq2$, since, when $w = 1$, we recover the standard Even-Mansour construction that has already been the focus
+%of a long line of work (as briefly reviewed later). For such linear SPNs, we prove the first beyond-birthday-bound (BBB) result on 4 rounds. To tweak such linear SPNs, we consider the simplest approach, i.e., directly xoring a $wn$-bit tweak with each round key, and prove BBB result on 6 rounds. We will elaborate in detail as follows.
+%
+%
+%
+%\medskip\noindent{\bf BBB Security for 4-round linear SPNs.}
+%
+%
+%
+%\medskip\noindent{\bf Tweaking linear SPNs and BBB Security at 6 rounds.}
+%
+%
+%
+%
+%
+%
+%
+%\subsection{Related Work}
+%
+%
+%Unfortunately, none of the currently known black-box
+%TBC constructions with beyond-birthday-bound security can be deemed truly practical (even
+%though some of them might come close to it [Men15]). Hence, it might be beneficial to “open
+%the hood” and to study how to build a TBC from some lower level primitive than a full-fledged
+%conventional block cipher, e.g., a pseudorandom function or a public permutation. For example,
+%Goldenberg et al. [GHL+07] investigated how to include a tweak in Feistel ciphers. This was
+%extended to generalized Feistel ciphers by Mitsuda and Iwata [MI08].
+%
 
 
 
@@ -127,16 +208,83 @@ of a long line of work (as briefly reviewed later). For such linear SPNs, we pro
 \subsection{Related Work}
 
 
-Unfortunately, none of the currently known black-box
-TBC constructions with beyond-birthday-bound security can be deemed truly practical (even
-though some of them might come close to it [Men15]). Hence, it might be beneficial to “open
-the hood” and to study how to build a TBC from some lower level primitive than a full-fledged
-conventional block cipher, e.g., a pseudorandom function or a public permutation. For example,
-Goldenberg et al. [GHL+07] investigated how to include a tweak in Feistel ciphers. This was
-extended to generalized Feistel ciphers by Mitsuda and Iwata [MI08].
+There are only a few prior papers looking at provable security of SPNs. The vast
+majority of such work analyzes the case of secret, key-dependent S-boxes (rather
+than public S-boxes as we consider here), and so we survey that work first.
+
+
+
+{\bf SPNs with secret S-boxes}. Naor and Reingold [NR99] prove security for
+what can be viewed as a non-linear, 1-round SPN. Their ideas were further
+developed, in the context of domain extension for block ciphers (see further
+discussion below), by Chakraborty and Sarkar [CS06] and Halevi [Hal07].
+
+
+Iwata and Kurosawa [IK00] analyze SPNs in which the linear permutation
+step is based on the specific permutations used in the block cipher Serpent. They
+show an attack against 2-round SPNs of this form, and prove security for 3-round
+SPNs against non-adaptive adversaries. In addition to the fact that we consider
+public S-boxes, our linear SPN model considers generic linear permutations and
+we prove security against adaptive attackers.
+
+Miles and Viola [MV15] study SPNs from a complexity-theoretic viewpoint.
+Two of their results are relevant here. First, they analyze the security of linear
+SPNs using S-boxes that are not necessarily injective (so the resulting keyed
+functions are not, in general, invertible). They show that r-round SPNs of this
+type (for $r\geq 2$) are secure against chosen-plaintext attacks. (In contrast, our
+results show that 2-round, linear SPNs are not secure against a combination of
+chosen-plaintext and chosen-ciphertext attacks when $w\geq 2$.) They also analyze
+SPNs based on a concrete set of S-boxes, but in this case they only show security
+against linear/differential attacks (a form of chosen-plaintext attack), rather
+than all possible attacks.
+
+
+{\bf SPNs with public S-boxes}. A difference between our work and all the work
+discussed above is that we treat the S-boxes as public. We are aware of only
+one prior work analyzing the provable security of SPNs in this setting. Dodis
+et al.~\cite{EC:DSSL16} recently studied the indifferentiability~\cite{TCC:MauRenHol04} of confusion-diffusion
+networks, which can be viewed as unkeyed SPNs. One could translate
+their results to the keyed setting, but that would require using multiple, key-dependent
+S-boxes (rather than a fixed, public S-box) and so would not imply
+our results. We remark further that they show positive results only for 5 rounds
+and above.
+
+
+As observed earlier, the Even-Mansour construction~\cite{JC:EveMan97} of a (keyed) pseudorandom permutation from a public random permutation can be viewed
+as a 1-round, linear SPN in the degenerate case where w = 1 (i.e., no domain
+extension) and all round permutations are instantiated using simple key mixing.
+Security of the 1-round Even-Mansour construction against adaptive chosen-plaintext/ciphertext attacks, using independent keys for the initial and final key mixing, was shown in the original paper~\cite{JC:EveMan97}. Our positive results imply
+security of the 1-round Even-Mansour construction (with similar concrete security
+bounds) as a special case. The r-round generalization of the Even-Mansour
+cipher has seen a lot of interest over the years, culminating with [CS14,HT16]
+where it was proved that the r-round Even-Mansour construction is secure up to
+roughly 2rn/(r+1) adversarial queries, when the public S-boxes are uniformly random
+and independent permutations and the round keys are independent. Chen et
+al. [CLL+14] also proved that several minimized variants of the 2-round Even-
+Mansour construction are also secure up to roughly 22n/3 adversarial queries.
+None of these results extend to the setting w > 1 considered in this work.
+
+
+
+
+
+{\bf Cryptanalysis of SPNs}. Researchers have also explored cryptanalytic attacks
+on generic SPNs [BS10,BBK14,DDKL,BK]. These works generally consider a
+model of SPNs in which round permutations are secret, random (invertible) linear
+transformations, and S-boxes may be secret as well; this makes the attacks
+stronger but positive results weaker. In many cases the complexities of the
+attacks are exponential in n (though still faster than a brute-force search for
+the key), and hence do not rule out asymptotic security results. On the positive
+side, Biryukov et al. [BBK14] show that 2-round SPNs (of the stronger form just
+mentioned) are secure against some specific types of attacks, but other attacks
+on such schemes have recently been identified [DDKL].
+
+
+%{\bf Attacks}. Attacks due to Joux [Jou03] and to Halevi and Rogaway [HR04], originally developed in the afore-mentioned context of block cipher domain extension (or more exactly, in the construction of tweakable block ciphers with large domains from standard block ciphers with ``small'' domains) can be translated to the context of linear SPNs as well. Specifically, these attacks imply that linear 2-round SPNs of width $w\geq 2$ are insecure, as long as the underlying field has characteristic 2.
 
 
 
 \floatstyle{boxed}
 \restylefloat{figure}
+
 

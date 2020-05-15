@@ -1,0 +1,58 @@
+
+	
+	
+	\arrangespace
+	
+	
+	The analysis of $\pcoll_{2}^+(t,z',i,i',j,j')$ bears some resemblance. In particular, we focus on the case of $j=j'$, as otherwise the uniformness of $k_t[j]$ and $k_t[j']$ is sufficient for $\pcoll_{2}^+(t,z',i,i',j,j')=1/N$.
+	
+	
+	First, consider $\pcoll_{2}^+(t,z',i,i',j,j')$ with $i\neq i'$. Since $z\neq z'$, there exists $i_0$ such that $(z\xor k_{t-1})[i_0]\neq(z'\xor k_{t-1})[i_0]$. Then either $i\neq i_0$ or $i'\neq i_0$. Wlog assume $i\neq i_0$. Note that this means $(z\xor k_{t-1})[i]\neq(z'\xor k_{t-1})[i_0]$, as otherwise both $(z\xor k_{t-1})[i]$ and $(z\xor k_{t-1})[i_0]$ fall in $U_1^{(0)}$ and it contradicts $\neg\btwo$. We then distinguish three cases as the analysis of $\pcoll_{1}^+(t,z,z',j)$. In detail,
+	%
+	\begin{itemize}
+		\item Case 1: $(z\xor k_{t-1})[i_0]\neq(z'\xor k_{t-1})[\ell]$ for all $\ell\in\{1,\ldots,w\}$, and $(z\xor k_{t-1})[i_0]\neq(z\xor k_{t-1})[\ell]$ for any $\ell\neq i_0$. Then the analysis is similar to Case 1 in the analysis of $\pcoll_{1}^+(t,z,z',j)$.
+		\item Case 2: $(z\xor k_{t-1})[i_0]=(z\xor k_{t-1})[i_1]$ for some $i_1\neq i_0$. Then, if $(z\xor k_{t-1})[i_1]=(z'\xor k_{t-1})[i_1]$, then the two terms $t_{j,i_1}\cdot S_t\big((z\xor k_{t-1})[i_1]\big)$ and $t_{j,i_1}\cdot S_t\big((z'\xor k_{t-1})[i_1]\big)$ cancel, and the remaining term $t_{j,i_0}\cdot S_t\big((z\xor k_{t-1})[i_0]\big)$ ensures that the probability is at most $1/(N-p-wq)$; otherwise, the term $(t_{j,i_0}\xor t_{j,i_1})\cdot S_t((z\xor k_{t-1})[i_0])$ ensures that the probability is at most $1/(N-p-wq)$.
+		\item Case 3: $(z\xor k_{t-1})[i_0]=(z'\xor k_{t-1})[i_1]$ for some $i_1\neq i_0$. This subcase is similar to Case 2.
+	\end{itemize}
+	%
+	%The remaining discussion resembles the previous one for $\pcoll_{1}^+(t,z,z',j)$, which consists of 3 cases shown in Appendix XXX.
+	In all, the uniformness of $S_t((z\xor k_{t-1})[i_0])$ is sufficient to ensure ${\Pr}\big[T(\overline{S_t}(z\xor k_{t-1}))[j]=T(\overline{S_t}(z\xor k_{t-1}))[j]\big]\leq1/(N-p-wq)$.
+	
+	
+	
+	\arrangespace
+	
+	
+	Then, consider the case of $i=i'$, i.e., $\pcoll_{2}^+(t,z,z',i,i,j,j)$. Assume that $S_t((z\xor k_{t-1})[i])=u_t$ and $S_t((z'\xor k_{t-1})[i])=u_t'$ for $(u_t,v_t),(u_t',v_t')\in\mathcal{Q}_{S_t}^{(0)}$. Then it holds      {\small
+		%
+		\begin{align}
+		&   T(\overline{S_t}(z\xor k_{t-1}))[j]\xor T(\overline{S_t}(z\xor k_{t-1}))[j]        \notag   \\
+		= &
+		(t_{j,i}\cdot v_1)
+		\xor
+		(t_{j,i}\cdot v_1')
+		\xor
+		\Big(\bigoplus_{1\leq\ell\leq w,\ell\neq i}t_{j,\ell}\cdot
+		\big(S_1((x\xor k_0)[\ell])\xor S_1((x'\xor k_0)[\ell])\big)\Big)    .
+		\label{eq:interm-eq-b2}
+		\end{align}
+	}%
+	%
+	%
+	%
+	%Assume that $\overline{S_1}(x\xor k_0)=\bfv_1\|v_1\|\bfv_2$ and
+	%$\overline{S_1}(x'\xor k_0)=\bfv_1'\|v_1'\|\bfv_2'$, where $v_1,v_1'\in V_1^{(0)}$. Then the equality $T(\overline{S_1}(x\xor k_0))[j]=T(\overline{S_1}(x'\xor k_0))[j]$ implies
+	%
+	%\begin{align}
+	%\bft_1^*\cdot\bfv_1\xor t^*\cdot v_1\xor\bft_2^*\cdot\bfv_2=\bft_1^*\cdot\bfv_1'\xor t^*\cdot v_1'\xor\bft_2^*\cdot\bfv_2'.
+	%\label{eq:interm-eq-b2}
+	%\end{align}
+	%
+	%
+	%for two vectors $\bft_1^*,\bft_2^*$ and $t^*\in\{0,1\}^n$.
+	Now:
+	\begin{itemize}
+		\item If $x[\ell]=x'[\ell]$ for any $\ell\neq i$, then $z\neq z'$ implies $v_1\neq v_1'$. In this case, Eq. (\ref{eq:interm-eq-b2}) collapses to $t_{j,i}\cdot v_1=t_{j,i}\cdot v_1'$ which is not possible since $t_{j,i}\neq 0$;
+		\item Else, there exists $i_0\neq i$ such that $(z\xor k_{t-1})[i_0]\neq(z'\xor k_{t-1})[i_0]$. This means $(z'\xor k_{t-1})[i]\notin U_t^{(0)}$ (and thus $(z'\xor k_{t-1})[i]\neq(z\xor k_{t-1})[i_0]$) by $\neg\btwo$. The remaining analysis just follows the previous one for $\pcoll_{1}^+(t,z,z',j)$, establishing that the uniformness of $S_t((z\xor k_{t-1})[i_0])$ is sufficient to ensure that $T(\overline{S_t}(z\xor k_{t-1}))[j]$ equals $T(\overline{S_t}(z\xor k_{t-1}))[j]$ with probability at most $1/(N-p-wq)$.
+	\end{itemize}
+	Therefore, it still holds $\pcoll_{2}^+(t,z,z',i,i,j,j)\leq1/(N-p-wq)$. All the above cases show that $\pcoll_{2}^+(t,z,z',i,i',j,j')\leq1/(N-p-wq)$ for any parameters. Similarly by symmetry, $\pcoll_{2}^-(t,z,z',i,i',j,j')\leq1/(N-p-wq)$.         \qed
