@@ -8,10 +8,14 @@ Throughout this work, we fix positive integers $w$ and $n$, and let $N=2^n$. An 
 
 
 
-\arrangespace
+%\arrangespace
 %\medskip
-\noindent{\bf Linear Substitution-Permutation Networks.}
+%\noindent{\bf Linear Substitution-Permutation Networks.}
 %
+
+
+\paragraph{Linear substitution-permutation networks.}
+
 A \emph{substitution-permutation network} (SPN) defines a keyed permutation via repeated invocation of two transformations: blockwise computation of a public, cryptographic permutation called an ``S-box,'' and application of a keyed, non-cryptographic permutation. In this paper we will only introduce a model of linear SPNs. Formally, let $\calK$ be a
 set.
 
@@ -41,15 +45,15 @@ Formally, an $r$-round SPN taking inputs of length $w n$ is defined by $r+1$ rou
   The output is $x_{r+1}$.
 \end{itemize}
 
-Note that this model matches the structure of popular SPN ciphers such as the AES, Serpent, the ISO/IEC lightweight standard PRESENT, and the popular tweakable blockciphers Skinny. Also note that our model follows~\cite[Sect. 4.2]{C:CDKLST18} and uses different S-boxes in different rounds. We remark that some other~\cite[Sect. 3]{C:CDKLST18} assumed the same S-box in every round. Finally, we refer to~\cite[Sect. 2.1]{EPRINT:DKSTZ17} for a more general model of SPNs and its connection to the above model.
+Note that this model matches the structure of popular SPN ciphers such as the AES, Serpent, and the ISO/IEC lightweight standard PRESENT. Also note that our model follows~\cite[Sect. 4.2]{C:CDKLST18} and uses different S-boxes in different rounds. We remark that some other~\cite[Sect. 3]{C:CDKLST18} assumed the same S-box in every round. Finally, we refer to~\cite[Sect. 2.1]{EPRINT:DKSTZ17} for a more general model of SPNs and its connection to the above model.
 
 
-We will mostly be interested in the case where
+%We will mostly be interested in the case where
 %K = ({0, 1}n)a and T = ({0, 1}n)b for
 %integers a, b  1. In this setting, we will denote k = (k0, . . . , ka−1) and t = (t0, . . . , tb−1), all
 %ki’s and tj ’s being n-bit strings, or simply k = k, resp. t = t when a = 1, resp. b = 1. When all
 %fi’s are linear over ({0, 1}n)a+b,
-we say that the construction has linear tweak and key mixing.
+%we say that the construction has linear tweak and key mixing.
 
 
 
@@ -58,20 +62,24 @@ we say that the construction has linear tweak and key mixing.
 
 
 
-\arrangespace
+%\arrangespace
 
 %\medskip
-\noindent{\bf Multi-user Security Definitions.}
+%\noindent{\bf Multi-user Security Definitions.}
 %
+
+\paragraph{Multi-user security definitions.}
+
+
 Let $\spn^T[\mathcal{S}]$ be an $r$-round linear SPN based on a set of S-boxes $\mathcal{S}=(S_1, \ldots  ,S_r)$ and an invertible linear permutation $T$ with key space $\calK$. So $\spn^T[\mathcal{S}]$
-becomes a keyed tweakable permutation on $\{0, 1\}^{wn}$ with key space $\calK^{r+1}$.
+becomes a keyed permutation on $\{0, 1\}^{wn}$ with key space $\calK^{r+1}$.
 
 
 In the multi-user setting, let $\ell$ denote the number of users. In the real
 world, $\ell$ secret keys $\bfk_1,\ldots,\bfk_\ell\in\calK^{r+1}$ are chosen independently at random.
 A set of independent S-boxes $\mathcal{S}=(S_1,\ldots,S_r)$ is also randomly chosen from $\textsf{Perm}(n)^r$. A distinguisher \dis is given oracle access to $(\spn_{\bfk_1}^T[\mathcal{S}],\ldots,\spn_{\bfk_\ell}^T[\mathcal{S}])$ as
 well as $\mathcal{S}=(S_1,\ldots,S_r)$. In the ideal world, \dis is given a set of independent
-random tweakable permutations ${\calP}=({P}_1,\ldots,{P}_{\ell})\in{\operatorname{Perm}}(wn)^\ell$ instead of $(\spn_{\bfk_1}^T[\mathcal{S}],\ldots,\spn_{\bfk_\ell}^T[\mathcal{S}])$. Oracle access to $\mathcal{S}=(S_1,\ldots,S_r)$ is still allowed in this world.
+random permutations ${\calP}=({P}_1,\ldots,{P}_{\ell})\in{\operatorname{Perm}}(wn)^\ell$ instead of $(\spn_{\bfk_1}^T[\mathcal{S}],\ldots,\spn_{\bfk_\ell}^T[\mathcal{S}])$. Oracle access to $\mathcal{S}=(S_1,\ldots,S_r)$ is still allowed in this world.
 
 
 The adversarial goal is to tell apart the two worlds $(\spn_{\bfk_1}^T[\mathcal{S}],\ldots,\spn_{\bfk_\ell}^T[\mathcal{S}],\mathcal{S})$ and $({P}_1,\ldots,{P}_{\ell},\mathcal{S})$ by adaptively making forward and backward queries to each
@@ -91,18 +99,21 @@ $$
 \operatorname{Adv}^{\mathrm{mu}}_{\spn^T}(p, q) = \max _{\mathcal{D}} \operatorname{Adv}_{\spn^T}(\mathcal{D})
 $$
 %
-where the maximum is taken over all adversaries $\mathcal{D}$ making at most $\mathnormal{p}$ queries to each of the S-boxes and at most $\mathnormal{q}$ queries to the outer tweakable permutations. In the single-user setting with $\emph{l} = 1$. $\operatorname{Adv}^{\mathrm{mu}}_{\spn^T}(\mathcal{D})$ and $\operatorname{Adv}^{\mathrm{mu}}_{\spn^T}(p, q)$  will also be written as $\operatorname{Adv}^{\mathrm{su}}_{\spn^T}(\mathcal{D})$ and $\operatorname{Adv}^{\mathrm{su}}_{\spn^T}(p, q)$, respectively.
+where the maximum is taken over all adversaries $\mathcal{D}$ making at most $\mathnormal{p}$ queries to each of the S-boxes and at most $\mathnormal{q}$ queries to the outer permutations. In the single-user setting with $\ell = 1$. $\operatorname{Adv}^{\mathrm{mu}}_{\spn^T}(\mathcal{D})$ and $\operatorname{Adv}^{\mathrm{mu}}_{\spn^T}(p, q)$  will also be written as $\operatorname{Adv}^{\mathrm{su}}_{\spn^T}(\mathcal{D})$ and $\operatorname{Adv}^{\mathrm{su}}_{\spn^T}(p, q)$, respectively.
 
 
 
 
 
-\arrangespace
+%\arrangespace
 
 %\medskip
-\noindent{\bf The H-coefficient Technique.}
+%\noindent{\bf The H-coefficient Technique.}
 %
-Suppose that a distinguisher $\mathcal{D}$ makes $\mathnormal{p}$ queries to each of the S-boxes, and total $\mathnormal{q}$ queries to the construction oracles. The queries made to the $j$-th construction oracle, denoted $C_j$, are recorded in a query history
+
+\paragraph{The H-coefficient technique.}
+
+Suppose that a distinguisher $\mathcal{D}$ makes $\mathnormal{p}$ queries to each of the S-boxes, and in total $\mathnormal{q}$ queries to the construction oracles. The queries made to the $j$-th construction oracle, denoted $C_j$, are recorded in a query history
 %
 $$
 \mathcal{Q}_{C_j} = (j,x_{j,i},y_{j,i})_{1 \leq i \leq q_j}
@@ -137,8 +148,8 @@ information theoretic distinguishers. Therefore we can assume that a distinguish
 
 
 
-Fix a transcript $\tau = (\mathcal{Q}_C,\mathcal{Q}_S)$, a key $\bfk \in \mathcal{K}^{r+1}$, a tweakable permutation ${P} \in {\mathsf{Perm}}(wn)$,  a set of S-boxes $\mathcal{S}=(S_1, \ldots  ,S_r) \in \mathsf{Perm}(n)^r $ and $j \in \{1, \ldots, \ell \}$: if $S_j(u_{j,i})=v_{j,i}$ for every $i = 1, . . . , p$, then we will write $S_j\vdash\mathcal{Q}_{S_j}$. We will write $\mathcal{S}\vdash\mathcal{Q}_S$ if $S_j\vdash\mathcal{Q}_{S_j}$ for every $j = 1, . . . , r$. Similarly, if
-$\spn_{\bfk}^T[\mathcal{S}](t_{j,i}, x_{j,i}) = y_{j,i}$ (resp. ${P}(t_{j,i}, x_{j,i}) = y_{j,i}$) for every $i = 1, . . . , q_j$, then we will write $\spn_{\bfk}^T[\mathcal{S}]\vdash\mathcal{Q}_{C_j}$ (resp. ${P}\vdash\mathcal{Q}_{C_j}$).
+Fix a transcript $\tau = (\mathcal{Q}_C,\mathcal{Q}_S)$, a key $\bfk \in \mathcal{K}^{r+1}$, a permutation ${P} \in {\mathsf{Perm}}(wn)$,  a set of S-boxes $\mathcal{S}=(S_1, \ldots  ,S_r) \in \mathsf{Perm}(n)^r $ and $j \in \{1, \ldots, \ell \}$: if $S_j(u_{j,i})=v_{j,i}$ for every $i = 1, . . . , p$, then we will write $S_j\vdash\mathcal{Q}_{S_j}$. We will write $\mathcal{S}\vdash\mathcal{Q}_S$ if $S_j\vdash\mathcal{Q}_{S_j}$ for every $j = 1, . . . , r$. Similarly, if
+$\spn_{\bfk}^T[\mathcal{S}](x_{j,i}) = y_{j,i}$ (resp. ${P}(x_{j,i}) = y_{j,i}$) for every $i = 1, . . . , q_j$, then we will write $\spn_{\bfk}^T[\mathcal{S}]\vdash\mathcal{Q}_{C_j}$ (resp. ${P}\vdash\mathcal{Q}_{C_j}$).
 
 
 Let $\bfk_1, \ldots ,\bfk_{\ell} \in \mathcal{K}^{\ell+1}$ and ${\mathcal{P}} = ({P}_1, \ldots ,{P}_\ell) \in {\mathsf{Perm}}(wn)^\ell$, if $\spn_{\bfk_j}^T[\mathcal{S}]\vdash\mathcal{Q}_{C_j}$ (resp. ${P}_j\vdash\mathcal{Q}_{C_j}$) for every $j = 1, \ldots ,\ell$, then we will write $(\spn_{\bfk_j}^{T}[\mathcal{S}])_{j = 1, \ldots ,\ell} \vdash \mathcal{Q}_C$ (resp. ${P}\vdash\mathcal{Q}_{C}$).
@@ -155,7 +166,7 @@ $$
 $$
 %
 %
-With these definitions, the core lemma of the H-coefficients technique (without defining ``bad'' transcripts) is stated as follows.
+With these definitions, the core lemma of the H-coefficient technique (without defining ``bad'' transcripts) is stated as follows.
 
 
 \begin{lemma}
