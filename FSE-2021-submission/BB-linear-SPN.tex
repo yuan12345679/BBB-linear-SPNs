@@ -48,8 +48,8 @@
 
 
 
-\author{Yuan Gao\inst{1,2} \and Chun Guo\inst{1,2 \text{(\Letter)}} \and Meiqin Wang\inst{1,2 \text{(\Letter)}} \and Jiejing Wen\inst{1,2 \text{(\Letter)}} }
-\institute{Key Laboratory of Cryptologic Technology and Information Security of Ministry of Education, Shandong University, Qingdao, Shandong, 266237, China, \email{gaoyuanwangan@mail.sdu.edu.cn,chun.guo@sdu.edu.cn,mqwang@sdu.edu.cn,jjwen@sdu.edu.cn} \and
+\author{Yuan Gao\inst{1,2} \and Chun Guo\inst{1,2 \text{(\Letter)}} \and Meiqin Wang\inst{1,2} \and\\Weijia Wang\inst{1,2} \and Jiejing Wen\inst{1,2 \text{(\Letter)}} }
+\institute{Key Laboratory of Cryptologic Technology and Information Security of Ministry of Education, Shandong University, Qingdao, Shandong, 266237, China, \email{gaoyuanwangan@mail.sdu.edu.cn,chun.guo@sdu.edu.cn,mqwang@sdu.edu.cn,wjwang@sdu.edu.cn,jjwen@sdu.edu.cn} \and
 School of Cyber Science and Technology, Shandong University, Qingdao, Shandong, China}
 \title[Beyond-Birthday Security for 4-round Linear SPNs]{Beyond-Birthday-Bound Security for 4-round Linear Substitution-Permutation Networks}
 
@@ -59,14 +59,14 @@ School of Cyber Science and Technology, Shandong University, Qingdao, Shandong, 
 
 \maketitle
 
-\keywords{tweakable blockciphers \and substitution-permutation networks \and beyond-birthday-bound}
+\keywords{blockciphers \and substitution-permutation networks \and beyond-birthday-bound}
 
 
 \begin{abstract}
-Recent works (Cogliati et al., CRYPTO 2018) have initiated provable treatments of Substitution-Permutation Networks (SPNs), one of the most popular approach to construct modern blockciphers. Such theoretical SPN models may employ {\it non-linear} diffusion layers, which enables beyond-birthday-bound provable security. Though, for the model of real world blockciphers, i.e., SPN models with {\it linear diffusion layers}, existing provable results are capped at birthday security up to $2^{n/2}$ adversarial queries, where $n$ is the size of the idealized S-boxes.
+Recent works of Cogliati et al. (CRYPTO 2018) have initiated provable treatments of Substitution-Permutation Networks (SPNs), one of the most popular approach to construct modern blockciphers. Such theoretical SPN models may employ {\it non-linear} diffusion layers, which enables beyond-birthday-bound provable security. Though, for the model of real world blockciphers, i.e., SPN models with {\it linear diffusion layers}, existing provable results are capped at birthday security up to $2^{n/2}$ adversarial queries, where $n$ is the size of the idealized S-boxes.
 
 
-This paper overcomes this birthday barrier and proves that a 4-round SPN with linear diffusion layers and independent round keys is secure up to $2^{2n/3}$ queries. These provides additional theoretic supports for the real world SPN (tweakable) blockciphers.
+In this paper, we overcome this birthday barrier and prove that a 4-round SPN with linear diffusion layers and independent round keys is secure up to $2^{2n/3}$ queries. For this, we identify conditions on the linear layers that are sufficient for such security, which, unsurprisingly, turns out to be slightly stronger than Cogliati et al.'s conditions for birthday security. These provides additional theoretic supports for the real world SPN blockciphers.
 \end{abstract}
 
 
