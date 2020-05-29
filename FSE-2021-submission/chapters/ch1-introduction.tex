@@ -7,42 +7,48 @@ Modern blockciphers roughly fall into two classes (with some rare exceptions suc
 	\item[1.] {\it Substitution step}: break down the $wn$-bit state into $w$ disjoint chunks of $n$ bits, and evaluate an S-box on each chunk;
 	\item[2.] {\it Permutation step}: apply a non-cryptographic, keyed permutation to the whole $wn$-bit state (which is also applied to the plaintext before the first round).
 \end{enumerate}
-Various popular blockciphers including AES~\cite{AESDesign}, Serpent~\cite{serpentProposal}, and PRESENT~\cite{CHES:BKLPPR07} follow this approach. Both of the two approaches revolve around the extension of a ``complex'' function or permutation on a small domain to a keyed pseudorandom permutation on a larger domain by iterating several times simple rounds.
+%
+S-boxes are typically highly non-linear operations, and, in fact, served as the main source of non-linearity in many blockciphers. There is no \textcolor{red}{a prior} restriction on the (non-)linearity of the {\it Permutation step}. Though, modern blockciphers tend to use linear or affine mappings for the {\it Permutation step}~\cite{DBLP:reference/crypt/Biryukov11aa}, which involves a simple key-mixing step followed
+by an invertible linear or affine transformation. More precisely, their permutation steps are {\it linear} or affine with respect to additions on $\text{GF}(2^n)$, where $n$ is the size of the S-box. Various popular blockciphers including the AES~\cite{AESDesign}, Serpent~\cite{serpentProposal}, and the ISO/IEC lightweight standard PRESENT~\cite{CHES:BKLPPR07} follow this approach. Furthermore, a subset of them using MDS linear transformations allows for effective provable security against certain types of attacks~\cite{IMA:DaeRij01,AC:PSCYL02,FSE:PSLL03,miles2015substitution,EC:SLGRL16}. On the other hand, the {\it Permutation step} could also be {\it non-linear}, on which we will elaborate later.
+
+
+%From a theoretical point of view, both of the two approaches revolve around the extension of a ``complex'' function or permutation on a small domain to a keyed pseudorandom permutation on a larger domain by iterating several times simple rounds.
 
 %SPNs extend domain more efficiently than Feistel networks, in the sense of $wn$-bit SPN cipher versus the $2n$-bit.
 
 
-The traditional security notion for blockciphers is pseudorandomness: for any adversary with reasonable resources, the blockcipher with {\it a random and secret key} should be indistinguishable from a truly random
+The traditional security notion for blockciphers is (strong) pseudorandomness: for any adversary with reasonable resources, the blockcipher with {\it a random and secret key} should be indistinguishable from a truly random
 permutation. Proving such security for concrete blockciphers such as AES
 seems out of the reach of current techniques. The usual approach is to idealize some underlying primitives and prove that the
 high-level structure is sound in a relevant security model. Typically, to prove security for Feistel networks, the Feistel round functions are idealized, resulting in schemes such as the seminal Luby-Rackoff model~\cite{DBLP:journals/siamcomp/LubyR88,EC:MauPie03,C:patarin03,C:patarin04,C:HoaRog10,JC:CHKPST16}. To prove security for SPNs, the ``S-boxes'' may be idealized as secret random functions or permutations, leaving the permutation layers as efficient ``non-cryptographic'' functions~\cite{FSE:IwaKur00,miles2015substitution}. In this case, the S-boxes act as the only source of cryptographic hardness. This limits the provable security to the domain-size of the S-boxes, which is unfortunately as small as 8 bits in, e.g., the AES. Consequently, provable results on SPNs do not relate to any concrete SPN-based block ciphers. Instead, they should be viewed as theoretical support for the SPN approach to constructing blockciphers.\footnote{Similar limitation exists in Feistel schemes, though it appears more acceptable, being, e.g., 32 bits in DES.}
 
 
 Recently, initiated by Dodis et al.~\cite{EC:DSSL16,EPRINT:DKSTZ17}, a series of works investigated a new model of SPNs, in which the S-boxes
-as small {\it public} ideal primitives and the permutation layers remain non-cryptographic.
+as small {\it public} ideal primitives and the permutation layers remain non-cryptographic. In detail, it was~\cite{EC:DSSL16} that for the first time investigated the {\it indifferentiability}~\cite{TCC:MauRenHol04}
+of confusion-diffusion networks or keyless SPN models  combining public random S-boxes and non-cryptographic permutation layers. It was also~\cite{EC:DSSL16} that for the first time confirmed (in a widely recognized theoretical model) that, the use of non-linear permutation layers ensures more security than linear ones.
 
 
+The SPRP security of {\it keyed} SPN models has to be deferred to later in~\cite{EPRINT:DKSTZ17,C:CDKLST18}. In detail, regarding the (more common) SPN model with linear permutation layers, Dodis et al.~\cite{EPRINT:DKSTZ17} exhibited a chosen-ciphertext boomerang attack against 2 rounds using only 4 queries, and proved $n/2$ birthday security at 3 rounds. On the positive side, they proved that 3 rounds ensure the classical ``birthday-bound'' security, i.e., security up to $2^{n/2}$ adversarial queries. These characterized its SPRP security.
 
 
-
-\subsection{Linear vs Non-linear Permutation steps}
-
-Modern blockciphers tend to use linear or affine mappings for the {\it Permutation step}~\cite{DBLP:reference/crypt/Biryukov11aa}, which involves a simple key-mixing step followed
-by an invertible linear or affine transformation. More precisely, their permutation steps are {\it linear} or affine with respect to additions on $GF(2^n)$, where $n$ is the size of the S-box. This actually includes all the aforementioned SPN ciphers. A small subset of them using MDS linear transformations allows for effective provable security against certain types of attacks~\cite{IMA:DaeRij01,AC:PSCYL02,FSE:PSLL03,miles2015substitution,EC:SLGRL16}.
+Regarding the SPN model with non-linear permutation layers, Dodis et al.~\cite{EPRINT:DKSTZ17} identified a combinatorial property on the permutations that suffices for security in this case, named blockwise universality. Informally, a keyed permutation $\pi_k$ is blockwise universal if, for any distinct inputs $x,x'$ and any constant $c$, the probability (taken over uniform $k$) of each of the following events is low: (1) a block of $\pi(k,x)$ is equal to a block of $\pi(k,x')$, (2) two different blocks of $\pi(k,x)$ are equal, (3) a block of $\pi(k,x)$ is equal to $c$. Using such non-linear permutations, they showed that even one round is already sufficient for the classical birthday-bound, i.e., security up to roughly $2^{2n/3}$ adversarial queries. Later, Cogliati and Lee improved this result by proving beyond-birthday-bound results~\cite{EPRINT:DKSSZZ18}. They showed that two rounds of such non-linear SPNs are secure up to roughly $2^{2n/3}$ adversarial queries. They also provided a (non-tight) asymptotic security bound improving as the number of rounds grows.
 
 
-
-On the other hand, as noticed by Dodis et al.~\cite{EPRINT:DKSSZZ18} (the idea of which might further date back to~\cite{FSE:ChaSar06,C:Halevi07}), the {\it Permutation step} could actually be {\it non-linear}. In detail, Dodis et al. identified a combinatorial property on the permutations that suffices for security in this case, called blockwise universality. Informally, a keyed permutation $\pi_k$ is blockwise universal if, for any distinct inputs $x,x'$ and any constant $c$, the probability (taken over uniform $k$) of each of the following events is low: (1) a block of $\pi(k,x)$ is equal to a block of $\pi(k,x')$, (2) two different blocks of $\pi(k,x)$ are equal, (3) a block of $\pi(k,x)$ is equal to $c$. Using such non-linear permutations, they showed that even one round is already sufficient for the classical birthday-bound, i.e., security up to roughly $2^{2n/3}$ adversarial queries. Later, Cogliati and Lee improved this result by proving beyond-birthday-bound results~\cite{EPRINT:DKSSZZ18}. They showed that two rounds of such non-linear SPNs are secure up to roughly $2^{2n/3}$ adversarial queries. They also provided a (non-tight) asymptotic security bound improving as the number of rounds grows.
-
-
-
-Such models have two shortages. First, ... implementing a blockwise universal permutations might be costly, and linear functions $f_i$'s would be highly preferable for obvious efficiency reasons. More importantly, {\it far from realistic}. In fact, the idea of using non-linear transformations in real blockciphers was only recently investigated by Liu et al.~\cite{DBLP:journals/dcc/LiuRL18}.
-
-
-
-Regarding the classical SPN model with linear permutation layers, Dodis et al. has characterized its SPRP security.
-They exhibited attacks against 2 rounds using only 4 queries, and proved $n/2$ birthday security at 3 rounds.
-
+%
+%\subsection{Linear vs Non-linear Permutation steps}
+%
+%Modern blockciphers tend to use linear or affine mappings for the {\it Permutation step}~\cite{DBLP:reference/crypt/Biryukov11aa}, which involves a simple key-mixing step followed
+%by an invertible linear or affine transformation. More precisely, their permutation steps are {\it linear} or affine with respect to additions on $GF(2^n)$, where $n$ is the size of the S-box. This actually includes all the aforementioned SPN ciphers. A small subset of them using MDS linear transformations allows for effective provable security against certain types of attacks~\cite{IMA:DaeRij01,AC:PSCYL02,FSE:PSLL03,miles2015substitution,EC:SLGRL16}.
+%
+%
+%
+%On the other hand, as noticed by Dodis et al.~\cite{EPRINT:DKSSZZ18} (the idea of which might further date back to~\cite{FSE:ChaSar06,C:Halevi07}), the {\it Permutation step} could actually be {\it non-linear}. As mentioned before, the security of such non-linear SPN models goes beyond the birthday barrier with more than 2 rounds. Though, such models have two shortages. First, ... implementing a blockwise universal permutations might be costly, and linear functions $f_i$'s would be highly preferable for obvious efficiency reasons. More importantly, {\it far from realistic}. In fact, the idea of using non-linear transformations in real blockciphers was only recently investigated by Liu et al.~\cite{DBLP:journals/dcc/LiuRL18}.
+%
+%
+%
+%Regarding the classical SPN model with linear permutation layers, Dodis et al. has characterized its SPRP security.
+%They exhibited attacks against 2 rounds using only 4 queries, and proved $n/2$ birthday security at 3 rounds.
+%
 
 
 
@@ -55,14 +61,18 @@ They exhibited attacks against 2 rounds using only 4 queries, and proved $n/2$ b
 %2. beyond-birthday-bound security.
 %We answer positively, by providing a construction with 2n-bit keys and n-bit tweaks.
 
-In this paper, we ask whether it is possible to achieve security beyond the birthday barrier with linear SPN structures. In detail, we focus on linear SPNs with independent S-boxes and independent round keys, and we will focus on the case where $w\geq2$, since, when $w = 1$, we recover the standard Even-Mansour construction that has already been the focus
-of a long line of work (as briefly reviewed later). For such linear SPNs, we prove the first beyond-birthday-bound (BBB) result on 4 rounds.
+Observing the gap between beyond-birthday-bound security in non-linear SPNs and the more common linear SPNs capped at birthday-bound, we ask whether it is possible to achieve security beyond the birthday barrier with linear SPN structures. For this, we focus on linear SPNs with independent S-boxes and independent round keys, and we will focus on the case where $w\geq2$, since, when $w = 1$, we recover the standard Even-Mansour construction that has already been the focus
+of a long line of work (as briefly reviewed later).
 
 
+For such linear SPNs, we answer our main question positively and prove the first beyond-birthday-bound (BBB) $2n/3$-bit security result on 4 rounds.
+
+Concretely, we characterize conditions on the linear layers that are sufficient for $2n/3$-bit security.
 
 
+The conditions are somewhat
 
-We first characterize the security of linear SPNs, where the
+security of linear SPNs, where the
 permutation layer is a linear function of the current $wn$-bit round key and the current $wn$-bit state. For this widely used setting we give a
 general against any 2-round linear SPNs with $w\geq2$. Complementing this
 attack, we show that a 3-round linear SPNs are secure, for any $w$, if the keyed linear permutations satisfy some very mild technical requirements. This result critically uses the H-coefficient technique [Pat08,CS14].
@@ -95,7 +105,7 @@ cryptography. We hope that our structural results for reduced-round SPN ciphers 
 \subsection{Related Work}
 
 
-There are only a few prior papers looking at provable security of SPNs. The vast
+The vast
 majority of such work analyzes the case of secret, key-dependent S-boxes (rather
 than public S-boxes as we consider here), and so we survey that work first.
 
