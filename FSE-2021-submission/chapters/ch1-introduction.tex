@@ -2,27 +2,25 @@
 \section{Introduction}
 \label{section:Introduction}
 
-Modern blockciphers roughly fall into two classes (with some rare exceptions such as IDEA~\cite{EC:LaiMas90} and KATAN~\cite{CHES:DeCDunKne09}), namely {\it Feistel networks and their generalizations}, and {\it substitution-permutation networks} (SPNs). A Feistel round applies a domain-preserving function on half of the data, and then executes XOR and swap operations. This paradigm may be generalized to using compression functions, expansion functions, and smaller functions. Popular examples include many blockcipher standards such as DES~\cite{DESDesign}, GOST~\cite{GOSTDesign}, and Camellia~\cite{ISOIEC-18033-3:2010}. On the other hand, the latter paradigm SPNs start with a set of public permutations on the set of n-bit strings which are called S-boxes. These public permutations are then extended to a keyed permutation on $wn$-bit inputs for some integer $w$ by iterating the following steps:
+Modern blockciphers roughly fall into two classes (with some rare exceptions such as IDEA~\cite{EC:LaiMas90} and KATAN~\cite{CHES:DeCDunKne09}), namely {\it Feistel networks and their generalizations}, and {\it substitution-permutation networks} (SPNs). A Feistel round applies a domain-preserving function on half of the data, and then executes XOR and swap operations. This paradigm may be generalized to using compression functions, expansion functions, and smaller functions. Popular examples include many blockcipher standards such as DES~\cite{DESDesign}, GOST~\cite{GOSTDesign}, and Camellia~\cite{ISOIEC-18033-3:2010}. On the other hand, the latter paradigm SPNs start with a set of public permutations on the set of $n$-bit strings which are called S-boxes. These public permutations are then extended to a keyed permutation on $wn$-bit inputs for some integer $w$ by iterating the following steps:
 \begin{enumerate}
 	\item[1.] {\it Substitution step}: break down the $wn$-bit state into $w$ disjoint chunks of $n$ bits, and evaluate an S-box on each chunk;
 	\item[2.] {\it Permutation step}: apply a non-cryptographic, keyed permutation to the whole $wn$-bit state (which is also applied to the plaintext before the first round).
 \end{enumerate}
-Various popular blockciphers including AES~\cite{AESDesign}, Serpent~\cite{serpentProposal}, and PRESENT~\cite{CHES:BKLPPR07} follow this approach. Both of the two approaches revolve around the extension of a ``complex'' function or permutation on a small domain to a keyed pseudorandom permutation on a larger domain by iterating several times simple rounds. {\bf Philosophically, SPNs expand domains significantly.}
+Various popular blockciphers including AES~\cite{AESDesign}, Serpent~\cite{serpentProposal}, and PRESENT~\cite{CHES:BKLPPR07} follow this approach. Both of the two approaches revolve around the extension of a ``complex'' function or permutation on a small domain to a keyed pseudorandom permutation on a larger domain by iterating several times simple rounds.
 
+%SPNs extend domain more efficiently than Feistel networks, in the sense of $wn$-bit SPN cipher versus the $2n$-bit.
 
 
 The traditional security notion for blockciphers is pseudorandomness: for any adversary with reasonable resources, the blockcipher with {\it a random and secret key} should be indistinguishable from a truly random
 permutation. Proving such security for concrete blockciphers such as AES
 seems out of the reach of current techniques. The usual approach is to idealize some underlying primitives and prove that the
-high-level structure is sound in a relevant security model. As for Feistel networks, a substantial line of work starting with Luby and Rackoff's seminal work~\cite{DBLP:journals/siamcomp/LubyR88}
-and culminating with Patarin's results~\cite{C:patarin03} proves optimal security with
-a sufficient number of rounds. Numerous other articles~\cite{C:HoaRog10,JC:CHKPST16} study the security of (variants of) Feistel networks in various
-security models.
+high-level structure is sound in a relevant security model. Typically, to prove security for Feistel networks, the Feistel round functions are idealized, resulting in schemes such as the seminal Luby-Rackoff model~\cite{DBLP:journals/siamcomp/LubyR88,EC:MauPie03,C:patarin03,C:patarin04,C:HoaRog10,JC:CHKPST16}. To prove security for SPNs, the ``S-boxes'' may be idealized as secret random functions or permutations, leaving the permutation layers as efficient ``non-cryptographic'' functions~\cite{FSE:IwaKur00,miles2015substitution}. In this case, the S-boxes act as the only source of cryptographic hardness. This limits the provable security to the domain-size of the S-boxes, which is unfortunately as small as 8 bits in, e.g., the AES. Consequently, provable results on SPNs do not relate to any concrete SPN-based block ciphers. Instead, they should be viewed as theoretical support for the SPN approach to constructing blockciphers.\footnote{Similar limitation exists in Feistel schemes, though it appears more acceptable, being, e.g., 32 bits in DES.}
 
 
+Recently, initiated by Dodis et al.~\cite{EC:DSSL16,EPRINT:DKSTZ17}, a series of works investigated a new model of SPNs, in which the S-boxes
+as small {\it public} ideal primitives and the permutation layers remain non-cryptographic.
 
-
-Researches on the internal structure of SPNs are relatively rare and have just been initiated in the past 5 years. We will elaborate below.
 
 
 
