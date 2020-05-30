@@ -48,17 +48,19 @@ We define good linear transformations to characterize their properties that are 
 	\end{enumerate}
 \end{definition}
 %
-The 1st condition is also required for the birthday security of 3-round linear SPNs~\cite[Sect. 3]{EPRINT:DKSTZ17}. The 2nd condition can be seen as a ``second order'' extension of the 1st condition. To justify the soundness of this definition, we list several candidates in Appendix \ref{sec:candidates-good-linear}. Using such a good linear transformation $T$ and uniform and independent round keys, $\spn^T$ is beyond-birthday-bound secure.
+The 1st and 3rd conditions are also required for the birthday security of 3-round linear SPNs~\cite[Sect. 3]{EPRINT:DKSTZ17}. As mentioned in the Introduction, the 2nd and 4th conditions can be seen as a ``second order'' extension of the 1st condition. To justify the soundness of this definition, we list several candidates in Appendix \ref{sec:candidates-good-linear}. Using such a good linear transformation $T$ and uniform and independent round keys, $\spn^T$ is beyond-birthday-bound secure.
 
 %We show that $\spn^T$ is an SPRP as long as: (i) the linear layer $T$ is good as per Definition \ref{defn:good-T}, and (ii) the round keys $k_0,k_1,k_2,k_3,k_4$ are uniform and independent.
 
 \begin{theorem}
 \label{theorem:4-round-spn}
 
-Assume $w\geq2$, and $p+wq\leq N/2$. Let $\spn_{\bfk}[\mathcal{S}]$ be a 4-round, linear SPN as defined by Eq. (\ref{eq:defn-4-round-spn}). If the round keys $\bfk=(k_0,k_1,k_2,k_3,k_4)$ are uniform and independent, and $T$ contains no zero entries, then
+Assume $w\geq2$, and $p+wq\leq N/2$. Let $\spn_{\bfk}^T[\mathcal{S}]$ be a 4-round, linear SPN as defined by Eq. (\ref{eq:defn-4-round-spn}). If the round keys $\bfk=(k_0,k_1,k_2,k_3,k_4)$ are uniform and independent, and $T$ is good as per Definition \ref{defn:good-T}, then
 %
 \begin{align}
-\operatorname{Adv}_{\spn^T}^{\mathrm{su}}(p, q) \leq& \frac{q^2}{2^{n w}} + \frac{8 w^2 q(p+wq)^2+w^2 q}{2^n}   .  
+\operatorname{Adv}_{\spn^T}^{\mathrm{su}}(p, q) \leq& \frac{w^3q^3}{N^2}-
+\frac{6w^2 q (p+wq)^2}{N^{2}}-
+\frac{4w^4q^2(p+wq)}{N^2}-\frac{q^2}{N^w}-\frac{q(2wp+6w^2q)^2}{N^2}  .  
 \notag   \\
 \operatorname{Adv}_{\spn^T}^{\mathrm{mu}}(p, q) \leq& \frac{q^2}{2^{n w}} + \frac{8 w^2 q(p+wq)^2+w^2 q}{2^n}    \notag   \\
 &+ \frac{16 w^2 q(p+w q)(p+w q +3 q)+4 w^2 q(p+3 wq)^2}{2^{2 n}}.
@@ -75,7 +77,9 @@ The proof of Theorem \ref{theorem:4-round-spn} relies on the following point-wis
 	transcript $\tau=(\mathcal{Q}_C,\mathcal{Q}_S)$, one has
 	\begin{align}
 	\frac{\mathsf{p}_{2}(\tau)}{\mathsf{p}_{1}(\tau)}
-	\geq 1 - xxx.
+	\geq 1-\frac{w^3q^3}{N^2}-
+	\frac{6w^2 q (p+wq)^2}{N^{2}}-
+	\frac{4w^4q^2(p+wq)}{N^2}-\frac{q^2}{N^w}-\frac{q(2wp+6w^2q)^2}{N^2}.
 	\label{eq:bound-proximity-4-round}
 	\end{align}
 \end{lemma}
@@ -326,32 +330,32 @@ $$
 
 
 
-We will rely on the following lemma, which characterizes some useful properties of the $t$-th round linear SPNs.
+We will rely on the following lemma, which characterizes some useful properties of the $t$-th round of the linear SPN.
 
 \begin{lemma}
 	\label{lemma:coll-prob}
 	
-	For any $z\neq z'$, define
+	For any $t\in\{1,2,3,4\}$, $z,z',\delta\in\{0,1\}^n$, and $i,i',j,j'\in\{1,\ldots,w\}$, define
 	\begin{align*}
 	&\pcoll_{1}^+(t,z,z',j,j')  :={\Pr}\Big[\big(T\big(\overline{S_t}(z\xor k_{t-1})\big)\xor k_t\big)[j]=\big(T\big(\overline{S_t}(z'\xor k_{t-1})\big)\xor k_t\big)[j']       \\
-	&~\Big|~S_t\vdash\mathcal{Q}_{S_t}^{(0)}\wedge(z\xor k)[i]\notin U_t^{(0)}\wedge\neg\bone\wedge\neg\btwo\Big],         \\
-	&\pcoll_{2}^+(t,z,z',i,i',j,j')      :={\Pr}_{S_t}\Big[\big(T\big(\overline{S_t}(z\xor k_{t-1})\big)\xor k_t\big)[j]=\big(T\big(\overline{S_t}(z'\xor k_{t-1})\big)\xor k_t\big)[j']   \\
-	&~\Big|~S_t\vdash\mathcal{Q}_{S_t}^{(0)}\wedge(z\xor k)[i]\notin U_t^{(0)}\wedge(z\xor k)[i]\notin U_t^{(0)}\wedge\neg\bone\wedge\neg\btwo\Big],         \\
+	&\midindent~\Big|~\neg\bone\wedge\neg\btwo\wedge S_t\vdash\mathcal{Q}_{S_t}^{(0)}\wedge\forall\ell\in\{1,\ldots,w\}:(z\xor k_{t-1})[\ell]\notin U_t^{(0)}\Big],         \\
+	&\pcoll_{2}^+(t,z,z',i,i',j,j')      :={\Pr}\Big[\big(T\big(\overline{S_t}(z\xor k_{t-1})\big)\xor k_t\big)[j]=\big(T\big(\overline{S_t}(z'\xor k_{t-1})\big)\xor k_t\big)[j']   \\
+	&\midindent~\Big|~\neg\bone\wedge\neg\btwo\wedge S_t\vdash\mathcal{Q}_{S_t}^{(0)}\wedge(z\xor k_{t-1})[i]\in U_t^{(0)}\wedge(z'\xor k_{t-1})[i']\in U_t^{(0)}\Big],         \\
 	%
-	&\pcoll_{3}^+(t,z,i,\delta)      :={\Pr}_{S_t}\Big[\big(T\big(\overline{S_t}(z\xor k_{t-1})\big)\xor k_t\big)[i]=\delta    \\
-	&~\Big|~S_t\vdash\mathcal{Q}_{S_t}^{(0)}\wedge\forall\ell\in\{1,\ldots,w\}:(z\xor k)[\ell]\notin U_t^{(0)}\Big],         \\
+	&\pcoll_{3}^+(t,z,i,\delta)      :={\Pr}\Big[\big(T\big(\overline{S_t}(z\xor k_{t-1})\big)\xor k_t\big)[i]=\delta    \\
+	&\midindent~\Big|~\neg\bone\wedge\neg\btwo\wedge S_t\vdash\mathcal{Q}_{S_t}^{(0)}\wedge\forall\ell\in\{1,\ldots,w\}:(z\xor k_{t-1})[\ell]\notin U_t^{(0)}\Big],         \\
 	%
-	&\pcoll_{1}^-(t,z,z',j,j')     :={\Pr}_{S_t}\Big[T\big(\overline{S_t^{-1}}(z\xor k)\big)[j]=T\big(\overline{S_t^{-1}}(z'\xor k)\big)[j']    \\
-	&~\Big|~S_t\vdash\mathcal{Q}_{S_t}^{(0)}\wedge(z\xor k)[i]\notin V_t^{(0)}\wedge\neg\bone\wedge\neg\btwo\Big],         \\
-	&\pcoll_{2}^-(t,z,z',i,i',j,j')    :={\Pr}_{S_t}\Big[T\big(\overline{S_t^{-1}}(z\xor k_{t-1})\big)[j]=T\big(\overline{S_t^{-1}}(z'\xor k_{t-1})\big)[j']     \\
-	&~\Big|~S_t\vdash\mathcal{Q}_{S_t}^{(0)}\wedge(z\xor k)[i]\notin V_t^{(0)}\wedge(z\xor k)[i]\notin V_t^{(0)}\wedge\neg\bone\wedge\neg\btwo\Big],         \\
+	&\pcoll_{1}^-(t,z,z',j,j')     :={\Pr}\Big[\big(T^{-1}\big(\overline{S_t^{-1}}(z\xor k_t)\big)\xor k_{t-1}\big)[j]=\big(T^{-1}\big(\overline{S_t^{-1}}(z'\xor k_t)\big)\xor k_{t-1}\big)[j']    \\
+	&\midindent~\Big|~\neg\bone\wedge\neg\btwo\wedge S_t\vdash\mathcal{Q}_{S_t}^{(0)}\wedge\forall\ell\in\{1,\ldots,w\}:(z\xor k_t)[\ell]\notin V_t^{(0)}\Big],         \\
+	&\pcoll_{2}^-(t,z,z',i,i',j,j')    :={\Pr}\Big[\big(T^{-1}\big(\overline{S_t^{-1}}(z\xor k_t)\big)\xor k_{t-1}\big)[j]=\big(T^{-1}\big(\overline{S_t^{-1}}(z'\xor k_t)\big)\xor k_{t-1}\big)[j']     \\
+	&\midindent~\Big|~\neg\bone\wedge\neg\btwo\wedge S_t\vdash\mathcal{Q}_{S_t}^{(0)}\wedge(z\xor k_t)[i]\in V_t^{(0)}\wedge(z'\xor k_t)[i']\in V_t^{(0)}\Big],         \\
 	%
-	&\pcoll_{3}^-(t,z,i,\delta)      :={\Pr}_{S_t}\Big[\big(T^{-1}\big(\overline{S_t}(z\xor k_t)\big)\xor k_{t-1}\big)[i]=\delta    \\
-	&~\Big|~S_t\vdash\mathcal{Q}_{S_t}^{(0)}\wedge\forall\ell\in\{1,\ldots,w\}:(z\xor k)[\ell]\notin V_t^{(0)}\Big].
+	&\pcoll_{3}^-(t,z,i,\delta)      :={\Pr}\Big[\big(T^{-1}\big(\overline{S_t^{-1}}(z\xor k_t)\big)\xor k_{t-1}\big)[i]=\delta    \\
+	&\midindent~\Big|~\neg\bone\wedge\neg\btwo\wedge S_t\vdash\mathcal{Q}_{S_t}^{(0)}\wedge\forall\ell\in\{1,\ldots,w\}:(z\xor k_t)[\ell]\notin V_t^{(0)}\Big],
 	\end{align*}
-	Then, it holds
+	where the probabilities are taken over the random choices of $S_t$, $k_{t-1}$, and $k_t$. Then, as long as $(z,j)\neq(z',j')$, it holds
 	\begin{align}
-	&\pcoll_{1}^+(t,z,z',j,j')\leq\frac{1}{N-p-wq},  &\pcoll_{2}^+(t,z',i,i',j,j')\leq\frac{1}{N-p-wq},    \notag    \\
+	&\pcoll_{1}^+(t,z,z',j,j')\leq\frac{1}{N-p-wq},  &\pcoll_{2}^+(t,z,z',i,i',j,j')\leq\frac{1}{N-p-wq},    \notag    \\
 	&\pcoll_{1}^-(t,z,z',j,j')\leq\frac{1}{N-p-wq},  &\pcoll_{2}^-(t,z,z',i,i',j,j')\leq\frac{1}{N-p-wq}.    \notag   \\
 	&\pcoll_{3}^+(t,z,i,\delta)\leq\frac{1}{N}, 
 	&\pcoll_{3}^-(t,z,i,\delta)\leq\frac{1}{N}.    \notag
@@ -381,7 +385,7 @@ We will rely on the following lemma, which characterizes some useful properties 
 	%
 	%Similarly, the probability of $(b\xor T^{-1}(k_3))[j]\in U_2^{(1)}$ is at most $1/(N-p-wq)$.
 	First, consider $\pcoll_{1}^+(t,z,z',j,j')$. When $j\neq j'$, the probability to have
-	$\big(T\big(\overline{S_t}(z\xor k_{t-1})\big)\xor k_t\big)[j]=\big(T\big(\overline{S_t}(z'\xor k_{t-1})\big)\xor k_t\big)[j']$ is $1/N\leq 1/(N-p-wq)$, since $k_t[j]$ and $k_t[j']$ are uniform and independent. In the remaining we focus on the case of $j=j'$, which means $T\big(\overline{S_t}(z\xor k_{t-1})\big)[j]=T\big(\overline{S_t}(z'\xor k_{t-1})\big)[j]$. Note that $z\neq z'$ implies there exists $i_0$ such that $(z\xor k_{t-1})[i_0]\neq(z'\xor k_{t-1})[i_0]$. By the assumption, $(z\xor k_{t-1})[i_0]\notin U_1^{(0)}$. By construction, we have
+	$\big(T\big(\overline{S_t}(z\xor k_{t-1})\big)\xor k_t\big)[j]=\big(T\big(\overline{S_t}(z'\xor k_{t-1})\big)\xor k_t\big)[j']$ is $1/N\leq 1/(N-p-wq)$, since $k_t[j]$ and $k_t[j']$ are uniform and independent. In the remaining we focus on the case of $j=j'$, which means $z\neq z'$ while $T\big(\overline{S_t}(z\xor k_{t-1})\big)[j]=T\big(\overline{S_t}(z'\xor k_{t-1})\big)[j]$. Note that $z\neq z'$ implies there exists $i_0$ such that $(z\xor k_{t-1})[i_0]\neq(z'\xor k_{t-1})[i_0]$. By the assumption, $(z\xor k_{t-1})[i_0]\notin U_1^{(0)}$. By construction, we have
 	%
 	\begin{align*}
 	&  T(\overline{S_t}(z\xor k_{t-1}))[j]\xor T(\overline{S_t}(z'\xor k_{t-1}))[j]       \\
@@ -402,7 +406,7 @@ We will rely on the following lemma, which characterizes some useful properties 
 	
 	\paragraph{Case 1: $(z\xor k_{t-1})[i_0]$ is ``unique'',}
 	
-	i.e., $(z\xor k_{t-1})[i_0]\neq(z'\xor k_{t-1})[\ell]$ for all $\ell\in\{1,\ldots,w\}$, and $(z\xor k_{t-1})[i_0]\neq(z\xor k_{t-1})[\ell]$ for any $\ell\neq i_0$. Then, conditioned on $S_t\vdash\mathcal{Q}_{S_t}^{(0)}$ and on the $2w-1$ values $\{S_t((z\xor k_{t-1})[\ell])\}_{1\leq \ell\leq w,\ell\neq i_0}\cup\{S_t((z'\xor k_{t-1})[\ell])\}_{1\leq \ell\leq w}$, the value of $S_t\big((z\xor k_{t-1})[i_0]\big)$ remains uniform in {\it at least} $N-p-wq$ possibilities. Moreover, the coefficient $t_{j,i_0}$ is non-zero as per our assumption. Therefore, in this case we have
+	i.e., $(z\xor k_{t-1})[i_0]\neq(z'\xor k_{t-1})[\ell]$ for all $\ell\in\{1,\ldots,w\}$, and $(z\xor k_{t-1})[i_0]\neq(z\xor k_{t-1})[\ell]$ for all $\ell\neq i_0$. Then, conditioned on $S_t\vdash\mathcal{Q}_{S_t}^{(0)}$ and on the $2w-1$ values $\{S_t((z\xor k_{t-1})[\ell])\}_{1\leq \ell\leq w,\ell\neq i_0}\cup\{S_t((z'\xor k_{t-1})[\ell])\}_{1\leq \ell\leq w}$, the value of $S_t\big((z\xor k_{t-1})[i_0]\big)$ remains uniform in {\it at least} $N-p-wq$ possibilities. Moreover, the coefficient $t_{j,i_0}$ is non-zero as per our assumption. Therefore, in this case we have
 	%
 	\begin{align}
 	{\Pr}\big[T(\overline{S_t}(z\xor k_{t-1}))[j]\xor T(\overline{S_t}(z'\xor k_{t-1}))[j]=0\big]\leq\frac{1}{N-p-wq}.
@@ -436,7 +440,7 @@ We will rely on the following lemma, which characterizes some useful properties 
 		\item Subcase 2.2: $(z\xor k_{t-1})[i_1]\neq(z'\xor k_{t-1})[i_1]$. Then we write
 		%
 		\begin{align*}
-		&  T(\overline{S_t}(z\xor k_{t-1}))[j]\xor T(\overline{S_t}(z\xor k_{t-1}))[j]       \\
+		&  T(\overline{S_t}(z\xor k_{t-1}))[j]\xor T(\overline{S_t}(z'\xor k_{t-1}))[j]       \\
 		= &   \underbrace{\Big(t_{j,i_0}\cdot S_t\big((z\xor k_{t-1})[i_0]\big)
 			\xor
 			t_{j,i_1}\cdot S_t\big((z\xor k_{t-1})[i_1]\big)\Big)}_{\big(t_{j,i_0}\xor t_{j,i_1}\big)\cdot S_t\big((z\xor k_{t-1})[i_0]\big)}   	\\
@@ -458,14 +462,14 @@ We will rely on the following lemma, which characterizes some useful properties 
 	
 	\paragraph{Case 3: $(z\xor k_{t-1})[i_0]=(z'\xor k_{t-1})[i_1]$ for some $i_1\neq i_0$.}
 	
-	the subcase and discussion are similar to Case 2.
+	The subcase and discussion are similar to Case 2.
 	
 	
 	
 	\arrangespace
 	
 	
-	By the above, in any case, the probability to have $T(\overline{S_t}(z\xor k_{t-1}))[j]=T(\overline{S_t}(z\xor k_{t-1}))[j]$ is at most $1/(N-p-wq)$, which establishes $\pcoll_{1}^+(t,z,z',j)\leq1/(N-p-wq)$. Similarly by symmetry, $\pcoll_{1}^-(t,z,z',j)\leq1/(N-p-wq)$.
+	By the above, in any case, the probability to have $T(\overline{S_t}(z\xor k_{t-1}))[j]=T(\overline{S_t}(z'\xor k_{t-1}))[j]$ is at most $1/(N-p-wq)$, which establishes $\pcoll_{1}^+(t,z,z',j,j')\leq1/(N-p-wq)$. Similarly by symmetry, $\pcoll_{1}^-(t,z,z',j,j')\leq1/(N-p-wq)$.
 	
 	
 	
@@ -473,13 +477,13 @@ We will rely on the following lemma, which characterizes some useful properties 
 	\arrangespace
 	
 	
-	The analysis of $\pcoll_{2}^+(t,z',i,i',j,j')$ bears some resemblance. In particular, we focus on the case of $j=j'$, as otherwise the uniformness of $k_t[j]$ and $k_t[j']$ is sufficient for $\pcoll_{2}^+(t,z',i,i',j,j')=1/N$.
+	The analysis of $\pcoll_{2}^+(t,z,z',i,i',j,j')$ bears some resemblance. In particular, we focus on the case of $j=j'$ (and thus $z\neq z'$), as otherwise the uniformness of $k_t[j]$ and $k_t[j']$ is sufficient for $\pcoll_{2}^+(t,z,z',i,i',j,j')=1/N$.
 	
 	
-	First, consider $\pcoll_{2}^+(t,z',i,i',j,j')$ with $i\neq i'$. Since $z\neq z'$, there exists $i_0$ such that $(z\xor k_{t-1})[i_0]\neq(z'\xor k_{t-1})[i_0]$. Then either $i\neq i_0$ or $i'\neq i_0$. Wlog assume $i\neq i_0$. Note that this means $(z\xor k_{t-1})[i]\neq(z'\xor k_{t-1})[i_0]$, as otherwise both $(z\xor k_{t-1})[i]$ and $(z\xor k_{t-1})[i_0]$ fall in $U_1^{(0)}$ and it contradicts $\neg\btwo$. We then distinguish three cases as the analysis of $\pcoll_{1}^+(t,z,z',j)$. In detail,
+	First, consider $\pcoll_{2}^+(t,z,z',i,i',j,j)$ with $i\neq i'$. Since $z\neq z'$, there exists $i_0$ such that $(z\xor k_{t-1})[i_0]\neq(z'\xor k_{t-1})[i_0]$. Then either $i\neq i_0$ or $i'\neq i_0$. Wlog assume $i\neq i_0$. Note that this means $(z\xor k_{t-1})[i]\neq(z'\xor k_{t-1})[i_0]$, as otherwise both $(z\xor k_{t-1})[i]$ and $(z\xor k_{t-1})[i_0]$ fall in $U_1^{(0)}$ and it contradicts $\neg\btwo$. In the same vein as the analysis of $\pcoll_{1}^+(t,z,z',j,j')$, we then distinguish three cases. In detail,
 	%
 	\begin{itemize}
-		\item Case 1: $(z\xor k_{t-1})[i_0]\neq(z'\xor k_{t-1})[\ell]$ for all $\ell\in\{1,\ldots,w\}$, and $(z\xor k_{t-1})[i_0]\neq(z\xor k_{t-1})[\ell]$ for any $\ell\neq i_0$. Then the analysis is similar to Case 1 in the analysis of $\pcoll_{1}^+(t,z,z',j)$.
+		\item Case 1: $(z\xor k_{t-1})[i_0]\neq(z'\xor k_{t-1})[\ell]$ for all $\ell\in\{1,\ldots,w\}$, and $(z\xor k_{t-1})[i_0]\neq(z\xor k_{t-1})[\ell]$ for any $\ell\neq i_0$. Then the analysis is similar to Case 1 in the analysis of $\pcoll_{1}^+(t,z,z',j,j')$.
 		\item Case 2: $(z\xor k_{t-1})[i_0]=(z\xor k_{t-1})[i_1]$ for some $i_1\neq i_0$. Then, if $(z\xor k_{t-1})[i_1]=(z'\xor k_{t-1})[i_1]$, then the two terms $t_{j,i_1}\cdot S_t\big((z\xor k_{t-1})[i_1]\big)$ and $t_{j,i_1}\cdot S_t\big((z'\xor k_{t-1})[i_1]\big)$ cancel, and the remaining term $t_{j,i_0}\cdot S_t\big((z\xor k_{t-1})[i_0]\big)$ ensures that the probability is at most $1/(N-p-wq)$; otherwise, the term $(t_{j,i_0}\xor t_{j,i_1})\cdot S_t((z\xor k_{t-1})[i_0])$ ensures that the probability is at most $1/(N-p-wq)$.
 		\item Case 3: $(z\xor k_{t-1})[i_0]=(z'\xor k_{t-1})[i_1]$ for some $i_1\neq i_0$. This subcase is similar to Case 2.
 	\end{itemize}
@@ -563,12 +567,14 @@ Since $k_1$ is uniform and independent of $S_1$, it holds $\Pr[\text{(B-41)}]\le
 
 
 %For (B-43), we have
-For (B-42), we have $\pcoll_{1}^+(1,x,x',j,j')\leq1/(N-p-wq)$ by Lemma \ref{lemma:coll-prob}. Thus
+For (B-42), for each $((x',a',b',y'),j')$ such that $(x,j)\neq(x',j')$, $(x'\xor k_0)[i']\notin U_1^{(0)}$ for all $i'\in\{1,\ldots,w\}$, we have $\pcoll_{1}^+(1,x',x,j',j)\leq1/(N-p-wq)$ by Lemma \ref{lemma:coll-prob}. Thus $\Pr[\text{(B-42)}]\leq wq/(N-p-wq)$.
+
+
 %
-\begin{align*}
-\Pr[\text{(B-42)}] \leq  & \sum_{(x,a,b,y),(x',a',b',y'),j,j'}\pcoll_{1}^+(1,x,x',j,j')\times\Pr[\left(x \oplus k_{0}\right)[i]\in U_1^{(0)}]          \\
-\leq  &  {wq\choose2}\cdot \frac{1}{N-p-wq}\cdot\frac{w}{N} \leq \frac{w^3q^2p}{2N(N-p-wq)} .
-\end{align*}
+%\begin{align*}
+%\Pr[\text{(B-42)}] \leq  & \sum_{(x,a,b,y),(x',a',b',y'),j,j'}\pcoll_{1}^+(1,x',x,j',j)\times\Pr[\left(x \oplus k_{0}\right)[i]\in U_1^{(0)}]          \\
+%\leq  &  {wq\choose2}\cdot \frac{1}{N-p-wq}\cdot\frac{w}{N} \leq \frac{w^3q^2p}{2N(N-p-wq)} .
+%\end{align*}
 
 
 %
@@ -629,32 +635,32 @@ For (B-42), we have $\pcoll_{1}^+(1,x,x',j,j')\leq1/(N-p-wq)$ by Lemma \ref{lemm
 %By the above, in any case, the probability to have $T(\overline{S_1}(x\xor k_0))[j]=T(\overline{S_1}(x'\xor k_0))[j']$ is at most $1/(N-p-wq)$. Meanwhile, it remains $\Pr[\left(x \oplus k_{0}\right)[i]\in U_1^{(0)}]=p/N$. Therefore, $\Pr[\text{(B-43)}]\leq{q\choose2}w^3p/N(N-p-wq)\leq w^3q^2p/2N(N-p-wq)$.
 
 
+For (B-43), for each $((x',a',b',y'),i',j')$ such that $(x,j)\neq(x',j')$, the probability to have $(a\xor k_1)[j]=(a'\xor k_1)[j']$ never exceeds $1/(N-p-wq)$:
+%
+\begin{itemize}
+	\item If there exists $i\in\{1,\ldots,w\}$ such that $(x\xor k_0)[i]\in U_1^{(0)}$, then by Lemma \ref{lemma:coll-prob}, we have $\pcoll_{2}^+(1,x,x',i,i',j,j')\leq1/(N-p-wq)$;
+	\item Else, we have $\pcoll_{1}^+(1,x,x',j,j')\leq1/(N-p-wq)$ by Lemma \ref{lemma:coll-prob}.
+\end{itemize}
+%
+Therefore, $\Pr[\text{(B-43)}]\leq w^2q/(N-p-wq)$.
 
 
-For (B-43), we have          {\small
+%For (B-43), we have          {\small
 %
 %we define $\pcoll_{11}(x,x',i,i',j)$ as the conditional probability $\Pr[(a\xor k_1)[j]=(a'\xor k_1)[j]|   
 %(x'\xor k_0)[i']\in U_1^{(0)}\wedge(x\xor k_0)[i]\in U_1^{(0)}]$. Then, we derive the probability as follows.        
 %{\small
 %
-\begin{align*}
-\Pr[\text{(B-43)}]  
-=   &  \sum_{(x,a,b,y),(x',a',b',y')}\sum_{i,i',j,j'}\bigg(\underbrace{\Pr[(x\xor k_0)[i]\in U_1^{(0)}]}_{\leq p/N}     \\
-   & \midindent\times
-	\underbrace{\Pr[(x'\xor k_0)[i']\in U_1^{(0)}|(x\xor k_0)[i]\in U_1^{(0)}]}_{\leq1}\times\underbrace{\pcoll_2^+(1,x,x',i,i',j,j')}_{\leq1/(N-p-wq)}\bigg)      \\
-\leq  &   {wq\choose 2}\cdot w^2\cdot\frac{p}{N}\cdot\frac{1}{N-p-wq}\leq
-\frac{w^4pq^2}{2N(N-p-wq)}.
+%\begin{align*}
+%\Pr[\text{(B-43)}]  
+%=   &  \sum_{(x,a,b,y),(x',a',b',y')}\sum_{i,i',j,j'}\bigg(\underbrace{\Pr[(x\xor k_0)[i]\in U_1^{(0)}]}_{\leq p/N}     \\
+%   & \midindent\times
+%	\underbrace{\Pr[(x'\xor k_0)[i']\in U_1^{(0)}|(x\xor k_0)[i]\in U_1^{(0)}]}_{\leq1}\times\underbrace{\pcoll_2^+(1,x,x',i,i',j,j')}_{\leq1/(N-p-wq)}\bigg)      \\
+%\leq  &   {wq\choose 2}\cdot w^2\cdot\frac{p}{N}\cdot\frac{1}{N-p-wq}\leq
+%\frac{w^4pq^2}{2N(N-p-wq)}.
+%\end{align*}
+%}
 %
-%\cdot\bigg(
-%\underbrace{\sum_{(x,a,b,y),(x',a',b',y')\in\mathcal{Q}_{C}'}\sum_{i\neq i'}\sum_{j}\pcoll_2^+(1,x,x',i,i',j)}_{A_1}      \\ 
-%& \midindent\midindent   +  \underbrace{\sum_{(x,a,b,y),(x',a',b',y')\in\mathcal{Q}_{C}'}\sum_{i}\sum_{j}\pcoll_2^+(1,x,x',i,i,j)}_{A_2}\bigg)     .
-\end{align*}
-}%
-%
-%When $j\neq j'$, we have $\pcoll_{11}(x,x',i,i',j,j')=1/N$ by that $k_1[j]$ and $k_1[j']$ are uniform and independent. Therefore, $A_1\leq{w\choose2}w^2q^2p/N^2\leq w^4q^2p/2N^2$.
-
-
-
 
 
 %
@@ -696,29 +702,28 @@ For (B-43), we have          {\small
 %\end{itemize}
 %Therefore, in this case, it still holds $\pcoll_{11}(x,x',i,i,j)\leq1/(N-p-wq)$, which means $A_3\leq{q\choose2}w^2p/N(N-p-wq)\leq w^2q^2p/2N(N-p-wq)$.
 
+However, note that the subconditions (B-42) and (B-43) are mutual exclusive. Summing over the above and using this mutual exclusiveness and $p+wq\leq N/2$, we reach
+%
+$${\Pr}\big[(a\xor k_1)[i]\in U_2^{(1)}\big]\leq
+\frac{p}{N}+\frac{wq}{(N-p-wq)}\leq\frac{p+wq}{N}.$$
+%
 
-Summing over the above and using $p+wq\leq N/2$, we reach
+Similarly (one round further),
 %
-$${\Pr}\big[(a\xor k_1)[i]\in U_2^{(1)}\mid\neg\bone\wedge\neg\btwo\big]\leq
-\frac{p}{N}+\frac{w^4pq^2}{2N(N-p-wq)}+
-\frac{w^4pq^2}{2N(N-p-wq)}\leq\frac{w^2qp^2}{N^2}+\frac{2w^4pq^2}{N^2}.$$
+$${\Pr}\big[(T(\overline{S_2}(a \oplus k_1))\xor k_2)[j]\in U_{3}^{(1)}\big]\leq\frac{p+wq}{N},$$
 %
-\begin{itemize}
-	\item 0
-	\item 0
-	\item 0
-	\item 0
-	\item 0
-\end{itemize}
+and similarly by symmetry,
 %
-$${\Pr}\big[\bthree\mid\neg\bone\big]\leq
-\frac{w^2qp^2}{N^2}+\frac{w^4pq^2}{2N(N-p-wq)}+
-\frac{w^4pq^2}{2N(N-p-wq)}\leq\frac{w^2qp^2}{N^2}+\frac{2w^4pq^2}{N^2}.$$
+\begin{align*}
+&{\Pr}\big[(b\xor T^{-1}(k_3))[j]\in V_3^{(1)}\big]\leq\frac{p+wq}{N},       \\
+&{\Pr}\big[(T^{-1}(\overline{S_3^{-1}}(b\xor T^{-1}(k_3))\xor k_2))[i]\in V_2^{(1)}\big]\leq\frac{p+wq}{N}.
+\end{align*}
 %
-Similarly, ${\Pr}\big[\bfour\mid\neg\bone\big] \leq
-\frac{w^2qp^2+2w^4pq^2}{N^2}$ by symmetry.
-
-
+By this, the probability that \bfour is fulfilled with respect to each choice of $((x,a,b,y),i, j)$ is at most $3(p+wq)^2/N^2$. As there are at most $w^2q$ such choices, we eventually obtain
+%
+$$
+{\Pr}\big[\bfour\big] \leq \frac{3w^2q(p+wq)^2}{N^2}.
+$$
 
 %
 %
@@ -760,30 +765,30 @@ Similarly, ${\Pr}\big[\bfour\mid\neg\bone\big] \leq
 %\input{discared-argument.tex}
 
 
-
-\arrangespace
-
-\noindent \textsc{\bfour}. \textbf{For any construction query $(x,a,b,y)\in\mathcal{Q}_C'$, to have $(a\xor k_1)[i]\in U_2^{(1)}$, it has to be $(x\xor k_0)[i_0]\notin U_1^{(0)}$ for any $i_0\in\{1,\ldots,w\}$, as otherwise it contradicts $\neg\bfour$.}
-
-
-For any $(x,a,b,y)\in\mathcal{Q}_C'$ and any $i,j$, it holds
 %
-\begin{align}
-{\Pr}\big[(a\xor k_1)[j]\in U_2^{(1)}\big] \leq  &  \sum_{u_2\in U_2^{(0)}}  \underbrace{{\Pr}\big[\big(T(\overline{S_1}(x\xor k_0))\xor k_1\big)[i]=u_2\big]}_{=1/N\ (\text{Lemma }\ref{lemma:coll-prob})}       \notag        \\
+%\arrangespace
+%
+%\noindent \textsc{\bfour}. \textbf{For any construction query $(x,a,b,y)\in\mathcal{Q}_C'$, to have $(a\xor k_1)[i]\in U_2^{(1)}$, it has to be $(x\xor k_0)[i_0]\notin U_1^{(0)}$ for any $i_0\in\{1,\ldots,w\}$, as otherwise it contradicts $\neg\bfour$.}
+%
+%
+%For any $(x,a,b,y)\in\mathcal{Q}_C'$ and any $i,j$, it holds
+%%
+%\begin{align}
+%{\Pr}\big[(a\xor k_1)[j]\in U_2^{(1)}\big] \leq  &  \sum_{u_2\in U_2^{(0)}}  \underbrace{{\Pr}\big[\big(T(\overline{S_1}(x\xor k_0))\xor k_1\big)[i]=u_2\big]}_{=1/N\ (\text{Lemma }\ref{lemma:coll-prob})}       \notag        \\
+%%& +
+%%\sum_{(x',a',b',y')\in\mathcal{Q}_C'}\sum_{i'\neq i} \underbrace{{\Pr}\big[(a\xor k_1)[i]=(a'\xor k_1)[i']\big]}_{=1/N}        \label{eq:334}         \\
 %& +
-%\sum_{(x',a',b',y')\in\mathcal{Q}_C'}\sum_{i'\neq i} \underbrace{{\Pr}\big[(a\xor k_1)[i]=(a'\xor k_1)[i']\big]}_{=1/N}        \label{eq:334}         \\
-& +
-\sum_{(x',a',b',y')\in\mathcal{Q}_C'}\sum_{i',i} \underbrace{{\Pr}\big[(a\xor k_1)[i]=(a'\xor k_1)[i']\big]}_{\leq1/(N-p-wq)\ (\text{Lemma }\ref{lemma:coll-prob})}         \notag      \\
-\leq  &  \frac{p}{N}+\frac{w^2q}{N-p-wq} \leq \frac{p+2w^2q}{N}.
-\notag
-\end{align}
-%where (\ref{eq:334}) follows from the fact that $k_1[j]$ and $k_1[j']$ are uniform and independent.
-Similarly, ${\Pr}\big[(b\xor T^{-1}(k_3))[j]\in V_3^{(1)}\big]\leq(p+2w^2q)/N$. Since we have at most $w^2q$ choices for $(x,a,b,y)$ and $i, j \in\{1, \ldots, w\}$, we have
-%
-$$
-{\Pr}\big[\bsix\mid\neg\bthree\wedge\neg\bfour\big] \leq
-w^2q\cdot\Big(\frac{2(p+wq)}{N}\Big)^2\leq \frac{4w^2q(p+wq)^2}{N}.
-$$
+%\sum_{(x',a',b',y')\in\mathcal{Q}_C'}\sum_{i',i} \underbrace{{\Pr}\big[(a\xor k_1)[i]=(a'\xor k_1)[i']\big]}_{\leq1/(N-p-wq)\ (\text{Lemma }\ref{lemma:coll-prob})}         \notag      \\
+%\leq  &  \frac{p}{N}+\frac{w^2q}{N-p-wq} \leq \frac{p+2w^2q}{N}.
+%\notag
+%\end{align}
+%%where (\ref{eq:334}) follows from the fact that $k_1[j]$ and $k_1[j']$ are uniform and independent.
+%Similarly, ${\Pr}\big[(b\xor T^{-1}(k_3))[j]\in V_3^{(1)}\big]\leq(p+2w^2q)/N$. Since we have at most $w^2q$ choices for $(x,a,b,y)$ and $i, j \in\{1, \ldots, w\}$, we have
+%%
+%$$
+%{\Pr}\big[\bsix\mid\neg\bthree\wedge\neg\bfour\big] \leq
+%w^2q\cdot\Big(\frac{2(p+wq)}{N}\Big)^2\leq \frac{4w^2q(p+wq)^2}{N}.
+%$$
 
 
 %
@@ -826,12 +831,12 @@ $$
 
 %\arrangespace
 
-\noindent \textsc{\bseven}. Following the analysis of \bsix, for any $(x,a,b,y)\in\mathcal{Q}_C'$ and $i$, the probability to have $(a\xor k_1)[i]\in U_{2}^{(1)}$ is at most $2(p+wq)/N$. On the other hand, since $k_{2}$ is uniform and independent from the queries and from $k_{0}$, $k_{1}$, the probability to have $(T(\overline{S_2}(a \oplus k_1))\xor k_2)[j]\in U_{3}^{(1)}$ is $(p+wq)/N$. Similarly by symmetry, the probability to have both $(T^{-1}(\overline{S_3^{-1}}(b\xor T^{-1}(k_3))\xor k_2))[i]\in V_2^{(1)}$ and $(b\xor T^{-1}(k_3))[j]\in V_{3}^{(1)}$ is at most $2(p+wq)^2/N^2$. Since we have at most $w^2q$ choices for $(x,a,b,y)$ and $i, j \in\{1, \ldots, w\}$, we have
-%
-%
-$$
-{\Pr}\big[\bseven\mid\neg\bthree\big] \leq \frac{4w^{2} q (p+wq)^2}{N^2}.
-$$
+%\noindent \textsc{\bseven}. Following the analysis of \bsix, for any $(x,a,b,y)\in\mathcal{Q}_C'$ and $i$, the probability to have $(a\xor k_1)[i]\in U_{2}^{(1)}$ is at most $2(p+wq)/N$. On the other hand, since $k_{2}$ is uniform and independent from the queries and from $k_{0}$, $k_{1}$, the probability to have $(T(\overline{S_2}(a \oplus k_1))\xor k_2)[j]\in U_{3}^{(1)}$ is $(p+wq)/N$. Similarly by symmetry, the probability to have both $(T^{-1}(\overline{S_3^{-1}}(b\xor T^{-1}(k_3))\xor k_2))[i]\in V_2^{(1)}$ and $(b\xor T^{-1}(k_3))[j]\in V_{3}^{(1)}$ is at most $2(p+wq)^2/N^2$. Since we have at most $w^2q$ choices for $(x,a,b,y)$ and $i, j \in\{1, \ldots, w\}$, we have
+%%
+%%
+%$$
+%{\Pr}\big[\bseven\mid\neg\bthree\big] \leq \frac{4w^{2} q (p+wq)^2}{N^2}.
+%$$
 %
 %Similarly,
 %%
@@ -882,17 +887,17 @@ $$
 
 
 
-%\arrangespace
+\arrangespace
 
 \noindent\textsc{\bfive and \bsix}. Consider \bfive first.
 %
 \begin{align*}
 \Pr[\bfive] 
-=   &  \sum_{(x,a,b,y),(x',a',b',y')\in\mathcal{Q}_{C}'}\sum_{i,i',j,j'}\bigg(\underbrace{{\Pr}\big[(a\xor k_1)[i]\in U_2^{(1)}\big]}_{\leq(p+wq)/(N-p-wq)}     \\
+=   &  \sum_{(x,a,b,y),(x',a',b',y')\in\mathcal{Q}_{C}'}\sum_{i,i',j,j'}\bigg(\underbrace{{\Pr}\big[(a\xor k_1)[i]\in U_2^{(1)}\big]}_{\leq(p+wq)/(N-p-wq)\text{, as argued before}}     \\
 & \midindent\times
 \underbrace{{\Pr}\big[(a'\xor k_1)[i]\in U_2^{(1)}|(a\xor k_1)[i]\in U_2^{(1)}\big]}_{\leq1}\times\underbrace{\pcoll_{2}^+(2,a,a',i,i',j,j')}_{\leq1/(N-p-wq)}   \bigg)      \\
 \leq  &  {wq\choose 2}\cdot w^2\cdot\frac{p+wq}{N-p-wq}\cdot\frac{1}{N-p-wq}\leq
-\frac{w^4q^2(p+wq)}{2(N-p-wq)^2}.
+\frac{2w^4q^2(p+wq)}{N^2}.
 \end{align*}
 %
 
@@ -901,7 +906,7 @@ Similarly by symmetry,
 \begin{align*}
 \Pr[\bsix] 
 \leq
-\frac{w^4q^2(p+wq)}{2(N-p-wq)^2}.
+\frac{2w^4q^2(p+wq)}{N^2}.
 \end{align*}
 %
 %
@@ -987,16 +992,19 @@ Similarly by symmetry,
 Summing over the above yields Eq. (\ref{eq:bound-bad-tau-4-rounds}):
 %
 \begin{align*}
-&  {\Pr}\big[ \tau' \in \Theta_{\text {good }}(\tau)\big]  \leq \sum_{i=1}^{9}\Pr[\bi]       \\
-\leq  & \frac{w^2 q (p+w q)^{2}}{(N-p-wq)^{2}}+
-\frac{2w^2 q (p+w q)^{2}}{N  (N-p-wq)}+
-\frac{w^2qp^2}{N^2}+
-\frac{8w^3q^2p}{N(N-p-wq)}      \\
-\leq  & \frac{9w^2 q (p+w q)^{2}}{N^2}+ \frac{16w^3q^2p}{N^2} .
+&  {\Pr}\big[ \tau' \in \Theta_{\text {good }}(\tau)\big]  \leq \sum_{i=1}^{6}\Pr[\bi]       \\
+\leq  & 
+\frac{w^3q^3}{N^2}+
+\frac{2w^{2} q p^2}{N^{2}}+
+\frac{w^{2} q p^2}{N^{2}}+
+\frac{3w^2q(p+wq)^2}{N^2}+
+\frac{2w^4q^2(p+wq)}{N^2}+
+\frac{2w^4q^2(p+wq)}{N^2}             \\
+\leq  & \frac{w^3q^3}{N^2} +
+\frac{6w^2 q (p+wq)^2}{N^{2}} +
+\frac{4w^4q^2(p+wq)}{N^2}.
 \end{align*}
 %
-
-
 
 
 
@@ -1130,8 +1138,16 @@ the ratio $\mathsf{p}_{\mathrm{mid}}(\tau')/(1/(N^w)_q)$ is exactly the ratio of
 Gathering Eqs. (\ref{eq:bound-bad-tau-4-rounds}), (\ref{eq:ratio-divide-4-rounds}), and (\ref{eq:bound-on-epsilon-mid}), we obtain
 %
 \begin{align*}
-\frac{\mathsf{p}_{2}(\tau)}{\mathsf{p}_{1}(\tau)}   \geq   & \bigg(1-\frac{3w^{2} q \left(p+w q\right)^{2}}{N^{2}} - \frac{w^{2} q}{N} - \frac{9w^2 q (p+w q)^{2}}{N^2}- \frac{16w^3q^2p}{N^2}\bigg)\cdot\bigg(1-\frac{q^2}{N^w}-\frac{q(2wp+6w^2q)^2}{N^2}\bigg)     \notag      \\
-\geq  &  1-\frac{3w^{2} q \left(p+w q\right)^{2}}{N^{2}} - \frac{w^{2} q}{N} - \frac{9w^2 q (p+w q)^{2}}{N^2}- \frac{16w^3q^2p}{N^2}-\frac{q^2}{N^w}-\frac{q(2wp+6w^2q)^2}{N^2}     \notag   
+\frac{\mathsf{p}_{2}(\tau)}{\mathsf{p}_{1}(\tau)}   \geq   & \bigg(1-
+%
+\frac{w^3q^3}{N^2}-
+\frac{6w^2 q (p+wq)^2}{N^{2}}-
+\frac{4w^4q^2(p+wq)}{N^2}
+%
+\bigg)\cdot\bigg(1-\frac{q^2}{N^w}-\frac{q(2wp+6w^2q)^2}{N^2}\bigg)     \notag      \\
+\geq  &  1-\frac{w^3q^3}{N^2}-
+\frac{6w^2 q (p+wq)^2}{N^{2}}-
+\frac{4w^4q^2(p+wq)}{N^2}-\frac{q^2}{N^w}-\frac{q(2wp+6w^2q)^2}{N^2}     \notag   
 \end{align*}
 %
 as claimed in Eq. (\ref{eq:bound-proximity-4-round}).
