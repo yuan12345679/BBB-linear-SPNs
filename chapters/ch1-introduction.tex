@@ -2,11 +2,6 @@
 \section{Introduction}
 \label{section:Introduction}
 
-
-
-\section{Introduction}
-\label{section:Introduction}
-
 Modern blockciphers roughly fall into two classes (with some rare exceptions such as IDEA~\cite{EC:LaiMas90} and KATAN~\cite{CHES:DeCDunKne09}), namely {\it Feistel networks and their generalizations}, and {\it substitution-permutation networks} (SPNs). A Feistel round applies a domain-preserving function on half of the data, and then executes XOR and swap operations. This paradigm may be generalized to using compression functions, expansion functions, and smaller functions. Popular examples include many blockcipher standards such as DES~\cite{DESDesign}, GOST~\cite{GOSTDesign}, and Camellia~\cite{ISOIEC-18033-3:2010}. On the other hand, the latter paradigm SPNs start with a set of public permutations on the set of n-bit strings which are called S-boxes. These public permutations are then extended to a keyed permutation on $wn$-bit inputs for some integer $w$ by iterating the following steps:
 \begin{enumerate}
 	\item[1.] {\it Substitution step}: break down the $wn$-bit state into $w$ disjoint chunks of $n$ bits, and evaluate an S-box on each chunk;
