@@ -87,7 +87,7 @@ defined by
 $$
 \begin{aligned}
 \operatorname{Adv}_{\spn^T}^{\mathrm{mu}}(\mathcal{D}) &=\operatorname{Pr}\left[{P}_1,\ldots,{P}_{\ell} \stackrel{\$}{\leftarrow} {\mathsf{Perm}}(w n)^\ell, \mathcal{S} \stackrel{\$}{\leftarrow} \mathsf{Perm}(n)^{r}: 1 \leftarrow \mathcal{D}^{\mathcal{S}, {P}_{1}, \ldots, {P}_{\ell}}\right] \\
-&-\operatorname{Pr}\left[\mathbf{k}_{1}, \ldots, \mathbf{k}_{\ell} \stackrel{\$}{\leftarrow} \mathcal{K}^{\ell}, \mathcal{S} \stackrel{\$}{\leftarrow} \operatorname{Perm}(n)^{r}: 1 \leftarrow \mathcal{D}^{\mathcal{S}, \spn_{k_{1}}^T[\mathcal{S}], \ldots, \spn_{k_{\ell}}^T[\mathcal{S}]}\right].
+&-\operatorname{Pr}\left[\mathbf{k}_{1}, \ldots, \mathbf{k}_{\ell} \stackrel{\$}{\leftarrow} \mathcal{K}^{\ell}, \mathcal{S} \stackrel{\$}{\leftarrow} \operatorname{Perm}(n)^{r}: 1 \leftarrow \mathcal{D}^{\mathcal{S}, \spn_{\mathbf{k}_{1}}^T[\mathcal{S}], \ldots, \spn_{\mathbf{k}_{\ell}}^T[\mathcal{S}]}\right].
 \end{aligned}
 $$
 %
@@ -151,8 +151,7 @@ $\spn_{\bfk}^T[\mathcal{S}](x_{j,i}) = y_{j,i}$ (resp. ${P}(x_{j,i}) = y_{j,i}$)
 
 
 Let $\bfk_1, \ldots ,\bfk_{\ell} \in \mathcal{K}^{\ell+1}$ and ${\mathcal{P}} = ({P}_1, \ldots ,{P}_\ell) \in {\mathsf{Perm}}(wn)^\ell$, if $\spn_{\bfk_j}^T[\mathcal{S}]\vdash\mathcal{Q}_{C_j}$ (resp. ${P}_j\vdash\mathcal{Q}_{C_j}$) for every $j = 1, \ldots ,\ell$, then we will write $(\spn_{\bfk_j}^{T}[\mathcal{S}])_{j = 1, \ldots ,\ell} \vdash \mathcal{Q}_C$ (resp. ${P}\vdash\mathcal{Q}_{C}$).
-
-
+%
 If there exist ${\mathcal{P}} \in {\mathsf{Perm}}(wn)^\ell$ and $\mathcal{S} \in \mathsf{Perm}(\emph{n})^r$ that outputs $\tau$ at the end of the interaction with $\mathcal{D}$, then we will call the transcript $\tau$ attainable. So for any attainable transcript $\tau= (\mathcal{Q}_C,\mathcal{Q}_S)$, there exist ${\mathcal{P}} \in {\mathsf{Perm}}(wn)^\ell$ and $\mathcal{S} \in \mathsf{Perm}(n)^r$ such that ${\mathcal{P}}\vdash\mathcal{Q}_C$ and $\mathcal{S}\vdash\mathcal{Q}_S$. For an attainable transcript $\tau = (\mathcal{Q}_C,\mathcal{Q}_S)$, let
 %
 %
@@ -196,13 +195,13 @@ The lower bound (\ref{eq:h-ratio}) is called \emph{$\epsilon$-point-wise proximi
 	Suppose that for any distinguisher $\mathcal{D}$ in the single-user setting that makes p primitive queries to each of the underlying S-boxes and makes q construction queries, and for any attainable transcript $\tau$ obtained by $\mathcal{D}$, one has
 	%
 	$$
-	\mathsf{p}_{2}\left(\tau\right) \geq (1 - \varepsilon(p,q)) \mathsf{p}_{1}\left(\tau\right).
+	\mathsf{p}_{2}(\tau) \geq (1 - \varepsilon(p,q)) \mathsf{p}_{1}(\tau).
 	$$
 	%
 	Then for any distinguisher $\mathcal{D}$ in the multi-user setting that makes $\mathnormal{p}$ primitive queries to each of the underlying S-boxes and makes total $\mathnormal{q}$ construction queries, and for any attainable transcript $\tau$ obtained by $\mathcal{D}$, one has
 	%
 	$$
-	\mathsf{p}_{2}\left(\tau\right) \geq (1 - \varepsilon(p + wq,q)) \mathsf{p}_{1}\left(\tau\right).
+	\mathsf{p}_{2}(\tau) \geq (1 - \varepsilon(p + wq,q)) \mathsf{p}_{1}(\tau).
 	$$
 \end{lemma}
 
