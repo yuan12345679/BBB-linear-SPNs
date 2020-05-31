@@ -76,6 +76,8 @@ Concretely, we first characterize conditions on the linear layers that are suffi
 With this, we show that a 4-round linear SPN is beyond-birthday-bound secure, if: (i) 4 independent public random S-boxes are used in the four rounds respectively, and (ii) such a ``second order zero-free'' linear permutation layer is used in every round, and (iii) the round keys are uniform and independent. Our proof employs the H-coefficient technique~\cite{SAC:Patarin08}. Moreover, we prove the notion of {\it point-wise proximity}~\cite{C:HoaTes16}, thus establishing $2n/3$-bit {\it multi-user security} for 4-round linear SPNs as well.
 
 
+Our proof crucially relies on a technical lemma of Cogliati and Lee~\cite{EPRINT:CogLee18} on two SPN rounds. In some sense, in our 4-round linear SPNs, the 1st and 4th round play similar role as the so-called blockwise universal permutations in the 2-round non-linear SPNs of Cogliati and Lee. The situation somewhat resembles that of tweakable Even-Mansour ciphers~\cite{C:CogLamSeu15,AC:CogSeu15}. See Section \ref{section:security of 4-round SPNs} for details.
+
 
 
 
