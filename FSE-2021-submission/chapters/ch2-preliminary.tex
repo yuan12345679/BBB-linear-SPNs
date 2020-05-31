@@ -26,7 +26,7 @@ A \emph{substitution-permutation network} (SPN) defines a keyed permutation via 
 %be clear from the context) which maps a key k 2 K, a tweak t 2 T , and a plaintext x 2 {0, 1}n
 %to the ciphertext defined as (see Figure 1):
 %
-Formally, an $r$-round SPN taking inputs of length $w n$ is defined by $r+1$ round keys $k_0,k_1,\ldots,k_r\in\{0,1\}^{wn}$, $r$ permutations $S_1,\ldots,S_r:\{0,1\}^{n} \rightarrow \{0,1\}^{n}$, and an invertible linear permutation $T\in\mathbb{F}^{w\times w}$. Given an input $x \in \{0,1\}^{w n}$, the output of the SPN is computed as follows:
+Formally, an $r$-round SPN taking inputs of length $w n$ is defined by $r+1$ round keys $\bfk=(k_0,k_1,\ldots,k_r)\in(\{0,1\}^{wn})^{r+1}$, $r$ permutations $S_1,\ldots,S_r:\{0,1\}^{n} \rightarrow \{0,1\}^{n}$, and an invertible linear permutation $T\in\mathbb{F}^{w\times w}$. Given an input $x \in \{0,1\}^{w n}$, the output of the SPN $\spn_{\bfk}^T[\mathcal{S}]$ is computed as follows:
 
 \begin{itemize}
   \item[--]
@@ -94,7 +94,7 @@ $$
 For $p,q > 0$, we define
 %
 $$
-\operatorname{Adv}^{\mathrm{mu}}_{\spn^T}(p, q) = \max _{\mathcal{D}} \operatorname{Adv}_{\spn^T}(\mathcal{D})
+\operatorname{Adv}^{\mathrm{mu}}_{\spn^T}(p, q) = \max _{\mathcal{D}} \operatorname{Adv}^{\mathrm{mu}}_{\spn^T}(\mathcal{D})
 $$
 %
 where the maximum is taken over all adversaries $\mathcal{D}$ making at most $\mathnormal{p}$ queries to each of the S-boxes and at most $\mathnormal{q}$ queries to the outer permutations. In the single-user setting with $\ell = 1$, $\operatorname{Adv}^{\mathrm{mu}}_{\spn^T}(\mathcal{D})$ and $\operatorname{Adv}^{\mathrm{mu}}_{\spn^T}(p, q)$  will also be written as $\operatorname{Adv}^{\mathrm{su}}_{\spn^T}(\mathcal{D})$ and $\operatorname{Adv}^{\mathrm{su}}_{\spn^T}(p, q)$, respectively.
@@ -192,13 +192,13 @@ The lower bound (\ref{eq:h-ratio}) is called \emph{$\epsilon$-point-wise proximi
 		\item[1.] $\varepsilon (x, y) + \varepsilon (x, z) \leq \varepsilon (x, y + z)$ for every $x, y, z \in \mathbb{N}$,
 		\item[2.] $\varepsilon (\cdot, z)$ and $\varepsilon (z, \cdot)$ are non-decreasing functions on $\mathbb{N}$ for every $z \in \mathbb{N}$.
 	\end{itemize}
-	Suppose that for any distinguisher $\mathcal{D}$ in the single-user setting that makes p primitive queries to each of the underlying S-boxes and makes q construction queries, and for any attainable transcript $\tau$ obtained by $\mathcal{D}$, one has
+	Suppose that for any distinguisher $\mathcal{D}$ in the {\it single-user setting} that makes p primitive queries to each of the underlying S-boxes and makes q construction queries, and for any attainable transcript $\tau$ obtained by $\mathcal{D}$, one has
 	%
 	$$
 	\mathsf{p}_{2}(\tau) \geq (1 - \varepsilon(p,q)) \mathsf{p}_{1}(\tau).
 	$$
 	%
-	Then for any distinguisher $\mathcal{D}$ in the multi-user setting that makes $\mathnormal{p}$ primitive queries to each of the underlying S-boxes and makes total $\mathnormal{q}$ construction queries, and for any attainable transcript $\tau$ obtained by $\mathcal{D}$, one has
+	Then for any distinguisher $\mathcal{D}$ in the {\it multi-user setting} that makes $\mathnormal{p}$ primitive queries to each of the underlying S-boxes and makes total $\mathnormal{q}$ construction queries, and for any attainable transcript $\tau$ obtained by $\mathcal{D}$, one has
 	%
 	$$
 	\mathsf{p}_{2}(\tau) \geq (1 - \varepsilon(p + wq,q)) \mathsf{p}_{1}(\tau).
