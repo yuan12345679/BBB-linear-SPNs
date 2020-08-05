@@ -1,0 +1,105 @@
+%<TpX v="5" ArrowsSize="0.7" StarsSize="1" DefaultFontHeight="5" DefaultSymbolSize="30" ApproximationPrecision="0.01" PicScale="1" Border="2" BitmapRes="20000" HatchingStep="2" DottedSize="0.5" DashSize="1" LineWidth="0.3">
+%  <caption label="Fig:macs-MAL2">
+%Our new MA modes. The hash \h is modeled as a random oracle \ro. Components in the red dashed squares are protected to be side-channel secure (modeled as ``leak free&apos;&apos;): these include all the 4 blockcipher calls and the red bold wire in the right part. (left) LRW1-based hash-then-MAC \epshm; (right) rekeying hash-then-MAC \rhm.  </caption>
+%  <line x1="225.444" y1="166.641" x2="229.038" y2="166.641" arrs="0.4" lw="0.30"/>
+%  <polygon lw="0.30">229.099,173.87 235.099,170.87 235.099,161.87 229.099,158.87</polygon>
+%  <text x="230.194" y="165.692" t="RO" tex="\ro" h="3"/>
+%  <text x="222.58" y="165.692" t="M" h="3"/>
+%  <line x1="235.265" y1="161.899" x2="235.265" y2="165.924"/>
+%  <line x1="235.265" y1="166.831" x2="235.265" y2="170.856"/>
+%  <line x1="235.42" y1="163.666" x2="241.962" y2="163.666" arrs="0.4" lw="0.30"/>
+%  <text x="243.198" y="162.748" t="EK" tex="$\textsf{E}_K$" h="3"/>
+%  <rect x="241.962" y="161.097" w="5.97482" h="5.02356" lw="0.30"/>
+%  <line x1="247.982" y1="163.666" x2="252.89" y2="163.666" arrs="0.4" lw="1.50" lc="red"/>
+%  <line x1="235.42" y1="168.83" x2="249.613" y2="168.83" arrs="0.4" lw="0.30"/>
+%  <line x1="252.672" y1="163.666" x2="252.672" y2="166.36" arrs="0.4" lw="1.50" lc="red"/>
+%  <text x="260.025" y="167.743" t="T" h="3"/>
+%  <line x1="255.617" y1="168.83" x2="259.863" y2="168.83" arrs="0.4" lw="0.30"/>
+%  <circle x="204.124" y="163.662" d="1.8887" lw="0.30"/>
+%  <text x="207.775" y="162.751" t="Ek2" tex="$\textsf{E}_{K_2}$" h="3"/>
+%  <rect x="206.907" y="161.1" w="5.97467" h="5.02357" lw="0.30"/>
+%  <line x1="178.379" y1="166.641" x2="181.973" y2="166.641" arrs="0.4" lw="0.30"/>
+%  <polygon lw="0.30">182.034,173.87 188.034,170.87 188.034,161.87 182.034,158.87</polygon>
+%  <text x="183.129" y="165.692" t="RO" tex="\ro" h="3"/>
+%  <text x="175.515" y="165.692" t="M" h="3"/>
+%  <line x1="188.2" y1="161.899" x2="188.2" y2="165.924"/>
+%  <line x1="188.2" y1="166.831" x2="188.2" y2="170.856"/>
+%  <line x1="188.355" y1="163.666" x2="195.141" y2="163.666" arrs="0.4" lw="0.30"/>
+%  <text x="196.009" y="162.748" t="Ek1" tex="$\textsf{E}_{K_1}$" h="3"/>
+%  <rect x="195.141" y="161.097" w="5.9747" h="5.02356" lw="0.30"/>
+%  <line x1="201.156" y1="163.666" x2="206.907" y2="163.666" arrs="0.4" lw="0.30"/>
+%  <line x1="188.355" y1="168.83" x2="204.124" y2="168.83" arrs="0.4" lw="0.30"/>
+%  <line x1="204.124" y1="162.736" x2="204.124" y2="168.83" arrs="0.4" lw="0.30"/>
+%  <text x="217.958" y="162.555" t="T" h="3"/>
+%  <line x1="212.882" y1="163.666" x2="217.697" y2="163.666" arrs="0.4" lw="0.30"/>
+%  <text x="251.731" y="167.956" t="E" tex="$\textsf{E}$" h="3"/>
+%  <rect x="249.613" y="166.375" w="5.9747" h="5.02359" lw="0.30"/>
+%  <polygon lw="0.30">252.672,167.319 253.825,166.375 251.477,166.375</polygon>
+%  <rect x="241.061" y="159.805" w="15.3728" h="13.0217" li="dash" lw="0.30" lc="red"/>
+%  <rect x="193.801" y="159.544" w="8.3831" h="7.81812" li="dash" lw="0.30" lc="red"/>
+%  <rect x="205.735" y="159.544" w="8.14886" h="7.81798" li="dash" lw="0.30" lc="red"/>
+%  <line x1="191.288" y1="167.762" x2="191.927" y2="169.755" arrs="0.4" lw="0.20" lc="black"/>
+%  <text x="190.526" y="170.266" t="n" tex="$n$" h="3"/>
+%  <line x1="238.649" y1="167.762" x2="239.288" y2="169.755" arrs="0.4" lw="0.20" lc="black"/>
+%  <text x="237.887" y="170.266" t="n" tex="$n$" h="3"/>
+%  <line x1="191.288" y1="162.58" x2="191.927" y2="164.573" arrs="0.4" lw="0.20" lc="black"/>
+%  <text x="190.526" y="165.084" t="n" tex="$n$" h="3"/>
+%  <line x1="238.649" y1="162.646" x2="239.288" y2="164.639" arrs="0.4" lw="0.20" lc="black"/>
+%  <text x="237.887" y="165.15" t="n" tex="$n$" h="3"/>
+%  <line x1="257.884" y1="167.795" x2="258.523" y2="169.788" arrs="0.4" lw="0.20" lc="black"/>
+%  <text x="257.211" y="170.299" t="n" tex="$n$" h="3"/>
+%  <line x1="215.766" y1="162.58" x2="216.405" y2="164.573" arrs="0.4" lw="0.20" lc="black"/>
+%  <text x="215.004" y="165.084" t="n" tex="$n$" h="3"/>
+%  <line x1="215.766" y1="162.58" x2="216.405" y2="164.573" arrs="0.4" lw="0.20" lc="black"/>
+%  <text x="215.004" y="165.084" t="n" tex="$n$" h="3"/>
+%</TpX>
+\begin{figure}
+\centering
+\ifpdf
+  \setlength{\unitlength}{1bp}%
+  \begin{picture}(256.09, 53.86)(0,0)
+  \put(0,0){\includegraphics{new-MACs.pdf}}
+  \put(160.66,25.01){\fontsize{8.54}{10.24}\selectfont \ro}
+  \put(139.08,25.01){\fontsize{8.54}{10.24}\selectfont M}
+  \put(197.53,16.66){\fontsize{8.54}{10.24}\selectfont $\textsf{E}_K$}
+  \put(245.23,30.82){\fontsize{8.54}{10.24}\selectfont T}
+  \put(97.11,16.67){\fontsize{8.54}{10.24}\selectfont $\textsf{E}_{K_2}$}
+  \put(27.25,25.01){\fontsize{8.54}{10.24}\selectfont \ro}
+  \put(5.67,25.01){\fontsize{8.54}{10.24}\selectfont M}
+  \put(63.76,16.66){\fontsize{8.54}{10.24}\selectfont $\textsf{E}_{K_1}$}
+  \put(125.98,16.11){\fontsize{8.54}{10.24}\selectfont T}
+  \put(221.71,31.42){\fontsize{8.54}{10.24}\selectfont $\textsf{E}$}
+  \put(48.22,37.97){\fontsize{8.54}{10.24}\selectfont $n$}
+  \put(182.47,37.97){\fontsize{8.54}{10.24}\selectfont $n$}
+  \put(48.22,23.28){\fontsize{8.54}{10.24}\selectfont $n$}
+  \put(182.47,23.47){\fontsize{8.54}{10.24}\selectfont $n$}
+  \put(237.25,38.07){\fontsize{8.54}{10.24}\selectfont $n$}
+  \put(117.61,23.28){\fontsize{8.54}{10.24}\selectfont $n$}
+  \put(117.61,23.28){\fontsize{8.54}{10.24}\selectfont $n$}
+  \end{picture}%
+\else
+  \setlength{\unitlength}{1bp}%
+  \begin{picture}(256.09, 53.86)(0,0)
+  \put(0,0){\includegraphics{new-MACs}}
+  \put(160.66,25.01){\fontsize{8.54}{10.24}\selectfont \ro}
+  \put(139.08,25.01){\fontsize{8.54}{10.24}\selectfont M}
+  \put(197.53,16.66){\fontsize{8.54}{10.24}\selectfont $\textsf{E}_K$}
+  \put(245.23,30.82){\fontsize{8.54}{10.24}\selectfont T}
+  \put(97.11,16.67){\fontsize{8.54}{10.24}\selectfont $\textsf{E}_{K_2}$}
+  \put(27.25,25.01){\fontsize{8.54}{10.24}\selectfont \ro}
+  \put(5.67,25.01){\fontsize{8.54}{10.24}\selectfont M}
+  \put(63.76,16.66){\fontsize{8.54}{10.24}\selectfont $\textsf{E}_{K_1}$}
+  \put(125.98,16.11){\fontsize{8.54}{10.24}\selectfont T}
+  \put(221.71,31.42){\fontsize{8.54}{10.24}\selectfont $\textsf{E}$}
+  \put(48.22,37.97){\fontsize{8.54}{10.24}\selectfont $n$}
+  \put(182.47,37.97){\fontsize{8.54}{10.24}\selectfont $n$}
+  \put(48.22,23.28){\fontsize{8.54}{10.24}\selectfont $n$}
+  \put(182.47,23.47){\fontsize{8.54}{10.24}\selectfont $n$}
+  \put(237.25,38.07){\fontsize{8.54}{10.24}\selectfont $n$}
+  \put(117.61,23.28){\fontsize{8.54}{10.24}\selectfont $n$}
+  \put(117.61,23.28){\fontsize{8.54}{10.24}\selectfont $n$}
+  \end{picture}%
+\fi
+\caption{\label{Fig:macs-MAL2}%
+ Our new MA modes. The hash \h is modeled as a random oracle \ro. Components in the red dashed squares are protected to be side-channel secure (modeled as ``leak free''): these include all the 4 blockcipher calls and the red bold wire in the right part. (left) LRW1-based hash-then-MAC \epshm; (right) rekeying hash-then-MAC \rhm.}
+\end{figure}
